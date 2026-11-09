@@ -410,6 +410,8 @@ const BRANDS = [
   { id: 'fitbox', name: 'FitBox' }, { id: 'healthy-fit', name: 'Healthy Fit' }, { id: 'pick-eat', name: 'Pick & Eat' },
   { id: 'egg-spot', name: 'The Egg Spot' }, { id: 'nutria', name: 'Nutria' }
 ];
+// Тех.карта может входить в несколько брендов: основной (b) и дополнительные (also)
+function inBrand(c, id) { return c.b === id || (c.also || []).indexOf(id) >= 0; }
 // Рисованные продукты для плиток главной (assets/food)
 const TILE_FOOD = { admin: 'hat.svg', catalog: 'avocado.svg', sop: 'bowl.svg', program: 'egg.svg', materials: 'tomato.svg',
   trainer: 'whisk.svg', test: 'chili.svg', progress: 'lemon.svg', hr: 'tomato.svg' };
@@ -714,7 +716,7 @@ class Component extends DCLogic {
       heroQ: t('heroQ'),
       brandsTitle: t('brandsTitle'), brandsSub: t('brandsSub'),
       brands: BRANDS.map((b, i) => {
-        const n = s.cards.filter(c => c.b === b.id).length;
+        const n = s.cards.filter(c => inBrand(c, b.id)).length;
         const main = i === 0;
         return {
           name: b.name, logo: 'assets/brands/' + b.id + '.png',
@@ -792,7 +794,7 @@ class Component extends DCLogic {
 
     if (s.screen === 'catalog') {
       const q = s.query.trim().toLowerCase();
-      const pool = s.brand ? s.cards.filter(c => c.b === s.brand) : s.cards;
+      const pool = s.brand ? s.cards.filter(c => inBrand(c, s.brand)) : s.cards;
       const counts = {};
       pool.forEach(c => { counts[c.c] = (counts[c.c] || 0) + 1; });
       const catNames = ['__all'].concat(Object.keys(counts).sort());
@@ -805,7 +807,7 @@ class Component extends DCLogic {
         setQuery: e => this.setState({ query: e.target.value }),
         foundText: t('foundOf', { a: filtered.length, b: pool.length }),
         brandChips: [{ id: '', name: t('allBrands'), n: s.cards.length }]
-          .concat(BRANDS.map(b => ({ id: b.id, name: b.name, n: s.cards.filter(c => c.b === b.id).length })).filter(b => b.n))
+          .concat(BRANDS.map(b => ({ id: b.id, name: b.name, n: s.cards.filter(c => inBrand(c, b.id)).length })).filter(b => b.n))
           .map(b => ({
             label: b.name, count: b.n, hasLogo: !!b.id, logo: b.id ? 'assets/brands/' + b.id + '.png' : '',
             pl: b.id ? '5px' : '14px',
