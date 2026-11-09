@@ -197,13 +197,18 @@
       <div style="font-size: 13px; color: #5B6E86; line-height: 1.45; padding-top: 2px;">{{ brandsSub }}</div>
       <div class="fl-brands fl-brands-home" style="display: flex; gap: 10px; overflow-x: auto; padding: 14px 2px 12px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;">
         <sc-for list="{{ brands }}" as="b" hint-placeholder-count="11">
-          <button class="fl-brand" onClick="{{ b.go }}" title="{{ b.name }}" style="flex: none; width: 88px; padding: 0 0 2px; margin-right: {{ b.mr }}; border: 0; border-right: {{ b.sep }}; padding-right: {{ b.pr }}; background: none; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: {{ b.cursor }}; opacity: {{ b.op }}; scroll-snap-align: start; font-family: inherit;">
+          <div style="flex: none; width: 88px; margin-right: {{ b.mr }}; border-right: {{ b.sep }}; padding-right: {{ b.pr }}; display: flex; flex-direction: column; align-items: center; gap: 4px; scroll-snap-align: start;">
+          <button class="fl-brand" onClick="{{ b.go }}" title="{{ b.name }}" style="width: 88px; padding: 0 0 2px; border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: {{ b.cursor }}; opacity: {{ b.op }}; font-family: inherit;">
             <span class="fl-brand-pl" style="width: 76px; height: 76px; border-radius: 99px; background: {{ b.plate }}; box-shadow: 0 10px 18px -12px rgba(20,53,89,0.6), 0 0 0 1px #D6E4F2; display: flex; align-items: center; justify-content: center; overflow: hidden;">
               <img src="{{ b.logo }}" alt="" style="width: {{ b.img }}; height: {{ b.img }}; object-fit: {{ b.fit }}; border-radius: {{ b.rad }}; display: block;" />
             </span>
             <span style="font-size: 11.5px; font-weight: {{ b.weight }}; color: #13263F; line-height: 1.2; text-align: center;">{{ b.name }}</span>
             <span style="font-size: 10.5px; color: #5B6E86;">{{ b.note }}</span>
           </button>
+          <sc-if value="{{ b.hasIg }}" hint-placeholder-val="{{ true }}">
+            <a href="{{ b.ig }}" target="_blank" rel="noopener" title="{{ b.igHandle }}" style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 99px; background: #FDF0F6; color: #9B2C6B; font-size: 10.5px; font-weight: 600; text-decoration: none;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C13584" strokeWidth="2.2" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.6" fill="#C13584"></circle></svg>Instagram</a>
+          </sc-if>
+          </div>
         </sc-for>
       </div>
     </div>
@@ -404,11 +409,14 @@ const KEY_FIX = {
 };
 
 // Бренды Food Lab: главный бренд первым, затем суббренды (логотипы — assets/brands)
+// ig — страница бренда в Instagram (у кого её пока нет — пусто)
 const BRANDS = [
-  { id: 'foodlab', name: 'Food Lab' }, { id: 'only-eggs', name: 'Only Eggs' }, { id: 'only-kebab', name: 'Only Kebab' },
-  { id: 'hey-pizza', name: 'Hey, Pizza!' }, { id: 'hey-italia', name: 'Hey, Italia!' }, { id: 'hey-pasta', name: 'Hey, Pasta!' },
-  { id: 'fitbox', name: 'FitBox' }, { id: 'healthy-fit', name: 'Healthy Fit' }, { id: 'pick-eat', name: 'Pick & Eat' },
-  { id: 'egg-spot', name: 'The Egg Spot' }, { id: 'nutria', name: 'Nutria' }
+  { id: 'foodlab', name: 'Food Lab', ig: 'foodlab.uluwatu' }, { id: 'only-eggs', name: 'Only Eggs', ig: 'only.eggs.bali' },
+  { id: 'only-kebab', name: 'Only Kebab', ig: 'only.kebab.uluwatu' }, { id: 'hey-pizza', name: 'Hey, Pizza!', ig: 'heypizza.bali' },
+  { id: 'hey-italia', name: 'Hey, Italia!', ig: 'hey.italia.uluwatu' }, { id: 'hey-pasta', name: 'Hey, Pasta!', ig: 'heypasta.bali' },
+  { id: 'fitbox', name: 'FitBox', ig: 'fitbox.uluwatu' }, { id: 'healthy-fit', name: 'Healthy Fit', ig: '' },
+  { id: 'pick-eat', name: 'Pick & Eat', ig: 'pickandeat.bali' }, { id: 'egg-spot', name: 'The Egg Spot', ig: '' },
+  { id: 'nutria', name: 'Nutria', ig: '' }
 ];
 // Тех.карта может входить в несколько брендов: основной (b) и дополнительные (also)
 function inBrand(c, id) { return c.b === id || (c.also || []).indexOf(id) >= 0; }
@@ -727,6 +735,7 @@ class Component extends DCLogic {
         const main = i === 0;
         return {
           name: b.name, logo: 'assets/brands/' + b.id + '.png',
+          hasIg: !!b.ig, ig: b.ig ? 'https://www.instagram.com/' + b.ig + '/' : '', igHandle: b.ig ? '@' + b.ig : '',
           note: n ? n : t('soon'),
           plate: main ? '#FBF3E4' : '#FFFFFF', img: main ? '60px' : '70px', fit: main ? 'contain' : 'cover', rad: main ? '0' : '99px',
           weight: main ? '800' : '600',

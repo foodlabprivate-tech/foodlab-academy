@@ -59,6 +59,11 @@ h2{font:800 20px "Nunito",sans-serif;margin:28px 0 4px}
 .locpick{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
 .locpick button{border:1px solid rgba(255,255,255,.35);background:none;color:#fff;border-radius:99px;padding:6px 13px;font:600 13px "Onest",sans-serif;cursor:pointer}
 .locpick button[aria-pressed="true"]{background:#fff;color:var(--deep);border-color:#fff}
+.ig{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.igc{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:9px 12px;text-decoration:none;color:var(--ink) !important;transition:transform .16s ease,border-color .16s ease}
+.igc:hover{transform:translateY(-2px);border-color:#E1306C}
+.igc img{flex:none;width:44px;height:44px;border-radius:99px;object-fit:cover;background:#FBF3E4;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #E1306C}
+.igc span{min-width:0}.igc b{display:block;font-size:14px}.igc small{display:block;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.card{animation:none}}
 </style>
 </head>
@@ -125,6 +130,14 @@ h2{font:800 20px "Nunito",sans-serif;margin:28px 0 4px}
     { kind: 'Бот', ico: '📚', title: 'Бот-википедия Food Lab', who: ALL,
       text: 'Отвечает на вопросы о компании на русском, английском и индонезийском. Что именно он ответит, зависит от вашей роли в боте.',
       bot: 'https://t.me/Formirobest_bot', handle: '@Formirobest_bot', wiki: true }
+  ];
+
+  // Страницы брендов в Instagram: [логотип, название, аккаунт]
+  var IG = [
+    ['foodlab', 'Food Lab', 'foodlab.uluwatu'], ['only-eggs', 'Only Eggs', 'only.eggs.bali'],
+    ['only-kebab', 'Only Kebab', 'only.kebab.uluwatu'], ['hey-pizza', 'Hey, Pizza!', 'heypizza.bali'],
+    ['hey-italia', 'Hey, Italia!', 'hey.italia.uluwatu'], ['hey-pasta', 'Hey, Pasta!', 'heypasta.bali'],
+    ['fitbox', 'FitBox', 'fitbox.uluwatu'], ['pick-eat', 'Pick & Eat', 'pickandeat.bali']
   ];
 
   // Что спросить у бота-википедии — по должности
@@ -217,6 +230,12 @@ h2{font:800 20px "Nunito",sans-serif;margin:28px 0 4px}
     var bots = mine.filter(function (c) { return c.kind === 'Бот'; });
     if (groups.length) html += '<h2>Группы по должности</h2><p class="sub">Эти группы видны только вашей должности.</p><div class="grid">' + groups.map(function (c) { return card(c, isAdmin, i++); }).join('') + '</div>';
     if (bots.length) html += '<h2>Боты</h2><p class="sub">Помощники в Telegram.</p><div class="grid">' + bots.map(function (c) { return card(c, isAdmin, i++); }).join('') + '</div>';
+
+    // Instagram брендов — для всех
+    html += '<h2>Instagram наших брендов</h2><p class="sub">Подпишитесь и следите за новинками меню и акциями.</p><div class="ig">' +
+      IG.map(function (b) {
+        return '<a class="igc" href="https://www.instagram.com/' + b[2] + '/" target="_blank" rel="noopener"><img src="assets/brands/' + b[0] + '.png" alt=""><span><b>' + esc(b[1]) + '</b><small>@' + esc(b[2]) + '</small></span></a>';
+      }).join('') + '</div>';
 
     // что спрашивать у википедии
     html += '<h2>Что спросить у бота-википедии</h2><p class="sub">Примеры вопросов для вашей должности. Пишите своими словами.</p><div class="topics">' +
