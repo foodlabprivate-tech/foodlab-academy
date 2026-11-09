@@ -29,28 +29,29 @@
   .fl-tile { animation: fl-rise 480ms cubic-bezier(.2,.7,.2,1) both; }
   .fl-tile .fl-arrow { transition: transform 180ms ease, opacity 180ms ease; opacity: .35; }
   .fl-tile:hover .fl-arrow, .fl-tile:focus-visible .fl-arrow { transform: translateX(4px); opacity: 1; }
-  .fl-tile .fl-ico { transition: transform 220ms cubic-bezier(.2,.7,.2,1); }
-  .fl-tile:hover .fl-ico { transform: scale(1.08) rotate(-4deg); }
+  .fl-tile .fl-ico { transition: transform 320ms cubic-bezier(.3,1.6,.5,1); }
+  .fl-tile:hover .fl-ico { transform: rotate(-16deg) scale(1.06); }
+  .fl-tile .fl-ico img { transition: transform 320ms cubic-bezier(.3,1.6,.5,1); }
+  .fl-tile:hover .fl-ico img { transform: translateY(-3px); }
+  @keyframes fl-bob { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(-6deg); } }
+  .fl-brand { transition: transform 200ms ease; }
+  .fl-brand:hover { transform: translateY(-3px); }
+  .fl-brand:hover .fl-brand-pl { animation: fl-bob 600ms ease; }
+  .fl-brands::-webkit-scrollbar { height: 6px; }
+  @media (min-width: 760px) { .fl-brands-home { flex-wrap: wrap; overflow: visible !important; row-gap: 14px; } }
+  @keyframes fl-leaf { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-3deg); } }
+  .fl-leaf { transform-origin: 90% 10%; animation: fl-leaf 7s ease-in-out infinite; }
   .fl-tile:active { transform: scale(.985) !important; }
-  @media (prefers-reduced-motion: reduce) { .fl-tile, .fl-tile .fl-ico, .fl-tile .fl-arrow { animation: none; transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .fl-tile, .fl-tile .fl-ico, .fl-tile .fl-arrow, .fl-leaf, .fl-brand-pl { animation: none !important; transition: none; } }
 </style>
 </helmet>
 <div style="min-height: 100vh; background: #E7EDF7; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #0F1F3D; padding: 24px 20px 70px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
 
   <div style="width: 100%; max-width: 780px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-    <a href="#" onClick="{{ goHome }}" style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #CFE0F2; display: flex; align-items: center; justify-content: center;">
-      <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
-        <circle cx="32" cy="32" r="30.5" stroke="#4E749F" stroke-width="1.4" />
-        <circle cx="32" cy="32" r="25" stroke="#4E749F" stroke-width="0.8" opacity="0.5" />
-        <path d="M32 17 L32 47" stroke="#4E749F" stroke-width="1.4" />
-        <path d="M24 20 L24 30 Q24 34 28 34 L28 47" stroke="#1B2D47" stroke-width="2" stroke-linecap="round" />
-        <path d="M24 20 L24 27 M27 20 L27 27" stroke="#1B2D47" stroke-width="1.5" stroke-linecap="round" />
-        <path d="M40 20 Q44 24 41 31 L37 33 L40 47" stroke="#1B2D47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </a>
+    <a href="#" onClick="{{ goHome }}" style="flex: none; width: 50px; height: 50px; border-radius: 14px; overflow: hidden; background: #FBF3E4; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px -10px rgba(20,53,89,0.55);"><img src="assets/brands/foodlab.png" alt="Food Lab" style="width: 100%; height: 100%; object-fit: contain; display: block;" /></a>
     <div style="flex: 1; min-width: 140px; display: flex; flex-direction: column; gap: 2px;">
-      <div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 15px; letter-spacing: 0.01em; color: #3F6285;">Foodlab Academy</div>
-      <div style="font-size: 19px; font-weight: 800; letter-spacing: -0.02em;">{{ pageTitle }}</div>
+      <div style="font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #2C6BA8;">Food Lab Academy</div>
+      <div style="font-family: 'Nunito', 'Onest', sans-serif; font-size: 21px; font-weight: 800; letter-spacing: -0.01em;">{{ pageTitle }}</div>
     </div>
     <a href="#" onClick="{{ goHome }}" style="flex: none; min-height: 36px; padding: 10px 13px; border: 1px solid rgba(15,31,61,0.14); border-radius: 10px; background: #FFFFFF; color: #5A6B87; font-size: 12.5px; font-weight: 600; transition: background 140ms ease;" style-hover="background: #F4F7FD; color: #5A6B87;">{{ homeLabel }}</a>
     <div style="flex: none; display: flex; gap: 5px;">
@@ -140,29 +141,32 @@
   <sc-if value="{{ isHub }}" hint-placeholder-val="{{ false }}">
   <div style="width: 100%; max-width: 780px; display: flex; flex-direction: column; gap: 13px;">
 
-    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; overflow: hidden; box-shadow: 0 14px 30px -26px rgba(15,31,61,0.4);">
-      <div style="padding: 20px 21px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
-        <button onClick="{{ pickAvatar }}" title="{{ avatarHint }}" style="flex: none; width: 92px; height: 92px; padding: 0; border: 1px solid rgba(15,31,61,0.1); border-radius: 24px; overflow: hidden; background: #FFFFFF; cursor: pointer; transition: transform 140ms ease, box-shadow 140ms ease;" style-hover="transform: translateY(-2px); box-shadow: 0 14px 26px -22px rgba(15,31,61,0.5);">
+    <div style="position: relative; background: linear-gradient(155deg, #1E5590 0%, #143559 100%); color: #FFFFFF; border-radius: 24px; overflow: hidden; box-shadow: 0 24px 40px -28px rgba(20,53,89,0.9);">
+      <svg class="fl-leaf" width="300" height="300" viewBox="0 0 100 100" style="position: absolute; right: -70px; top: -60px; opacity: 0.14; pointer-events: none;"><path d="M10 90C10 40 50 10 95 5 90 50 60 90 10 90z" fill="#BFE0FF"></path><path d="M10 90L80 20M30 70L22 52M45 55L35 36M60 40L52 22M40 62L58 64M55 47L74 48" stroke="#143559" strokeWidth="2"></path></svg>
+      <svg class="fl-leaf" width="170" height="170" viewBox="0 0 100 100" style="position: absolute; left: 38%; bottom: -96px; opacity: 0.08; pointer-events: none; animation-delay: -3s;"><path d="M10 90C10 40 50 10 95 5 90 50 60 90 10 90z" fill="#BFE0FF"></path></svg>
+      <div style="position: relative; padding: 24px 24px 22px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+        <button onClick="{{ pickAvatar }}" title="{{ avatarHint }}" style="flex: none; width: 92px; height: 92px; padding: 0; border: 3px solid rgba(255,255,255,0.9); border-radius: 26px; overflow: hidden; background: #FFFFFF; cursor: pointer; transition: transform 200ms cubic-bezier(.3,1.6,.5,1), box-shadow 140ms ease;" style-hover="transform: translateY(-2px) rotate(-3deg); box-shadow: 0 16px 28px -16px rgba(0,0,0,0.5);">
           <img ref="{{ setAvatar }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </button>
         <sc-if value="{{ showRing }}" hint-placeholder-val="{{ true }}">
         <div style="flex: none; width: 92px; height: 92px; border-radius: 99px; background: {{ ringBg }}; display: flex; align-items: center; justify-content: center;">
-          <div style="width: 72px; height: 72px; border-radius: 99px; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;">
-            <div style="font-size: 19px; font-weight: 800; letter-spacing: -0.02em; color: {{ ringInk }};">{{ myPct }}</div>
-            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #93A0B5;">{{ bestLabel }}</div>
+          <div style="width: 74px; height: 74px; border-radius: 99px; background: #18406A; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;">
+            <div style="font-family: 'Nunito', sans-serif; font-size: 21px; font-weight: 800; letter-spacing: -0.01em; color: #FFFFFF;">{{ myPct }}</div>
+            <div style="font-size: 9px; font-weight: 600; letter-spacing: 0.08em; color: rgba(255,255,255,0.7);">{{ bestLabel }}</div>
           </div>
         </div>
         </sc-if>
         <div style="flex: 1; min-width: 190px; display: flex; flex-direction: column; gap: 4px;">
-          <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em;">{{ greeting }}</div>
-          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7C8BA6;">{{ userMeta }}</div>
-          <div style="font-size: 13px; color: #5A6B87; line-height: 1.5; text-wrap: pretty; padding-top: 2px;">{{ myStatus }}</div>
+          <div style="font-family: 'Caveat', cursive; font-size: 25px; font-weight: 700; line-height: 1; color: #9CCBF5; transform: rotate(-2deg); transform-origin: left;">{{ greeting }}</div>
+          <div style="font-family: 'Nunito', sans-serif; font-size: 27px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.12; color: #FFFFFF;">{{ heroQ }}</div>
+          <div style="font-size: 11.5px; letter-spacing: 0.04em; color: rgba(255,255,255,0.6);">{{ userMeta }}</div>
+          <div style="font-size: 13.5px; color: rgba(255,255,255,0.86); line-height: 1.5; text-wrap: pretty; padding-top: 2px;">{{ myStatus }}</div>
           <sc-if value="{{ hasAvatarNote }}" hint-placeholder-val="{{ false }}">
-            <div style="font-size: 12.5px; color: #C0392B; line-height: 1.45; text-wrap: pretty;">{{ avatarNote }}</div>
+            <div style="font-size: 12.5px; color: #FFC9C0; line-height: 1.45; text-wrap: pretty;">{{ avatarNote }}</div>
           </sc-if>
         </div>
       </div>
-      <div style="display: flex; flex-wrap: wrap; border-top: 1px solid rgba(15,31,61,0.08);">
+      <div style="position: relative; display: flex; flex-wrap: wrap; background: #FFFFFF; color: #13263F;">
         <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
           <div style="flex: 1; min-width: 150px; padding: 13px 18px; border-right: 1px solid rgba(15,31,61,0.06); display: flex; flex-direction: column; gap: 2px;">
             <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.13em; text-transform: uppercase; color: #93A0B5;">{{ f.label }}</div>
@@ -174,19 +178,34 @@
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 11px;">
       <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
-        <button class="fl-tile" onClick="{{ t.go }}" style="animation-delay: {{ t.delay }}; position: relative; overflow: hidden; text-align: left; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; padding: 17px 18px 16px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; box-shadow: 0 12px 26px -26px rgba(15,31,61,0.5);" style-hover="transform: translateY(-3px); border-color: {{ t.color }}; box-shadow: 0 20px 34px -24px rgba(15,31,61,0.5);">
-          <span style="position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: {{ t.color }};"></span>
+        <button class="fl-tile" onClick="{{ t.go }}" style="animation-delay: {{ t.delay }}; position: relative; overflow: hidden; text-align: left; background: #FFFFFF; border: 1.5px solid transparent; border-radius: 22px; padding: 18px 18px 17px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease; box-shadow: 0 12px 26px -26px rgba(15,31,61,0.5);" style-hover="transform: translateY(-4px); border-color: #9CCBF5; box-shadow: 0 24px 36px -24px rgba(20,53,89,0.55);">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <span class="fl-ico" style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #EEF3FA; display: flex; align-items: center; justify-content: center;">
-              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" style="stroke: {{ t.color }};" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="{{ t.icon }}"></path></svg>
+            <span class="fl-ico" style="flex: none; width: 56px; height: 56px; border-radius: 99px; background: #EEF5FC; box-shadow: inset 0 0 0 5px #FFFFFF, 0 0 0 1px #D6E4F2; display: flex; align-items: center; justify-content: center;">
+              <img src="{{ t.food }}" alt="" width="32" height="32" style="display: block;" />
             </span>
-            <span style="flex: 1; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #93A0B5;">{{ t.kicker }}</span>
-            <span class="fl-arrow" style="font-size: 18px; font-weight: 700; color: {{ t.color }};">→</span>
+            <span style="flex: 1; font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #2C6BA8;">{{ t.kicker }}</span>
+            <span class="fl-arrow" style="font-size: 18px; font-weight: 700; color: #2C6BA8;">→</span>
           </div>
-          <div style="font-size: 16px; font-weight: 700; letter-spacing: -0.01em; padding-top: 4px;">{{ t.title }}</div>
+          <div style="font-family: 'Nunito', sans-serif; font-size: 17.5px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; padding-top: 4px;">{{ t.title }}</div>
           <div style="font-size: 13px; color: #5A6B87; line-height: 1.45; text-wrap: pretty;">{{ t.desc }}</div>
         </button>
       </sc-for>
+    </div>
+
+    <div style="background: #FFFFFF; border-radius: 22px; padding: 18px 18px 6px; box-shadow: 0 18px 30px -26px rgba(20,53,89,0.5);">
+      <div style="font-family: 'Nunito', sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -0.01em;">{{ brandsTitle }}</div>
+      <div style="font-size: 13px; color: #5B6E86; line-height: 1.45; padding-top: 2px;">{{ brandsSub }}</div>
+      <div class="fl-brands fl-brands-home" style="display: flex; gap: 10px; overflow-x: auto; padding: 14px 2px 12px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;">
+        <sc-for list="{{ brands }}" as="b" hint-placeholder-count="11">
+          <button class="fl-brand" onClick="{{ b.go }}" title="{{ b.name }}" style="flex: none; width: 88px; padding: 0 0 2px; margin-right: {{ b.mr }}; border: 0; border-right: {{ b.sep }}; padding-right: {{ b.pr }}; background: none; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: {{ b.cursor }}; opacity: {{ b.op }}; scroll-snap-align: start; font-family: inherit;">
+            <span class="fl-brand-pl" style="width: 76px; height: 76px; border-radius: 99px; background: {{ b.plate }}; box-shadow: 0 10px 18px -12px rgba(20,53,89,0.6), 0 0 0 1px #D6E4F2; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+              <img src="{{ b.logo }}" alt="" style="width: {{ b.img }}; height: {{ b.img }}; object-fit: {{ b.fit }}; border-radius: {{ b.rad }}; display: block;" />
+            </span>
+            <span style="font-size: 11.5px; font-weight: {{ b.weight }}; color: #13263F; line-height: 1.2; text-align: center;">{{ b.name }}</span>
+            <span style="font-size: 10.5px; color: #5B6E86;">{{ b.note }}</span>
+          </button>
+        </sc-for>
+      </div>
     </div>
   </div>
   </sc-if>
@@ -215,6 +234,17 @@
         <button onClick="{{ goHub }}" style="min-height: 40px; padding: 0 14px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; cursor: pointer;" style-hover="background: #F4F7FD;">{{ backLabel }}</button>
         <input value="{{ query }}" onInput="{{ setQuery }}" placeholder="{{ searchPlaceholder }}" style="flex: 1; min-width: 180px; min-height: 44px; padding: 0 14px; border: 1.5px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FBFCFE; font-size: 14.5px; outline: none;" style-focus="border-color: #2C6BE6; background: #FFFFFF;" />
         <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #93A0B5;">{{ foundText }}</div>
+      </div>
+      <div class="fl-brands" style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px;">
+        <sc-for list="{{ brandChips }}" as="b" hint-placeholder-count="7">
+          <button onClick="{{ b.pick }}" style="flex: none; min-height: 40px; padding: 0 12px 0 {{ b.pl }}; border: 1.5px solid {{ b.border }}; border-radius: 99px; background: {{ b.bg }}; color: {{ b.color }}; font-size: 12.5px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 7px; white-space: nowrap; transition: border-color 140ms ease, transform 140ms ease;" style-hover="border-color: #9CCBF5; transform: translateY(-1px);">
+            <sc-if value="{{ b.hasLogo }}" hint-placeholder-val="{{ true }}">
+              <img src="{{ b.logo }}" alt="" style="width: 30px; height: 30px; border-radius: 99px; object-fit: cover; background: #FBF3E4; display: block;" />
+            </sc-if>
+            <span>{{ b.label }}</span>
+            <span style="font-size: 10.5px; opacity: 0.65;">{{ b.count }}</span>
+          </button>
+        </sc-for>
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 6px;">
         <sc-for list="{{ cats }}" as="c" hint-placeholder-count="11">
@@ -373,18 +403,21 @@ const KEY_FIX = {
   'Protein Healthy Breakfast': 'protein-healthy-breakfast-g'
 };
 
-// Иконки плиток главной (контур 24×24)
-const TILE_ICONS = {
-  admin: 'M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z M9 12l2 2 4-4',
-  catalog: 'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15z M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5 M9 8h7 M9 12h5',
-  sop: 'M9 4h6v3H9z M7 5H5v16h14V5h-2 M8 12l2 2 4-4 M8 17h8',
-  program: 'M6 3v18 M6 4h11l-2 4 2 4H6',
-  materials: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z',
-  trainer: 'M8 4h11a1 1 0 0 1 1 1v12 M4 8a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8z M8 14h5',
-  test: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M8 12l3 3 5-6',
-  progress: 'M4 20V10 M10 20V4 M16 20v-7 M22 20H2',
-  hr: 'M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z M12 12.5a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6z M8.8 17c.6-1.6 1.8-2.4 3.2-2.4s2.6.8 3.2 2.4'
-};
+// Бренды Food Lab: главный бренд первым, затем суббренды (логотипы — assets/brands)
+const BRANDS = [
+  { id: 'foodlab', name: 'Food Lab' }, { id: 'only-eggs', name: 'Only Eggs' }, { id: 'only-kebab', name: 'Only Kebab' },
+  { id: 'hey-pizza', name: 'Hey, Pizza!' }, { id: 'hey-italia', name: 'Hey, Italia!' }, { id: 'hey-pasta', name: 'Hey, Pasta!' },
+  { id: 'fitbox', name: 'FitBox' }, { id: 'healthy-fit', name: 'Healthy Fit' }, { id: 'pick-eat', name: 'Pick & Eat' },
+  { id: 'egg-spot', name: 'The Egg Spot' }, { id: 'nutria', name: 'Nutria' }
+];
+// Рисованные продукты для плиток главной (assets/food)
+const TILE_FOOD = { admin: 'hat.svg', catalog: 'avocado.svg', sop: 'bowl.svg', program: 'egg.svg', materials: 'tomato.svg',
+  trainer: 'whisk.svg', test: 'chili.svg', progress: 'lemon.svg', hr: 'tomato.svg' };
+// Приветствие по-балийски — по времени суток
+function balisGreeting() {
+  const h = new Date().getHours();
+  return h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 19 ? 'Selamat sore' : 'Selamat malam';
+}
 
 const CAT_COLOR = {
   'Завтраки': '#E0703F', 'Пицца': '#C0392B', 'Паста': '#B8860B', 'Кофе': '#7A4B2A',
@@ -397,7 +430,7 @@ class Component extends DCLogic {
     db: null, ready: false, screen: 'login', lang: 'ru',
     loginName: '', loginPass: '', error: '', busy: false,
     user: null, cards: [], results: [], settings: null,
-    query: '', cat: '__all', card: 0, flipped: false, avatarNote: '',
+    query: '', cat: '__all', brand: '', card: 0, flipped: false, avatarNote: '',
     pickedPosition: '', photos: {},
     code: '', pass1: '', pass2: ''
   };
@@ -677,14 +710,29 @@ class Component extends DCLogic {
       hasAvatarNote: !!s.avatarNote,
       setAvatar: this.imgRef(window.FL_AVATARS ? window.FL_AVATARS.forUser(s.user) : ''),
       pickAvatar: () => this.changeAvatar(),
-      greeting: s.user ? t('hello') + ', ' + String(s.user.name).split(' ')[0] : '',
+      greeting: s.user ? balisGreeting() + ', ' + String(s.user.name).split(' ')[0] + '!' : '',
+      heroQ: t('heroQ'),
+      brandsTitle: t('brandsTitle'), brandsSub: t('brandsSub'),
+      brands: BRANDS.map((b, i) => {
+        const n = s.cards.filter(c => c.b === b.id).length;
+        const main = i === 0;
+        return {
+          name: b.name, logo: 'assets/brands/' + b.id + '.png',
+          note: n ? n : t('soon'),
+          plate: main ? '#FBF3E4' : '#FFFFFF', img: main ? '60px' : '70px', fit: main ? 'contain' : 'cover', rad: main ? '0' : '99px',
+          weight: main ? '800' : '600',
+          mr: main ? '6px' : '0', pr: main ? '14px' : '0', sep: main ? '1px solid #D6E4F2' : '0',
+          op: n ? '1' : '0.55', cursor: n ? 'pointer' : 'default',
+          go: () => { if (n) this.go('catalog', { brand: b.id, cat: '__all', query: '' }); }
+        };
+      }),
       userMeta: s.user ? [s.user.position, (db && db.ROLES[s.user.role]) || s.user.role, '@' + s.user.login].filter(Boolean).join(' · ') : '',
       bestLabel: t('best'),
       showRing: !isAdmin,
       myPct: best ? best.percent + '%' : '—',
       ringBg: best
-        ? 'conic-gradient(' + (best.passed ? '#1F7A4D' : '#E05B4F') + ' ' + best.percent + '%, rgba(15,31,61,0.12) ' + best.percent + '% 100%)'
-        : 'rgba(15,31,61,0.1)',
+        ? 'conic-gradient(#9CCBF5 ' + best.percent + '%, rgba(255,255,255,0.14) ' + best.percent + '% 100%)'
+        : 'rgba(255,255,255,0.14)',
       ringInk: best ? (best.passed ? '#1F7A4D' : '#C0392B') : '#93A0B5',
       myStatus: isAdmin ? t('adminStatus') : (best
         ? (best.passed ? t('passedNote', { t: threshold }) : t('belowNote', { t: threshold }))
@@ -717,12 +765,12 @@ class Component extends DCLogic {
 
       tiles: (isAdmin ? [
         { kicker: t('kControl'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } },
-        { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog') },
+        { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog', { brand: '' }) },
         { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } }
       ].concat(hrTile).concat(materials.length ? [
         { kicker: t('kMaterials'), color: '#2E7D8F', title: t('tMaterials'), desc: t('dMaterials', { n: materials.length }), go: () => this.go('materials') }
       ] : []) : [
-        { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog') },
+        { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog', { brand: '' }) },
         { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } },
         { kicker: t('kProgram'), color: '#1F7A4D', title: t('tProgram'), desc: t('dProgram'), go: () => this.go('program') }
       ].concat(materials.length ? [
@@ -734,7 +782,7 @@ class Component extends DCLogic {
       ].concat(isSous ? [
         { kicker: t('kAdmin'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } }
       ] : []).concat(hrTile))).map((tile, i) => Object.assign({}, tile, {
-        icon: TILE_ICONS[tile.title === t('tHr') ? 'hr' : tile.kicker === t('kControl') || tile.kicker === t('kAdmin') ? 'admin'
+        food: 'assets/food/' + TILE_FOOD[tile.title === t('tHr') ? 'hr' : tile.kicker === t('kControl') || tile.kicker === t('kAdmin') ? 'admin'
           : tile.title === t('tCatalog') ? 'catalog' : tile.title === t('tSop') ? 'sop' : tile.kicker === t('kProgram') ? 'program'
           : tile.kicker === t('kMaterials') ? 'materials' : tile.kicker === t('kTrainer') ? 'trainer'
           : tile.kicker === t('kExam') ? 'test' : 'progress'],
@@ -744,20 +792,30 @@ class Component extends DCLogic {
 
     if (s.screen === 'catalog') {
       const q = s.query.trim().toLowerCase();
+      const pool = s.brand ? s.cards.filter(c => c.b === s.brand) : s.cards;
       const counts = {};
-      s.cards.forEach(c => { counts[c.c] = (counts[c.c] || 0) + 1; });
+      pool.forEach(c => { counts[c.c] = (counts[c.c] || 0) + 1; });
       const catNames = ['__all'].concat(Object.keys(counts).sort());
-      const filtered = s.cards.filter(c =>
+      const filtered = pool.filter(c =>
         (s.cat === '__all' || c.c === s.cat) && (!q || c.n.toLowerCase().indexOf(q) >= 0)
       );
       Object.assign(base, {
         searchPlaceholder: t('search'),
         query: s.query,
         setQuery: e => this.setState({ query: e.target.value }),
-        foundText: t('foundOf', { a: filtered.length, b: s.cards.length }),
+        foundText: t('foundOf', { a: filtered.length, b: pool.length }),
+        brandChips: [{ id: '', name: t('allBrands'), n: s.cards.length }]
+          .concat(BRANDS.map(b => ({ id: b.id, name: b.name, n: s.cards.filter(c => c.b === b.id).length })).filter(b => b.n))
+          .map(b => ({
+            label: b.name, count: b.n, hasLogo: !!b.id, logo: b.id ? 'assets/brands/' + b.id + '.png' : '',
+            pl: b.id ? '5px' : '14px',
+            bg: s.brand === b.id ? '#173F6B' : '#FFFFFF', color: s.brand === b.id ? '#FFFFFF' : '#13263F',
+            border: s.brand === b.id ? '#173F6B' : '#D6E4F2',
+            pick: () => this.setState({ brand: b.id, cat: '__all' })
+          })),
         cats: catNames.map(name => ({
           label: name === '__all' ? t('all') : name,
-          count: name === '__all' ? s.cards.length : counts[name],
+          count: name === '__all' ? pool.length : counts[name],
           bg: s.cat === name ? '#0F1F3D' : '#FFFFFF',
           color: s.cat === name ? '#FFFFFF' : '#33445E',
           border: s.cat === name ? '#0F1F3D' : 'rgba(15,31,61,0.14)',
