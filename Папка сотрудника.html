@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><meta name="fl-access" content="all">
+<script src="folders-i18n.js"></script>
+</head><body>
+<style>
+body.fl-locked>*:not(#fl-gate){display:none!important}
+#fl-gate{display:none;max-width:460px;margin:80px auto;padding:28px 24px;background:#fff;border:1px solid #D8DED6;border-radius:12px;font:16px/1.5 "Onest",system-ui,sans-serif;color:#17211C}
+body.fl-locked #fl-gate{display:block}
+#fl-gate h2{font-size:20px;margin:0 0 8px}
+#fl-gate a{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:8px;background:#17211C;color:#fff;text-decoration:none;font-weight:600}
+.fl-nav{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.rail .fl-nav{margin:0 0 16px 6px}
+.fl-back{display:inline-block;text-decoration:none;font:600 14px/1 var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:9px 12px}
+.fl-back:hover{border-color:var(--ink-2)}
+.fl-lang{display:inline-flex;gap:2px;padding:3px;background:var(--tint);border-radius:999px}
+.fl-lang button{font:600 12px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:7px 9px;cursor:pointer}
+.fl-lang button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.fl-partial{background:var(--kunyit-bg);color:var(--ink);border-radius:6px;padding:10px 14px;margin:0 0 18px;font-size:14px;max-width:780px}
+@media (max-width:520px){.topbar .fl-folders{display:none}}
+</style>
+<div id="fl-gate" role="alert"></div>
+
+<title>Папка сотрудника Food Lab</title>
+<meta content="Map Karyawan / Папка сотрудника Food Lab: общие условия для всех — компания, оргсхема, оплата, форма, правила, обучение, карьера." name="description"/>
+<meta content="ru" name="folder-lang"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;family=Unbounded:wght@500;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* from hr/p1.html */
+/* Layout: ring-binder operations manual. Colour-coded chapter tabs on a left rail (colours follow the kitchen cutting-board code),
+   one reading column, wide tables break out, key rules printed as kitchen order tickets. */
+:root{
+  --paper:#F5F7F3; --panel:#FFFFFF; --tint:#ECF0EA; --line:#D8DED6; --ink:#17211C; --ink-2:#56625B;
+  --pandan:#2E7D4F; --pandan-bg:#E2EFE6;
+  --kunyit:#8F6500; --kunyit-fill:#E8B23C; --kunyit-bg:#FBF0D3;
+  --cabai:#B6382C; --cabai-bg:#F8E3DF;
+  --laut:#2A66A0; --laut-bg:#E1ECF6;
+  --terong:#6A4A9C; --terong-bg:#ECE6F5;
+  --kayu:#87573A; --kayu-bg:#F2E8E1;
+  --teal:#2B7A80; --teal-bg:#DFEFF0;
+  --steel:#5D6D67; --steel-bg:#E6EBE8;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Onest","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101613; --panel:#17201B; --tint:#1D2722; --line:#2C3832; --ink:#E6ECE8; --ink-2:#A3B0A8;
+    --pandan:#6CC08E; --pandan-bg:#1A2E22;
+    --kunyit:#E9BC52; --kunyit-fill:#C99A2E; --kunyit-bg:#2D2613;
+    --cabai:#F07F71; --cabai-bg:#35201C;
+    --laut:#7FB3E8; --laut-bg:#172636;
+    --terong:#B79DE6; --terong-bg:#251E33;
+    --kayu:#D6A683; --kayu-bg:#2E231C;
+    --teal:#71C5CB; --teal-bg:#15292B;
+    --steel:#9FB1AA; --steel-bg:#1F2925;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101613; --panel:#17201B; --tint:#1D2722; --line:#2C3832; --ink:#E6ECE8; --ink-2:#A3B0A8;
+  --pandan:#6CC08E; --pandan-bg:#1A2E22;
+  --kunyit:#E9BC52; --kunyit-fill:#C99A2E; --kunyit-bg:#2D2613;
+  --cabai:#F07F71; --cabai-bg:#35201C;
+  --laut:#7FB3E8; --laut-bg:#172636;
+  --terong:#B79DE6; --terong-bg:#251E33;
+  --kayu:#D6A683; --kayu-bg:#2E231C;
+  --teal:#71C5CB; --teal-bg:#15292B;
+  --steel:#9FB1AA; --steel-bg:#1F2925;
+  color-scheme:dark;
+}
+[data-c="base"]{--c:var(--steel);--c-bg:var(--steel-bg)}
+[data-c="hire"]{--c:var(--pandan);--c-bg:var(--pandan-bg)}
+[data-c="onb"]{--c:var(--laut);--c-bg:var(--laut-bg)}
+[data-c="train"]{--c:var(--kunyit);--c-bg:var(--kunyit-bg)}
+[data-c="ctrl"]{--c:var(--cabai);--c-bg:var(--cabai-bg)}
+[data-c="eval"]{--c:var(--terong);--c-bg:var(--terong-bg)}
+[data-c="exit"]{--c:var(--kayu);--c-bg:var(--kayu-bg)}
+[data-c="data"]{--c:var(--teal);--c-bg:var(--teal-bg)}
+[data-c="app"]{--c:var(--ink-2);--c-bg:var(--tint)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.62 var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
+a:hover{text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--pandan);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+/* ---------- frame ---------- */
+.topbar{display:none;position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 16px;align-items:center;justify-content:space-between;gap:12px}
+.topbar b{font-family:var(--f-display);font-weight:700;font-size:14px;letter-spacing:.01em}
+.btn{font:600 14px/1 var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:9px 12px;cursor:pointer}
+.btn:hover{border-color:var(--ink-2)}
+.shell{display:grid;grid-template-columns:276px minmax(0,1fr);max-width:1280px;margin:0 auto}
+.rail{position:sticky;top:0;height:100vh;overflow:auto;padding:26px 14px 40px 18px;border-right:1px solid var(--line)}
+.rail .brand{font-family:var(--f-display);font-weight:700;font-size:15px;line-height:1.25;margin:0 0 4px 6px}
+.rail .brand small{display:block;font-family:var(--f-mono);font-weight:400;font-size:11px;color:var(--ink-2);letter-spacing:.06em;margin-top:6px;text-transform:uppercase}
+.toc{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:2px}
+.toc a{display:grid;grid-template-columns:10px 30px minmax(0,1fr);align-items:center;gap:8px;padding:7px 8px;border-radius:6px;text-decoration:none;color:var(--ink-2);font-size:14px;line-height:1.25}
+.toc a .sw{width:10px;height:22px;border-radius:2px 5px 5px 2px;background:var(--c)}
+.toc a .n{font-family:var(--f-mono);font-size:12px;color:var(--c)}
+.toc a:hover{background:var(--tint);color:var(--ink)}
+.toc a[aria-current="true"]{background:var(--c-bg);color:var(--ink);font-weight:600}
+.toc .sep{height:1px;background:var(--line);margin:10px 6px}
+main{min-width:0;padding-inline:clamp(16px,4.2vw,64px);padding-block:36px 120px}
+.col{max-width:780px}
+section.ch{padding-top:28px;margin-top:56px;border-top:1px solid var(--line)}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(36px,5.6vw,64px);line-height:1.02;letter-spacing:-.01em}
+h2{font-family:var(--f-display);font-weight:700;font-size:clamp(23px,2.8vw,32px);line-height:1.15}
+h3{font-size:22px;font-weight:700;line-height:1.25;margin:52px 0 14px;display:flex;gap:12px;align-items:baseline}
+h3 .no{font-family:var(--f-mono);font-size:14px;font-weight:600;color:var(--c);flex:none}
+h4{font-size:17px;font-weight:700;margin:28px 0 8px}
+p{margin:0 0 12px;max-width:70ch}
+.lead{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:62ch}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px}
+.muted{color:var(--ink-2)}
+.small{font-size:14px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+strong{font-weight:700}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:4px 0}
+li::marker{color:var(--c,var(--ink-2))}
+.id{display:block;font-size:14px;color:var(--ink-2);font-style:italic;margin-top:4px}
+
+/* ---------- cover ---------- */
+.cover{padding:18px 0 8px}
+.cover h1{margin:6px 0 18px}
+.cover .lead{margin-bottom:26px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 28px;margin:0 0 28px;padding:18px 0;border-block:1px solid var(--line)}
+.meta div{min-width:0}
+.meta dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.meta dd{margin:2px 0 0;font-weight:500}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none}
+.tabs a{display:flex;align-items:center;gap:8px;text-decoration:none;padding:8px 12px 8px 10px;border-radius:4px 10px 10px 4px;background:var(--c-bg);font-weight:600;font-size:14px}
+.tabs a .n{font-family:var(--f-mono);color:var(--c);font-size:13px}
+
+/* ---------- chapter opener ---------- */
+.opener{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 28px;align-items:start;margin-bottom:8px}
+.ch-num{font-family:var(--f-display);font-weight:700;font-size:clamp(64px,9vw,104px);line-height:.85;color:var(--c);min-width:1ch}
+.opener .eyebrow{color:var(--c)}
+.opener h2{margin-bottom:12px}
+.outcome{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 24px;margin-top:16px;padding:14px 16px;background:var(--c-bg);border-radius:6px}
+.outcome dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.outcome dd{margin:2px 0 0;font-size:15px}
+
+/* ---------- badges & chips ---------- */
+.b{display:inline-block;font-family:var(--f-mono);font-size:11.5px;font-weight:600;line-height:1;padding:4px 6px 3px;border-radius:4px;border:1px solid var(--line);background:var(--panel);color:var(--ink);white-space:nowrap;vertical-align:1px}
+.t{display:inline-block;font-family:var(--f-mono);font-size:11.5px;line-height:1;padding:4px 7px 3px;border-radius:999px;background:var(--tint);color:var(--ink-2);white-space:nowrap;vertical-align:1px}
+.pill{display:inline-block;font:600 12px/1 var(--f-mono);padding:5px 8px 4px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--pandan-bg);color:var(--pandan)}
+.pill.mid{background:var(--kunyit-bg);color:var(--kunyit)}
+.pill.bad{background:var(--cabai-bg);color:var(--cabai)}
+
+/* ---------- ticket (key rule) ---------- */
+.ticket{position:relative;background:var(--panel);border:1px solid var(--line);border-top:0;padding:18px 18px 14px;margin:20px 0;max-width:680px}
+.ticket::before{content:"";position:absolute;left:-1px;right:-1px;top:-6px;height:12px;background:radial-gradient(circle at 6px 6px,var(--paper) 0 4px,transparent 4.6px) 0 0/12px 12px repeat-x,linear-gradient(var(--line),var(--line)) 0 6px/100% 1px no-repeat}
+.ticket .th{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--c,var(--ink-2));margin-bottom:6px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+.ticket .th span:last-child{color:var(--ink-2);letter-spacing:.04em;text-transform:none}
+.ticket p:last-child,.ticket ul:last-child{margin-bottom:0}
+.alert{background:var(--cabai-bg);border-radius:6px;padding:14px 16px;margin:18px 0;max-width:780px}
+.alert .th{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--cabai);margin-bottom:4px}
+.alert p:last-child,.alert ul:last-child{margin-bottom:0}
+.note{background:var(--tint);border-radius:6px;padding:14px 16px;margin:18px 0;max-width:780px}
+.note .th{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+
+/* ---------- steps ---------- */
+ol.steps{list-style:none;padding:0;margin:18px 0 24px;counter-reset:s;display:grid;gap:0;max-width:820px}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 18px 50px;margin:0}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:600 14px/1 var(--f-mono);color:var(--c);background:var(--c-bg)}
+ol.steps>li::after{content:"";position:absolute;left:15.5px;top:36px;bottom:4px;width:1px;background:var(--line)}
+ol.steps>li:last-child::after{display:none}
+.sh{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-bottom:4px;padding-top:4px}
+.sh b{font-size:16.5px;margin-right:4px}
+ol.steps p{margin-bottom:6px}
+ol.steps ul{margin-bottom:6px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:16px 0 22px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);background:var(--tint);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td .id{font-size:13px}
+tbody tr.hl td{background:var(--c-bg)}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin:18px 0 24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 16px 12px;min-width:0}
+.card h4{margin:0 0 2px}
+.card .sub{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);margin-bottom:10px}
+.card dl{margin:0;display:grid;gap:8px}
+.card dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.card dd{margin:0;font-size:14.5px}
+.card ul{margin:0;padding-left:18px;font-size:14.5px}
+
+/* ---------- checklists ---------- */
+ul.check{list-style:none;padding:0;margin:14px 0 22px;display:grid;gap:2px;max-width:780px}
+ul.check li{margin:0}
+ul.check label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;padding:8px 10px;border-radius:6px;cursor:pointer}
+ul.check label:hover{background:var(--tint)}
+ul.check input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--pandan)}
+ul.check input:checked+span{color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--line)}
+ul.check .day{font-family:var(--f-mono);font-size:12px;color:var(--c);margin-right:6px}
+
+/* ---------- formula ---------- */
+.formula{font-family:var(--f-mono);font-size:15px;line-height:1.7;background:var(--panel);border:1px dashed var(--c,var(--line));border-radius:6px;padding:14px 16px;margin:16px 0;max-width:780px;overflow-x:auto}
+.formula b{color:var(--c,var(--ink))}
+
+@media (max-width:980px){
+  .topbar{display:flex}
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .rail{display:none;position:fixed;inset:0;z-index:40;height:100%;width:100%;max-width:360px;background:var(--panel);border-right:1px solid var(--line);padding-top:calc(20px + env(safe-area-inset-top,0px));box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
+  .rail.open{display:block}
+  .rail .close{display:block!important}
+  main{padding-block:20px 96px}
+  h3{margin-top:40px}
+}
+@media (max-width:560px){
+  .opener{grid-template-columns:minmax(0,1fr)}
+  ol.steps>li{padding-left:44px}
+  body{font-size:15.5px}
+}
+/* from hr/p2.html */
+.ladder{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;margin:18px 0 10px;list-style:none;padding:0;max-width:900px}
+.ladder li{position:relative;flex:1 1 150px;min-width:0;margin:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.ladder li .k{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.ladder li b{display:block;font-size:16px;line-height:1.3}
+.ladder li .s{display:block;font-size:13px;color:var(--ink-2);margin-top:2px}
+.ladder.arrows li:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);font-size:13px;color:var(--ink-2);background:var(--paper);line-height:1;padding:2px 0;z-index:1}
+.shiftviz{--shA:var(--kunyit-fill);--shB:var(--teal);--shC:var(--terong);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin:18px 0 24px;max-width:860px}
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--tint);border-radius:8px;margin-bottom:14px}
+.seg button{font:600 13.5px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:6px;padding:9px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.vizrow{display:grid;grid-template-columns:minmax(200px,290px) minmax(0,1fr);gap:24px;align-items:center}
+.clock{width:100%;height:auto;max-width:290px;display:block}
+.legend{display:grid;gap:10px;min-width:0}
+.legend .row{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:center;font-size:15px}
+.legend .sw{width:14px;height:14px;border-radius:3px}
+.legend .row b{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.legend .tot{border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
+.legend .comp{font-size:14px;color:var(--ink-2)}
+.calc{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:18px 0 26px;max-width:920px;overflow:hidden}
+.calc-in{padding:16px;display:grid;gap:12px;align-content:start;min-width:0}
+.calc-out{padding:16px;background:var(--c-bg);display:grid;gap:10px;align-content:start;min-width:0}
+.calc h4{margin:0 0 2px;font-size:15px}
+.field{display:grid;gap:4px;min-width:0}
+.field label{font-size:13px;color:var(--ink-2);line-height:1.3}
+.field input,.field select{font:500 15px/1.2 var(--f-mono);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:9px 10px;width:100%;min-width:0}
+.fields3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fields2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.presets button{font:600 13px/1 var(--f-body);background:var(--tint);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
+.presets button:hover{border-color:var(--ink-2)}
+.out{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.out span{font-size:14px;color:var(--ink-2)}
+.out b{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:16px;text-align:right}
+.out.big b{font-size:21px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);line-height:1.35}
+.chk input{margin-top:2px;accent-color:var(--pandan)}
+.kit{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0;max-width:860px}
+.kit div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 14px 12px;min-width:0}
+.kit .q{font-family:var(--f-display);font-weight:700;font-size:34px;line-height:1;color:var(--c)}
+.kit .w{font-size:14.5px;margin-top:8px;line-height:1.35}
+.tl{list-style:none;margin:20px 0 26px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:2px solid var(--c);max-width:980px}
+.tl li{position:relative;margin:0;padding:18px 14px 0 0;min-width:0}
+.tl li::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--panel);border:2px solid var(--c)}
+.tl .when{font-family:var(--f-mono);font-size:12.5px;font-weight:600;color:var(--c)}
+.tl b{display:block;font-size:15px;line-height:1.3;margin:3px 0 4px}
+.tl p{font-size:14px;color:var(--ink-2);margin:0}
+@media (max-width:720px){
+  .vizrow{grid-template-columns:minmax(0,1fr)} .clock{margin:0 auto}
+  .calc{grid-template-columns:minmax(0,1fr)}
+  .kit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl{grid-template-columns:minmax(0,1fr);border-top:0;border-left:2px solid var(--c);padding-left:20px}
+  .tl li{padding:0 0 16px}
+  .tl li::before{left:-29px;top:2px}
+}
+.seg button b{font-weight:600}
+.seg button span{font-family:var(--f-mono);font-size:12px;font-weight:400}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .seg button{padding:8px 6px}
+  .seg button span{display:block;margin-top:4px}
+}
+/* from hr/p6.html */
+.crit{display:inline-block;font:600 10.5px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cabai);background:var(--cabai-bg);border-radius:4px;padding:3px 5px 2px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.sc td:first-child{width:36px}
+.sc td:nth-child(2){min-width:260px}
+.sc td:nth-child(3),.sc td:nth-child(4){min-width:190px}
+.decide{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0 26px;max-width:900px}
+.decide div{border-radius:6px;padding:12px 14px;min-width:0}
+.decide .y{background:var(--pandan-bg)}
+.decide .r{background:var(--kunyit-bg)}
+.decide .n{background:var(--cabai-bg)}
+.decide b{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.decide .y b{color:var(--pandan)} .decide .r b{color:var(--kunyit)} .decide .n b{color:var(--cabai)}
+.decide p{font-size:14.5px;margin:0}
+.appsec{border-top:1px solid var(--line);margin-top:56px;padding-top:28px}
+/* from hr/p7.html */
+.tpl{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:14px 0 22px;max-width:860px;overflow:hidden}
+.tpl-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px 9px 16px;border-bottom:1px solid var(--line);background:var(--tint)}
+.tpl-h b{font-size:14.5px}
+.tpl pre{margin:0;padding:14px 16px;font:400 13.5px/1.6 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
+.copy{font:600 12.5px/1 var(--f-body);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:7px 10px;cursor:pointer;flex:none}
+.copy:hover{border-color:var(--ink-2)}
+.foot{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-2);max-width:860px}
+
+/* ---------- folders: language switch ---------- */
+.langblock[lang="ru"]{display:none}
+body.l-ru .langblock[lang="id"]{display:none}
+body.l-ru .langblock[lang="ru"]{display:block}
+.toc[lang="ru"]{display:none}
+body.l-ru .toc[lang="id"]{display:none}
+body.l-ru .toc[lang="ru"]{display:grid}
+.langsw{display:inline-flex;gap:3px;padding:3px;background:var(--tint);border-radius:999px;margin:18px 0 0 6px}
+.langsw button{font:600 12.5px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:7px 11px;cursor:pointer;white-space:nowrap}
+.langsw button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.topbar .langsw{margin:0}
+.topbar .tb-right{display:flex;gap:8px;align-items:center}
+@media (max-width:420px){.topbar b{display:none}}
+
+/* ---------- folders: header, codes, new marks ---------- */
+.new{display:inline-block;font:600 10.5px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--pandan);background:var(--pandan-bg);border-radius:4px;padding:4px 6px 3px;margin-left:8px;vertical-align:3px;white-space:nowrap}
+h3 .new{margin-left:2px}
+.code{display:inline-block;font:600 11.5px/1 var(--f-mono);padding:4px 7px 3px;border-radius:4px;background:var(--c-bg,var(--tint));color:var(--c,var(--ink));border:1px solid var(--line);white-space:nowrap;vertical-align:1px}
+.policy{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 22px;margin:0 0 26px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:6px;max-width:940px}
+.policy div{min-width:0}
+.policy dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.policy dd{margin:2px 0 0;font-size:14px}
+.src{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);letter-spacing:.02em}
+
+/* ---------- org chain ---------- */
+.chain{list-style:none;padding:0;margin:14px 0 22px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;max-width:940px}
+.chain li{margin:0;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);font-size:14px;line-height:1.3}
+.chain li small{display:block;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);letter-spacing:.04em;margin-top:2px}
+.chain li.me{background:var(--c-bg);border-color:var(--c);font-weight:700}
+.chain li.arr{border:0;background:none;padding:0;color:var(--ink-2);font-family:var(--f-mono)}
+
+/* ---------- main statistic card ---------- */
+.statcard{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:16px 0 26px;max-width:940px}
+.statcard .eyebrow{color:var(--c)}
+.statcard .gs{font-family:var(--f-display);font-weight:700;font-size:clamp(17px,2.2vw,21px);line-height:1.3;margin:2px 0 14px;text-wrap:balance}
+.statcard dl{display:grid;grid-template-columns:minmax(140px,210px) minmax(0,1fr);gap:8px 18px;margin:0}
+.statcard dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+.statcard dd{margin:0;font-size:14.5px}
+@media (max-width:560px){.statcard dl{grid-template-columns:minmax(0,1fr)}.statcard dt{padding-top:6px}}
+
+/* ---------- knowledge check & checksheet ---------- */
+ol.quiz{counter-reset:qq;list-style:none;padding:0;margin:14px 0 8px;display:grid;gap:8px;max-width:840px}
+ol.quiz>li{counter-increment:qq;position:relative;padding:10px 12px 10px 46px;background:var(--panel);border:1px solid var(--line);border-radius:6px;margin:0}
+ol.quiz>li::before{content:counter(qq);position:absolute;left:12px;top:9px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:600 12px/1 var(--f-mono);color:var(--c,var(--ink));background:var(--c-bg,var(--tint))}
+details.key{margin:8px 0 26px;max-width:840px;border:1px dashed var(--line);border-radius:6px;padding:9px 14px;background:var(--paper)}
+details.key summary{cursor:pointer;font:600 13.5px/1.4 var(--f-body);color:var(--ink-2)}
+details.key[open] summary{margin-bottom:6px}
+details.key ol{margin:6px 0 2px;padding-left:22px}
+details.key li{font-size:14.5px}
+.signoff{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 22px;margin:12px 0 26px;max-width:840px}
+.signoff div{border-bottom:1px solid var(--ink-2);padding:26px 0 5px;font-size:12.5px;color:var(--ink-2)}
+.cs-part{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:18px 0 2px}
+
+/* ---------- folders map ---------- */
+.fmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:16px 0 24px;max-width:940px}
+.fmap div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0}
+.fmap b{display:block;font-size:15px;margin-bottom:2px}
+.fmap span{font-size:13.5px;color:var(--ink-2)}
+
+@media print{
+  .topbar,.rail,.calc,.seg,.copy,.langsw{display:none!important}
+  .shell{display:block}
+  main{padding:0}
+  section.ch{break-before:page;border-top:0;margin-top:0;padding-top:0}
+  .tw{overflow:visible}
+  .ticket,.tpl,.card,.alert,.note,.statcard,tr,ol.quiz>li{break-inside:avoid}
+  details.key{display:none}
+}
+
+[data-l="ru"]{display:none}body.l-ru [data-l="id"]{display:none}body.l-ru [data-l="ru"]{display:inline}
+.langblock[lang="ru"]{display:block}.toc[lang="ru"]{display:grid}[data-l="ru"]{display:inline}[data-l="id"]{display:none}@media (max-width:420px){.topbar b{display:inline}}
+</style>
+<div class="topbar"><span data-t="e4076b2e2b">
+<b>Food Lab · Папка сотрудника</b>
+</span><div class="tb-right"><div class="fl-nav"><a class="fl-back" href="Академия.dc.html" data-fl-ui="back">← Академия</a><a class="fl-back fl-folders" href="Папки.html" data-fl-ui="folders">Все папки</a><span class="fl-lang" role="group" aria-label="Language"><button type="button" data-fl-lang="ru">RU</button><button type="button" data-fl-lang="id">ID</button><button type="button" data-fl-lang="en">EN</button></span></div>
+<button aria-controls="rail" aria-expanded="false" class="btn" data-t="5f2fbe2d4b" id="tocBtn" type="button">Содержание</button>
+</div>
+</div>
+<div class="shell">
+<aside aria-label="Содержание" class="rail" data-ta="aria-label:5f2fbe2d4b" id="rail">
+<button class="btn close" data-t="4ae50d3073" id="tocClose" style="display:none;margin:0 0 14px 6px" type="button">Закрыть</button>
+<div class="fl-nav"><a class="fl-back" href="Академия.dc.html" data-fl-ui="back">← Академия</a><a class="fl-back fl-folders" href="Папки.html" data-fl-ui="folders">Все папки</a><span class="fl-lang" role="group" aria-label="Language"><button type="button" data-fl-lang="ru">RU</button><button type="button" data-fl-lang="id">ID</button><button type="button" data-fl-lang="en">EN</button></span></div>
+  <p class="brand" data-t="467eb86761">Food Lab<br/>Папка сотрудника<small><span data-l="id">KODE: SEMUA</span><span data-l="ru">КОД: ВСЕМ</span> · v1.0</small></p>
+<ul class="toc" lang="ru"><li data-t="5a3eb39b2e"><a data-c="app" href="#cs-ru"><span class="sw"></span><span class="n">0</span><span>Контрольный лист</span></a></li><li data-t="1c8e211684"><a data-c="base" href="#company-ru"><span class="sw"></span><span class="n">1</span><span>Food Lab и ты</span></a></li><li data-t="03e8a09eba"><a data-c="data" href="#org-ru"><span class="sw"></span><span class="n">2</span><span>Оргсхема и к кому идти</span></a></li><li data-t="e1755ae061"><a data-c="app" href="#folders-ru"><span class="sw"></span><span class="n">3</span><span>Папки, инструкции, статистики</span></a></li><li data-t="1356b71fda"><a data-c="base" href="#pay-ru"><span class="sw"></span><span class="n">4</span><span>Оплата и льготы</span></a></li><li data-t="025b7319ee"><a data-c="base" href="#uniform-ru"><span class="sw"></span><span class="n">5</span><span>Форма</span></a></li><li data-t="9eddcb06f5"><a data-c="ctrl" href="#time-ru"><span class="sw"></span><span class="n">6</span><span>Время, график, отсутствие</span></a></li><li data-t="4cfd5b015e"><a data-c="ctrl" href="#discipline-ru"><span class="sw"></span><span class="n">7</span><span>Дисциплина</span></a></li><li data-t="89b0ba5bc0"><a data-c="train" href="#growth-ru"><span class="sw"></span><span class="n">8</span><span>Обучение и карьера</span></a></li><li data-t="f404a3fae2"><a data-c="data" href="#privacy-ru"><span class="sw"></span><span class="n">9</span><span>Конфиденциальность</span></a></li><li data-t="bea77c407a"><a data-c="exit" href="#leaving-ru"><span class="sw"></span><span class="n">10</span><span>Если ты уходишь</span></a></li></ul>
+</aside>
+<main id="main">
+<div class="langblock" lang="ru">
+<header class="cover" data-c="onb" id="top-ru">
+<p class="eyebrow" data-t="2d5c73a229">PT Food Laboratory Group · Папка сотрудника · код распределения: всем сотрудникам</p>
+<h1 data-t="618c8869b4">Папка<br/>сотрудника</h1>
+<p class="lead" data-t="f94b7bac57">Всё, что одинаково для каждого в Food Lab, на любой должности и любой точке: цель компании, оргсхема, оплата, форма, правила, обучение и карьера. Новый сотрудник изучает её первой, а потом свою должностную папку (курс 4.5.2, урок 4.5.2.3).</p>
+<dl class="policy">
+<div><dt data-t="d8f9fefadb">Компания</dt><dd>PT Food Laboratory Group (Food Lab)</dd></div>
+<div><dt data-t="ac9378da46">Вид политики</dt><dd data-t="fb8b3cef3b">Инструктивное письмо</dd></div>
+<div><dt data-t="d9f964d71b">Уровень</dt><dd data-t="59d4c256ba">Офис директора</dd></div>
+<div><dt data-t="0dc90fa890">Серия</dt><dd data-t="7531116826">HR · папки</dd></div>
+<div><dt data-t="2beb5959f0">Код распределения</dt><dd data-t="a23d79df28"><span class="code">ВСЕМ СОТРУДНИКАМ</span></dd></div>
+<div><dt data-t="7f9b37d89f">Кто издал</dt><dd data-t="4c5d13affe">HR-менеджер</dd></div>
+<div><dt data-t="77a4f98d0e">Первая публикация</dt><dd class="mono">12.10.2026 (HR Playbook v1.0)</dd></div>
+<div><dt data-t="cf0efc1531">Последнее изменение</dt><dd class="mono">14.10.2026</dd></div>
+<div><dt data-t="0c7ac5793a">Одобрил</dt><dd data-t="8663d70779">Директор</dd></div>
+</dl>
+<div class="ticket" data-c="ctrl">
+<div class="th" data-t="2dec3acfc1"><span>Главное правило</span><span>действует всегда</span></div>
+<p data-t="ef04aaff80">Если правило папки расходится с подписанным трудовым договором, действует договор, а папку исправляют. Если договор расходится с законом Индонезии, действует закон.</p>
+</div>
+</header>
+<section class="ch" data-c="app" data-n="0" data-toc="Контрольный лист" id="cs-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">0</div>
+<div>
+<p class="eyebrow" data-t="5a2d059037">Как изучать папку <span class="new">новое · 4.5.2.4</span></p>
+<h2 data-t="5f7db35702">Контрольный лист</h2>
+<p class="lead" data-t="5f10d70a70">Порядок изучения. Прочитайте раздел, ответьте на вопросы проверки в конце раздела, отметьте пункт. HR проверяет знание папки на первой неделе и потом выборочно каждую неделю.</p>
+</div>
+</header>
+<ul class="check">
+<li><label data-t="d8e0cab461"><input id="c1-ru" type="checkbox"/><span>1. Food Lab и ты</span></label></li>
+<li><label data-t="dece2e6b6b"><input id="c2-ru" type="checkbox"/><span>2. Оргсхема и к кому обращаться</span></label></li>
+<li><label data-t="2f0851364f"><input id="c3-ru" type="checkbox"/><span>3. Папки, инструкции и статистики</span></label></li>
+<li><label data-t="88cc2bc05a"><input id="c4-ru" type="checkbox"/><span>4. Оплата и льготы</span></label></li>
+<li><label data-t="73f6a25d17"><input id="c5-ru" type="checkbox"/><span>5. Форма</span></label></li>
+<li><label data-t="b660ce30c8"><input id="c6-ru" type="checkbox"/><span>6. Время, график, отсутствие</span></label></li>
+<li><label data-t="edc93c6ff0"><input id="c7-ru" type="checkbox"/><span>7. Дисциплина</span></label></li>
+<li><label data-t="25b665d0ef"><input id="c8-ru" type="checkbox"/><span>8. Обучение и карьера</span></label></li>
+<li><label data-t="1b3f9bea9a"><input id="c9-ru" type="checkbox"/><span>9. Конфиденциальность и личные данные</span></label></li>
+<li><label data-t="b5c19c6bea"><input id="c10-ru" type="checkbox"/><span>10. Если ты уходишь</span></label></li>
+<li><label data-t="7173c70b8c"><input id="c11-ru" type="checkbox"/><span>11. Дальше — своя должностная папка (Cook, CDP, Sous Chef, Head Chef…)</span></label></li>
+</ul>
+<div class="signoff">
+<div data-t="b4efd8cd07">Сотрудник: имя, подпись, дата</div>
+<div data-t="74c3e2f538">Проверил (HR): имя, подпись, дата</div>
+</div>
+</section>
+<section class="ch" data-c="base" data-n="1" data-toc="Food Lab и ты" id="company-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">1</div>
+<div>
+<p class="eyebrow" data-t="cdd4a25509">Раздел 1</p>
+<h2 data-t="a40046d3b7">Food Lab и ты</h2>
+<p class="lead" data-t="03ad99eb71">Что за компания, зачем она существует и что это значит для твоей работы.</p>
+</div>
+</header>
+<p data-t="d334d53cc2">Food Lab — сеть dark kitchen, то есть кухонь без зала, которые готовят только на доставку. С одной кухни работают несколько брендов. Заказы приходят через агрегаторы доставки (Grab, Gojek) и напрямую. Гость не видит кухню, он видит только еду. Поэтому качество держится на стандартах: рецептурах (ТТК), чек-листах и дисциплине смены.</p>
+<p data-t="2c24791d36"><strong>Цель компании</strong> из правил для сотрудников: превосходить ожидания гостя и дарить ему радость через еду. Еда — это вкус, аромат, качество и свежесть.</p>
+<div class="ticket">
+<div class="th" data-t="012fab35b5"><span>ЦКП компании</span><span>оргсхема Food Lab, черновик для утверждения владельцами</span></div>
+<p data-t="12990e9704">Вкусные, стабильные блюда, приготовленные по стандарту и доставленные вовремя — на Бали и в Джакарте.</p>
+</div>
+<div class="note">
+<div class="th" data-t="e8b139599d">Что это значит для тебя</div>
+<ul>
+<li data-t="c49b2b35fb">Кухня работает сменами. Точка 24/7 — это три смены по 8 часов каждый день.</li>
+<li data-t="595e25e869">Оплата почасовая, график 5/2. Время учитывает сканер отпечатков пальцев.</li>
+<li data-t="226ce7ec02">Обучение идёт в Food Lab Academy (сайт с рецептами и тестами) и на смене с Sous Chef.</li>
+<li data-t="0cdbc0ece0">Каждое блюдо — это бренд. Гость оценивает нас по тому, что пришло в коробке.</li>
+</ul>
+</div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="d457720c01">Чем Food Lab отличается от обычного ресторана?</li>
+<li data-t="95d0bd4938">Через какие каналы приходят заказы?</li>
+<li data-t="b9bb39cd48">Назови ЦКП компании своими словами.</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="b5546cf218">Кухня без зала: готовим только на доставку, с одной кухни работают несколько брендов.</li>
+<li data-t="a793067435">Агрегаторы доставки (Grab, Gojek) и прямые заказы.</li>
+<li data-t="fe798b63e4">Вкусные, стабильные блюда по стандарту, доставленные вовремя (смысл, не дословно).</li>
+</ol></details>
+</section>
+<section class="ch" data-c="data" data-n="2" data-toc="Оргсхема и к кому идти" id="org-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">2</div>
+<div>
+<p class="eyebrow" data-t="2010eefb4c">Раздел 2 <span class="new">новое · курс 3.1</span></p>
+<h2 data-t="ef3e91f295">Оргсхема и к кому обращаться</h2>
+<p class="lead" data-t="277900daf4">Компания устроена как семь отделений. На оргсхеме видно, кто за что отвечает, поэтому по любому вопросу ты идёшь напрямую к владельцу функции.</p>
+</div>
+</header>
+<div class="tw"><table>
+<thead><tr><th data-t="9b034f5ab8">Отделение</th><th data-t="af3c04c02d">За что отвечает (ЦКП)</th></tr></thead>
+<tbody>
+<tr><td data-t="08266ee3f2"><strong>7 · Административное</strong> — владельцы, официальные вопросы, директор</td><td data-t="a833de0adc">Жизнеспособная, растущая компания, которая производит свой ЦКП</td></tr>
+<tr><td data-t="27075055cb"><strong>1 · Построения</strong> — персонал, коммуникации, инспекции и статистики</td><td data-t="b67ae8c30c">Нанятые, введённые в должность продуктивные сотрудники, работающие по регламентам</td></tr>
+<tr><td data-t="f3bf8a6e0f"><strong>2 · Распространения</strong> — продвижение, меню на платформах, продажи</td><td data-t="f6f61ce518">Компания, обеспеченная стабильно растущим потоком заказов и дохода</td></tr>
+<tr><td data-t="e0e35c9ecf"><strong>3 · Финансовое</strong> — доходы, расходы, учёт</td><td data-t="393aefb18e">Сохранённые, рационально распределённые средства и растущие резервы</td></tr>
+<tr><td data-t="6a1a542556"><strong>4 · Производство</strong> — планирование и закупки, склад и заготовка, кухни точек</td><td data-t="191ee2f7c5">Заказы, приготовленные и упакованные вовремя, по ТТК, без ошибок — на всех точках</td></tr>
+<tr><td data-t="36312ca813"><strong>5 · Квалификации</strong> — качество, обучение, совершенствование</td><td data-t="da6eac484a">Продукция, соответствующая стандартам, и компетентный персонал</td></tr>
+<tr><td data-t="33d0f78e61"><strong>6 · По работе с публикой</strong> — PR, вводные предложения, партнёры</td><td data-t="e234fcc7ff">Известная компания с хорошей репутацией, к которой приходят новые клиенты</td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="afa8dc369d">Кухня — это отделение 4 «Производство», отдел 12 «Кухни». Полная оргсхема: Foodlab Org Board.</p>
+<div class="ticket">
+<div class="th" data-t="f316eb355d"><span>Система быстрого потока</span><span>курс 3.1, урок 3.1.1.5</span></div>
+<p data-t="fd33659b34">По командной линии (от руководителя к подчинённому) ставят задачи, меняют функции и приоритеты. По всем остальным вопросам ты идёшь напрямую к тому, кто отвечает за нужную функцию, без посредников.</p>
+</div>
+<h4 data-t="724a60bb27">К кому идти</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="be2d4d95a1">Вопрос</th><th data-t="62a64abf77">К кому</th></tr></thead>
+<tbody>
+<tr><td data-t="5663b39b77">График, смены, замены</td><td data-t="04169f8fe3">Sous Chef точки</td></tr>
+<tr><td data-t="4129715960">Рецепт, качество блюда, станция</td><td data-t="3749eddd9a">Старший смены, затем Sous Chef</td></tr>
+<tr><td data-t="c111f5fa58">Продукт закончился или пришёл плохой</td><td data-t="2a974e9362">Старший смены; он сообщает закупщику</td></tr>
+<tr><td data-t="9fd6efc4a9">Зарплата, табель, бонус, BPJS, документы, справки</td><td data-t="4c5d13affe">HR-менеджер</td></tr>
+<tr><td data-t="77fcf028a5">Форма, доступ к Academy, рабочие группы</td><td data-t="4c5d13affe">HR-менеджер</td></tr>
+<tr><td data-t="f1bd8979b2">Несогласие с решением, жалоба</td><td data-t="8046e48c57">Непосредственный руководитель; если не решено за 5 рабочих дней — письменно Директору (договор, ст. 14)</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="e580f58cfe">В каком отделении и каком отделе работает кухня?</li>
+<li data-t="058c994807">Что передаётся по командной линии, а что решается напрямую?</li>
+<li data-t="929ff259b6">К кому идти, если в табеле ошибка в часах?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="19f8cb2e19">Отделение 4 «Производство», отдел 12 «Кухни».</li>
+<li data-t="17aba9cba1">По командной линии — задачи, функции, приоритеты. Остальное — напрямую к владельцу функции.</li>
+<li data-t="28a4a047f1">К HR-менеджеру.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="app" data-n="3" data-toc="Папки, инструкции, статистики" id="folders-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">3</div>
+<div>
+<p class="eyebrow" data-t="c8adc5792f">Раздел 3 <span class="new">новое · 4.5.2, 1.8, 5.2</span></p>
+<h2 data-t="8f576714ad">Папки, инструкции и статистики</h2>
+<p class="lead" data-t="468a835398">Как в Food Lab хранятся правила работы и как измеряется результат каждого поста.</p>
+</div>
+</header>
+<div class="fmap">
+<div data-t="27fec2c316"><b>Папка сотрудника</b><span>Одна для всех: то, что одинаково на любой должности. Эту папку ты читаешь сейчас.</span></div>
+<div data-t="b25156c11f"><b>Должностная папка</b><span>Своя для каждого поста на оргсхеме: ЦКП, главная статистика, обязанности, инструкции поста. Два поста — две папки.</span></div>
+</div>
+<ul>
+<li data-t="176bbc4df1"><strong>Инструкция действует сама.</strong> Если она у тебя в папке, ты её выполняешь, отдельного распоряжения не нужно (курс 1.8, урок 1.8.2).</li>
+<li data-t="852ffbb331"><strong>Распоряжение против инструкции не выполняется.</strong> Если тебе говорят сделать не так, как в инструкции, скажи об этом и напиши руководителю.</li>
+<li data-t="3c82876472"><strong>Инструкция устарела или мешает работать</strong> — напиши её автору через своего руководителя. Изменить или отменить инструкцию может только тот, кто её издал.</li>
+<li data-t="938c445df3"><strong>Проверка знаний.</strong> HR задаёт несколько простых вопросов по папке: «покажи инструкцию, что ты сделаешь, если…» (уроки 1.8.4, 4.5.2.3).</li>
+</ul>
+<div class="ticket">
+<div class="th" data-t="8dbc645c34"><span>Статистика поста</span><span>курс 5.2</span></div>
+<ul>
+<li data-t="4eb0f59a68">У каждого поста одна <strong>главная статистика (ГС)</strong> — число, которое показывает продукт поста. Твоя ГС записана в твоей должностной папке.</li>
+<li data-t="bd02507ba9">Статистики считаются по неделям и показываются графиком: растёт — продолжаем, падает — срочно ищем причину.</li>
+<li data-t="755f8aed06">Ложная статистика недопустима. Цифры берутся из проверяемых источников: сканер, Academy, Grab и Gojek, отчёты смен.</li>
+</ul>
+</div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="a2cb243f36">Чем папка сотрудника отличается от должностной папки?</li>
+<li data-t="ef0368c97c">Старший смены просит сделать не так, как написано в инструкции. Что ты делаешь?</li>
+<li data-t="7e5aa26266">Что такое главная статистика и где найти свою?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="aede6fabd4">Папка сотрудника одна для всех; должностная — своя для каждого поста.</li>
+<li data-t="360183e9e3">Не выполняю распоряжение против инструкции, говорю об этом и пишу руководителю.</li>
+<li data-t="43d7d94dc0">Одно число, которое показывает продукт поста за неделю; она в моей должностной папке.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="base" data-n="4" data-toc="Оплата и льготы" id="pay-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">4</div>
+<div>
+<p class="eyebrow" data-t="b3eb015d6d">Раздел 4 · из HR Playbook 0.6</p>
+<h2 data-t="54a3803724">Оплата и льготы</h2>
+<p class="lead" data-t="752b2136de">Оплата почасовая. Ставка зависит от должности и тарифной зоны, то есть региона, где находится точка. Ставка никогда не бывает ниже законного минимума региона.</p>
+</div>
+</header>
+<h4 data-t="2de92c902d">Сетка ставок</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="e415da32ea">Должность</th><th class="num" data-t="5bfd6f4bd7">Зона «Бали»</th><th class="num" data-t="68da678b6d">Зона «Джакарта (DKI)»</th><th data-t="90886f6578">Как платим</th></tr></thead>
+<tbody>
+<tr><td>Cook · Juru Masak</td><td class="num" data-t="de04b0cf7a">Rp 23 500 / час</td><td class="num" data-t="c8b7f313a9">Rp 33 500 / час *</td><td data-t="e4796b8767">по часам</td></tr>
+<tr><td>CDP</td><td class="num" data-t="86699e9c5f">Rp 24 900 / час</td><td class="num" data-t="d83f4402b7">Rp 35 500 / час *</td><td data-t="e4796b8767">по часам</td></tr>
+<tr><td>Sous Chef</td><td class="num" data-t="0191870aa6">по договору: ________</td><td class="num" data-t="c93f5d1d1b">по договору, выше CDP</td><td data-t="e4796b8767">по часам</td></tr>
+<tr><td>Kitchen Helper</td><td class="num" data-t="8b03a56185">не ниже минимума зоны</td><td class="num" data-t="8b03a56185">не ниже минимума зоны</td><td data-t="e4796b8767">по часам</td></tr>
+<tr><td>Head Chef</td><td class="num" colspan="2" data-t="4e070ffd28">оклад по договору + KPI-бонус до Rp 2 000 000</td><td data-t="6b9432116f">в месяц</td></tr>
+<tr><td data-t="bae97d420c">Закупщик, HR-менеджер</td><td class="num" colspan="2" data-t="4e070ffd28">оклад по договору + KPI-бонус до Rp 2 000 000</td><td data-t="6b9432116f">в месяц</td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="92b62f738f">* Ставки Джакарты рассчитаны от минимума DKI 2026 (Rp 33 314 в час) с той же разницей между Cook и CDP, что на Бали (+6%). Утверждает Директор.</p>
+<h4 data-t="2225b6be47">Как и когда платим</h4>
+<ol class="steps">
+<li><div class="sh" data-t="4130443d0c"><b>Часы считает сканер</b></div><p data-t="d74cfd9296">Отметки отпечатком пальца (раздел 6). Сверхурочные засчитываются только с письменным согласованием до их начала (договор, ст. 6).</p></li>
+<li><div class="sh" data-t="e3eee8936a"><b>Выплата дважды в месяц</b></div><p data-t="493c587e28">20-го числа за 1–15 и 5-го числа следующего месяца за 16–конец. Всегда со слипом (договор, ст. 5.1).</p></li>
+<li><div class="sh" data-t="7137a1930b"><b>Неполный месяц</b></div><p data-t="0173181f66">Пришёл или ушёл в середине месяца — оплата пропорционально отработанным часам.</p></li>
+<li><div class="sh" data-t="26c9d0c4f5"><b>Гарантия минимума</b></div><p data-t="56af3f9655">Если ты отработал все смены месяца по графику, а сумма по часам вышла ниже UMP или UMK, компания доплачивает до минимума (договор, ст. 5.1).</p></li>
+</ol>
+<h4 data-t="80f9568bdb">Бонус 1% от чистых продаж</h4>
+<div class="formula" data-t="1172003c9a"><b>Бонусный фонд точки</b> = 1% × чистые продажи точки за месяц<br/><b>Бонус сотрудника</b> = бонусный фонд × (часы сотрудника ÷ часы всех сотрудников кухни точки)</div>
+<ul>
+<li data-t="326259a385">В фонде все сотрудники кухни точки: Cook, CDP, Sous Chef, Kitchen Helper. Head Chef в фонд не входит, у него свой KPI-бонус.</li>
+<li data-t="8d5bd4ce43">Чистые продажи — после налогов и комиссий платформ (договор, ст. 5.4).</li>
+<li data-t="f841360139"><strong>Пример.</strong> Продажи Rp 800 000 000 → фонд Rp 8 000 000. Команда из 16 человек отработала 2 752 часа. Повар со 172 часами получает 8 000 000 × 172 ÷ 2 752 = <span class="mono">Rp 500 000</span>.</li>
+<li data-t="2138d32905">Выплата — вместе с зарплатой 5-го числа следующего месяца, когда продажи месяца закрыты.</li>
+</ul>
+<div class="ticket">
+<div class="th" data-t="60740647fc"><span>Когда бонус не выплачивается</span><span>договор, ст. 5.4 и 10</span></div>
+<p data-t="006ef9fa55">Если в месяце сотруднику выдано SP1, SP2 или SP3 либо выявлено грубое нарушение (договор, ст. 9.3), его бонус за этот месяц не выплачивается. Устное замечание бонус не снимает.</p>
+</div>
+<h4 data-t="c6ad2613df">THR — ежегодная праздничная выплата</h4>
+<ul>
+<li data-t="e7987e9ae3">Раз в год, не позже чем за 7 дней до праздника, указанного в договоре региона. На Бали — Ньепи (договор, ст. 5.2). В Джакарте и других регионах — Идул-Фитри; праздник прописывается в договоре региона.</li>
+<li data-t="48cd43390d">Стаж 12 месяцев и больше — одна месячная зарплата. Стаж от 1 до 12 месяцев — (месяцы стажа ÷ 12) × месячная зарплата.</li>
+<li data-t="a697b28f2a">Для почасовых сотрудников месячная зарплата — средняя за последние 12 месяцев, а при меньшем стаже — средняя за отработанные месяцы.</li>
+</ul>
+<h4 data-t="9f6793ad75">BPJS — социальное страхование</h4>
+<ul>
+<li data-t="bbb5e1655d">Каждого сотрудника регистрируем в BPJS Kesehatan (медицина) и BPJS Ketenagakerjaan (несчастный случай JKK, смерть JKM, накопления JHT, пенсия JP) в первую неделю работы.</li>
+<li data-t="72b02befb8">Доля сотрудника удерживается из зарплаты: Kesehatan 1%, JHT 2%, JP 1%. Остальное платит компания.</li>
+</ul>
+<h4 data-t="9a355bf9dc">Сверхурочные и праздники</h4>
+<ul>
+<li data-t="3d0fd44bec">Сверхурочная работа — только по письменному согласованию до её начала (сообщение в WhatsApp от SC или HC подходит) и с записью в отчёте смены (договор, ст. 6). Остался по своей инициативе — это не сверхурочные.</li>
+<li data-t="28a2046813">Лимит по закону: не больше 4 часов в день и 18 часов в неделю.</li>
+<li data-t="0d3e0828c8">Оплата: каждый согласованный сверхурочный час — часовая ставка × 2.</li>
+<li data-t="7f3a6e72e1">Смена в официальный праздник тоже оплачивается × 2: по закону работа в праздник считается сверхурочной (UU 13/2003, ст. 85). График праздничных смен составляют заранее и по очереди.</li>
+</ul>
+<h4 data-t="7932d99baa">Больничный, отпуск, удержания</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="553c45f1b8">Тема</th><th data-t="53f2fc7e62">Правило по договору</th></tr></thead>
+<tbody>
+<tr><td data-t="bf5ba97807">Больничный</td><td data-t="00fae7ed54">Сообщить старшему как можно раньше. Справка из зарегистрированной клиники — не позже 2 рабочих дней после выхода. Оплата — 25% дневной ставки за дни болезни (ст. 8.2).</td></tr>
+<tr><td data-t="9b1880d0ea">Симптомы болезни</td><td data-t="2a8525fe46">При температуре, рвоте, диарее на смену не выходить и сообщить старшему (ст. 13).</td></tr>
+<tr><td data-t="3c7afd8004">Ежегодный отпуск</td><td data-t="5154264a00">14 рабочих дней после 12 месяцев непрерывной работы. Заявление — минимум за 7 дней; компания может перенести даты. Право обновляется раз в год (на Бали — в Ньепи). Пока человек работает, отпуск деньгами не заменяется (ст. 8.3).</td></tr>
+<tr><td data-t="76b3ac76d1">Удержания</td><td data-t="2246ac8200">Ущерб по умыслу или грубой небрежности — после письменного уведомления и проверки, не больше 50% одной выплаты (ст. 10).</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="f3f1155876">Когда приходят выплаты и за какие периоды?</li>
+<li data-t="58ef28cf56">Как считается твой бонус 1%? В каком случае бонус за месяц не выплачивается?</li>
+<li data-t="e4b8954105">Ты остался после смены на час без согласования. Это сверхурочные?</li>
+<li data-t="f1de783ff8">Что нужно сделать, чтобы больничный оплатили?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="fcb4d0cd7e">20-го — за 1–15 число; 5-го следующего месяца — за 16–конец месяца; со слипом.</li>
+<li data-t="1e91459074">Фонд 1% чистых продаж точки делится по доле моих часов. Если в месяце мне выдали SP или было грубое нарушение.</li>
+<li data-t="7cfc4a8d3d">Нет. Сверхурочные — только с письменным согласованием до начала и с записью в отчёте смены.</li>
+<li data-t="c7e146b972">Сообщить старшему как можно раньше и принести справку из клиники не позже 2 рабочих дней после выхода.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="base" data-n="5" data-toc="Форма" id="uniform-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">5</div>
+<div>
+<p class="eyebrow" data-t="ad6515a1bd">Раздел 5 · из HR Playbook 0.7</p>
+<h2 data-t="6c2012e49e">Форма сотрудника</h2>
+<p class="lead" data-t="8b5f93f785">Что тебе выдают, как это носить и что вернуть при уходе.</p>
+</div>
+</header>
+<div class="kit">
+<div><div class="q">2</div><div class="w" data-t="481ea132bc">футболки в дизайне компании</div></div>
+<div><div class="q">2</div><div class="w" data-t="8382357411">кепки</div></div>
+<div><div class="q">2</div><div class="w" data-t="ec15738a78">фартука</div></div>
+<div><div class="q">1</div><div class="w" data-t="c8c243087b">пара специальной резиновой нескользящей обуви с закрытым носком</div></div>
+</div>
+<p data-t="8008f95c2a">Комплект выдаётся бесплатно и остаётся собственностью компании. Комплектов два, чтобы один был на смене, а второй в стирке.</p>
+<p data-t="d14e7966c7"><strong>Своё у сотрудника:</strong> длинные тёмные брюки (шорты запрещены). Волосы убраны под кепку, ногти короткие и без лака, на руках нет колец, браслетов и часов.</p>
+<ol class="steps">
+<li><div class="sh" data-t="fa4245ef34"><b>Размеры при оформлении</b><span class="b">HR</span></div><p data-t="d0e061970c">Размер одежды и обуви вносится в карточку сотрудника.</p></li>
+<li><div class="sh" data-t="51b8ff3f12"><b>Выдача в первый день</b><span class="b">HR</span></div><p data-t="590e976640">До выхода на кухню. Сотрудник подписывает акт выдачи, HR отмечает в карточке, что и сколько выдано.</p></li>
+<li><div class="sh" data-t="316794d271"><b>Проверка каждую смену</b><span class="b">старший смены</span></div><p data-t="fedf0b2d2c">Внешний вид проверяется в начале смены по чек-листу открытия.</p></li>
+<li><div class="sh" data-t="2e15a014ee"><b>Стирка</b></div><p data-t="c18d2a1c9c">Сотрудник стирает форму сам. На смену выходит только в чистой форме.</p></li>
+<li><div class="sh" data-t="f0f8a47c66"><b>Замена</b><span class="b">SC</span></div><p data-t="e7dbce78da">Износ при нормальной работе меняем бесплатно по заявке Sous Chef; форму осматриваем раз в квартал. Обувь меняем, когда подошва стёрлась и начала скользить.</p></li>
+<li><div class="sh" data-t="e927879221"><b>Утеря или порча по вине сотрудника</b></div><p data-t="9389a4556e">Удержание по договору (ст. 10), после письменного уведомления.</p></li>
+<li><div class="sh" data-t="57f8876085"><b>Возврат при увольнении</b></div><p data-t="86fe1ebfdb">Весь комплект, включая обувь, возвращается до окончательного расчёта (ст. 9.4 и 10).</p></li>
+</ol>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="9982c369f4">Что входит в комплект формы?</li>
+<li data-t="39fb2d2348">Что сотрудник носит своё и что запрещено?</li>
+<li data-t="6631f536a6">Что будет с формой, когда ты уходишь из компании?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="2377469187">2 футболки, 2 кепки, 2 фартука, 1 пара резиновой нескользящей обуви.</li>
+<li data-t="1f8c818bde">Длинные тёмные брюки; шорты запрещены; без колец, браслетов, часов, лака.</li>
+<li data-t="a3d7ff3cfc">Весь комплект, включая обувь, возвращается до окончательного расчёта.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="ctrl" data-n="6" data-toc="Время, график, отсутствие" id="time-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">6</div>
+<div>
+<p class="eyebrow" data-t="e2e35bbfa4">Раздел 6 · из HR Playbook 4.1–4.3</p>
+<h2 data-t="8c6a5efb5b">Время, график, отсутствие</h2>
+<p class="lead" data-t="40e6a15836">Как отмечаться, как устроен график и что делать, если не можешь выйти.</p>
+</div>
+</header>
+<h4 data-t="a66a9b2680">Отметка сканером</h4>
+<ul>
+<li data-t="96f38f013e">Отметка прихода — уже в форме и не позже начала смены. Приходи за 10–15 минут, чтобы переодеться.</li>
+<li data-t="742d803cbd">Опоздание — отметка позже начала смены больше чем на 10 минут (договор, ст. 7.1).</li>
+<li data-t="0ef62d878c">Отметка ухода — после передачи смены.</li>
+<li data-t="d5d6e2ec60">Забыл отметиться — в тот же день письменно объясни старшему. Две и больше пропущенных отметки за месяц — устное замечание.</li>
+</ul>
+<div class="alert">
+<div class="th" data-t="f57ee63ee3">Важно · отметка за другого</div>
+<p data-t="0f7dd4d466">Отметить приход или уход за другого человека — подделка учёта времени (договор, ст. 9.3). Это грубое нарушение: увольнение без SP. Касается и того, кто отметил, и того, кто об этом попросил.</p>
+</div>
+<h4 data-t="4272905be3">График</h4>
+<ul>
+<li data-t="1faa059f7e">График на неделю публикуется не позже чем за 3 дня до её начала (договор, ст. 4). У каждого 5 смен по 8 часов и 2 выходных.</li>
+<li data-t="58fe2913e7">Меняться сменами самостоятельно нельзя: только с письменного согласия Sous Chef в рабочей группе.</li>
+<li data-t="2d63a9d6df">Ночные смены — по очереди. Работать ночью одному можно только с допуском «Одиночная ночная смена».</li>
+<li data-t="9b56bd7ce7">Отпуск — заявление минимум за 7 дней, по графику отпусков точки.</li>
+</ul>
+<h4 data-t="ec377ed2cd">Если не можешь выйти</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="41ab4c8274">Ситуация</th><th data-t="0fb0ceeb19">Что делаешь</th></tr></thead>
+<tbody>
+<tr><td data-t="25e4be47b4">Не можешь выйти на смену</td><td data-t="b9b1d62187">Сообщи старшему через официальный канал не позже чем за 2 часа до начала (договор, ст. 8.1)</td></tr>
+<tr><td data-t="e8a1b8754f">Заболел</td><td data-t="8296cdf87c">Сообщи как можно раньше. При температуре, рвоте или диарее не выходи. Справка — не позже 2 рабочих дней после выхода</td></tr>
+<tr><td data-t="5706ad485c">Не вышел и не сообщил</td><td data-t="538673c1f0">Это неявка. 3 рабочих дня подряд без уважительной причины после двух письменных вызовов — по договору это увольнение по собственному желанию (ст. 8.1)</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="2d0d0a8ed8">Когда отметка считается опозданием?</li>
+<li data-t="2c7b1527be">За сколько часов нужно сообщить, что не выйдешь на смену?</li>
+<li data-t="d7839f8726">Коллега просит отметить его приход, пока он паркуется. Что ты ответишь и почему?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="ac6f69947c">Если отметка позже начала смены больше чем на 10 минут.</li>
+<li data-t="a442518849">Не позже чем за 2 часа до начала смены, через официальный канал.</li>
+<li data-t="d070294be2">Откажу: это подделка учёта времени, грубое нарушение по ст. 9.3, увольнение без SP для обоих.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="ctrl" data-n="7" data-toc="Дисциплина" id="discipline-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">7</div>
+<div>
+<p class="eyebrow" data-t="da8a0da64d">Раздел 7 · из HR Playbook 4.5</p>
+<h2 data-t="5657b4f121">Дисциплина — строго по договору</h2>
+<p class="lead" data-t="97b482a006">Какие бывают предупреждения, как они работают и что делать, если ты не согласен.</p>
+</div>
+</header>
+<ul aria-label="Ступени дисциплины по договору" class="ladder arrows" data-ta="aria-label:b35f91c200">
+<li data-t="465df14319"><span class="k">Ступень 1</span><b>Устное</b><span class="s">записывается в личное дело</span></li>
+<li data-t="0e79a725cd"><span class="k">Ступень 2</span><b>SP1</b><span class="s">письменное, подписывает сотрудник</span></li>
+<li data-t="a81da727e1"><span class="k">Ступень 3</span><b>SP2</b><span class="s">письменное, подписывает сотрудник</span></li>
+<li data-t="5f3d9c4913"><span class="k">Ступень 4</span><b>SP3</b><span class="s">последнее предупреждение</span></li>
+<li data-t="82b07fc4f4"><span class="k">Итог</span><b>PHK</b><span class="s">увольнение по закону</span></li>
+</ul>
+<div class="ticket">
+<div class="th" data-t="a8fc110a1c"><span>Как работают ступени</span><span>договор, ст. 7.2 и 9.3</span></div>
+<ul>
+<li data-t="3a4dc5267a">Ступень выбирают по тяжести нарушения; начинать с устного не обязательно.</li>
+<li data-t="7958e5a070">Каждое SP действует 6 месяцев.</li>
+<li data-t="43d1a10d1c">Новое нарушение, пока SP действует, — следующая ступень.</li>
+<li data-t="02c48fb6fa">Устное замечание учитывается 30 дней: повторное лёгкое нарушение в эти 30 дней — SP1.</li>
+<li data-t="8bd06257de">6 месяцев без нарушений — SP теряет силу; следующее нарушение снова оценивается по тяжести.</li>
+<li data-t="8ce3348495">Грубые нарушения (ст. 9.3) — увольнение без SP1–SP3. На время проверки — отстранение (skorsing).</li>
+</ul>
+</div>
+<div class="tw"><table>
+<thead><tr><th data-t="5efc8b765a">Тяжесть</th><th data-t="59221eefb0">Примеры</th><th data-t="19239083c4">Ступень</th></tr></thead>
+<tbody>
+<tr><td data-t="11dfd86656"><strong>Лёгкое</strong></td><td data-t="5a7c756754">Опоздание больше 10 минут (первое за 30 дней). Неполная или грязная форма. Не заполнен чек-лист или не отправлен фотоотчёт. Беспорядок на станции. Телефон на линии вне перерыва. Две и больше пропущенные отметки сканера за месяц.</td><td data-t="9ce877a371">Устное</td></tr>
+<tr><td data-t="c13ec9eb0a"><strong>Среднее</strong></td><td data-t="9e4eb7e9fe">Неявка без сообщения за 2 часа. Повторное лёгкое нарушение (например, опоздание) в течение 30 дней после устного замечания. Ушёл со смены без согласования. Отказ выполнить законное указание старшего. Работа с готовой едой без головного убора или перчаток. Вышел на смену с симптомами болезни и не сообщил. Фото кухни или рецептов в соцсетях без разрешения. Использование продукта без маркировки или с истёкшим сроком.</td><td>SP1</td></tr>
+<tr><td data-t="75bb0d5539"><strong>Тяжёлое</strong></td><td data-t="c39ff0e88c">Грубая небрежность с крупным ущербом или списанием. Оскорбление коллеги или гостя. Сознательное нарушение стандарта безопасности пищи.</td><td>SP3</td></tr>
+<tr><td data-t="9bc4344b78"><strong>Грубое (ст. 9.3)</strong></td><td data-t="3e8275b588">Кража, мошенничество, присвоение. Драка, насилие, угрозы. Сексуальные домогательства, дискриминация. Работа в состоянии опьянения или под наркотиками. Умышленная порча имущества. Подделка отметок, документов, отчётов. Взятки и «откаты» от поставщиков. Разглашение тайны компании.</td><td data-t="8ba40787a5">Увольнение без SP, отстранение на время проверки</td></tr>
+</tbody>
+</table></div>
+<p data-t="c728a4bc6c">В месяце, когда выдано SP, бонус 1% за этот месяц не выплачивается. Предупреждение выдаёт руководитель выше по должности, документ готовит HR, ты подписываешь его на короткой встрече.</p>
+<div class="note"><div class="th" data-t="3b61bcde7f">Если ты не согласен · договор, ст. 14</div><p data-t="aa5554d08e">Сначала обратись к непосредственному руководителю. Если вопрос не решён за 5 рабочих дней — письменно к Директору. Если и это не помогло — в Disnaker (трудовую инспекцию) по закону UU 2/2004.</p></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="693d6bc67d">Назови ступени дисциплины по порядку.</li>
+<li data-t="d31f66b056">Сколько действует SP?</li>
+<li data-t="9b280a10ef">Ты получил устное замечание за опоздание, а через две недели опоздал снова. Что будет?</li>
+<li data-t="6cd95a9ae9">Назови три грубых нарушения, за которые увольняют без SP.</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="aa5ab18ef1">Устное → SP1 → SP2 → SP3 → PHK.</li>
+<li data-t="d02f55b671">6 месяцев.</li>
+<li data-t="981f6e3eea">Повторное лёгкое нарушение в течение 30 дней после устного — SP1; бонус за месяц не выплачивается.</li>
+<li data-t="f78e8bf97b">Любые три из ст. 9.3: кража, драка, домогательства, опьянение, порча имущества, подделка отметок или документов, «откаты», разглашение тайны.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="train" data-n="8" data-toc="Обучение и карьера" id="growth-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">8</div>
+<div>
+<p class="eyebrow" data-t="0e67485f3f">Раздел 8 · из HR Playbook 0.3 и 3</p>
+<h2 data-t="41124e2e01">Обучение и карьера</h2>
+<p class="lead" data-t="5f953c2728">Учиться в Food Lab — обязанность каждого. Рост по лестнице — возможность для тех, кто готов.</p>
+</div>
+</header>
+<div class="tw"><table>
+<thead><tr><th data-t="e3ece45657">Что</th><th data-t="725347e425">Когда</th><th data-t="23d893aca4">Порог</th></tr></thead>
+<tbody>
+<tr><td data-t="2ca91eb235">14 дней обучения: Academy и практика на смене, тест каждый день, итоговый экзамен и практический допуск</td><td data-t="b0be4859c6">Первые 14 дней испытательного срока</td><td class="mono" data-t="674cc38e4f">тест дня ≥ 80% · экзамен ≥ 85% и 100% критических · допуск ≥ 90%</td></tr>
+<tr><td data-t="716aa769cc">Ежемесячная аттестация: тест по правилам компании и тест по меню</td><td data-t="441d1a0bea">1–7 число каждого месяца</td><td class="mono">≥ 80%</td></tr>
+<tr><td data-t="c34c7771f7">Новое блюдо или новый бренд</td><td data-t="9a557b9364">До запуска в продажу</td><td class="mono" data-t="0322d03cf9">мини-тест ≥ 90% + приготовление при SC</td></tr>
+<tr><td data-t="e38d3c7e1b">Гигиена и безопасность пищи</td><td data-t="831c953336">Раз в 6 месяцев</td><td class="mono" data-t="e55f0d3708">100% критических вопросов</td></tr>
+</tbody>
+</table></div>
+<p data-t="78b13d992f">Испытательный срок — 3 месяца (договор, ст. 3). В первые 14 дней у тебя есть наставник: он показывает, делает вместе с тобой, смотрит, как делаешь ты, и подписывает, когда ты делаешь сам.</p>
+<ul aria-label="Карьерная лестница кухни" class="ladder arrows" data-ta="aria-label:a27b6752e5">
+<li data-t="68b83d474a"><span class="k">Ступень 1</span><b>Cook</b><span class="s">Juru Masak, повар</span></li>
+<li data-t="8c524a93c9"><span class="k">Ступень 2</span><b>CDP</b><span class="s">Chef de Partie, старший повар</span></li>
+<li data-t="2f700f6d65"><span class="k">Ступень 3</span><b>Sous Chef</b><span class="s">руководитель кухни точки</span></li>
+<li data-t="6ac22e83b7"><span class="k">Ступень 4</span><b>Head Chef</b><span class="s">шеф-повар региона</span></li>
+</ul>
+<div class="tw"><table>
+<thead><tr><th data-t="0568837ba1">Переход</th><th data-t="3b06e9c8e8">Минимум в должности</th><th data-t="5b1c65c008">Условия</th></tr></thead>
+<tbody>
+<tr><td>Cook → CDP</td><td data-t="9419dcd40b">6 месяцев</td><td data-t="753fbc68bc">Средний балл ежемесячных аттестаций за 3 месяца ≥ 90%. Допуск ко всем станциям точки. Нет действующего SP. Оценка по весам ≥ 4,0 из 5.</td></tr>
+<tr><td>CDP → Sous Chef</td><td data-t="05ca1eab2a">6 месяцев в роли CDP</td><td data-t="a9016e50d4">Регулярно вёл смены как старший. Обучил минимум двух новичков, которые сдали экзамен. Прошёл оценочный лист Sous Chef.</td></tr>
+<tr><td>Sous Chef → Head Chef</td><td data-t="461ac51757">12 месяцев в роли Sous Chef</td><td data-t="1dee68ae77">Точка выполняла показатели минимум 4 месяца из последних 6. Участвовал в открытии точки. Сдал кейс Head Chef.</td></tr>
+</tbody>
+</table></div>
+<div class="ticket">
+<div class="th" data-t="822a4cf420"><span>Лестница — возможность, а не обещание</span><span>HR Playbook 0.3</span></div>
+<p data-t="4135e1244c">Повышают, когда есть открытая позиция и сотрудник прошёл оценку. Человек может годами отлично работать на своей должности, и это нормально: сильный повар или CDP ценен сам по себе.</p>
+</div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="7dfaee126b">Сколько длится испытательный срок и сколько из него — обучение?</li>
+<li data-t="9dbfcc3a19">Когда проходит ежемесячная аттестация и какой порог?</li>
+<li data-t="baabee43c9">Какие условия нужны для перехода Cook → CDP?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="6bf4dc3f04">3 месяца; первые 14 дней — обучение.</li>
+<li data-t="5ec3ecad79">1–7 число каждого месяца; 80% и выше.</li>
+<li data-t="f17bbf6233">6 месяцев в должности, аттестации ≥ 90% за 3 месяца, допуск ко всем станциям, нет действующего SP, оценка ≥ 4,0.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="data" data-n="9" data-toc="Конфиденциальность" id="privacy-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">9</div>
+<div>
+<p class="eyebrow" data-t="c8b6d8c6cf">Раздел 9 · из HR Playbook 2.2 и 7.2</p>
+<h2 data-t="33d617f241">Конфиденциальность и личные данные</h2>
+<p class="lead" data-t="73d4cffad1">Что ты обязан хранить в тайне и как компания защищает твои данные.</p>
+</div>
+</header>
+<div class="ticket">
+<div class="th" data-t="9dd325b16e"><span>Конфиденциальность с первого дня</span><span>договор, ст. 11 и 12</span></div>
+<ul>
+<li data-t="e33d27114f">Рецепты, методы, поставщики, цены, продажи, данные гостей и сотрудников — тайна компании. Обязанность хранить её действует ещё 3 года после ухода.</li>
+<li data-t="cc851ba958">Фото и видео кухни, рецептов и новых блюд в соцсетях — только с письменного разрешения.</li>
+<li data-t="e6f65a95ec">Кабинет Academy личный: передавать доступ, фотографировать и копировать материалы нельзя.</li>
+<li data-t="2c2521c657">Во время работы нельзя помогать прямым конкурентам в регионе. 6 месяцев после ухода нельзя переманивать сотрудников, гостей и поставщиков компании.</li>
+</ul>
+</div>
+<p data-t="c5a3b3a647"><strong>Твои данные.</strong> Копии KTP и KK, банковские данные, номера BPJS, зарплата хранятся только в папке HR. Доступ к ней есть у HR-менеджера и Head Chef (и Директора компании). Никто не пересылает твои документы в чаты (UU 27/2022).</p>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="7000870efe">Можно ли выложить в Instagram фото нового блюда, которое ещё не вышло в продажу?</li>
+<li data-t="8ad6f98b8c">Сколько действует обязанность хранить тайну после ухода?</li>
+<li data-t="2933ab8d7a">Кто имеет доступ к твоим личным документам?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="4abe84910e">Нет, только с письменного разрешения.</li>
+<li data-t="935d32b321">3 года после последнего рабочего дня.</li>
+<li data-t="624ed29bcb">HR-менеджер и Head Chef (и Директор компании).</li>
+</ol></details>
+</section>
+<section class="ch" data-c="exit" data-n="10" data-toc="Если ты уходишь" id="leaving-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">10</div>
+<div>
+<p class="eyebrow" data-t="cd8e4a4fab">Раздел 10 · из HR Playbook 6</p>
+<h2 data-t="28646cf258">Если ты уходишь</h2>
+<p class="lead" data-t="9f8a196de9">Как правильно уволиться по собственному желанию и что ты получишь.</p>
+</div>
+</header>
+<ol class="steps">
+<li><div class="sh" data-t="f90c4d7d0f"><b>Письменное заявление за 14 дней</b></div><p data-t="61124e038d">Заявление (Surat Pengunduran Diri) отдаётся HR минимум за 14 дней до последнего дня (договор, ст. 9.2). До последнего дня ты работаешь по графику.</p></li>
+<li><div class="sh" data-t="0759c0019f"><b>Передача дел</b></div><p data-t="6200fdda15">Sous Chef говорит, что закончить и кому передать.</p></li>
+<li><div class="sh" data-t="c912fd649e"><b>Exit-интервью</b></div><p data-t="ccc8a92cc2">15 минут с HR в последнюю неделю. Есть и анонимная анкета: твой честный ответ помогает исправить то, что не работает.</p></li>
+<li><div class="sh" data-t="785c2fe055"><b>Возврат имущества в последний день</b></div><p data-t="97f2f285e9">Форма: 2 футболки, 2 кепки, 2 фартука, обувь. Ключи и инвентарь. Подписываешь акт возврата.</p></li>
+<li><div class="sh" data-t="36fa39264c"><b>Окончательный расчёт</b></div><p data-t="52f03702ce">В ближайшую дату выплаты (20-е или 5-е): заработанное + компенсация отпуска (полные месяцы × 0,1 × месячная зарплата, договор, ст. 9.4) + бонус месяца по часам, если не снят, − налоги и удержания. Выплата — после возврата имущества.</p></li>
+<li><div class="sh" data-t="d5d18e8618"><b>Документы</b></div><p data-t="4da92bd226">HR отмечает тебя выбывшим в BPJS, чтобы ты мог получить накопления JHT. По просьбе выдаём справку с места работы (surat keterangan kerja).</p></li>
+</ol>
+<p class="small muted" data-t="2459c034da">В испытательный срок любая сторона может прекратить договор письменным уведомлением в любой момент; выплачивается только заработанное (ст. 3.2).</p>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="13f1a507ad">За сколько дней нужно подать заявление об уходе?</li>
+<li data-t="4e0487abb3">Что нужно вернуть в последний день?</li>
+<li data-t="7a159cc988">Из чего состоит окончательный расчёт?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="fabc569af2">Минимум за 14 дней, письменно.</li>
+<li data-t="709200be2b">Всю форму (2 футболки, 2 кепки, 2 фартука, обувь), ключи, инвентарь.</li>
+<li data-t="14917ab8f4">Заработанное + компенсация отпуска (месяцы × 0,1 × зарплата) + бонус месяца, минус налоги и удержания; после возврата имущества.</li>
+</ol></details>
+</section>
+</div>
+</main>
+</div>
+<script>FL_FOLD.dyn({"A · утро 07:00–15:00": "cb63d05d41", "B · вечер 15:00–23:00": "047c036729", "C · ночь 23:00–07:00": "52e217c49d", "# чел.": "bc30540283", "Человеко-смен в неделю": "c7c4563d58", "Без резерва (÷ 5)": "6e6ecc1c03", "Штат с резервом 15%": "d5da58a71c", "человек в штате": "6ceb9ce69b", "Скопировано": "8922542f90", "Копировать": "4a05d8619d", "Выделено: Ctrl+C": "a3af8a1fcb"});FL_FOLD.apply();</script>
+<script>
+(function(){
+  var body=document.body, LS='foodlab-folders-lang', fixed=document.querySelector('meta[name="folder-lang"]');
+  function all(sel,root){return [].slice.call((root||document).querySelectorAll(sel));}
+  function langOf(el){var b=el.closest('.langblock');return b&&b.getAttribute('lang')==='ru'?'ru':'id';}
+  function fmts(el){var loc=window.FL_LOC||'ru-RU';return {nf:new Intl.NumberFormat(loc,{maximumFractionDigits:0}),nf1:new Intl.NumberFormat(loc,{maximumFractionDigits:1})};}
+  function rp(nf,v){return 'Rp '+nf.format(Math.round(v));}
+
+  /* language */
+  function setLang(l,scroll){
+    body.classList.remove('l-id','l-ru');body.classList.add('l-'+l);
+    document.documentElement.lang=l;
+    all('[data-setlang]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.setlang===l?'true':'false');});
+    if(!fixed){try{localStorage.setItem(LS,l);}catch(e){}}
+    if(scroll)window.scrollTo(0,0);
+  }
+  var start=fixed?fixed.getAttribute('content'):'id';
+  if(!fixed){try{var s=localStorage.getItem(LS);if(s==='ru'||s==='id')start=s;}catch(e){}}
+  all('[data-setlang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.setlang,true);});});
+  setLang(start,false);
+
+  /* table of contents: mobile drawer */
+  var rail=document.getElementById('rail'),btn=document.getElementById('tocBtn'),closeBtn=document.getElementById('tocClose');
+  function openToc(o){rail.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');}
+  if(btn)btn.addEventListener('click',function(){openToc(!rail.classList.contains('open'));});
+  if(closeBtn)closeBtn.addEventListener('click',function(){openToc(false);});
+  rail.addEventListener('click',function(e){if(e.target.closest('.toc a')&&window.matchMedia('(max-width:980px)').matches)openToc(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')openToc(false);});
+
+  /* table of contents: current section */
+  var links=all('.toc a'),map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){var a=map[en.target.id];if(!a)return;all('a',a.closest('.toc')).forEach(function(l){l.removeAttribute('aria-current');});a.setAttribute('aria-current','true');}
+      });
+    },{rootMargin:'-15% 0px -75% 0px'});
+    Object.keys(map).forEach(function(id){var t=document.getElementById(id);if(t)io.observe(t);});
+  }
+
+  /* 24-hour shift clock */
+  var MODES={launch:[2,2,1],growth:[3,3,1],std:[4,4,2]};
+  var CL={
+    ru:{A:'A · утро 07:00–15:00',B:'B · вечер 15:00–23:00',C:'C · ночь 23:00–07:00',p:'чел.',ps:'Человеко-смен в неделю',base:'Без резерва (÷ 5)',staff:'Штат с резервом 15%',center:'человек в штате',
+        comp:{launch:'1 Sous Chef · 2 CDP · 5 Cook',growth:'1 Sous Chef · 3 CDP · 7 Cook',std:'1 Sous Chef · 4 CDP · 11 Cook'}},
+    id:{A:'A · pagi 07.00–15.00',B:'B · sore 15.00–23.00',C:'C · malam 23.00–07.00',p:'org',ps:'Shift-orang per minggu',base:'Tanpa cadangan (÷ 5)',staff:'Tim + cadangan 15%',center:'orang dalam tim',
+        comp:{launch:'1 Sous Chef · 2 CDP · 5 Cook',growth:'1 Sous Chef · 3 CDP · 7 Cook',std:'1 Sous Chef · 4 CDP · 11 Cook'}}
+  };
+  function polar(cx,cy,r,h){var a=(h/24)*2*Math.PI-Math.PI/2;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+  function arc(cx,cy,r,h1,h2){var p1=polar(cx,cy,r,h1),p2=polar(cx,cy,r,h2);return 'M'+p1[0].toFixed(2)+' '+p1[1].toFixed(2)+' A'+r+' '+r+' 0 '+((h2-h1)>12?1:0)+' 1 '+p2[0].toFixed(2)+' '+p2[1].toFixed(2);}
+  function drawClock(box,mode){
+    var L=CL[langOf(box)],svg=box.querySelector('svg.clock'),leg=box.querySelector('.legend');if(!svg||!leg)return;
+    var m=MODES[mode],cx=150,cy=150,R=112,s='',nf1=fmts(box).nf1;
+    var sh=[{h1:7,h2:15,n:m[0],c:'var(--shA)',t:L.A},{h1:15,h2:23,n:m[1],c:'var(--shB)',t:L.B},{h1:23,h2:31,n:m[2],c:'var(--shC)',t:L.C}];
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" style="fill:none;stroke:var(--tint);stroke-width:34"/>';
+    sh.forEach(function(x){
+      s+='<path d="'+arc(cx,cy,R,x.h1+0.1,x.h2-0.1)+'" style="fill:none;stroke:'+x.c+';stroke-width:34"/>';
+      for(var i=0;i<x.n;i++){var p=polar(cx,cy,R,x.h1+(x.h2-x.h1)*(i+0.5)/x.n),X=p[0],Y=p[1];
+        s+='<circle cx="'+X.toFixed(2)+'" cy="'+Y.toFixed(2)+'" r="10" style="fill:var(--panel);stroke:var(--ink);stroke-width:1.5"/>';
+        s+='<circle cx="'+X.toFixed(2)+'" cy="'+(Y-3).toFixed(2)+'" r="2.8" style="fill:var(--ink)"/>';
+        s+='<path d="M'+(X-4.6).toFixed(2)+' '+(Y+5.4).toFixed(2)+' a4.6 4.4 0 0 1 9.2 0 z" style="fill:var(--ink)"/>';}
+    });
+    [0,6,12,18].forEach(function(h){var p=polar(cx,cy,R-44,h);s+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+4).toFixed(1)+'" text-anchor="middle" style="font:11px \'JetBrains Mono\',monospace;fill:var(--ink-2)">'+(h<10?'0'+h:h)+':00</text>';});
+    var total=Math.round((m[0]+m[1]+m[2])*7/5*1.15),ps=(m[0]+m[1]+m[2])*7;
+    s+='<text x="'+cx+'" y="'+(cy+8)+'" text-anchor="middle" style="font:700 40px Unbounded,\'Arial Black\',sans-serif;fill:var(--ink)">'+total+'</text>';
+    s+='<text x="'+cx+'" y="'+(cy+28)+'" text-anchor="middle" style="font:12px Onest,system-ui,sans-serif;fill:var(--ink-2)">'+L.center+'</text>';
+    svg.innerHTML=s;
+    leg.innerHTML=sh.map(function(x){return '<div class="row"><span class="sw" style="background:'+x.c+'"></span><span>'+x.t+'</span><b>'+x.n+' '+L.p+'</b></div>';}).join('')+
+      '<div class="row tot"><span></span><span>'+L.ps+'</span><b>'+ps+'</b></div>'+
+      '<div class="row"><span></span><span>'+L.base+'</span><b>'+nf1.format(ps/5)+'</b></div>'+
+      '<div class="row"><span></span><span><strong>'+L.staff+'</strong></span><b>'+total+'</b></div>'+
+      '<div class="comp">'+L.comp[mode]+'</div>';
+  }
+  all('.shiftviz').forEach(function(box){
+    var bs=all('.seg button',box);
+    bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});drawClock(box,b.dataset.mode);});});
+    drawClock(box,'launch');
+  });
+
+  /* calculators */
+  function inp(f,k){return f.querySelector('[data-k="'+k+'"]');}
+  function val(f,k){var e=inp(f,k);var v=e?parseFloat(e.value):0;return isFinite(v)&&v>0?v:0;}
+  function put(f,k,t,html){var e=f.querySelector('[data-o="'+k+'"]');if(!e)return;if(html)e.innerHTML=t;else e.textContent=t;}
+  function wire(f,fn){f.addEventListener('input',fn);f.addEventListener('change',fn);f.addEventListener('submit',function(e){e.preventDefault();});fn();}
+
+  all('form.calc-staff').forEach(function(f){
+    function calc(){
+      var F=fmts(f),A=val(f,'A'),B=val(f,'B'),C=val(f,'C'),res=val(f,'res'),rate=val(f,'rate'),sales=val(f,'sales'),hol=inp(f,'hol')&&inp(f,'hol').checked;
+      var ps=(A+B+C)*7,base=ps/5,staff=Math.round(base*(1+res/100)),fixed=staff*rate*172*(1+1/12+0.105+(hol?0.044:0)),fot=fixed+0.01*sales;
+      put(f,'ps',F.nf.format(ps));put(f,'base',F.nf1.format(base));put(f,'staff',F.nf.format(staff));put(f,'fot',rp(F.nf,fot));
+      if(sales>0){var pct=fot/sales*100;put(f,'pct','<span class="pill '+(pct<=13?'ok':(pct<=15?'mid':'bad'))+'">'+F.nf1.format(pct)+'%</span>',true);}else{put(f,'pct','—');}
+      put(f,'min',rate>0?rp(F.nf,fixed/0.12):'—');
+    }
+    all('.presets button',f).forEach(function(b){b.addEventListener('click',function(){
+      if(b.dataset.p){var v=b.dataset.p.split(',');inp(f,'A').value=v[0];inp(f,'B').value=v[1];inp(f,'C').value=v[2];}
+      if(b.dataset.rate){inp(f,'rate').value=b.dataset.rate;}
+      calc();});});
+    wire(f,calc);
+  });
+  all('form.calc-funnel').forEach(function(f){
+    wire(f,function(){
+      var F=fmts(f),plan=val(f,'plan'),c1=val(f,'c1')/100,c2=val(f,'c2')/100,c3=val(f,'c3')/100;
+      if(!(plan&&c1&&c2&&c3)){put(f,'trial','—');put(f,'int','—');put(f,'app','—');return;}
+      var t=Math.ceil(plan/c3-1e-9),i=Math.ceil(t/c2-1e-9),a=Math.ceil(i/c1-1e-9);
+      put(f,'trial',F.nf.format(t));put(f,'int',F.nf.format(i));put(f,'app',F.nf.format(a));
+    });
+  });
+  all('form.calc-exit').forEach(function(f){
+    wire(f,function(){
+      var F=fmts(f),m=Math.floor(val(f,'months')),w=val(f,'wage'),e=val(f,'earned'),b=val(f,'bonus'),d=val(f,'ded'),prob=inp(f,'prob')&&inp(f,'prob').checked;
+      var leave=prob?0:m*0.1*w,pay=e+b,gross=leave+pay,total=Math.max(0,gross-d);
+      put(f,'leave',rp(F.nf,leave));put(f,'pay',rp(F.nf,pay));put(f,'ded',d>0?'− '+rp(F.nf,d):rp(F.nf,0));put(f,'total',rp(F.nf,total));
+      var w2=f.querySelector('[data-o="warn"]');if(w2)w2.hidden=!(d>0.5*gross);
+    });
+  });
+
+  /* copy buttons */
+  all('.copy').forEach(function(b){
+    var label=b.textContent;
+    b.addEventListener('click',function(){
+      var pre=document.getElementById(b.dataset.target);if(!pre)return;
+      var done=b.dataset.done||'OK';
+      function ok(){b.textContent=done;setTimeout(function(){b.textContent=label;},1600);}
+      function fb(){var r=document.createRange();r.selectNodeContents(pre);var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);b.textContent='Ctrl+C';setTimeout(function(){b.textContent=label;},2600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(pre.innerText).then(ok,fb);}else{fb();}
+    });
+  });
+})();
+
+</script>
+</body></html>

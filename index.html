@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foodlab Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #EEF4FB; font-family: 'Work Sans', Helvetica, sans-serif; color: #1B2D47; -webkit-font-smoothing: antialiased; display: flex; align-items: center; justify-content: center; padding: 28px 18px; }
+  a { color: #35527A; text-decoration: none; }
+  a:hover { color: #5B87BC; }
+  .wrap { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 22px; }
+  .seal { background: #CFE0F2; border-radius: 24px; padding: 26px 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .name { font-family: 'Instrument Serif', Georgia, serif; font-size: 27px; line-height: 1.1; }
+  .sub { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.26em; text-transform: uppercase; color: #3F6285; }
+  .ask { font-size: 19px; font-weight: 700; letter-spacing: -.01em; line-height: 1.35; text-align: center; }
+  .ask span { display: block; font-size: 14px; font-weight: 500; color: #55688A; margin-top: 5px; }
+  .list { display: flex; flex-direction: column; gap: 10px; }
+  .pick { display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 15px 18px; border: 1px solid rgba(27,45,71,.1); border-radius: 15px; background: #FFFFFF; color: #1B2D47; font-family: inherit; font-size: 16px; font-weight: 600; cursor: pointer; text-align: left; transition: border-color 150ms ease, transform 130ms ease; }
+  .pick:hover { border-color: #5B87BC; transform: translateY(-2px); }
+  .pick .code { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: #3F6285; min-width: 26px; }
+  .pick .arrow { margin-left: auto; color: #8098B5; font-size: 17px; }
+  .note { font-size: 12px; color: #55688A; text-align: center; line-height: 1.5; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="seal">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="30.5" stroke="#4E749F" stroke-width="1" />
+        <circle cx="32" cy="32" r="25" stroke="#4E749F" stroke-width="0.6" opacity="0.5" />
+        <path d="M32 17 L32 47" stroke="#4E749F" stroke-width="1.2" />
+        <path d="M24 20 L24 30 Q24 34 28 34 L28 47" stroke="#1B2D47" stroke-width="1.6" stroke-linecap="round" />
+        <path d="M24 20 L24 27 M27 20 L27 27" stroke="#1B2D47" stroke-width="1.2" stroke-linecap="round" />
+        <path d="M40 20 Q44 24 41 31 L37 33 L40 47" stroke="#1B2D47" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <div class="name">Foodlab Academy</div>
+      <div class="sub">Школа кухни</div>
+    </div>
+    <div class="ask">Выберите язык<span>Pilih bahasa · Choose your language</span></div>
+    <div class="list">
+      <button class="pick" data-lang="ru"><span class="code">RU</span>Русский<span class="arrow">→</span></button>
+      <button class="pick" data-lang="id"><span class="code">ID</span>Bahasa Indonesia<span class="arrow">→</span></button>
+      <button class="pick" data-lang="en"><span class="code">EN</span>English<span class="arrow">→</span></button>
+    </div>
+    <div class="note">Доступ только для сотрудников · Akses khusus karyawan · Staff access only</div>
+  </div>
+
+<script>
+document.querySelectorAll('.pick').forEach(b => {
+  b.addEventListener('click', () => {
+    try {
+      localStorage.setItem('foodlab-lang', b.getAttribute('data-lang'));
+      // Вход всегда начинается с логина: прошлая сессия сбрасывается
+      localStorage.removeItem('foodlab-session');
+    } catch (e) {}
+    window.location.href = 'Академия.dc.html';
+  });
+});
+</script>
+</body>
+</html>

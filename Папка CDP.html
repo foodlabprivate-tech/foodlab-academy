@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><meta name="fl-access" content="all">
+<script src="folders-i18n.js"></script>
+</head><body>
+<style>
+body.fl-locked>*:not(#fl-gate){display:none!important}
+#fl-gate{display:none;max-width:460px;margin:80px auto;padding:28px 24px;background:#fff;border:1px solid #D8DED6;border-radius:12px;font:16px/1.5 "Onest",system-ui,sans-serif;color:#17211C}
+body.fl-locked #fl-gate{display:block}
+#fl-gate h2{font-size:20px;margin:0 0 8px}
+#fl-gate a{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:8px;background:#17211C;color:#fff;text-decoration:none;font-weight:600}
+.fl-nav{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.rail .fl-nav{margin:0 0 16px 6px}
+.fl-back{display:inline-block;text-decoration:none;font:600 14px/1 var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:9px 12px}
+.fl-back:hover{border-color:var(--ink-2)}
+.fl-lang{display:inline-flex;gap:2px;padding:3px;background:var(--tint);border-radius:999px}
+.fl-lang button{font:600 12px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:7px 9px;cursor:pointer}
+.fl-lang button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.fl-partial{background:var(--kunyit-bg);color:var(--ink);border-radius:6px;padding:10px 14px;margin:0 0 18px;font-size:14px;max-width:780px}
+@media (max-width:520px){.topbar .fl-folders{display:none}}
+</style>
+<div id="fl-gate" role="alert"></div>
+
+<title>Должностная папка CDP</title>
+<meta content="Map Jabatan CDP (Chef de Partie) / Должностная папка CDP Food Lab." name="description"/>
+<meta content="ru" name="folder-lang"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;family=Unbounded:wght@500;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* from hr/p1.html */
+/* Layout: ring-binder operations manual. Colour-coded chapter tabs on a left rail (colours follow the kitchen cutting-board code),
+   one reading column, wide tables break out, key rules printed as kitchen order tickets. */
+:root{
+  --paper:#F5F7F3; --panel:#FFFFFF; --tint:#ECF0EA; --line:#D8DED6; --ink:#17211C; --ink-2:#56625B;
+  --pandan:#2E7D4F; --pandan-bg:#E2EFE6;
+  --kunyit:#8F6500; --kunyit-fill:#E8B23C; --kunyit-bg:#FBF0D3;
+  --cabai:#B6382C; --cabai-bg:#F8E3DF;
+  --laut:#2A66A0; --laut-bg:#E1ECF6;
+  --terong:#6A4A9C; --terong-bg:#ECE6F5;
+  --kayu:#87573A; --kayu-bg:#F2E8E1;
+  --teal:#2B7A80; --teal-bg:#DFEFF0;
+  --steel:#5D6D67; --steel-bg:#E6EBE8;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Onest","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101613; --panel:#17201B; --tint:#1D2722; --line:#2C3832; --ink:#E6ECE8; --ink-2:#A3B0A8;
+    --pandan:#6CC08E; --pandan-bg:#1A2E22;
+    --kunyit:#E9BC52; --kunyit-fill:#C99A2E; --kunyit-bg:#2D2613;
+    --cabai:#F07F71; --cabai-bg:#35201C;
+    --laut:#7FB3E8; --laut-bg:#172636;
+    --terong:#B79DE6; --terong-bg:#251E33;
+    --kayu:#D6A683; --kayu-bg:#2E231C;
+    --teal:#71C5CB; --teal-bg:#15292B;
+    --steel:#9FB1AA; --steel-bg:#1F2925;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101613; --panel:#17201B; --tint:#1D2722; --line:#2C3832; --ink:#E6ECE8; --ink-2:#A3B0A8;
+  --pandan:#6CC08E; --pandan-bg:#1A2E22;
+  --kunyit:#E9BC52; --kunyit-fill:#C99A2E; --kunyit-bg:#2D2613;
+  --cabai:#F07F71; --cabai-bg:#35201C;
+  --laut:#7FB3E8; --laut-bg:#172636;
+  --terong:#B79DE6; --terong-bg:#251E33;
+  --kayu:#D6A683; --kayu-bg:#2E231C;
+  --teal:#71C5CB; --teal-bg:#15292B;
+  --steel:#9FB1AA; --steel-bg:#1F2925;
+  color-scheme:dark;
+}
+[data-c="base"]{--c:var(--steel);--c-bg:var(--steel-bg)}
+[data-c="hire"]{--c:var(--pandan);--c-bg:var(--pandan-bg)}
+[data-c="onb"]{--c:var(--laut);--c-bg:var(--laut-bg)}
+[data-c="train"]{--c:var(--kunyit);--c-bg:var(--kunyit-bg)}
+[data-c="ctrl"]{--c:var(--cabai);--c-bg:var(--cabai-bg)}
+[data-c="eval"]{--c:var(--terong);--c-bg:var(--terong-bg)}
+[data-c="exit"]{--c:var(--kayu);--c-bg:var(--kayu-bg)}
+[data-c="data"]{--c:var(--teal);--c-bg:var(--teal-bg)}
+[data-c="app"]{--c:var(--ink-2);--c-bg:var(--tint)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.62 var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
+a:hover{text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--pandan);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+/* ---------- frame ---------- */
+.topbar{display:none;position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 16px;align-items:center;justify-content:space-between;gap:12px}
+.topbar b{font-family:var(--f-display);font-weight:700;font-size:14px;letter-spacing:.01em}
+.btn{font:600 14px/1 var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:9px 12px;cursor:pointer}
+.btn:hover{border-color:var(--ink-2)}
+.shell{display:grid;grid-template-columns:276px minmax(0,1fr);max-width:1280px;margin:0 auto}
+.rail{position:sticky;top:0;height:100vh;overflow:auto;padding:26px 14px 40px 18px;border-right:1px solid var(--line)}
+.rail .brand{font-family:var(--f-display);font-weight:700;font-size:15px;line-height:1.25;margin:0 0 4px 6px}
+.rail .brand small{display:block;font-family:var(--f-mono);font-weight:400;font-size:11px;color:var(--ink-2);letter-spacing:.06em;margin-top:6px;text-transform:uppercase}
+.toc{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:2px}
+.toc a{display:grid;grid-template-columns:10px 30px minmax(0,1fr);align-items:center;gap:8px;padding:7px 8px;border-radius:6px;text-decoration:none;color:var(--ink-2);font-size:14px;line-height:1.25}
+.toc a .sw{width:10px;height:22px;border-radius:2px 5px 5px 2px;background:var(--c)}
+.toc a .n{font-family:var(--f-mono);font-size:12px;color:var(--c)}
+.toc a:hover{background:var(--tint);color:var(--ink)}
+.toc a[aria-current="true"]{background:var(--c-bg);color:var(--ink);font-weight:600}
+.toc .sep{height:1px;background:var(--line);margin:10px 6px}
+main{min-width:0;padding-inline:clamp(16px,4.2vw,64px);padding-block:36px 120px}
+.col{max-width:780px}
+section.ch{padding-top:28px;margin-top:56px;border-top:1px solid var(--line)}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(36px,5.6vw,64px);line-height:1.02;letter-spacing:-.01em}
+h2{font-family:var(--f-display);font-weight:700;font-size:clamp(23px,2.8vw,32px);line-height:1.15}
+h3{font-size:22px;font-weight:700;line-height:1.25;margin:52px 0 14px;display:flex;gap:12px;align-items:baseline}
+h3 .no{font-family:var(--f-mono);font-size:14px;font-weight:600;color:var(--c);flex:none}
+h4{font-size:17px;font-weight:700;margin:28px 0 8px}
+p{margin:0 0 12px;max-width:70ch}
+.lead{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:62ch}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px}
+.muted{color:var(--ink-2)}
+.small{font-size:14px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+strong{font-weight:700}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:4px 0}
+li::marker{color:var(--c,var(--ink-2))}
+.id{display:block;font-size:14px;color:var(--ink-2);font-style:italic;margin-top:4px}
+
+/* ---------- cover ---------- */
+.cover{padding:18px 0 8px}
+.cover h1{margin:6px 0 18px}
+.cover .lead{margin-bottom:26px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 28px;margin:0 0 28px;padding:18px 0;border-block:1px solid var(--line)}
+.meta div{min-width:0}
+.meta dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.meta dd{margin:2px 0 0;font-weight:500}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none}
+.tabs a{display:flex;align-items:center;gap:8px;text-decoration:none;padding:8px 12px 8px 10px;border-radius:4px 10px 10px 4px;background:var(--c-bg);font-weight:600;font-size:14px}
+.tabs a .n{font-family:var(--f-mono);color:var(--c);font-size:13px}
+
+/* ---------- chapter opener ---------- */
+.opener{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 28px;align-items:start;margin-bottom:8px}
+.ch-num{font-family:var(--f-display);font-weight:700;font-size:clamp(64px,9vw,104px);line-height:.85;color:var(--c);min-width:1ch}
+.opener .eyebrow{color:var(--c)}
+.opener h2{margin-bottom:12px}
+.outcome{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 24px;margin-top:16px;padding:14px 16px;background:var(--c-bg);border-radius:6px}
+.outcome dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.outcome dd{margin:2px 0 0;font-size:15px}
+
+/* ---------- badges & chips ---------- */
+.b{display:inline-block;font-family:var(--f-mono);font-size:11.5px;font-weight:600;line-height:1;padding:4px 6px 3px;border-radius:4px;border:1px solid var(--line);background:var(--panel);color:var(--ink);white-space:nowrap;vertical-align:1px}
+.t{display:inline-block;font-family:var(--f-mono);font-size:11.5px;line-height:1;padding:4px 7px 3px;border-radius:999px;background:var(--tint);color:var(--ink-2);white-space:nowrap;vertical-align:1px}
+.pill{display:inline-block;font:600 12px/1 var(--f-mono);padding:5px 8px 4px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--pandan-bg);color:var(--pandan)}
+.pill.mid{background:var(--kunyit-bg);color:var(--kunyit)}
+.pill.bad{background:var(--cabai-bg);color:var(--cabai)}
+
+/* ---------- ticket (key rule) ---------- */
+.ticket{position:relative;background:var(--panel);border:1px solid var(--line);border-top:0;padding:18px 18px 14px;margin:20px 0;max-width:680px}
+.ticket::before{content:"";position:absolute;left:-1px;right:-1px;top:-6px;height:12px;background:radial-gradient(circle at 6px 6px,var(--paper) 0 4px,transparent 4.6px) 0 0/12px 12px repeat-x,linear-gradient(var(--line),var(--line)) 0 6px/100% 1px no-repeat}
+.ticket .th{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--c,var(--ink-2));margin-bottom:6px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+.ticket .th span:last-child{color:var(--ink-2);letter-spacing:.04em;text-transform:none}
+.ticket p:last-child,.ticket ul:last-child{margin-bottom:0}
+.alert{background:var(--cabai-bg);border-radius:6px;padding:14px 16px;margin:18px 0;max-width:780px}
+.alert .th{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--cabai);margin-bottom:4px}
+.alert p:last-child,.alert ul:last-child{margin-bottom:0}
+.note{background:var(--tint);border-radius:6px;padding:14px 16px;margin:18px 0;max-width:780px}
+.note .th{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+
+/* ---------- steps ---------- */
+ol.steps{list-style:none;padding:0;margin:18px 0 24px;counter-reset:s;display:grid;gap:0;max-width:820px}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 18px 50px;margin:0}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:600 14px/1 var(--f-mono);color:var(--c);background:var(--c-bg)}
+ol.steps>li::after{content:"";position:absolute;left:15.5px;top:36px;bottom:4px;width:1px;background:var(--line)}
+ol.steps>li:last-child::after{display:none}
+.sh{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-bottom:4px;padding-top:4px}
+.sh b{font-size:16.5px;margin-right:4px}
+ol.steps p{margin-bottom:6px}
+ol.steps ul{margin-bottom:6px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:16px 0 22px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);background:var(--tint);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td .id{font-size:13px}
+tbody tr.hl td{background:var(--c-bg)}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin:18px 0 24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 16px 12px;min-width:0}
+.card h4{margin:0 0 2px}
+.card .sub{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);margin-bottom:10px}
+.card dl{margin:0;display:grid;gap:8px}
+.card dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.card dd{margin:0;font-size:14.5px}
+.card ul{margin:0;padding-left:18px;font-size:14.5px}
+
+/* ---------- checklists ---------- */
+ul.check{list-style:none;padding:0;margin:14px 0 22px;display:grid;gap:2px;max-width:780px}
+ul.check li{margin:0}
+ul.check label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;padding:8px 10px;border-radius:6px;cursor:pointer}
+ul.check label:hover{background:var(--tint)}
+ul.check input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--pandan)}
+ul.check input:checked+span{color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--line)}
+ul.check .day{font-family:var(--f-mono);font-size:12px;color:var(--c);margin-right:6px}
+
+/* ---------- formula ---------- */
+.formula{font-family:var(--f-mono);font-size:15px;line-height:1.7;background:var(--panel);border:1px dashed var(--c,var(--line));border-radius:6px;padding:14px 16px;margin:16px 0;max-width:780px;overflow-x:auto}
+.formula b{color:var(--c,var(--ink))}
+
+@media (max-width:980px){
+  .topbar{display:flex}
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .rail{display:none;position:fixed;inset:0;z-index:40;height:100%;width:100%;max-width:360px;background:var(--panel);border-right:1px solid var(--line);padding-top:calc(20px + env(safe-area-inset-top,0px));box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
+  .rail.open{display:block}
+  .rail .close{display:block!important}
+  main{padding-block:20px 96px}
+  h3{margin-top:40px}
+}
+@media (max-width:560px){
+  .opener{grid-template-columns:minmax(0,1fr)}
+  ol.steps>li{padding-left:44px}
+  body{font-size:15.5px}
+}
+/* from hr/p2.html */
+.ladder{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;margin:18px 0 10px;list-style:none;padding:0;max-width:900px}
+.ladder li{position:relative;flex:1 1 150px;min-width:0;margin:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.ladder li .k{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.ladder li b{display:block;font-size:16px;line-height:1.3}
+.ladder li .s{display:block;font-size:13px;color:var(--ink-2);margin-top:2px}
+.ladder.arrows li:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);font-size:13px;color:var(--ink-2);background:var(--paper);line-height:1;padding:2px 0;z-index:1}
+.shiftviz{--shA:var(--kunyit-fill);--shB:var(--teal);--shC:var(--terong);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin:18px 0 24px;max-width:860px}
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--tint);border-radius:8px;margin-bottom:14px}
+.seg button{font:600 13.5px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:6px;padding:9px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.vizrow{display:grid;grid-template-columns:minmax(200px,290px) minmax(0,1fr);gap:24px;align-items:center}
+.clock{width:100%;height:auto;max-width:290px;display:block}
+.legend{display:grid;gap:10px;min-width:0}
+.legend .row{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:center;font-size:15px}
+.legend .sw{width:14px;height:14px;border-radius:3px}
+.legend .row b{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.legend .tot{border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
+.legend .comp{font-size:14px;color:var(--ink-2)}
+.calc{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:18px 0 26px;max-width:920px;overflow:hidden}
+.calc-in{padding:16px;display:grid;gap:12px;align-content:start;min-width:0}
+.calc-out{padding:16px;background:var(--c-bg);display:grid;gap:10px;align-content:start;min-width:0}
+.calc h4{margin:0 0 2px;font-size:15px}
+.field{display:grid;gap:4px;min-width:0}
+.field label{font-size:13px;color:var(--ink-2);line-height:1.3}
+.field input,.field select{font:500 15px/1.2 var(--f-mono);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:9px 10px;width:100%;min-width:0}
+.fields3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fields2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.presets button{font:600 13px/1 var(--f-body);background:var(--tint);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
+.presets button:hover{border-color:var(--ink-2)}
+.out{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.out span{font-size:14px;color:var(--ink-2)}
+.out b{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:16px;text-align:right}
+.out.big b{font-size:21px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);line-height:1.35}
+.chk input{margin-top:2px;accent-color:var(--pandan)}
+.kit{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0;max-width:860px}
+.kit div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 14px 12px;min-width:0}
+.kit .q{font-family:var(--f-display);font-weight:700;font-size:34px;line-height:1;color:var(--c)}
+.kit .w{font-size:14.5px;margin-top:8px;line-height:1.35}
+.tl{list-style:none;margin:20px 0 26px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:2px solid var(--c);max-width:980px}
+.tl li{position:relative;margin:0;padding:18px 14px 0 0;min-width:0}
+.tl li::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--panel);border:2px solid var(--c)}
+.tl .when{font-family:var(--f-mono);font-size:12.5px;font-weight:600;color:var(--c)}
+.tl b{display:block;font-size:15px;line-height:1.3;margin:3px 0 4px}
+.tl p{font-size:14px;color:var(--ink-2);margin:0}
+@media (max-width:720px){
+  .vizrow{grid-template-columns:minmax(0,1fr)} .clock{margin:0 auto}
+  .calc{grid-template-columns:minmax(0,1fr)}
+  .kit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl{grid-template-columns:minmax(0,1fr);border-top:0;border-left:2px solid var(--c);padding-left:20px}
+  .tl li{padding:0 0 16px}
+  .tl li::before{left:-29px;top:2px}
+}
+.seg button b{font-weight:600}
+.seg button span{font-family:var(--f-mono);font-size:12px;font-weight:400}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .seg button{padding:8px 6px}
+  .seg button span{display:block;margin-top:4px}
+}
+/* from hr/p6.html */
+.crit{display:inline-block;font:600 10.5px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cabai);background:var(--cabai-bg);border-radius:4px;padding:3px 5px 2px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.sc td:first-child{width:36px}
+.sc td:nth-child(2){min-width:260px}
+.sc td:nth-child(3),.sc td:nth-child(4){min-width:190px}
+.decide{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0 26px;max-width:900px}
+.decide div{border-radius:6px;padding:12px 14px;min-width:0}
+.decide .y{background:var(--pandan-bg)}
+.decide .r{background:var(--kunyit-bg)}
+.decide .n{background:var(--cabai-bg)}
+.decide b{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.decide .y b{color:var(--pandan)} .decide .r b{color:var(--kunyit)} .decide .n b{color:var(--cabai)}
+.decide p{font-size:14.5px;margin:0}
+.appsec{border-top:1px solid var(--line);margin-top:56px;padding-top:28px}
+/* from hr/p7.html */
+.tpl{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:14px 0 22px;max-width:860px;overflow:hidden}
+.tpl-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px 9px 16px;border-bottom:1px solid var(--line);background:var(--tint)}
+.tpl-h b{font-size:14.5px}
+.tpl pre{margin:0;padding:14px 16px;font:400 13.5px/1.6 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
+.copy{font:600 12.5px/1 var(--f-body);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:7px 10px;cursor:pointer;flex:none}
+.copy:hover{border-color:var(--ink-2)}
+.foot{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-2);max-width:860px}
+
+/* ---------- folders: language switch ---------- */
+.langblock[lang="ru"]{display:none}
+body.l-ru .langblock[lang="id"]{display:none}
+body.l-ru .langblock[lang="ru"]{display:block}
+.toc[lang="ru"]{display:none}
+body.l-ru .toc[lang="id"]{display:none}
+body.l-ru .toc[lang="ru"]{display:grid}
+.langsw{display:inline-flex;gap:3px;padding:3px;background:var(--tint);border-radius:999px;margin:18px 0 0 6px}
+.langsw button{font:600 12.5px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:7px 11px;cursor:pointer;white-space:nowrap}
+.langsw button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.topbar .langsw{margin:0}
+.topbar .tb-right{display:flex;gap:8px;align-items:center}
+@media (max-width:420px){.topbar b{display:none}}
+
+/* ---------- folders: header, codes, new marks ---------- */
+.new{display:inline-block;font:600 10.5px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--pandan);background:var(--pandan-bg);border-radius:4px;padding:4px 6px 3px;margin-left:8px;vertical-align:3px;white-space:nowrap}
+h3 .new{margin-left:2px}
+.code{display:inline-block;font:600 11.5px/1 var(--f-mono);padding:4px 7px 3px;border-radius:4px;background:var(--c-bg,var(--tint));color:var(--c,var(--ink));border:1px solid var(--line);white-space:nowrap;vertical-align:1px}
+.policy{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 22px;margin:0 0 26px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:6px;max-width:940px}
+.policy div{min-width:0}
+.policy dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.policy dd{margin:2px 0 0;font-size:14px}
+.src{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);letter-spacing:.02em}
+
+/* ---------- org chain ---------- */
+.chain{list-style:none;padding:0;margin:14px 0 22px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;max-width:940px}
+.chain li{margin:0;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);font-size:14px;line-height:1.3}
+.chain li small{display:block;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);letter-spacing:.04em;margin-top:2px}
+.chain li.me{background:var(--c-bg);border-color:var(--c);font-weight:700}
+.chain li.arr{border:0;background:none;padding:0;color:var(--ink-2);font-family:var(--f-mono)}
+
+/* ---------- main statistic card ---------- */
+.statcard{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:16px 0 26px;max-width:940px}
+.statcard .eyebrow{color:var(--c)}
+.statcard .gs{font-family:var(--f-display);font-weight:700;font-size:clamp(17px,2.2vw,21px);line-height:1.3;margin:2px 0 14px;text-wrap:balance}
+.statcard dl{display:grid;grid-template-columns:minmax(140px,210px) minmax(0,1fr);gap:8px 18px;margin:0}
+.statcard dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+.statcard dd{margin:0;font-size:14.5px}
+@media (max-width:560px){.statcard dl{grid-template-columns:minmax(0,1fr)}.statcard dt{padding-top:6px}}
+
+/* ---------- knowledge check & checksheet ---------- */
+ol.quiz{counter-reset:qq;list-style:none;padding:0;margin:14px 0 8px;display:grid;gap:8px;max-width:840px}
+ol.quiz>li{counter-increment:qq;position:relative;padding:10px 12px 10px 46px;background:var(--panel);border:1px solid var(--line);border-radius:6px;margin:0}
+ol.quiz>li::before{content:counter(qq);position:absolute;left:12px;top:9px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:600 12px/1 var(--f-mono);color:var(--c,var(--ink));background:var(--c-bg,var(--tint))}
+details.key{margin:8px 0 26px;max-width:840px;border:1px dashed var(--line);border-radius:6px;padding:9px 14px;background:var(--paper)}
+details.key summary{cursor:pointer;font:600 13.5px/1.4 var(--f-body);color:var(--ink-2)}
+details.key[open] summary{margin-bottom:6px}
+details.key ol{margin:6px 0 2px;padding-left:22px}
+details.key li{font-size:14.5px}
+.signoff{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 22px;margin:12px 0 26px;max-width:840px}
+.signoff div{border-bottom:1px solid var(--ink-2);padding:26px 0 5px;font-size:12.5px;color:var(--ink-2)}
+.cs-part{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:18px 0 2px}
+
+/* ---------- folders map ---------- */
+.fmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:16px 0 24px;max-width:940px}
+.fmap div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0}
+.fmap b{display:block;font-size:15px;margin-bottom:2px}
+.fmap span{font-size:13.5px;color:var(--ink-2)}
+
+@media print{
+  .topbar,.rail,.calc,.seg,.copy,.langsw{display:none!important}
+  .shell{display:block}
+  main{padding:0}
+  section.ch{break-before:page;border-top:0;margin-top:0;padding-top:0}
+  .tw{overflow:visible}
+  .ticket,.tpl,.card,.alert,.note,.statcard,tr,ol.quiz>li{break-inside:avoid}
+  details.key{display:none}
+}
+
+[data-l="ru"]{display:none}body.l-ru [data-l="id"]{display:none}body.l-ru [data-l="ru"]{display:inline}
+.langblock[lang="ru"]{display:block}.toc[lang="ru"]{display:grid}[data-l="ru"]{display:inline}[data-l="id"]{display:none}@media (max-width:420px){.topbar b{display:inline}}
+</style>
+<div class="topbar"><span data-t="0d4e8ffc53">
+<b>Food Lab · Папка CDP</b>
+</span><div class="tb-right"><div class="fl-nav"><a class="fl-back" href="Академия.dc.html" data-fl-ui="back">← Академия</a><a class="fl-back fl-folders" href="Папки.html" data-fl-ui="folders">Все папки</a><span class="fl-lang" role="group" aria-label="Language"><button type="button" data-fl-lang="ru">RU</button><button type="button" data-fl-lang="id">ID</button><button type="button" data-fl-lang="en">EN</button></span></div>
+<button aria-controls="rail" aria-expanded="false" class="btn" data-t="5f2fbe2d4b" id="tocBtn" type="button">Содержание</button>
+</div>
+</div>
+<div class="shell">
+<aside aria-label="Содержание" class="rail" data-ta="aria-label:5f2fbe2d4b" id="rail">
+<button class="btn close" data-t="4ae50d3073" id="tocClose" style="display:none;margin:0 0 14px 6px" type="button">Закрыть</button>
+<div class="fl-nav"><a class="fl-back" href="Академия.dc.html" data-fl-ui="back">← Академия</a><a class="fl-back fl-folders" href="Папки.html" data-fl-ui="folders">Все папки</a><span class="fl-lang" role="group" aria-label="Language"><button type="button" data-fl-lang="ru">RU</button><button type="button" data-fl-lang="id">ID</button><button type="button" data-fl-lang="en">EN</button></span></div>
+  <p class="brand" data-t="8e4fbd336a">Food Lab<br/>Должностная папка CDP<small><span data-l="id">KODE: CDP</span><span data-l="ru">КОД: CDP</span> · v1.0</small></p>
+<ul class="toc" lang="ru"><li data-t="5a3eb39b2e"><a data-c="app" href="#cs-ru"><span class="sw"></span><span class="n">0</span><span>Контрольный лист</span></a></li><li data-t="d517b59d52"><a data-c="base" href="#post-ru"><span class="sw"></span><span class="n">1</span><span>Пост CDP</span></a></li><li data-t="bb0fd33a5f"><a data-c="eval" href="#stat-ru"><span class="sw"></span><span class="n">2</span><span>Главная статистика</span></a></li><li data-t="0364a96546"><a data-c="train" href="#train-ru"><span class="sw"></span><span class="n">3</span><span>Обучение и наставничество</span></a></li><li data-t="0b8f9c2dcc"><a data-c="ctrl" href="#lead-ru"><span class="sw"></span><span class="n">4</span><span>Старший смены</span></a></li><li data-t="d5e3288c2e"><a data-c="hire" href="#trial-ru"><span class="sw"></span><span class="n">5</span><span>Пробные смены</span></a></li><li data-t="cea8fe505e"><a data-c="ctrl" href="#nightshift-ru"><span class="sw"></span><span class="n">6</span><span>Ночная смена</span></a></li><li data-t="ad308ba516"><a data-c="eval" href="#growth-ru"><span class="sw"></span><span class="n">7</span><span>Оценка и рост</span></a></li></ul>
+</aside>
+<main id="main">
+<div class="langblock" lang="ru">
+<header class="cover" data-c="train" id="top-ru">
+<p class="eyebrow" data-t="780bc8e92c">PT Food Laboratory Group · Должностная папка · пост: CDP (Chef de Partie) · код распределения: CDP</p>
+<h1 data-t="31632c0ac4">Должностная<br/>папка CDP</h1>
+<p class="lead" data-t="8bb1c1c93d">Всё, что нужно CDP на посту: продукт поста, главная статистика, обязанности на станции и в роли старшего смены, наставничество, пробные смены. Сначала изучите Папку сотрудника, потом эту папку (урок 4.5.2.3).</p>
+<dl class="policy">
+<div><dt data-t="d8f9fefadb">Компания</dt><dd>PT Food Laboratory Group (Food Lab)</dd></div>
+<div><dt data-t="ac9378da46">Вид политики</dt><dd data-t="fb8b3cef3b">Инструктивное письмо</dd></div>
+<div><dt data-t="d9f964d71b">Уровень</dt><dd data-t="c9abd6be7a">Отделение 4 «Производство», отдел 12 «Кухни»</dd></div>
+<div><dt data-t="0dc90fa890">Серия</dt><dd data-t="5892d2de92">Должностные папки · кухня</dd></div>
+<div><dt data-t="2beb5959f0">Код распределения</dt><dd><span class="code">CDP</span></dd></div>
+<div><dt data-t="7f9b37d89f">Кто издал</dt><dd data-t="e640966da0">Head Chef (кухня) и HR-менеджер (правила HR)</dd></div>
+<div><dt data-t="77a4f98d0e">Первая публикация</dt><dd class="mono">14.10.2026</dd></div>
+<div><dt data-t="cf0efc1531">Последнее изменение</dt><dd class="mono">14.10.2026</dd></div>
+<div><dt data-t="0c7ac5793a">Одобрил</dt><dd data-t="8663d70779">Директор</dd></div>
+</dl>
+<div class="note"><div class="th" data-t="3259feec1e">Как читать номера разделов</div><p data-t="910ae15368">Номера вида 3.2 или 5.1 — разделы HR Playbook. Они сохранены, чтобы ссылки совпадали во всех папках. Если нужного раздела нет в этой папке, спросите Sous Chef или HR.</p></div>
+</header>
+<section class="ch" data-c="app" data-n="0" data-toc="Контрольный лист" id="cs-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">0</div>
+<div>
+<p class="eyebrow" data-t="5a2d059037">Как изучать папку <span class="new">новое · 4.5.2.4</span></p>
+<h2 data-t="40ee4e2401">Контрольный лист CDP</h2>
+<p class="lead" data-t="15cd898977">Сначала теория: прочитать раздел и ответить на вопросы в его конце. Потом практика: показать на смене. Пункт подписывает Sous Chef.</p>
+</div>
+</header>
+<p class="cs-part" data-t="ad06a9000e">Теория</p>
+<ul class="check">
+<li><label data-t="b61a2c5c27"><input id="pc1-ru" type="checkbox"/><span>Папка сотрудника: все разделы, проверка сдана</span></label></li>
+<li><label data-t="9adf485594"><input id="pc2-ru" type="checkbox"/><span>1. Пост CDP</span></label></li>
+<li><label data-t="0bb81d34e1"><input id="pc3-ru" type="checkbox"/><span>2. Главная статистика</span></label></li>
+<li><label data-t="c2f3329cf2"><input id="pc4-ru" type="checkbox"/><span>3. Обучение и наставничество</span></label></li>
+<li><label data-t="f504e1d6ea"><input id="pc5-ru" type="checkbox"/><span>4. Старший смены: время, стандарты, дисциплина</span></label></li>
+<li><label data-t="d0b0613918"><input id="pc6-ru" type="checkbox"/><span>5. Пробные смены кандидатов</span></label></li>
+<li><label data-t="96a473080b"><input id="pc7-ru" type="checkbox"/><span>6. Ночная смена</span></label></li>
+<li><label data-t="aa7905c829"><input id="pc8-ru" type="checkbox"/><span>7. Оценка и рост</span></label></li>
+</ul>
+<p class="cs-part" data-t="72a0a50a48">Практика</p>
+<ul class="check">
+<li><label data-t="0f2f550e1e"><input id="pc9-ru" type="checkbox"/><span>Провёл смену старшим: открытие, брифинг по задачам, отчёт смены, закрытие</span></label></li>
+<li><label data-t="b40f000aca"><input id="pc10-ru" type="checkbox"/><span>Мизанплас станции по prep-листу готов к началу смены</span></label></li>
+<li><label data-t="59ec920869"><input id="pc11-ru" type="checkbox"/><span>Провёл с новичком четыре шага наставника на одном блюде</span></label></li>
+<li><label data-t="5356a36769"><input id="pc12-ru" type="checkbox"/><span>Провёл пробную смену кандидата вместе с SC и заполнил практический лист</span></label></li>
+<li><label data-t="f56e4801a7"><input id="pc13-ru" type="checkbox"/><span>Записал нарушение в отчёт смены и передал HR в тот же день</span></label></li>
+<li><label data-t="3a165d6a9f"><input id="pc14-ru" type="checkbox"/><span>Отработал аварийную ситуацию на тренировке: сломался холодильник ночью</span></label></li>
+</ul>
+<div class="signoff">
+<div data-t="b0d184bebb">CDP: имя, подпись, дата</div>
+<div data-t="1c0165669a">Sous Chef: имя, подпись, дата</div>
+</div>
+</section>
+<section class="ch" data-c="base" data-n="1" data-toc="Пост CDP" id="post-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">1</div>
+<div>
+<p class="eyebrow" data-t="93043f8c4f">Раздел 1 <span class="new">новое · 3.1, 4.3, 4.5.2</span></p>
+<h2 data-t="5db70ef3a7">Пост CDP</h2>
+<p class="lead" data-t="9ffb7bdb3d">Зачем существует пост, что он производит, где стоит на оргсхеме, что CDP делает на станции и в роли старшего смены.</p>
+</div>
+</header>
+<ul aria-label="Место на оргсхеме" class="chain" data-ta="aria-label:ebbf370e45">
+<li data-t="f7aadc3619">Отделение 4<small>Производство</small></li>
+<li aria-hidden="true" class="arr">→</li>
+<li data-t="96f96d8b71">Отдел 12<small>Кухни</small></li>
+<li aria-hidden="true" class="arr">→</li>
+<li data-t="63022e5cf9">Sous Chef<small>точка</small></li>
+<li aria-hidden="true" class="arr">→</li>
+<li class="me" data-t="d6e073afd2">CDP<small>код CDP</small></li>
+<li aria-hidden="true" class="arr">→</li>
+<li data-t="7b0805d803">Cook, Kitchen Helper<small>на смене, где CDP старший</small></li>
+</ul>
+<div class="statcard">
+<p class="eyebrow" data-t="b19c3b3761">ЦКП поста</p>
+<p class="gs" data-t="e1bc956085">Станция, которая всю смену работает по стандарту, обученные новички на станции, а когда CDP старший — смена, отработанная без сбоев.</p>
+<dl>
+<dt data-t="d268596c11">Назначение поста</dt><dd data-t="44ba6820dc">Чтобы станция и смена держали стандарт Food Lab и без Sous Chef рядом.</dd>
+<dt data-t="9a808b573f">Расшифровка ЦКП</dt><dd data-t="c390e6bd01">«По стандарту» — блюда по ТТК, мизанплас к началу смены, маркировка и FIFO, чистота. «Обученные новички» — сдали допуск по станции с первой попытки. «Без сбоев» — все заказы смены отданы, отчёт смены сдан, нарушения записаны.</dd>
+<dt data-t="d8bb8c29c6">Подчиняется</dt><dd data-t="04169f8fe3">Sous Chef точки</dd>
+<dt data-t="b2c7373d56">Подчинённые</dt><dd data-t="fc2b950fbe">На смене, где CDP старший, — повара и Kitchen Helper этой смены</dd>
+<dt data-t="a67a922c9b">Чего нет в роли</dt><dd data-t="18ea0eb65e">Полного управления командой и права утверждать график. CDP помогает запускать новое меню, но не руководит этим (договор, ст. 16)</dd>
+<dt data-t="c331f8d6fb">Решает о найме</dt><dd data-t="39f440e836">Sous Chef или Head Chef</dd>
+</dl>
+</div>
+<h4 data-t="20592075a6">Обязанности</h4>
+<p class="small muted" data-t="45f68e9b66">По трудовому договору (ст. 16 «Chef de Partie»), профилю должности (0.3) и правилам старшего смены из HR Playbook.</p>
+<div class="tw"><table>
+<thead><tr><th data-t="00eb06d58a">Блок</th><th data-t="f45fd0ac5a">Что делает CDP</th></tr></thead>
+<tbody>
+<tr><td data-t="fe178d9fef"><strong>Станция и команда</strong></td><td data-t="2fcada7eee">Ведёт свою станцию и отвечает за неё всю смену. Помогает Sous Chef координировать смену, направляет младших поваров станции. Закрывает другие станции, когда нужно. Помогает Sous Chef организовать смену, но не утверждает график. Помогает обучать поваров на рабочем месте и исправляет ошибки на линии; наставник новичка (3.3).</td></tr>
+<tr><td data-t="08585bf8f5"><strong>Еда, меню, стандарты</strong></td><td data-t="3c212c210a">Готовит блюда станции строго по рецептуре, порциям, температуре и подаче; не по стандарту — отклоняет и переделывает. Делает мизанплас станции до сервиса, держит prep-листы и стандарты рецептов актуальными. Помогает тестировать и запускать новые блюда по указанию SC или HC.</td></tr>
+<tr><td data-t="e464045e4e"><strong>Запасы, качество, системы</strong></td><td data-t="b85c78c5dc">Продукты и инвентарь станции на месте до сервиса; о нехватке — Sous Chef. По запросу проверяет товар при приёмке: плохой отклоняет и возвращает, сообщает Sous Chef и закупщику. FIFO, маркировка, даты, хранение, запись списаний. POS, агрегаторы и отчёты — правильно.</td></tr>
+<tr><td data-t="2a57d8c720"><strong>Старший смены</strong></td><td data-t="6850f0c97a">Открывает и закрывает смену по чек-листам. Проверяет внешний вид в начале смены. Сдаёт отчёт смены. Записывает нарушения в отчёт смены в тот же день (4.4), может сделать устное замечание (4.5). Если сканер не работает, записывает время прихода и ухода каждого (4.1). Ночью при аварии звонит дежурному руководителю.</td></tr>
+<tr><td data-t="25ea37b124"><strong>Пробные смены</strong></td><td data-t="0f6d1d9317">Проводит пробные смены кандидатов вместе с Sous Chef и заполняет практический лист в конце смены (1.2, Приложение A).</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="447a49f5b0">Личные качества поста</h4>
+<p class="small muted" data-t="de30c09554">Курс 4.3, шаг 2. Проверяются на интервью и пробной смене (Приложение A2).</p>
+<ul>
+<li data-t="6dccf276c7"><strong>Всё, что нужно повару:</strong> надёжность, честность, аккуратность, выносливость, работа в команде.</li>
+<li data-t="92edd1e0e5"><strong>Спокойствие в пик:</strong> держит приоритеты, не кричит на людей.</li>
+<li data-t="aa478218d1"><strong>Умеет объяснять:</strong> показывает ещё раз, а не переделывает молча.</li>
+<li data-t="ef37cc8ba4"><strong>Ответственность за станцию и смену:</strong> не скрывает проблем, сообщает Sous Chef заранее.</li>
+</ul>
+<h4 data-t="724a60bb27">К кому идти</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="75d81a59c8">С кем</th><th data-t="e7c9f64baa">По каким вопросам</th></tr></thead>
+<tbody>
+<tr><td>Sous Chef</td><td data-t="887bb57b5d">График, станции, нехватка людей и продуктов, новички, нарушения, новые блюда</td></tr>
+<tr><td data-t="934ca1dc91">Закупщик</td><td data-t="27cc347f56">Товар не того качества, недопоставка</td></tr>
+<tr><td data-t="4c5d13affe">HR-менеджер</td><td data-t="65057df98a">Нарушения из отчёта смены, ручные отметки времени, свои вопросы по оплате и документам</td></tr>
+<tr><td data-t="bb13c1121b">Дежурный руководитель</td><td data-t="f944f1e8ef">Авария или экстренный случай ночью</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="74281b913f">Какой ЦКП у поста CDP?</li>
+<li data-t="8e11792f68">Чего нет в роли CDP?</li>
+<li data-t="4984b7d3dc">Что делаешь как старший смены, если сканер не работает?</li>
+<li data-t="b701d431fd">Новичок на твоей станции второй раз ошибся в граммовке. Как поступишь?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="cbab1e5983">Станция, которая всю смену работает по стандарту, обученные новички, а когда CDP старший — смена без сбоев.</li>
+<li data-t="a57b895075">Полного управления командой, права утверждать график, руководства запуском нового меню.</li>
+<li data-t="95ffa8e197">Записываю время прихода и ухода каждого в отчёт смены; HR вносит его вручную.</li>
+<li data-t="5cdf02b71f">Спокойно показываю ещё раз, проверяю следующие порции, даю попрактиковаться; не помогает — сообщаю SC.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="eval" data-n="2" data-toc="Главная статистика" id="stat-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">2</div>
+<div>
+<p class="eyebrow" data-t="77724ba1dd">Раздел 2 <span class="new">новое · 5.2</span></p>
+<h2 data-t="415de3eeb6">Главная статистика</h2>
+<p class="lead" data-t="066dd444ec">Одна цифра, по которой каждую неделю видно продукт поста. KPI повара и CDP остаются дополнительными статистиками.</p>
+</div>
+</header>
+<div class="statcard">
+<p class="eyebrow" data-t="65f6b12975">Главная статистика поста (ГС) · курс 5.2</p>
+<p class="gs" data-t="9790cc4b3b">Стоимость заказов безупречного качества за смены CDP за неделю</p>
+<dl>
+<dt data-t="9b034f5ab8">Отделение</dt><dd data-t="d19b3fda4a">4 · Производство, отдел 12 «Кухни»</dd>
+<dt data-t="39312c8c6d">Для каких должностей</dt><dd data-t="1513604c74">CDP. Та же статистика по вертикали — у поваров за их смены, у Sous Chef за точку</dd>
+<dt data-t="e705983e07">ГС / ДС</dt><dd data-t="03f76737c0">ГС</dd>
+<dt data-t="f5441f6aee">Описание</dt><dd data-t="0a22675f13">Чистые продажи (Rp) заказов, которые точка отдала в часы смен CDP за неделю — и на станции, и старшим, — минус заказы, отменённые или возвращённые по вине кухни, и заказы с негативным отзывом (1–2 звезды или жалоба). Смены — по графику, подтверждённые сканером.</dd>
+<dt data-t="00d5769872">Периодичность</dt><dd data-t="9207563dab">Неделя</dd>
+<dt data-t="88f1a5a112">Вид</dt><dd data-t="e9a5c22af2">Прямая: чем выше, тем лучше</dd>
+<dt data-t="1e459fc922">Ежедневный учёт</dt><dd data-t="e9098c1dd8">Да: CDP-старший записывает отмены, возвраты и жалобы в отчёт смены</dd>
+<dt data-t="8290a3dbc0">Источник</dt><dd data-t="91beb52614">Отчёты Grab и Gojek, график, сканер, отчёт смены</dd>
+<dt data-t="f7e9869a0d">Кто считает</dt><dd data-t="b3c7c03dbc">HR-менеджер по понедельникам (5.5); без HR — Head Chef</dd>
+</dl>
+</div>
+<h4 data-t="6a6b6eb1ce">Дополнительные статистики: KPI повара и CDP</h4>
+<h4>Cook</h4>
+<div class="tw"><table>
+<thead><tr><th>KPI</th><th data-t="2b944228bd">Норма</th><th data-t="8290a3dbc0">Источник</th><th data-t="db5001506d">Как часто</th></tr></thead>
+<tbody>
+<tr><td data-t="dbdc8451be">Опоздания больше 10 минут</td><td data-t="c1ed1f4ef7">0, допустимо 1 в месяц</td><td data-t="8d78ddb24d">Сканер</td><td data-t="9207563dab">Неделя</td></tr>
+<tr><td data-t="5cc5ae1fe6">Неявки без сообщения</td><td>0</td><td data-t="6917d45337">Сканер и график</td><td data-t="9207563dab">Неделя</td></tr>
+<tr><td data-t="5b700124f1">Ежемесячная аттестация</td><td>≥ 80%</td><td>Academy</td><td data-t="e558fb6e24">Месяц</td></tr>
+<tr><td data-t="1bb43c07ec">Чек-листы и фотоотчёты своих смен</td><td data-t="c65f483661">100% смен</td><td data-t="fede5f81ff">Рабочая группа, чек-листы</td><td data-t="9207563dab">Неделя</td></tr>
+<tr><td data-t="ec50d3213f">Форма и гигиена</td><td data-t="ed37b8c7b3">0 замечаний</td><td data-t="f80f2cabb4">Отчёт смены</td><td data-t="e558fb6e24">Месяц</td></tr>
+<tr><td data-t="54d0a4450b">Ошибки в заказах по вине повара: переделки, подтверждённые жалобы</td><td data-t="a21ab47979">≤ 2 в месяц</td><td data-t="e20a114346">Журнал смены</td><td data-t="e558fb6e24">Месяц</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="9d91c8d265">CDP — все KPI повара и ещё</h4>
+<div class="tw"><table>
+<thead><tr><th>KPI</th><th data-t="2b944228bd">Норма</th><th data-t="8290a3dbc0">Источник</th><th data-t="db5001506d">Как часто</th></tr></thead>
+<tbody>
+<tr><td data-t="d387ad0916">Аудит станции</td><td>≥ 90%</td><td data-t="ffa97c2715">Проверка SC</td><td data-t="e558fb6e24">Месяц</td></tr>
+<tr><td data-t="aa7d4f47af">Мизанплас станции готов к началу смены</td><td data-t="c65f483661">100% смен</td><td data-t="20dbf7a377">Старший смены</td><td data-t="9207563dab">Неделя</td></tr>
+<tr><td data-t="2578435078">Списания по станции</td><td data-t="05d24760b1">Не выше нормы точки</td><td data-t="a6393f091c">Журнал списаний</td><td data-t="e558fb6e24">Месяц</td></tr>
+<tr><td data-t="a04e92e858">Новички станции сдали допуск с первой попытки</td><td>≥ 80%</td><td data-t="4449081235">Лист обучения</td><td data-t="0a05d78632">По факту</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="1dd2b9e32e">Как называется твоя главная статистика и чем она отличается от статистики повара?</li>
+<li data-t="6c3ff58a18">Какие KPI есть у CDP сверх KPI повара?</li>
+<li data-t="8e144dba50">Что ты записываешь в отчёт смены для статистики?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="0fe673b5b6">Стоимость заказов безупречного качества за смены CDP за неделю; считается так же, но по сменам CDP.</li>
+<li data-t="e512217fb6">Аудит станции ≥ 90%, мизанплас к началу смены 100%, списания не выше нормы, новички станции сдали допуск с первой попытки ≥ 80%.</li>
+<li data-t="90beeddd43">Отмены и возвраты по вине кухни и жалобы.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="train" data-n="3" data-toc="Обучение и наставничество" id="train-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">3</div>
+<div>
+<p class="eyebrow" data-t="18294fffef">Раздел 3 · из HR Playbook 3.2–3.4</p>
+<h2 data-t="e4de14b167">Обучение и наставничество</h2>
+<p class="lead" data-t="c9f172b7de">CDP сам проходит аттестации и учит новичков на своей станции.</p>
+</div>
+</header>
+<h3 data-t="da34af4cc7" id="fourteen-ru"><span class="no">3.2</span>14 дней обучения</h3>
+<div class="ticket">
+<div class="th" data-t="6febfbfec3"><span>14 дней внутри испытательного срока</span><span>договор, ст. 3</span></div>
+<p data-t="8a6d785b9b">Испытательный срок — 3 месяца. Первые 14 календарных дней из них — обучение: это 10 смен по графику 5/2. Смены обучения — обычные оплачиваемые смены.</p>
+</div>
+<div class="tw"><table>
+<thead><tr><th data-t="d5ff8affff">Смена</th><th data-t="8dcae824e7">Academy: теория и тест дня</th><th data-t="ffaa3cd872">На кухне: практика</th><th data-t="0c65a41dc0">Кто</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td data-t="dfb770a09f">Компания, правила, договор, гигиена, безопасность</td><td data-t="7c1cca871e">Знакомство с кухней, работа рядом с наставником</td><td><span class="b">HR</span> <span class="b">SC</span></td></tr>
+<tr><td class="num">2</td><td data-t="12a19aac1e">Хранение, температуры, маркировка, FIFO</td><td data-t="9a84064fbb">Хранение и маркировка на практике</td><td><span class="b">CDP</span></td></tr>
+<tr><td class="num">3</td><td data-t="f11dac8228">Приёмка товара. Станция и мизанплас. Чек-листы открытия и закрытия</td><td data-t="1ccf145919">Приёмка, подготовка станции</td><td><span class="b">CDP</span></td></tr>
+<tr><td class="num">4–7</td><td data-t="b770bb4deb">Меню по брендам и станциям, по плану Academy</td><td data-t="8b5b9e928c">Приготовление под наблюдением, пока каждое блюдо станции не выйдет без ошибок 3 раза подряд</td><td><span class="b">SC</span> <span class="b">CDP</span></td></tr>
+<tr><td class="num">8</td><td data-t="386ee359bf">Сборка и упаковка заказов, агрегаторы, стоп-лист</td><td data-t="20a5d7b030">Сборка заказов в пиковые часы</td><td><span class="b">CDP</span></td></tr>
+<tr><td class="num">9</td><td data-t="74a0aa00a6">Уборка и санитария, фотоотчёт, отчёт смены. Повторение слабых тем по результатам тестов</td><td data-t="40bf807be9">Смена «как самостоятельный» под контролем</td><td><span class="b">SC</span></td></tr>
+<tr><td class="num">10</td><td data-t="811053c209"><strong>Итоговый экзамен</strong></td><td data-t="1f59792253"><strong>Практический допуск</strong></td><td><span class="b">SC</span> <span class="b">HR</span></td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="b424568c79">Точный список модулей и блюд задаёт Academy. Таблица — обязательная рамка: что должно быть пройдено к какой смене. Прогресс отмечается в листе обучения (HR_Onboarding_14days); выходные дни отмечаются как выходные.</p>
+<h4 data-t="fbcbb4371e">Пороги</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="457969b009">Проверка</th><th data-t="5d95fca8e0">Где</th><th data-t="23d893aca4">Порог</th><th data-t="230051e4a0">Если не сдал</th></tr></thead>
+<tbody>
+<tr><td data-t="769e2a8411">Тест дня</td><td>Academy</td><td class="mono">≥ 80%</td><td data-t="3d3da67ba6">Разбор ошибок с наставником и пересдача в следующую смену (одна пересдача на модуль). Три несданных теста — разговор SC и HR</td></tr>
+<tr><td data-t="775c76c907">Итоговый экзамен</td><td>Academy</td><td class="mono" data-t="dc12fca47c">≥ 85% и 100% по критическим вопросам</td><td data-t="533de2d8aa">Дообучение и одна пересдача в течение 3 дней</td></tr>
+<tr><td data-t="8b985b9dee">Практический допуск</td><td data-t="d19cbfe2e7">Смена, проверяет SC</td><td class="mono" data-t="4e96c9aeaf">≥ 90% пунктов, 0 критических ошибок</td><td data-t="aa7cfd5deb">Дообучение и повторный допуск в течение 3 дней</td></tr>
+</tbody>
+</table></div>
+<p class="small" data-t="b338368098"><strong>Критические вопросы безопасности пищи:</strong> температуры хранения, разделение сырого и готового, мытьё рук, аллергены, работа при симптомах болезни, сроки годности.</p>
+<h4 data-t="32b3999d67">Что проверяет Sous Chef на практическом допуске</h4>
+<ul>
+<li data-t="97e35e97f5">Блюда своей станции по ТТК: граммовка, вкус, температура, подача и упаковка.</li>
+<li data-t="8efff8a14f">Время приготовления укладывается в норматив.</li>
+<li data-t="76fe504af2">Мытьё рук и перчатки в нужные моменты, сырое и готовое раздельно.</li>
+<li data-t="788c7fa60e">Маркировка и FIFO при работе с заготовками.</li>
+<li data-t="b0611a4af6">Открытие и закрытие станции по чек-листу, чистая станция.</li>
+<li data-t="b39b6be9e3">Работа с агрегатором: принять заказ, поставить блюдо в стоп-лист, собрать заказ.</li>
+</ul>
+<p class="small" data-t="9afb2f9eb4"><strong>Критические ошибки</strong> (любая — допуск не сдан): блюдо не по стандарту отправлено гостю; сырое и готовое не разделены; работа без мытья рук; продукт без маркировки или с истёкшим сроком.</p>
+<h4 data-t="59c211cf13">Итог 14 дней</h4>
+<ol class="steps">
+<li><div class="sh" data-t="094ee7124c"><b>Сдал экзамен и допуск</b><span class="b">SC</span></div><p data-t="95e5e6ea7a">SC ставит «допуск к самостоятельной работе» в листе обучения и в матрице навыков. Сотрудник выходит в график самостоятельно.</p></li>
+<li><div class="sh" data-t="83f95a909e"><b>Не сдал после пересдачи</b><span class="b">SC</span><span class="b">HR</span></div><p data-t="65a9226253">Обучение продлевается один раз, до 7 дней, внутри испытательного срока. Затем новый экзамен и допуск.</p></li>
+<li><div class="sh" data-t="83f53649d5"><b>Не сдал после продления</b><span class="b">HC</span></div><p data-t="5ecd813b56">Head Chef решает о прекращении договора в период испытательного срока (договор, ст. 3.2; порядок — глава 6).</p></li>
+</ol>
+<h3 data-t="680fc68537" id="mentor-ru"><span class="no">3.3</span>Наставничество</h3>
+<p data-t="0d5b7bfbd7">Каждому новичку на 14 дней назначается наставник: CDP или повар, который работает в компании от 3 месяцев и сдаёт аттестации на 90% и выше. Не каждый сильный повар хороший наставник: выбираем тех, кто готов спокойно объяснять.</p>
+<ul aria-label="Четыре шага наставника" class="ladder arrows" data-ta="aria-label:12f18b85e1">
+<li data-t="287fdc8751"><span class="k">Шаг 1</span><b>Показываю</b><span class="s">наставник делает и объясняет</span></li>
+<li data-t="bad16254bb"><span class="k">Шаг 2</span><b>Делаем вместе</b><span class="s">новичок повторяет рядом</span></li>
+<li data-t="624f28cf3d"><span class="k">Шаг 3</span><b>Делаешь, я смотрю</b><span class="s">наставник поправляет</span></li>
+<li data-t="4935f132cc"><span class="k">Шаг 4</span><b>Делаешь сам</b><span class="s">наставник подписывает в листе</span></li>
+</ul>
+<p data-t="169d15b354">Наставник и SC каждую смену отмечают прогресс в листе обучения.</p>
+<h3 data-t="7567c966ca" id="attestation-ru"><span class="no">3.4</span>Постоянное обучение и аттестация</h3>
+<div class="tw"><table>
+<thead><tr><th data-t="e3ece45657">Что</th><th data-t="725347e425">Когда</th><th data-t="0c65a41dc0">Кто</th><th data-t="23d893aca4">Порог</th><th data-t="230051e4a0">Если не сдал</th></tr></thead>
+<tbody>
+<tr><td data-t="7ac9874d36"><strong>Ежемесячная аттестация:</strong> тест по правилам компании и тест по меню</td><td data-t="441d1a0bea">1–7 число каждого месяца</td><td data-t="8232fe93a7">Academy; результаты собирает <span class="b">HR</span></td><td class="mono">≥ 80%</td><td data-t="f08469783e">Переобучение и пересдача за 7 дней. Не сдал снова — устное замечание и план исправления на 30 дней с SC. План не выполнен — SP1 за неисполнение обязанностей (договор, ст. 7.2 и 16)</td></tr>
+<tr><td data-t="f2bcd12b6d"><strong>Новое блюдо или новый бренд</strong></td><td data-t="9a557b9364">До запуска в продажу</td><td data-t="8651fa809f"><span class="b">SC</span> и Academy</td><td class="mono" data-t="0322d03cf9">мини-тест ≥ 90% + приготовление при SC</td><td data-t="a46b677260">Кто не прошёл, это блюдо не готовит</td></tr>
+<tr><td data-t="14375fb61e"><strong>Гигиена и безопасность пищи</strong></td><td data-t="831c953336">Раз в 6 месяцев</td><td>Academy</td><td class="mono" data-t="e55f0d3708">100% критических вопросов</td><td data-t="8c658b0e8f">Пересдача за 3 дня; до неё — работа только под контролем старшего</td></tr>
+<tr><td data-t="70ee4f704b"><strong>Практическая проверка станций</strong></td><td data-t="dd5c1de664">Раз в квартал, выборочно</td><td><span class="b">SC</span></td><td class="mono" data-t="0722ec0493">≥ 90% пунктов</td><td data-t="8adfeea2e3">Дообучение на станции, обновление матрицы навыков</td></tr>
+<tr><td data-t="e72315a49c"><strong>Программа «Старший смены»</strong> для кандидатов в CDP</td><td data-t="ef5dde8cc4">После 3 месяцев аттестаций ≥ 90%</td><td><span class="b">SC</span> <span class="b">HC</span></td><td>—</td><td data-t="8f24525ea6">Темы: управление сменой, график, обучение новичков, контроль качества</td></tr>
+</tbody>
+</table></div>
+<div class="note"><div class="th" data-t="1dd12d253f">Матрица навыков точки</div><p data-t="bd76e75eb7">Таблица «сотрудник × станция» со статусами: учится · допущен · может обучать. Ведёт Sous Chef. HR смотрит её, когда планирует график, отпуска и найм: на каждой станции и в каждой смене должен быть допущенный человек.</p></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="027b6a033a">Кто может быть наставником новичка?</li>
+<li data-t="49847a5a75">Какие ошибки на практическом допуске критические?</li>
+<li data-t="363c285116">Что проходят на сменах 4–7 обучения?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="6c928832e1">CDP или повар, который работает в компании от 3 месяцев и сдаёт аттестации на 90% и выше; готов спокойно объяснять.</li>
+<li data-t="ab333e8d95">Блюдо не по стандарту отправлено гостю; сырое и готовое не разделены; работа без мытья рук; продукт без маркировки или с истёкшим сроком.</li>
+<li data-t="c8c816b9f7">Меню по брендам и станциям; приготовление под наблюдением, пока каждое блюдо станции не выйдет без ошибок 3 раза подряд.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="ctrl" data-n="4" data-toc="Старший смены" id="lead-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">4</div>
+<div>
+<p class="eyebrow" data-t="7df2bfa6fc">Раздел 4 · из HR Playbook 4.1, 4.4, 4.5</p>
+<h2 data-t="e20a9d7858">Старший смены: время, стандарты, дисциплина</h2>
+<p class="lead" data-t="72a6fe1ea4">Что CDP проверяет и записывает, когда ведёт смену.</p>
+</div>
+</header>
+<h3 data-t="b97752eba3" id="time-ru"><span class="no">4.1</span>Учёт времени: сканер отпечатков</h3>
+<ol class="steps">
+<li><div class="sh" data-t="baeca4e9dc"><b>Отметка прихода</b></div><p data-t="5b96a6de1c">Уже в форме и не позже начала смены. Приходить за 10–15 минут, чтобы переодеться.</p></li>
+<li><div class="sh" data-t="70f1132241"><b>Опоздание</b></div><p data-t="9f044ce906">Отметка позже начала смены больше чем на 10 минут (договор, ст. 7.1).</p></li>
+<li><div class="sh" data-t="0181df30db"><b>Отметка ухода</b></div><p data-t="2c4ead0cfd">После передачи смены.</p></li>
+<li><div class="sh" data-t="4e22ce47ca"><b>Забыл отметиться</b><span class="b">старший смены</span><span class="b">HR</span></div><p data-t="e5a42c0adf">В тот же день письменно объясняет старшему. Старший подтверждает факт работы в отчёте смены, HR правит табель с пометкой. Две и больше пропущенных отметки за месяц — устное замечание.</p></li>
+<li><div class="sh" data-t="7a813e440c"><b>Сканер не работает</b></div><p data-t="5801ddc9ea">Старший записывает время прихода и ухода каждого в отчёт смены, HR вносит его вручную. Ремонт — за 24 часа.</p></li>
+<li><div class="sh" data-t="ab059419e4"><b>Ежедневная сверка</b><span class="b">HR</span><span class="t">каждый рабочий день</span></div><p data-t="215a69f1bd">Сканер против графика: опоздания, неявки, задержки без согласования.</p></li>
+</ol>
+<div class="alert">
+<div class="th" data-t="f57ee63ee3">Важно · отметка за другого</div>
+<p data-t="0f7dd4d466">Отметить приход или уход за другого человека — подделка учёта времени (договор, ст. 9.3). Это грубое нарушение: увольнение без SP. Касается и того, кто отметил, и того, кто об этом попросил.</p>
+</div>
+<h3 data-t="fbbd70eec3" id="daily-ru"><span class="no">4.4</span>Ежедневные стандарты</h3>
+<div class="tw"><table>
+<thead><tr><th data-t="22b8716295">Что проверяется</th><th data-t="725347e425">Когда</th><th data-t="0c65a41dc0">Кто</th><th data-t="bef771f973">Где записано</th></tr></thead>
+<tbody>
+<tr><td data-t="ec29aa4c4e">Внешний вид и форма</td><td data-t="3660863bfd">Начало смены</td><td data-t="20dbf7a377">Старший смены</td><td data-t="b3b3d77abe">Чек-лист открытия</td></tr>
+<tr><td data-t="493ab29d96">Гигиена: руки, перчатки, головной убор</td><td data-t="aa4f26dd6e">Всю смену</td><td data-t="20dbf7a377">Старший смены</td><td data-t="f80f2cabb4">Отчёт смены</td></tr>
+<tr><td data-t="3e4b81f253">Температуры холодильников</td><td data-t="9ec2c18a02">По чек-листу</td><td data-t="984086075f">Ответственный за станцию</td><td data-t="c63aaa3c71">Журнал температур</td></tr>
+<tr><td data-t="c3d41a595b">Маркировка и FIFO</td><td data-t="aa4f26dd6e">Всю смену</td><td><span class="b">CDP</span></td><td data-t="eaa91ed661">Чек-лист станции</td></tr>
+<tr><td data-t="34dfef28f1">Чистота станции и кухни</td><td data-t="584c355985">Закрытие смены</td><td data-t="7837c38293">Каждый повар</td><td data-t="36ca13c057">Чек-лист закрытия и фото в рабочую группу</td></tr>
+<tr><td data-t="f80f2cabb4">Отчёт смены</td><td data-t="c22819aad8">Конец смены</td><td data-t="20dbf7a377">Старший смены</td><td data-t="9ba6335610">Рабочая группа</td></tr>
+</tbody>
+</table></div>
+<p data-t="6ebc1a3ea0">Нарушение, найденное при проверке, старший записывает в отчёт смены в тот же день. Если это дисциплинарное нарушение, HR в течение 24 часов вносит его в журнал предупреждений.</p>
+<h3 data-t="813b994426" id="discipline-ru"><span class="no">4.5</span>Дисциплина — строго по договору</h3>
+<ul aria-label="Ступени дисциплины по договору" class="ladder arrows" data-ta="aria-label:b35f91c200">
+<li data-t="465df14319"><span class="k">Ступень 1</span><b>Устное</b><span class="s">записывается в личное дело</span></li>
+<li data-t="0e79a725cd"><span class="k">Ступень 2</span><b>SP1</b><span class="s">письменное, подписывает сотрудник</span></li>
+<li data-t="a81da727e1"><span class="k">Ступень 3</span><b>SP2</b><span class="s">письменное, подписывает сотрудник</span></li>
+<li data-t="5f3d9c4913"><span class="k">Ступень 4</span><b>SP3</b><span class="s">последнее предупреждение</span></li>
+<li data-t="82b07fc4f4"><span class="k">Итог</span><b>PHK</b><span class="s">увольнение по закону</span></li>
+</ul>
+<div class="ticket">
+<div class="th" data-t="a8fc110a1c"><span>Как работают ступени</span><span>договор, ст. 7.2 и 9.3</span></div>
+<ul>
+<li data-t="3a4dc5267a">Ступень выбирают по тяжести нарушения; начинать с устного не обязательно.</li>
+<li data-t="7958e5a070">Каждое SP действует 6 месяцев.</li>
+<li data-t="43d1a10d1c">Новое нарушение, пока SP действует, — следующая ступень.</li>
+<li data-t="02c48fb6fa">Устное замечание учитывается 30 дней: повторное лёгкое нарушение в эти 30 дней — SP1.</li>
+<li data-t="8bd06257de">6 месяцев без нарушений — SP теряет силу; следующее нарушение снова оценивается по тяжести.</li>
+<li data-t="4d7cf59074">Грубые нарушения (ст. 9.3) — увольнение без SP1–SP3. На время проверки — отстранение (skorsing); о преступлении можно сообщить в полицию.</li>
+</ul>
+</div>
+<h4 data-t="6efcf34959">Матрица нарушений: с какой ступени начинать</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="5efc8b765a">Тяжесть</th><th data-t="59221eefb0">Примеры</th><th data-t="19239083c4">Ступень</th></tr></thead>
+<tbody>
+<tr><td data-t="11dfd86656"><strong>Лёгкое</strong></td><td data-t="5a7c756754">Опоздание больше 10 минут (первое за 30 дней). Неполная или грязная форма. Не заполнен чек-лист или не отправлен фотоотчёт. Беспорядок на станции. Телефон на линии вне перерыва. Две и больше пропущенные отметки сканера за месяц.</td><td data-t="9ce877a371">Устное</td></tr>
+<tr><td data-t="c13ec9eb0a"><strong>Среднее</strong></td><td data-t="9e4eb7e9fe">Неявка без сообщения за 2 часа. Повторное лёгкое нарушение (например, опоздание) в течение 30 дней после устного замечания. Ушёл со смены без согласования. Отказ выполнить законное указание старшего. Работа с готовой едой без головного убора или перчаток. Вышел на смену с симптомами болезни и не сообщил. Фото кухни или рецептов в соцсетях без разрешения. Использование продукта без маркировки или с истёкшим сроком.</td><td>SP1</td></tr>
+<tr><td data-t="75bb0d5539"><strong>Тяжёлое</strong></td><td data-t="c39ff0e88c">Грубая небрежность с крупным ущербом или списанием. Оскорбление коллеги или гостя. Сознательное нарушение стандарта безопасности пищи.</td><td>SP3</td></tr>
+<tr><td data-t="9bc4344b78"><strong>Грубое (ст. 9.3)</strong></td><td data-t="3e8275b588">Кража, мошенничество, присвоение. Драка, насилие, угрозы. Сексуальные домогательства, дискриминация. Работа в состоянии опьянения или под наркотиками. Умышленная порча имущества. Подделка отметок, документов, отчётов. Взятки и «откаты» от поставщиков. Разглашение тайны компании.</td><td data-t="8ba40787a5">Увольнение без SP, отстранение на время проверки</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="e29ccda60b">Кто выдаёт</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="19239083c4">Ступень</th><th>Cook, CDP, Kitchen Helper</th><th data-t="05193ee414">Sous Chef, закупщик</th><th data-t="7813adba32">Head Chef, HR-менеджер</th></tr></thead>
+<tbody>
+<tr><td data-t="9ce877a371">Устное</td><td data-t="a7bd5dd4c8"><span class="b">SC</span>, старший смены или <span class="b">HC</span></td><td><span class="b">HC</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+<tr><td>SP1, SP2</td><td data-t="7099602790"><span class="b">SC</span>, <span class="b">HC</span> или <span class="b">ДИР</span></td><td data-t="cf14f8737d"><span class="b">HC</span> или <span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+<tr><td>SP3</td><td data-t="1262d04a40"><span class="b">HC</span>, согласие Директора не нужно</td><td data-t="8e9e00e107"><span class="b">HC</span> с согласия <span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+<tr><td data-t="96b4c3fd18">Увольнение, отстранение</td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="14c8aab67f">Предупреждение всегда выдаёт руководитель выше по должности. Документ в любом случае готовит HR.</p>
+<h4 data-t="dde606b975">Как выдать предупреждение: 8 шагов</h4>
+<ol class="steps">
+<li><div class="sh" data-t="7e2b90eec7"><b>Зафиксировать факт</b><span class="b">SC</span><span class="b">HR</span><span class="t">срок: 24 часа</span></div><p data-t="ff5b13223d">Что, когда, где. Доказательства: фото или видео с камер, чек-листы, данные POS, переписка, показания свидетелей, инвентаризация.</p></li>
+<li><div class="sh" data-t="fb1ca47d05"><b>Получить объяснение сотрудника</b><span class="t">срок: 1 рабочий день</span></div><p data-t="4374b01640">Письменно или в WhatsApp.</p></li>
+<li><div class="sh" data-t="2cc163f89f"><b>Выбрать ступень</b><span class="t">срок: 3 рабочих дня после нарушения</span></div><p data-t="bfaf3bcb41">Решает тот, кто выдаёт предупреждение (таблица выше), — по матрице и с учётом действующих SP.</p></li>
+<li><div class="sh" data-t="77371a328c"><b>Подготовить документ</b><span class="b">HR</span></div><p data-t="bd8e45ec4a">Шаблон SP (Приложение B8) на бланке компании, на индонезийском и английском: нарушение с датой и фактами, пункт договора, прежние предупреждения, последствия следующего нарушения, срок действия 6 месяцев.</p></li>
+<li><div class="sh" data-t="b202fb7f53"><b>Вручить на короткой встрече</b><span class="b">HR</span></div><p data-t="56f0e1493e">Вручает тот, кто выдаёт, вместе с HR. Сотрудник подписывает. Если отказался — запись «отказался подписать» и подпись свидетеля. Подтверждение получения в WhatsApp тоже засчитывается.</p></li>
+<li><div class="sh" data-t="578884877c"><b>Записать в журнал предупреждений</b><span class="b">HR</span><span class="t">срок: в тот же день</span></div><p data-t="09fdee6eb8">Это единственный журнал: больше нигде предупреждения не ведутся. Скан SP — в личное дело.</p></li>
+<li><div class="sh" data-t="de3efcc7db"><b>Решить по бонусу</b><span class="b">HR</span></div><p data-t="84f445f4fc">При SP бонус за этот месяц не выплачивается (0.6). Отметка — в той же строке журнала.</p></li>
+<li><div class="sh" data-t="5ade5308c9"><b>План исправления</b><span class="b">SC</span></div><p data-t="4eb0e126bf">Что изменить и к какой дате. SC проверяет и записывает итог.</p></li>
+</ol>
+<div class="ticket">
+<div class="th" data-t="dd8fe0bc41"><span>Чего не делаем</span><span>никогда</span></div>
+<ul>
+<li data-t="9583a4db78">Не штрафуем деньгами сверх того, что разрешает договор (удержание за ущерб — ст. 10).</li>
+<li data-t="35baa8b964">Не разбираем нарушения публично в общих чатах.</li>
+<li data-t="8e0854e628">Не выносим предупреждения «на словах» без записи.</li>
+<li data-t="93f9ff88d0">Не ведём журналы предупреждений где-то ещё.</li>
+</ul>
+</div>
+<div class="note"><div class="th" data-t="79f2b318e1">Если сотрудник не согласен · договор, ст. 14</div><p data-t="c92f46d207">Сначала он обращается к непосредственному руководителю. Если вопрос не решён за 5 рабочих дней — письменно к Директору. Если и это не помогло — в Disnaker (трудовую инспекцию) по закону UU 2/2004.</p></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="7753a7801e">Что HR делает по учёту времени каждый рабочий день?</li>
+<li data-t="4cb3893fb1">Опиши процедуру неявки по дням.</li>
+<li data-t="5977fbc638">Кто выдаёт SP3 повару, а кто — Sous Chef?</li>
+<li data-t="c448b2b408">В какой срок нарушение попадает в журнал предупреждений?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="30531e9ef5">Сверяет сканер с графиком: опоздания, неявки, задержки без согласования.</li>
+<li data-t="b1d55e27d8">День 1 — звонок SC и фиксация; день 2 — вызов №1 (B7); день 3 — вызов №2; дальше — решение по ст. 8.1 после юридической проверки.</li>
+<li data-t="6c5fc57a3e">Повару — HC без согласия Директора; Sous Chef — HC с согласия Директора.</li>
+<li data-t="1105fc2436">В течение 24 часов; SP — в день вручения.</li>
+</ol></details>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="6be91c7f37">Повар забыл отметиться. Что ты делаешь как старший?</li>
+<li data-t="7abd3c929c">Что проверяешь в начале смены и что сдаёшь в конце?</li>
+<li data-t="5ed01c6665">Какую ступень дисциплины может дать старший смены и кто готовит документ?</li>
+<li data-t="efffc3c2d0">В какой срок нарушение из отчёта смены попадает в журнал HR?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="38517c5972">Он в тот же день письменно объясняет; я подтверждаю факт работы в отчёте смены, HR правит табель.</li>
+<li data-t="dc5bdff4b2">В начале — внешний вид и форму по чек-листу открытия; в конце — отчёт смены в рабочую группу.</li>
+<li data-t="d6ea420b0e">Устное замечание; записывает HR в журнал, документы SP готовит HR.</li>
+<li data-t="c9e1f2b23b">В течение 24 часов.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="hire" data-n="5" data-toc="Пробные смены" id="trial-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">5</div>
+<div>
+<p class="eyebrow" data-t="33c57e54db">Раздел 5 · из HR Playbook 1.2 и Приложения A</p>
+<h2 data-t="b18fbe1690">Пробные смены кандидатов</h2>
+<p class="lead" data-t="ea955091b7">Как CDP проводит пробную смену вместе с Sous Chef и что оценивает.</p>
+</div>
+</header>
+<h4 data-t="cc880c9fe4">Пробная смена: как проводить</h4>
+<ul>
+<li data-t="350c84f584"><strong>Длительность.</strong> Cook, CDP, Kitchen Helper — одна смена, до 8 часов. Sous Chef — одна-две смены. Head Chef — практический день на работающей кухне и письменный кейс.</li>
+<li data-t="84c23c95cd"><strong>Оплата.</strong> По часовой ставке должности за фактические часы, при любом решении. Выплата в течение 7 дней по ведомости пробных смен, кандидат расписывается.</li>
+<li data-t="d15dc5b594"><strong>Перед началом.</strong> Кандидат подписывает лист конфиденциальности (рецепты и процессы — тайна компании) и проходит 10-минутный инструктаж по гигиене и безопасности. Кепку и фартук выдаём из запаса, после смены они возвращаются. Кандидат приходит в длинных брюках и закрытой обуви.</li>
+<li data-t="ac6cf2d5b6"><strong>Контроль.</strong> Кандидат не остаётся один на станции. Блюдо кандидата уходит гостю только после проверки старшим.</li>
+<li data-t="25dd67b1a5"><strong>Оценка.</strong> SC или CDP заполняет практический лист должности (Приложение A) в конце смены.</li>
+</ul>
+<h4 data-t="e5fb98c22b">Cook · практический лист</h4>
+<h4 data-t="8e85ef6ef1">Пробная смена: 10 пунктов × 0–2</h4>
+<div class="tw"><table>
+<thead><tr><th class="num">№</th><th data-t="e13b4bdc24">Пункт</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td data-t="fdae80d775">Пришёл вовремя, в длинных брюках и закрытой обуви</td></tr>
+<tr><td class="num">2</td><td data-t="74a93c0f5a">Моет руки и меняет перчатки в нужные моменты <span class="crit">0 = отказ</span></td></tr>
+<tr><td class="num">3</td><td data-t="b4bad23e85">Держит станцию в чистоте во время работы</td></tr>
+<tr><td class="num">4</td><td data-t="74ee6486cb">Безопасно работает ножом</td></tr>
+<tr><td class="num">5</td><td data-t="aec108f325">Делает по показу: граммовка и порядок шагов как в ТТК</td></tr>
+<tr><td class="num">6</td><td data-t="3e67ccb25d">Держит темп станции</td></tr>
+<tr><td class="num">7</td><td data-t="3540a82c32">Выполняет указания старшего</td></tr>
+<tr><td class="num">8</td><td data-t="a248d705d2">Спрашивает, когда не уверен</td></tr>
+<tr><td class="num">9</td><td data-t="28c1b8d774">Работает в команде: помогает, не мешает</td></tr>
+<tr><td class="num">10</td><td data-t="fee40dadc8">Убирает станцию в конце смены</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="b527bf0fcd">CDP · практический лист</h4>
+<h4 data-t="8e85ef6ef1">Пробная смена: 10 пунктов × 0–2</h4>
+<div class="tw"><table>
+<thead><tr><th class="num">№</th><th data-t="e13b4bdc24">Пункт</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td data-t="2e22b1050d">Открыл станцию по чек-листу</td></tr>
+<tr><td class="num">2</td><td data-t="1011eee37c">Мизанплас по prep-листу и в срок</td></tr>
+<tr><td class="num">3</td><td data-t="84f822bf9d">Приготовил 3 блюда по ТТК, показанной в этот день: граммовка, вкус, подача</td></tr>
+<tr><td class="num">4</td><td data-t="aff14c7189">Время приготовления в нормативе</td></tr>
+<tr><td class="num">5</td><td data-t="9939bdf385">Гигиена, сырое и готовое раздельно <span class="crit">0 = отказ</span></td></tr>
+<tr><td class="num">6</td><td data-t="c3d41a595b">Маркировка и FIFO</td></tr>
+<tr><td class="num">7</td><td data-t="514542e654">Проверил блюдо коллеги и дал понятную обратную связь</td></tr>
+<tr><td class="num">8</td><td data-t="8bf3296d3c">Организовал помощника: дал задачу и проверил результат</td></tr>
+<tr><td class="num">9</td><td data-t="527be5ba01">В пик держит приоритеты и спокойствие</td></tr>
+<tr><td class="num">10</td><td data-t="9cf4661ded">Закрыл станцию по чек-листу</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="e4fa1359af">Kitchen Helper · практический лист</h4>
+<h4 data-t="b8d776d7b2">Пробная смена: 4 часа, 8 пунктов × 0–2</h4>
+<p class="small" data-t="85119432f4">Вовремя и одет по правилам · мойка посуды по стандарту · уборка по чек-листу · химия: правильное разведение и хранение <span class="crit">0 = отказ</span> · раскладка товара по FIFO · темп · выполняет указания · безопасность: мокрый пол, перенос тяжестей.</p>
+<p class="small muted" data-t="a55c13ea52">Решение о найме принимает Sous Chef или Head Chef по порогам Приложения A; CDP передаёт заполненный лист в конце смены.</p>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="4242bf879d">Что подписывает кандидат до начала пробной смены?</li>
+<li data-t="dd1a985a4e">Может ли блюдо кандидата уйти гостю без проверки?</li>
+<li data-t="3f1636ba16">Как оцениваются пункты практического листа?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="0fa1569b46">Лист конфиденциальности; ещё проходит 10-минутный инструктаж по гигиене и безопасности.</li>
+<li data-t="fba9acfa7a">Нет, только после проверки старшим; кандидат не остаётся один на станции.</li>
+<li data-t="4c0e848eff">0 — не выполнено, 1 — частично, 2 — полностью; пункт с пометкой «0 = отказ» критический.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="ctrl" data-n="6" data-toc="Ночная смена" id="nightshift-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">6</div>
+<div>
+<p class="eyebrow" data-t="d56563897d">Раздел 6 · из HR Playbook 0.4 и 3.5</p>
+<h2 data-t="e84d34b85c">Ночная смена</h2>
+<p class="lead" data-t="7c4c03ff94">Допуск к одиночной ночи и действия при аварии.</p>
+</div>
+</header>
+<h3 data-t="2d7948dab8" id="night-ru"><span class="no">3.5</span>Допуск «Одиночная ночная смена»</h3>
+<p data-t="da26409040">Без этого допуска сотрудник не работает ночью один. Проверяет Sous Chef, утверждает Head Chef, запись — в матрице навыков.</p>
+<ul class="check">
+<li><label data-t="246581df6e"><input id="n1-ru" type="checkbox"/><span>Итоговый экзамен сдан на 90% и выше</span></label></li>
+<li><label data-t="81a72900d7"><input id="n2-ru" type="checkbox"/><span>Практический допуск по всем станциям ночного меню</span></label></li>
+<li><label data-t="b1a4bb5f85"><input id="n3-ru" type="checkbox"/><span>Инструктаж по безопасности ночью: кому звонить, пожар, электричество, травма, посторонние у входа</span></label></li>
+<li><label data-t="b2c8d0c169"><input id="n4-ru" type="checkbox"/><span>Умеет поставить блюдо в стоп-лист и передать смену по чек-листу</span></label></li>
+</ul>
+<div class="note">
+<div class="th" data-t="e8d069ff82">Безопасность одиночной ночной смены</div>
+<ul>
+<li data-t="b05bc90255">Дежурный руководитель (SC или HC) на телефоне всю ночь. Его номер висит на кухне.</li>
+<li data-t="4c3781a065">Сотрудник пишет в рабочую группу в начале смены, около 03:00 и при передаче смены.</li>
+<li data-t="0406ba3382">Вход закрыт для посторонних, камеры работают, аптечка и огнетушитель на месте.</li>
+<li data-t="fcaf1fdc50">При пожаре, травме, отключении света или поломке холодильника: сначала безопасность людей, затем звонок дежурному.</li>
+</ul>
+</div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="165dec5d9d">Ты старший ночной смены, сломался холодильник с заготовками. Что делаешь по шагам?</li>
+<li data-t="3dd9024fd7">Кто утверждает допуск «Одиночная ночная смена»?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="4f1e5626ab">Замеряю температуру, переношу продукты в другой холодильник, списываю то, что слишком долго было выше +5 °C, ставлю стоп-лист, звоню дежурному, пишу в отчёт.</li>
+<li data-t="e4ae474f0f">Проверяет Sous Chef, утверждает Head Chef; запись в матрице навыков.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="eval" data-n="7" data-toc="Оценка и рост" id="growth-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">7</div>
+<div>
+<p class="eyebrow" data-t="2aec0b56f0">Раздел 7 · из HR Playbook 5.1, 5.3, 0.3</p>
+<h2 data-t="ca59813713">Оценка и рост</h2>
+<p class="lead" data-t="92a0d526d3">Испытательный срок, регулярные разговоры и путь к Sous Chef.</p>
+</div>
+</header>
+<h3 data-t="9456fa7081" id="probation-ru"><span class="no">5.1</span>Испытательный срок: 3 месяца</h3>
+<ul class="tl">
+<li><span data-t="32f011144f"><span class="when">День 1</span><b>Старт</b></span><p data-t="d9168e114d">Первый день обучения.</p></li>
+<li><span data-t="c3811df457"><span class="when">День 14</span><b>Экзамен и допуск</b></span><p data-t="45152ca9f4">Итог обучения (3.2).</p></li>
+<li><span data-t="7025f27ac7"><span class="when">День 30</span><b>Оценка 1</b></span><p data-t="ad7e11f8c3">Лист из 8 критериев, разговор.</p></li>
+<li><span data-t="59302486a0"><span class="when">День 60</span><b>Оценка 2</b></span><p data-t="7a8495b837">Тот же лист, динамика.</p></li>
+<li><span data-t="af7a38bfd5"><span class="when">День 75–80</span><b>Итоговое решение</b></span><p data-t="6e64d4d732">Прошёл или нет. Оформление.</p></li>
+<li><span data-t="2ead070987"><span class="when">День 90</span><b>Конец срока</b></span><p data-t="3c0223404c">Работа продолжается по бессрочному договору.</p></li>
+</ul>
+<div class="alert">
+<div class="th" data-t="d21f153dee">Важно · испытательный срок не продлевается</div>
+<p data-t="5476de7bda">По закону он не больше 3 месяцев (UU 13/2003, ст. 60). Продлить можно только обучение (до 7 дней) и только внутри этих 3 месяцев. Итоговое решение принимаем до 80-го дня, чтобы успеть оформить его до конца срока.</p>
+</div>
+<h4 data-t="ed21dbdb7e">Оценочный лист: 8 критериев, от 1 до 5</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="ac49f8b69f">Критерий</th><th data-t="74ad409a40">На что смотрим</th></tr></thead>
+<tbody>
+<tr><td data-t="d9e82029f1">Качество работы</td><td data-t="d8bc80e224">Блюда по ТТК, переделки, жалобы</td></tr>
+<tr><td data-t="f34a08188a">Знание работы</td><td data-t="129dc36456">Меню, ТТК, результаты тестов</td></tr>
+<tr><td data-t="849673bb8c">SOP и гигиена</td><td data-t="d29f4e2776">Чек-листы, маркировка, руки и перчатки</td></tr>
+<tr><td data-t="f8487c87b1">Пунктуальность и явка</td><td data-t="588b8cc03f">Сканер: опоздания, неявки</td></tr>
+<tr><td data-t="2979523bea">Командная работа</td><td data-t="905ee8547a">Помогает, не создаёт конфликтов</td></tr>
+<tr><td data-t="90eb41d562">Коммуникация</td><td data-t="ce469d09df">Вовремя сообщает о проблемах, понимает указания</td></tr>
+<tr><td data-t="c10ff7d51b">Инициатива</td><td data-t="00221bb3d3">Замечает и решает проблемы на станции</td></tr>
+<tr><td data-t="dc3b222d2b">Форма и внешний вид</td><td data-t="c355317cf0">По стандарту 0.7</td></tr>
+</tbody>
+</table></div>
+<div class="ticket">
+<div class="th" data-t="33a480797e"><span>Правило «прошёл»</span><span>итоговое решение</span></div>
+<p data-t="c9a3bad536">Средний балл не ниже 3,5, нет оценок ниже 3 и нет действующего SP2 или SP3. Если есть SP1, решает Head Chef.</p>
+</div>
+<ol class="steps">
+<li><div class="sh" data-t="4472165a7b"><b>Оценить</b><span class="b">SC</span></div><p data-t="a9159a08db">Заполнить лист по 8 критериям и написать 2–3 строки комментария.</p></li>
+<li><div class="sh" data-t="1206e32c6b"><b>Решить</b><span class="b">HC</span></div><p data-t="d9eb86107c">По правилу «прошёл».</p></li>
+<li><div class="sh" data-t="77b0a77551"><b>Поговорить с сотрудником</b><span class="b">SC</span><span class="b">HR</span><span class="t">15 минут</span></div><p data-t="96acab3163">Итог, сильные стороны, что улучшить.</p></li>
+<li><div class="sh" data-t="23c72249b9"><b>Оформить «прошёл»</b><span class="b">HR</span></div><p data-t="418cadcb5a">Отметка в карточке и листе обучения. Работа продолжается по бессрочному договору, стаж считается с первого дня (договор, ст. 3.3).</p></li>
+<li><div class="sh" data-t="20ee97d088"><b>Оформить «не прошёл»</b><span class="b">HR</span><span class="b">HC</span></div><p data-t="9b9d4efdd6">Письменное уведомление о прекращении договора в период испытательного срока (ст. 3.2). Выплачивается только заработанное до последнего дня. Дальше — шаги главы 6.</p></li>
+</ol>
+<h3 data-t="f703b3acbc" id="reviews-ru"><span class="no">5.3</span>Регулярные разговоры и оценки</h3>
+<div class="tw"><table>
+<thead><tr><th data-t="db5001506d">Как часто</th><th data-t="e3ece45657">Что</th><th data-t="0c65a41dc0">Кто</th></tr></thead>
+<tbody>
+<tr><td data-t="5d3b2f5f41">Каждую неделю</td><td data-t="f32b073e19">Планёрка на точке, 15 минут: итоги недели, новые блюда, проблемы</td><td><span class="b">SC</span></td></tr>
+<tr><td data-t="2c789c20f2">Каждый месяц</td><td data-t="bebf60135f">Разговор один на один с каждым, 10 минут: KPI-карта, что получилось, что улучшить, вопросы. HR собирает риски ухода</td><td><span class="b">SC</span> <span class="b">HR</span></td></tr>
+<tr><td data-t="dd28ee8927">Каждый квартал</td><td data-t="2ae45c6cc2">Оценка всех по 8 критериям из 5.1. Итог: отлично · хорошо · удовлетворительно · нужно улучшение. По результатам — кадровый резерв и план обучения</td><td><span class="b">SC</span> <span class="b">HC</span> <span class="b">HR</span></td></tr>
+</tbody>
+</table></div>
+<h4 data-t="2b0ac8a320">Как растут: условия перехода</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="0568837ba1">Переход</th><th data-t="3b06e9c8e8">Минимум в должности</th><th data-t="5b1c65c008">Условия</th><th data-t="774847e78a">Решает</th></tr></thead>
+<tbody>
+<tr><td>Cook → CDP</td><td data-t="9419dcd40b">6 месяцев</td><td data-t="520b5318c4">Средний балл ежемесячных аттестаций за 3 месяца ≥ 90%. Допуск ко всем станциям точки. Нет действующего SP. Оценка по весам ≥ 4,0 из 5: отношение к работе 30%, коммуникация 20%, решение проблем 20%, базовые знания 15%, лидерский потенциал 15%.</td><td data-t="4a8a51da8d"><span class="b">SC</span> или <span class="b">HC</span></td></tr>
+<tr><td>CDP → Sous Chef</td><td data-t="05ca1eab2a">6 месяцев в роли CDP</td><td data-t="6e70f34e90">Регулярно вёл смены как старший. Обучил минимум двух новичков, которые сдали экзамен. Прошёл оценочный лист Sous Chef (Приложение A3).</td><td><span class="b">HC</span></td></tr>
+<tr><td>Sous Chef → Head Chef</td><td data-t="461ac51757">12 месяцев в роли Sous Chef</td><td data-t="8ea3028c15">Точка выполняла KPI минимум 4 месяца из последних 6. Участвовал в открытии точки. Сдал кейс Head Chef (Приложение A4).</td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+</tbody>
+</table></div>
+<ol class="steps">
+<li><div class="sh" data-t="222df6d115"><b>Номинация</b><span class="b">SC</span><span class="b">HR</span></div><p data-t="86afaa657d">Sous Chef предлагает кандидата, или сотрудник просит сам. HR вносит его в кадровый резерв точки.</p></li>
+<li><div class="sh" data-t="05027476bd"><b>Оценка</b></div><p data-t="e60296fbc2">Проверка условий из таблицы и разговор с тем, кто решает о назначении.</p></li>
+<li><div class="sh" data-t="eda6f919e8"><b>Исполнение обязанностей</b><span class="t">срок: 1 месяц</span></div><p data-t="a68bea2c01">Месяц в новой роли. Всё это время сотрудник получает ставку новой должности как временную доплату, и это заранее оформляется письменно.</p></li>
+<li><div class="sh" data-t="c37e2b8530"><b>Решение</b></div><p data-t="b423f2d185">Решает тот, кто решает о найме на новую должность (таблица выше). Назначить или вернуть на прежнюю должность. Если не назначили, временная доплата прекращается.</p></li>
+<li><div class="sh" data-t="851c273751"><b>Документы</b><span class="b">HR</span></div><p data-t="0003bb3372">Дополнительное соглашение к договору: должность, ставка, обязанности. HR обновляет карточку сотрудника.</p></li>
+</ol>
+<p data-t="4b5e323286"><strong>Кадровый резерв.</strong> HR ведёт список кандидатов на CDP и Sous Chef по каждой точке и пересматривает его раз в квартал. Когда открывается позиция, сначала смотрим резерв, потом ищем снаружи.</p>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="447f82546e">Что нужно, чтобы перейти с CDP на Sous Chef?</li>
+<li data-t="947716cb73">Как часто проходят разговоры один на один и что на них обсуждают?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="2919469c8b">6 месяцев в роли CDP, регулярно вёл смены старшим, обучил минимум двух новичков, которые сдали экзамен, прошёл оценочный лист Sous Chef; решает HC.</li>
+<li data-t="2583cb0631">Каждый месяц, 10 минут: KPI-карта, что получилось, что улучшить, вопросы.</li>
+</ol></details>
+</section>
+</div>
+</main>
+</div>
+<script>FL_FOLD.dyn({"A · утро 07:00–15:00": "cb63d05d41", "B · вечер 15:00–23:00": "047c036729", "C · ночь 23:00–07:00": "52e217c49d", "# чел.": "bc30540283", "Человеко-смен в неделю": "c7c4563d58", "Без резерва (÷ 5)": "6e6ecc1c03", "Штат с резервом 15%": "d5da58a71c", "человек в штате": "6ceb9ce69b", "Скопировано": "8922542f90", "Копировать": "4a05d8619d", "Выделено: Ctrl+C": "a3af8a1fcb"});FL_FOLD.apply();</script>
+<script>
+(function(){
+  var body=document.body, LS='foodlab-folders-lang', fixed=document.querySelector('meta[name="folder-lang"]');
+  function all(sel,root){return [].slice.call((root||document).querySelectorAll(sel));}
+  function langOf(el){var b=el.closest('.langblock');return b&&b.getAttribute('lang')==='ru'?'ru':'id';}
+  function fmts(el){var loc=window.FL_LOC||'ru-RU';return {nf:new Intl.NumberFormat(loc,{maximumFractionDigits:0}),nf1:new Intl.NumberFormat(loc,{maximumFractionDigits:1})};}
+  function rp(nf,v){return 'Rp '+nf.format(Math.round(v));}
+
+  /* language */
+  function setLang(l,scroll){
+    body.classList.remove('l-id','l-ru');body.classList.add('l-'+l);
+    document.documentElement.lang=l;
+    all('[data-setlang]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.setlang===l?'true':'false');});
+    if(!fixed){try{localStorage.setItem(LS,l);}catch(e){}}
+    if(scroll)window.scrollTo(0,0);
+  }
+  var start=fixed?fixed.getAttribute('content'):'id';
+  if(!fixed){try{var s=localStorage.getItem(LS);if(s==='ru'||s==='id')start=s;}catch(e){}}
+  all('[data-setlang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.setlang,true);});});
+  setLang(start,false);
+
+  /* table of contents: mobile drawer */
+  var rail=document.getElementById('rail'),btn=document.getElementById('tocBtn'),closeBtn=document.getElementById('tocClose');
+  function openToc(o){rail.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');}
+  if(btn)btn.addEventListener('click',function(){openToc(!rail.classList.contains('open'));});
+  if(closeBtn)closeBtn.addEventListener('click',function(){openToc(false);});
+  rail.addEventListener('click',function(e){if(e.target.closest('.toc a')&&window.matchMedia('(max-width:980px)').matches)openToc(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')openToc(false);});
+
+  /* table of contents: current section */
+  var links=all('.toc a'),map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){var a=map[en.target.id];if(!a)return;all('a',a.closest('.toc')).forEach(function(l){l.removeAttribute('aria-current');});a.setAttribute('aria-current','true');}
+      });
+    },{rootMargin:'-15% 0px -75% 0px'});
+    Object.keys(map).forEach(function(id){var t=document.getElementById(id);if(t)io.observe(t);});
+  }
+
+  /* 24-hour shift clock */
+  var MODES={launch:[2,2,1],growth:[3,3,1],std:[4,4,2]};
+  var CL={
+    ru:{A:'A · утро 07:00–15:00',B:'B · вечер 15:00–23:00',C:'C · ночь 23:00–07:00',p:'чел.',ps:'Человеко-смен в неделю',base:'Без резерва (÷ 5)',staff:'Штат с резервом 15%',center:'человек в штате',
+        comp:{launch:'1 Sous Chef · 2 CDP · 5 Cook',growth:'1 Sous Chef · 3 CDP · 7 Cook',std:'1 Sous Chef · 4 CDP · 11 Cook'}},
+    id:{A:'A · pagi 07.00–15.00',B:'B · sore 15.00–23.00',C:'C · malam 23.00–07.00',p:'org',ps:'Shift-orang per minggu',base:'Tanpa cadangan (÷ 5)',staff:'Tim + cadangan 15%',center:'orang dalam tim',
+        comp:{launch:'1 Sous Chef · 2 CDP · 5 Cook',growth:'1 Sous Chef · 3 CDP · 7 Cook',std:'1 Sous Chef · 4 CDP · 11 Cook'}}
+  };
+  function polar(cx,cy,r,h){var a=(h/24)*2*Math.PI-Math.PI/2;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+  function arc(cx,cy,r,h1,h2){var p1=polar(cx,cy,r,h1),p2=polar(cx,cy,r,h2);return 'M'+p1[0].toFixed(2)+' '+p1[1].toFixed(2)+' A'+r+' '+r+' 0 '+((h2-h1)>12?1:0)+' 1 '+p2[0].toFixed(2)+' '+p2[1].toFixed(2);}
+  function drawClock(box,mode){
+    var L=CL[langOf(box)],svg=box.querySelector('svg.clock'),leg=box.querySelector('.legend');if(!svg||!leg)return;
+    var m=MODES[mode],cx=150,cy=150,R=112,s='',nf1=fmts(box).nf1;
+    var sh=[{h1:7,h2:15,n:m[0],c:'var(--shA)',t:L.A},{h1:15,h2:23,n:m[1],c:'var(--shB)',t:L.B},{h1:23,h2:31,n:m[2],c:'var(--shC)',t:L.C}];
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" style="fill:none;stroke:var(--tint);stroke-width:34"/>';
+    sh.forEach(function(x){
+      s+='<path d="'+arc(cx,cy,R,x.h1+0.1,x.h2-0.1)+'" style="fill:none;stroke:'+x.c+';stroke-width:34"/>';
+      for(var i=0;i<x.n;i++){var p=polar(cx,cy,R,x.h1+(x.h2-x.h1)*(i+0.5)/x.n),X=p[0],Y=p[1];
+        s+='<circle cx="'+X.toFixed(2)+'" cy="'+Y.toFixed(2)+'" r="10" style="fill:var(--panel);stroke:var(--ink);stroke-width:1.5"/>';
+        s+='<circle cx="'+X.toFixed(2)+'" cy="'+(Y-3).toFixed(2)+'" r="2.8" style="fill:var(--ink)"/>';
+        s+='<path d="M'+(X-4.6).toFixed(2)+' '+(Y+5.4).toFixed(2)+' a4.6 4.4 0 0 1 9.2 0 z" style="fill:var(--ink)"/>';}
+    });
+    [0,6,12,18].forEach(function(h){var p=polar(cx,cy,R-44,h);s+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+4).toFixed(1)+'" text-anchor="middle" style="font:11px \'JetBrains Mono\',monospace;fill:var(--ink-2)">'+(h<10?'0'+h:h)+':00</text>';});
+    var total=Math.round((m[0]+m[1]+m[2])*7/5*1.15),ps=(m[0]+m[1]+m[2])*7;
+    s+='<text x="'+cx+'" y="'+(cy+8)+'" text-anchor="middle" style="font:700 40px Unbounded,\'Arial Black\',sans-serif;fill:var(--ink)">'+total+'</text>';
+    s+='<text x="'+cx+'" y="'+(cy+28)+'" text-anchor="middle" style="font:12px Onest,system-ui,sans-serif;fill:var(--ink-2)">'+L.center+'</text>';
+    svg.innerHTML=s;
+    leg.innerHTML=sh.map(function(x){return '<div class="row"><span class="sw" style="background:'+x.c+'"></span><span>'+x.t+'</span><b>'+x.n+' '+L.p+'</b></div>';}).join('')+
+      '<div class="row tot"><span></span><span>'+L.ps+'</span><b>'+ps+'</b></div>'+
+      '<div class="row"><span></span><span>'+L.base+'</span><b>'+nf1.format(ps/5)+'</b></div>'+
+      '<div class="row"><span></span><span><strong>'+L.staff+'</strong></span><b>'+total+'</b></div>'+
+      '<div class="comp">'+L.comp[mode]+'</div>';
+  }
+  all('.shiftviz').forEach(function(box){
+    var bs=all('.seg button',box);
+    bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});drawClock(box,b.dataset.mode);});});
+    drawClock(box,'launch');
+  });
+
+  /* calculators */
+  function inp(f,k){return f.querySelector('[data-k="'+k+'"]');}
+  function val(f,k){var e=inp(f,k);var v=e?parseFloat(e.value):0;return isFinite(v)&&v>0?v:0;}
+  function put(f,k,t,html){var e=f.querySelector('[data-o="'+k+'"]');if(!e)return;if(html)e.innerHTML=t;else e.textContent=t;}
+  function wire(f,fn){f.addEventListener('input',fn);f.addEventListener('change',fn);f.addEventListener('submit',function(e){e.preventDefault();});fn();}
+
+  all('form.calc-staff').forEach(function(f){
+    function calc(){
+      var F=fmts(f),A=val(f,'A'),B=val(f,'B'),C=val(f,'C'),res=val(f,'res'),rate=val(f,'rate'),sales=val(f,'sales'),hol=inp(f,'hol')&&inp(f,'hol').checked;
+      var ps=(A+B+C)*7,base=ps/5,staff=Math.round(base*(1+res/100)),fixed=staff*rate*172*(1+1/12+0.105+(hol?0.044:0)),fot=fixed+0.01*sales;
+      put(f,'ps',F.nf.format(ps));put(f,'base',F.nf1.format(base));put(f,'staff',F.nf.format(staff));put(f,'fot',rp(F.nf,fot));
+      if(sales>0){var pct=fot/sales*100;put(f,'pct','<span class="pill '+(pct<=13?'ok':(pct<=15?'mid':'bad'))+'">'+F.nf1.format(pct)+'%</span>',true);}else{put(f,'pct','—');}
+      put(f,'min',rate>0?rp(F.nf,fixed/0.12):'—');
+    }
+    all('.presets button',f).forEach(function(b){b.addEventListener('click',function(){
+      if(b.dataset.p){var v=b.dataset.p.split(',');inp(f,'A').value=v[0];inp(f,'B').value=v[1];inp(f,'C').value=v[2];}
+      if(b.dataset.rate){inp(f,'rate').value=b.dataset.rate;}
+      calc();});});
+    wire(f,calc);
+  });
+  all('form.calc-funnel').forEach(function(f){
+    wire(f,function(){
+      var F=fmts(f),plan=val(f,'plan'),c1=val(f,'c1')/100,c2=val(f,'c2')/100,c3=val(f,'c3')/100;
+      if(!(plan&&c1&&c2&&c3)){put(f,'trial','—');put(f,'int','—');put(f,'app','—');return;}
+      var t=Math.ceil(plan/c3-1e-9),i=Math.ceil(t/c2-1e-9),a=Math.ceil(i/c1-1e-9);
+      put(f,'trial',F.nf.format(t));put(f,'int',F.nf.format(i));put(f,'app',F.nf.format(a));
+    });
+  });
+  all('form.calc-exit').forEach(function(f){
+    wire(f,function(){
+      var F=fmts(f),m=Math.floor(val(f,'months')),w=val(f,'wage'),e=val(f,'earned'),b=val(f,'bonus'),d=val(f,'ded'),prob=inp(f,'prob')&&inp(f,'prob').checked;
+      var leave=prob?0:m*0.1*w,pay=e+b,gross=leave+pay,total=Math.max(0,gross-d);
+      put(f,'leave',rp(F.nf,leave));put(f,'pay',rp(F.nf,pay));put(f,'ded',d>0?'− '+rp(F.nf,d):rp(F.nf,0));put(f,'total',rp(F.nf,total));
+      var w2=f.querySelector('[data-o="warn"]');if(w2)w2.hidden=!(d>0.5*gross);
+    });
+  });
+
+  /* copy buttons */
+  all('.copy').forEach(function(b){
+    var label=b.textContent;
+    b.addEventListener('click',function(){
+      var pre=document.getElementById(b.dataset.target);if(!pre)return;
+      var done=b.dataset.done||'OK';
+      function ok(){b.textContent=done;setTimeout(function(){b.textContent=label;},1600);}
+      function fb(){var r=document.createRange();r.selectNodeContents(pre);var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);b.textContent='Ctrl+C';setTimeout(function(){b.textContent=label;},2600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(pre.innerText).then(ok,fb);}else{fb();}
+    });
+  });
+})();
+
+</script>
+</body></html>

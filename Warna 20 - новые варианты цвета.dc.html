@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #EFEDE8; -webkit-font-smoothing: antialiased; }
+  a { color: #1F4A3C; text-decoration: none; }
+  a:hover { color: #B4553C; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+<div style="min-height: 100vh; padding: 40px 36px 72px; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #1B1B1B;">
+  <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px;">
+    <div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8A82;">Foodlab Academy · 20 варианта</div>
+      <div style="font-size: 32px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;">Ещё двадцать цветовых направлений</div>
+      <div style="font-size: 15px; line-height: 1.6; color: #55554E;">Опора на индонезийскую палитру: батик, специи, вулканический камень, рис, море, тропический лист. Никакой религиозной символики. Каждый вариант — тёмная основа, один тёплый акцент и спокойный фон, чтобы фото еды оставались главными.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+      <sc-for list="{{ palettes }}" as="p" hint-placeholder-count="20">
+      <div style="display: flex; flex-direction: column; gap: 9px;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #A0A099;">{{ p.num }}</div>
+          <div style="font-size: 15px; font-weight: 700; letter-spacing: -0.01em;">{{ p.name }}</div>
+        </div>
+        <div style="font-size: 12px; line-height: 1.45; color: #77776F; min-height: 34px;">{{ p.note }}</div>
+
+        <div style="border-radius: 14px; overflow: hidden; border: 1px solid rgba(0,0,0,0.1); background: {{ p.bg }};">
+          <div style="display: flex; align-items: center; gap: 9px; padding: 10px 12px; background: {{ p.bar }}; border-bottom: 1px solid {{ p.line }};">
+            <div style="width: 16px; height: 16px; border-radius: 5px; background: {{ p.accent }};"></div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ p.barInk }};">Foodlab</div>
+            <div style="flex: 1;"></div>
+            <div style="padding: 3px 7px; border-radius: 99px; background: {{ p.chipBg }}; color: {{ p.chipInk }}; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.08em;">KOKI</div>
+          </div>
+          <div style="padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="border-radius: 11px; padding: 14px; background: {{ p.hero }}; color: {{ p.heroInk }}; display: flex; flex-direction: column; gap: 9px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.6;">Langkah 3 · 18 min</div>
+              <div style="font-size: 15px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.2;">Aturan penyimpanan</div>
+              <div style="align-self: flex-start; padding: 8px 12px; border-radius: 8px; background: {{ p.accent }}; color: {{ p.accentInk }}; font-size: 11px; font-weight: 700;">Mulai tes</div>
+            </div>
+            <div style="border-radius: 10px; padding: 11px; background: {{ p.card }}; border: 1px solid {{ p.line }}; display: flex; flex-direction: column; gap: 7px;">
+              <div style="display: flex; align-items: baseline; justify-content: space-between;">
+                <div style="font-size: 17px; font-weight: 800; color: {{ p.ink }}; letter-spacing: -0.02em;">60%</div>
+                <div style="padding: 3px 7px; border-radius: 99px; background: {{ p.okBg }}; color: {{ p.ok }}; font-size: 9px; font-weight: 700;">Lulus</div>
+              </div>
+              <div style="height: 5px; border-radius: 99px; background: {{ p.track }}; overflow: hidden;">
+                <div style="height: 100%; width: 60%; background: {{ p.ok }}; border-radius: 99px;"></div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; padding-top: 2px;">
+                <div style="padding: 3px 7px; border-radius: 99px; background: {{ p.warnBg }}; color: {{ p.warn }}; font-size: 9px; font-weight: 700;">Belum lulus</div>
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: {{ p.muted }};">★ 240</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 4px;">
+          <sc-for list="{{ p.swatches }}" as="sw" hint-placeholder-count="5">
+          <div style="flex: 1; height: 22px; border-radius: 5px; background: {{ sw }}; border: 1px solid rgba(0,0,0,0.1);"></div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  P = [
+    { name: 'Tanah Vulkanik', note: 'Вулканический камень и тёплый песок', bg: '#F3F0EB', bar: '#FFFFFF', line: 'rgba(38,36,34,0.12)', barInk: '#262422', ink: '#262422', muted: '#8E8A85', hero: '#2B2825', heroInk: '#F1EDE7', accent: '#D98E3C', accentInk: '#2B2825', card: '#FFFFFF', chipBg: 'rgba(43,40,37,0.08)', chipInk: '#2B2825', track: 'rgba(38,36,34,0.1)', ok: '#5C7F52', okBg: 'rgba(92,127,82,0.14)', warn: '#B65B3C', warnBg: 'rgba(182,91,60,0.13)' },
+    { name: 'Kayu Manis', note: 'Корица и топлёное молоко', bg: '#FAF4EC', bar: '#FFFDF9', line: 'rgba(70,44,28,0.12)', barInk: '#462C1C', ink: '#462C1C', muted: '#A08876', hero: '#5C3620', heroInk: '#F8EDE1', accent: '#E3A55E', accentInk: '#4A2A16', card: '#FFFDF9', chipBg: 'rgba(92,54,32,0.09)', chipInk: '#5C3620', track: 'rgba(70,44,28,0.1)', ok: '#6C8A4C', okBg: 'rgba(108,138,76,0.15)', warn: '#C0603A', warnBg: 'rgba(192,96,58,0.13)' },
+    { name: 'Daun Pisang', note: 'Банановый лист и рисовая бумага', bg: '#F4F6EE', bar: '#FFFFFF', line: 'rgba(30,48,26,0.12)', barInk: '#1E301A', ink: '#1E301A', muted: '#87947E', hero: '#254125', heroInk: '#ECF3E7', accent: '#E7C15A', accentInk: '#254125', card: '#FFFFFF', chipBg: 'rgba(37,65,37,0.09)', chipInk: '#254125', track: 'rgba(30,48,26,0.1)', ok: '#3F7D4E', okBg: 'rgba(63,125,78,0.14)', warn: '#BC6534', warnBg: 'rgba(188,101,52,0.13)' },
+    { name: 'Nila Tua', note: 'Тёмное индиго батика и латунь', bg: '#F2F2F5', bar: '#FFFFFF', line: 'rgba(24,28,52,0.12)', barInk: '#181C34', ink: '#181C34', muted: '#8A8DA0', hero: '#1C2247', heroInk: '#E9EAF3', accent: '#C9A24A', accentInk: '#1C2247', card: '#FFFFFF', chipBg: 'rgba(28,34,71,0.09)', chipInk: '#1C2247', track: 'rgba(24,28,52,0.1)', ok: '#3D7A6E', okBg: 'rgba(61,122,110,0.14)', warn: '#B0553F', warnBg: 'rgba(176,85,63,0.13)' },
+    { name: 'Cengkeh', note: 'Гвоздика и кремовый лён', bg: '#F8F4EF', bar: '#FFFFFF', line: 'rgba(54,32,26,0.12)', barInk: '#36201A', ink: '#36201A', muted: '#9C8880', hero: '#43241C', heroInk: '#F6EAE2', accent: '#C97F4E', accentInk: '#FFF6EF', card: '#FFFFFF', chipBg: 'rgba(67,36,28,0.08)', chipInk: '#43241C', track: 'rgba(54,32,26,0.1)', ok: '#628355', okBg: 'rgba(98,131,85,0.14)', warn: '#B24A38', warnBg: 'rgba(178,74,56,0.12)' },
+    { name: 'Batu Kali', note: 'Речной камень, серо-зелёный нейтрал', bg: '#F1F3F1', bar: '#FFFFFF', line: 'rgba(34,42,40,0.12)', barInk: '#222A28', ink: '#222A28', muted: '#88918E', hero: '#2E3937', heroInk: '#EDF1EF', accent: '#DFA24B', accentInk: '#2E3937', card: '#FFFFFF', chipBg: 'rgba(46,57,55,0.08)', chipInk: '#2E3937', track: 'rgba(34,42,40,0.1)', ok: '#4F8478', okBg: 'rgba(79,132,120,0.14)', warn: '#B75F44', warnBg: 'rgba(183,95,68,0.13)' },
+    { name: 'Kelapa Bakar', note: 'Обожжённый кокос и мягкий беж', bg: '#F7F3ED', bar: '#FFFDF8', line: 'rgba(46,36,30,0.12)', barInk: '#2E241E', ink: '#2E241E', muted: '#998C80', hero: '#3A2D24', heroInk: '#F5EDE3', accent: '#D9B27A', accentInk: '#3A2D24', card: '#FFFDF8', chipBg: 'rgba(58,45,36,0.08)', chipInk: '#3A2D24', track: 'rgba(46,36,30,0.1)', ok: '#6E8659', okBg: 'rgba(110,134,89,0.15)', warn: '#B3603E', warnBg: 'rgba(179,96,62,0.13)' },
+    { name: 'Laut Dalam', note: 'Глубокая вода и коралловый акцент', bg: '#F0F4F5', bar: '#FFFFFF', line: 'rgba(16,40,48,0.12)', barInk: '#102830', ink: '#102830', muted: '#7F929A', hero: '#12303B', heroInk: '#E7F0F2', accent: '#E58C63', accentInk: '#12303B', card: '#FFFFFF', chipBg: 'rgba(18,48,59,0.09)', chipInk: '#12303B', track: 'rgba(16,40,48,0.1)', ok: '#2C8079', okBg: 'rgba(44,128,121,0.14)', warn: '#C2603F', warnBg: 'rgba(194,96,63,0.13)' },
+    { name: 'Sawah Pagi', note: 'Утреннее поле: серо-зелёный и золото', bg: '#F5F6F0', bar: '#FFFFFF', line: 'rgba(38,46,34,0.12)', barInk: '#262E22', ink: '#262E22', muted: '#8B927F', hero: '#37402C', heroInk: '#F0F2E8', accent: '#D6B44A', accentInk: '#37402C', card: '#FFFFFF', chipBg: 'rgba(55,64,44,0.09)', chipInk: '#37402C', track: 'rgba(38,46,34,0.1)', ok: '#5A8348', okBg: 'rgba(90,131,72,0.14)', warn: '#B26536', warnBg: 'rgba(178,101,54,0.13)' },
+    { name: 'Kopi Bali', note: 'Кофе и сливки, очень тёплый', bg: '#F8F3EC', bar: '#FFFEFA', line: 'rgba(48,34,24,0.12)', barInk: '#302218', ink: '#302218', muted: '#9B8B7A', hero: '#38271A', heroInk: '#F5EBDD', accent: '#CE9A4F', accentInk: '#38271A', card: '#FFFEFA', chipBg: 'rgba(56,39,26,0.08)', chipInk: '#38271A', track: 'rgba(48,34,24,0.1)', ok: '#6B8353', okBg: 'rgba(107,131,83,0.14)', warn: '#B85F35', warnBg: 'rgba(184,95,53,0.13)' }
+  ];
+
+  P2 = [
+    { name: 'Kunyit Lembut', note: 'Приглушённая куркума на белом', bg: '#FAF8F2', bar: '#FFFFFF', line: 'rgba(44,38,24,0.12)', barInk: '#2C2618', ink: '#2C2618', muted: '#998F79', hero: '#3B3320', heroInk: '#F7F2E4', accent: '#E4B94E', accentInk: '#3B3320', card: '#FFFFFF', chipBg: 'rgba(59,51,32,0.08)', chipInk: '#3B3320', track: 'rgba(44,38,24,0.1)', ok: '#63864F', okBg: 'rgba(99,134,79,0.14)', warn: '#B5623A', warnBg: 'rgba(181,98,58,0.13)' },
+    { name: 'Hutan Malam', note: 'Тёмная тема: лес и мягкое золото', bg: '#121815', bar: '#19211D', line: 'rgba(255,255,255,0.1)', barInk: '#E6EDE8', ink: '#E6EDE8', muted: '#7E8A83', hero: '#1F2A24', heroInk: '#E6EDE8', accent: '#D8A94F', accentInk: '#18211C', card: '#19211D', chipBg: 'rgba(216,169,79,0.14)', chipInk: '#D8A94F', track: 'rgba(255,255,255,0.1)', ok: '#6FB58C', okBg: 'rgba(111,181,140,0.14)', warn: '#D9784F', warnBg: 'rgba(217,120,79,0.14)' },
+    { name: 'Arang', note: 'Тёмная тема: угольная с песочным', bg: '#141312', bar: '#1D1B19', line: 'rgba(255,255,255,0.1)', barInk: '#EDE8E1', ink: '#EDE8E1', muted: '#8B857D', hero: '#242220', heroInk: '#EDE8E1', accent: '#E0C08A', accentInk: '#242220', card: '#1D1B19', chipBg: 'rgba(224,192,138,0.14)', chipInk: '#E0C08A', track: 'rgba(255,255,255,0.1)', ok: '#8FB27A', okBg: 'rgba(143,178,122,0.14)', warn: '#D57B55', warnBg: 'rgba(213,123,85,0.14)' },
+    { name: 'Garam Laut', note: 'Соль и мокрый песок, светлый', bg: '#F6F5F1', bar: '#FFFFFF', line: 'rgba(40,44,44,0.12)', barInk: '#282C2C', ink: '#282C2C', muted: '#8F918D', hero: '#3A4544', heroInk: '#F2F3EF', accent: '#C9A882', accentInk: '#3A4544', card: '#FFFFFF', chipBg: 'rgba(58,69,68,0.08)', chipInk: '#3A4544', track: 'rgba(40,44,44,0.1)', ok: '#588074', okBg: 'rgba(88,128,116,0.14)', warn: '#AD5F45', warnBg: 'rgba(173,95,69,0.13)' },
+    { name: 'Rempah', note: 'Специи: паприка, тмин, шафран', bg: '#FBF4EA', bar: '#FFFDF7', line: 'rgba(58,32,20,0.12)', barInk: '#3A2014', ink: '#3A2014', muted: '#A3897A', hero: '#4B2317', heroInk: '#F9EADE', accent: '#E09B45', accentInk: '#4B2317', card: '#FFFDF7', chipBg: 'rgba(75,35,23,0.08)', chipInk: '#4B2317', track: 'rgba(58,32,20,0.1)', ok: '#77883F', okBg: 'rgba(119,136,63,0.15)', warn: '#C0522C', warnBg: 'rgba(192,82,44,0.12)' },
+    { name: 'Teratai Putih', note: 'Почти белый, зелёный лист, минимализм', bg: '#FBFBF9', bar: '#FFFFFF', line: 'rgba(28,38,32,0.1)', barInk: '#1C2620', ink: '#1C2620', muted: '#8D958F', hero: '#20302A', heroInk: '#F4F7F4', accent: '#A8C48A', accentInk: '#1C2620', card: '#FFFFFF', chipBg: 'rgba(32,48,42,0.07)', chipInk: '#20302A', track: 'rgba(28,38,32,0.09)', ok: '#437A5D', okBg: 'rgba(67,122,93,0.13)', warn: '#A96248', warnBg: 'rgba(169,98,72,0.12)' },
+    { name: 'Kayu Jati', note: 'Тик и охра, плотный тёплый', bg: '#F7F2E9', bar: '#FFFCF5', line: 'rgba(56,40,24,0.12)', barInk: '#382818', ink: '#382818', muted: '#9E8C74', hero: '#4A3620', heroInk: '#F6EEDF', accent: '#C99A3F', accentInk: '#4A3620', card: '#FFFCF5', chipBg: 'rgba(74,54,32,0.08)', chipInk: '#4A3620', track: 'rgba(56,40,24,0.1)', ok: '#6D8548', okBg: 'rgba(109,133,72,0.14)', warn: '#B25D33', warnBg: 'rgba(178,93,51,0.13)' },
+    { name: 'Ombak', note: 'Волна: бирюза и белый песок', bg: '#F2F7F6', bar: '#FFFFFF', line: 'rgba(18,44,44,0.12)', barInk: '#122C2C', ink: '#122C2C', muted: '#7F9694', hero: '#173B3A', heroInk: '#E9F4F2', accent: '#EFC066', accentInk: '#173B3A', card: '#FFFFFF', chipBg: 'rgba(23,59,58,0.09)', chipInk: '#173B3A', track: 'rgba(18,44,44,0.1)', ok: '#2F8C7C', okBg: 'rgba(47,140,124,0.14)', warn: '#BE6242', warnBg: 'rgba(190,98,66,0.13)' },
+    { name: 'Bata Merah', note: 'Красный кирпич и известь', bg: '#F9F4F0', bar: '#FFFFFF', line: 'rgba(50,28,22,0.12)', barInk: '#321C16', ink: '#321C16', muted: '#A08A82', hero: '#7A3524', heroInk: '#FAEBE2', accent: '#EAB07A', accentInk: '#4A1F13', card: '#FFFFFF', chipBg: 'rgba(122,53,36,0.1)', chipInk: '#7A3524', track: 'rgba(50,28,22,0.1)', ok: '#5F8158', okBg: 'rgba(95,129,88,0.14)', warn: '#A94328', warnBg: 'rgba(169,67,40,0.12)' },
+    { name: 'Pandan', note: 'Пандан и сливочный, свежий и мягкий', bg: '#F5F8F1', bar: '#FFFFFF', line: 'rgba(26,44,30,0.12)', barInk: '#1A2C1E', ink: '#1A2C1E', muted: '#849184', hero: '#1F3B28', heroInk: '#EDF5EC', accent: '#D9C15E', accentInk: '#1F3B28', card: '#FFFFFF', chipBg: 'rgba(31,59,40,0.09)', chipInk: '#1F3B28', track: 'rgba(26,44,30,0.1)', ok: '#4A8756', okBg: 'rgba(74,135,86,0.14)', warn: '#B36239', warnBg: 'rgba(179,98,57,0.13)' }
+  ];
+
+  renderVals() {
+    const all = this.P.concat(this.P2);
+    return {
+      palettes: all.map((p, i) => Object.assign({}, p, {
+        num: (i + 1 < 10 ? '0' : '') + (i + 1),
+        swatches: [p.hero, p.accent, p.bg, p.ok, p.warn]
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

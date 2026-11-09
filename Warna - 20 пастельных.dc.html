@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #F4F5F3; -webkit-font-smoothing: antialiased; }
+  a { color: #4A6B62; text-decoration: none; }
+  a:hover { color: #A97F86; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+<div style="min-height: 100vh; padding: 40px 36px 72px; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #2A2E2C;">
+  <div style="max-width: 1300px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px;">
+    <div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #94998F;">Foodlab Academy · 20 пастельных</div>
+      <div style="font-size: 32px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;">Двадцать пастельных вариантов</div>
+      <div style="font-size: 15px; line-height: 1.6; color: #5C625E;">Нежные голубые, розовые, зелёные и лавандовые. Текст остаётся тёмным и читаемым — пастель работает на фонах, карточках и акцентах, как в примерах, которые вы прислали.</div>
+    </div>
+
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; align-items: baseline; gap: 12px; border-bottom: 1px solid rgba(42,46,44,0.12); padding-bottom: 8px;">
+        <div style="font-size: 19px; font-weight: 700; letter-spacing: -0.015em;">{{ g.title }}</div>
+        <div style="font-size: 13px; color: #7D837F;">{{ g.note }}</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <sc-for list="{{ g.items }}" as="p" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #A6ABA5;">{{ p.num }}</div>
+            <div style="font-size: 15px; font-weight: 700; letter-spacing: -0.01em;">{{ p.name }}</div>
+          </div>
+          <div style="font-size: 12px; line-height: 1.45; color: #7D837F; min-height: 32px;">{{ p.note }}</div>
+
+          <div style="border-radius: 14px; overflow: hidden; border: 1px solid rgba(42,46,44,0.1); background: {{ p.bg }};">
+            <div style="display: flex; align-items: center; gap: 9px; padding: 10px 12px; background: {{ p.bar }}; border-bottom: 1px solid {{ p.line }};">
+              <div style="width: 16px; height: 16px; border-radius: 5px; background: {{ p.accent }};"></div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ p.barInk }};">Foodlab</div>
+              <div style="flex: 1;"></div>
+              <div style="padding: 3px 7px; border-radius: 99px; background: {{ p.chipBg }}; color: {{ p.chipInk }}; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.08em;">KOKI</div>
+            </div>
+            <div style="padding: 12px; display: flex; flex-direction: column; gap: 10px;">
+              <div style="border-radius: 11px; padding: 14px; background: {{ p.hero }}; color: {{ p.heroInk }}; display: flex; flex-direction: column; gap: 9px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7;">Langkah 3 · 18 min</div>
+                <div style="font-size: 15px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.2;">Aturan penyimpanan</div>
+                <div style="align-self: flex-start; padding: 8px 12px; border-radius: 8px; background: {{ p.accent }}; color: {{ p.accentInk }}; font-size: 11px; font-weight: 700;">Mulai tes</div>
+              </div>
+              <div style="border-radius: 10px; padding: 11px; background: {{ p.card }}; border: 1px solid {{ p.line }}; display: flex; flex-direction: column; gap: 7px;">
+                <div style="display: flex; align-items: baseline; justify-content: space-between;">
+                  <div style="font-size: 17px; font-weight: 800; color: {{ p.ink }}; letter-spacing: -0.02em;">60%</div>
+                  <div style="padding: 3px 7px; border-radius: 99px; background: {{ p.okBg }}; color: {{ p.ok }}; font-size: 9px; font-weight: 700;">Lulus</div>
+                </div>
+                <div style="height: 5px; border-radius: 99px; background: {{ p.track }}; overflow: hidden;">
+                  <div style="height: 100%; width: 60%; background: {{ p.ok }}; border-radius: 99px;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px; padding-top: 2px;">
+                  <div style="padding: 3px 7px; border-radius: 99px; background: {{ p.warnBg }}; color: {{ p.warn }}; font-size: 9px; font-weight: 700;">Belum lulus</div>
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: {{ p.muted }};">★ 240</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 4px;">
+            <sc-for list="{{ p.swatches }}" as="sw" hint-placeholder-count="5">
+            <div style="flex: 1; height: 22px; border-radius: 5px; background: {{ sw }}; border: 1px solid rgba(42,46,44,0.1);"></div>
+            </sc-for>
+          </div>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-for>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1360,&quot;height&quot;:940}}">
+class Component extends DCLogic {
+  G = [
+    {
+      title: 'Нежные голубые',
+      note: 'как первый пример: светлый воздух и мягкая бирюза',
+      items: [
+        { name: 'Langit', note: 'Небо и белый лён', bg: '#F4FAFC', bar: '#FFFFFF', line: 'rgba(30,54,64,0.1)', barInk: '#1E3640', ink: '#1E3640', muted: '#8FA5AE', hero: '#BCE0EC', heroInk: '#1E3640', accent: '#5FB5CE', accentInk: '#12303B', card: '#FFFFFF', chipBg: 'rgba(95,181,206,0.16)', chipInk: '#2C6A7E', track: 'rgba(30,54,64,0.08)', ok: '#5C9E92', okBg: 'rgba(92,158,146,0.14)', warn: '#C58B87', warnBg: 'rgba(197,139,135,0.16)' },
+        { name: 'Kabut Biru', note: 'Пыльно-голубой и тёплый серый', bg: '#F6F8FA', bar: '#FFFFFF', line: 'rgba(38,48,58,0.1)', barInk: '#26303A', ink: '#26303A', muted: '#93A0AB', hero: '#C7D8E4', heroInk: '#26303A', accent: '#8FB4CC', accentInk: '#1C2732', card: '#FFFFFF', chipBg: 'rgba(143,180,204,0.2)', chipInk: '#3C5E75', track: 'rgba(38,48,58,0.08)', ok: '#6F9B8C', okBg: 'rgba(111,155,140,0.14)', warn: '#C08D8A', warnBg: 'rgba(192,141,138,0.16)' },
+        { name: 'Aqua Lembut', note: 'Нежная аква и молочный', bg: '#F2FBF9', bar: '#FFFFFF', line: 'rgba(24,52,50,0.1)', barInk: '#183432', ink: '#183432', muted: '#8AA5A1', hero: '#B7E4DC', heroInk: '#183432', accent: '#6FC6B6', accentInk: '#0F2B27', card: '#FFFFFF', chipBg: 'rgba(111,198,182,0.18)', chipInk: '#2B6A5F', track: 'rgba(24,52,50,0.08)', ok: '#4FA694', okBg: 'rgba(79,166,148,0.14)', warn: '#C68C82', warnBg: 'rgba(198,140,130,0.16)' },
+        { name: 'Biru Beku', note: 'Ледяной голубой и графит', bg: '#F5F7FB', bar: '#FFFFFF', line: 'rgba(32,38,54,0.1)', barInk: '#202636', ink: '#202636', muted: '#8E96A8', hero: '#2C3A52', heroInk: '#E9F1F8', accent: '#A9CFEA', accentInk: '#1B2434', card: '#FFFFFF', chipBg: 'rgba(169,207,234,0.24)', chipInk: '#33556E', track: 'rgba(32,38,54,0.08)', ok: '#6D9E93', okBg: 'rgba(109,158,147,0.14)', warn: '#BE8A88', warnBg: 'rgba(190,138,136,0.16)' }
+      ]
+    },
+    {
+      title: 'Нежные зелёные',
+      note: 'как второй пример: шалфей, эвкалипт, оливковый на кремовом',
+      items: [
+        { name: 'Sage', note: 'Шалфей и кремовый', bg: '#F6F7F1', bar: '#FFFFFF', line: 'rgba(40,50,40,0.1)', barInk: '#283228', ink: '#283228', muted: '#959C8E', hero: '#C3D2BE', heroInk: '#283228', accent: '#8FA987', accentInk: '#232B20', card: '#FFFFFF', chipBg: 'rgba(143,169,135,0.2)', chipInk: '#4E6247', track: 'rgba(40,50,40,0.08)', ok: '#6E9370', okBg: 'rgba(110,147,112,0.16)', warn: '#C0908A', warnBg: 'rgba(192,144,138,0.16)' },
+        { name: 'Eukaliptus', note: 'Эвкалипт и тёплый белый', bg: '#F4F8F5', bar: '#FFFFFF', line: 'rgba(30,46,40,0.1)', barInk: '#1E2E28', ink: '#1E2E28', muted: '#8CA096', hero: '#3D5A4C', heroInk: '#EDF4EF', accent: '#B7D8C4', accentInk: '#22392E', card: '#FFFFFF', chipBg: 'rgba(183,216,196,0.26)', chipInk: '#365648', track: 'rgba(30,46,40,0.08)', ok: '#5C9679', okBg: 'rgba(92,150,121,0.14)', warn: '#C08C86', warnBg: 'rgba(192,140,134,0.16)' },
+        { name: 'Zaitun Muda', note: 'Светлая олива и льняной', bg: '#F8F7EF', bar: '#FFFFFF', line: 'rgba(46,48,34,0.1)', barInk: '#2E3022', ink: '#2E3022', muted: '#9A9C86', hero: '#CBCFAF', heroInk: '#2E3022', accent: '#A3AC79', accentInk: '#22240F', card: '#FFFFFF', chipBg: 'rgba(163,172,121,0.22)', chipInk: '#5B6136', track: 'rgba(46,48,34,0.08)', ok: '#7C9660', okBg: 'rgba(124,150,96,0.16)', warn: '#C0918A', warnBg: 'rgba(192,145,138,0.16)' },
+        { name: 'Pistachio', note: 'Пастельный фисташковый', bg: '#F7FAF2', bar: '#FFFFFF', line: 'rgba(36,48,32,0.1)', barInk: '#243020', ink: '#243020', muted: '#93A18B', hero: '#D3E6BE', heroInk: '#243020', accent: '#9CC97E', accentInk: '#1E2C14', card: '#FFFFFF', chipBg: 'rgba(156,201,126,0.22)', chipInk: '#4C6B36', track: 'rgba(36,48,32,0.08)', ok: '#6DA765', okBg: 'rgba(109,167,101,0.16)', warn: '#C48E85', warnBg: 'rgba(196,142,133,0.16)' }
+      ]
+    },
+    {
+      title: 'Нежные розовые',
+      note: 'пудра и румяна, спокойно и без сладости',
+      items: [
+        { name: 'Bedak', note: 'Пудровый розовый и белый', bg: '#FCF6F5', bar: '#FFFFFF', line: 'rgba(52,38,38,0.1)', barInk: '#342626', ink: '#342626', muted: '#A79694', hero: '#F0D4D2', heroInk: '#342626', accent: '#D89A98', accentInk: '#3A2321', card: '#FFFFFF', chipBg: 'rgba(216,154,152,0.2)', chipInk: '#8C504E', track: 'rgba(52,38,38,0.08)', ok: '#7BA08F', okBg: 'rgba(123,160,143,0.16)', warn: '#C87E7A', warnBg: 'rgba(200,126,122,0.14)' },
+        { name: 'Peach', note: 'Персиковый и сливочный', bg: '#FDF7F2', bar: '#FFFFFF', line: 'rgba(54,40,32,0.1)', barInk: '#362820', ink: '#362820', muted: '#A9968B', hero: '#F7D9C2', heroInk: '#362820', accent: '#E9A97E', accentInk: '#33200F', card: '#FFFFFF', chipBg: 'rgba(233,169,126,0.22)', chipInk: '#8A5528', track: 'rgba(54,40,32,0.08)', ok: '#7FA290', okBg: 'rgba(127,162,144,0.16)', warn: '#CB8071', warnBg: 'rgba(203,128,113,0.14)' },
+        { name: 'Rose & Sage', note: 'Роза с шалфеем — мягкая пара', bg: '#FAF7F5', bar: '#FFFFFF', line: 'rgba(44,42,38,0.1)', barInk: '#2C2A26', ink: '#2C2A26', muted: '#9E9891', hero: '#A9BCA5', heroInk: '#20291F', accent: '#E3B3AE', accentInk: '#3A2523', card: '#FFFFFF', chipBg: 'rgba(227,179,174,0.24)', chipInk: '#8A574F', track: 'rgba(44,42,38,0.08)', ok: '#6E9179', okBg: 'rgba(110,145,121,0.16)', warn: '#C7847E', warnBg: 'rgba(199,132,126,0.14)' },
+        { name: 'Mawar Abu', note: 'Пыльная роза и тёплый серый', bg: '#F8F5F5', bar: '#FFFFFF', line: 'rgba(42,38,40,0.1)', barInk: '#2A2628', ink: '#2A2628', muted: '#9C9294', hero: '#4A3D42', heroInk: '#F6EDED', accent: '#DDAEB4', accentInk: '#33262A', card: '#FFFFFF', chipBg: 'rgba(221,174,180,0.24)', chipInk: '#7C4E56', track: 'rgba(42,38,40,0.08)', ok: '#77998C', okBg: 'rgba(119,153,140,0.16)', warn: '#C58085', warnBg: 'rgba(197,128,133,0.14)' }
+      ]
+    },
+    {
+      title: 'Лаванда и сирень',
+      note: 'холодная пастель, чуть более современная',
+      items: [
+        { name: 'Lavender', note: 'Лаванда и белый', bg: '#F8F7FC', bar: '#FFFFFF', line: 'rgba(40,36,54,0.1)', barInk: '#282436', ink: '#282436', muted: '#9A94A8', hero: '#D8D3EE', heroInk: '#282436', accent: '#A79BD6', accentInk: '#241E38', card: '#FFFFFF', chipBg: 'rgba(167,155,214,0.2)', chipInk: '#554A82', track: 'rgba(40,36,54,0.08)', ok: '#6E9B8E', okBg: 'rgba(110,155,142,0.14)', warn: '#C08A96', warnBg: 'rgba(192,138,150,0.16)' },
+        { name: 'Lilac & Mint', note: 'Сирень и мята', bg: '#F7F9FA', bar: '#FFFFFF', line: 'rgba(36,40,50,0.1)', barInk: '#242832', ink: '#242832', muted: '#95999F', hero: '#C9C4E4', heroInk: '#242832', accent: '#9BD5C4', accentInk: '#183530', card: '#FFFFFF', chipBg: 'rgba(155,213,196,0.24)', chipInk: '#2F6659', track: 'rgba(36,40,50,0.08)', ok: '#5FA694', okBg: 'rgba(95,166,148,0.15)', warn: '#BE8A9A', warnBg: 'rgba(190,138,154,0.16)' },
+        { name: 'Wisteria', note: 'Глициния и тёплый песочный', bg: '#FAF8F6', bar: '#FFFFFF', line: 'rgba(44,40,46,0.1)', barInk: '#2C282E', ink: '#2C282E', muted: '#9C9599', hero: '#BDB1D4', heroInk: '#2C282E', accent: '#E8D3B4', accentInk: '#3A2E1C', card: '#FFFFFF', chipBg: 'rgba(189,177,212,0.26)', chipInk: '#584B72', track: 'rgba(44,40,46,0.08)', ok: '#7A9B8B', okBg: 'rgba(122,155,139,0.16)', warn: '#C48D91', warnBg: 'rgba(196,141,145,0.16)' },
+        { name: 'Ungu Kabut', note: 'Туманный фиолетовый, тёмная база', bg: '#F7F6FA', bar: '#FFFFFF', line: 'rgba(36,32,48,0.1)', barInk: '#242030', ink: '#242030', muted: '#928DA0', hero: '#3B3450', heroInk: '#EFEDF7', accent: '#C4B8E8', accentInk: '#241E38', card: '#FFFFFF', chipBg: 'rgba(196,184,232,0.26)', chipInk: '#4A3F74', track: 'rgba(36,32,48,0.08)', ok: '#6D9A92', okBg: 'rgba(109,154,146,0.14)', warn: '#BE8896', warnBg: 'rgba(190,136,150,0.16)' }
+      ]
+    },
+    {
+      title: 'Смешанные пастельные',
+      note: 'две пастели в паре — самые характерные варианты',
+      items: [
+        { name: 'Biru & Peach', note: 'Голубой и персиковый', bg: '#F8FAFB', bar: '#FFFFFF', line: 'rgba(34,44,50,0.1)', barInk: '#222C32', ink: '#222C32', muted: '#94A0A6', hero: '#BFDCE8', heroInk: '#222C32', accent: '#F0B392', accentInk: '#3A2114', card: '#FFFFFF', chipBg: 'rgba(240,179,146,0.24)', chipInk: '#8C5330', track: 'rgba(34,44,50,0.08)', ok: '#5F9E92', okBg: 'rgba(95,158,146,0.14)', warn: '#C98A7C', warnBg: 'rgba(201,138,124,0.15)' },
+        { name: 'Mint & Rose', note: 'Мята и роза', bg: '#F7FAF8', bar: '#FFFFFF', line: 'rgba(32,44,40,0.1)', barInk: '#202C28', ink: '#202C28', muted: '#8F9E98', hero: '#B9E0D2', heroInk: '#1B2E28', accent: '#EEB6BC', accentInk: '#3B2226', card: '#FFFFFF', chipBg: 'rgba(238,182,188,0.26)', chipInk: '#8A4E56', track: 'rgba(32,44,40,0.08)', ok: '#4FA48F', okBg: 'rgba(79,164,143,0.14)', warn: '#C97F88', warnBg: 'rgba(201,127,136,0.14)' },
+        { name: 'Sage & Krem', note: 'Шалфей и крем, тёмная база', bg: '#F7F7F2', bar: '#FFFFFF', line: 'rgba(40,46,40,0.1)', barInk: '#282E28', ink: '#282E28', muted: '#959A8F', hero: '#37453A', heroInk: '#EFF3EC', accent: '#E4E0C8', accentInk: '#2C3025', card: '#FFFFFF', chipBg: 'rgba(160,182,158,0.24)', chipInk: '#43563F', track: 'rgba(40,46,40,0.08)', ok: '#66906F', okBg: 'rgba(102,144,111,0.15)', warn: '#BE8F87', warnBg: 'rgba(190,143,135,0.16)' },
+        { name: 'Kuning Pucat', note: 'Бледно-жёлтый и голубой', bg: '#FBFAF3', bar: '#FFFFFF', line: 'rgba(46,46,36,0.1)', barInk: '#2E2E24', ink: '#2E2E24', muted: '#9B9B8C', hero: '#F2E7BC', heroInk: '#2E2E24', accent: '#96C4D8', accentInk: '#12303B', card: '#FFFFFF', chipBg: 'rgba(150,196,216,0.26)', chipInk: '#2F5F72', track: 'rgba(46,46,36,0.08)', ok: '#6D9C88', okBg: 'rgba(109,156,136,0.15)', warn: '#C4907F', warnBg: 'rgba(196,144,127,0.15)' }
+      ]
+    }
+  ];
+
+  renderVals() {
+    let n = 0;
+    return {
+      groups: this.G.map(g => ({
+        title: g.title, note: g.note,
+        items: g.items.map(p => {
+          n += 1;
+          return Object.assign({}, p, {
+            num: (n < 10 ? '0' : '') + n,
+            swatches: [p.hero, p.accent, p.bg, p.ok, p.warn]
+          });
+        })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./fl-theme.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<script src="./fl-lang.js"></script>
+<style>
+  body { margin: 0; background: #E7EDF7; -webkit-font-smoothing: antialiased; }
+  a { color: #1B4FB8; text-decoration: none; }
+  a:hover { color: #E05B4F; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #E7EDF7; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #0F1F3D; padding: 30px 20px 70px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+
+  <div style="width: 100%; max-width: 680px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+    <div style="display: flex; align-items: center; gap: 13px;">
+      <div style="flex: none; width: 46px; height: 46px; border-radius: 14px; background: #0F1F3D; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px -10px rgba(15,31,61,0.7);">
+        <div style="width: 24px; height: 24px; border-radius: 99px; background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+          <div style="width: 11px; height: 11px; border-radius: 99px; background: #E0703F;"></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #7C8BA6;">Foodlab Academy · обучение</div>
+        <div style="font-size: 19px; font-weight: 800; letter-spacing: -0.02em;">Стандарты работы: три SOP</div>
+      </div>
+    </div>
+    <div style="flex: none; display: flex; gap: 7px; flex-wrap: wrap;">
+      <a href="%D0%90%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D0%B8%D1%8F.dc.html" style="min-height: 40px; padding: 10px 14px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600;">← Личный кабинет</a>
+      <a href="%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%97%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA%D0%B8.dc.html" style="min-height: 40px; padding: 10px 15px; border: 1.5px solid rgba(44,107,230,0.35); border-radius: 11px; background: #FFFFFF; font-size: 13px; font-weight: 700;">К тестированию →</a>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 680px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 9px;">
+    <div style="font-size: 14.5px; font-weight: 700;">Как читать</div>
+    <div style="font-size: 13.5px; color: #5A6B87; line-height: 1.55; text-wrap: pretty;">Три процедуры: кнопка готовности заказа в Runchise, работа со стоп-листом (Out of Stock) и списание продукта (Write Off). Названия кнопок и сообщений оставлены как в системе — в Runchise и в чатах они пишутся именно так. Вопросы по этим SOP есть в тестировании.</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 7px; padding-top: 3px;">
+      <a href="#sop02" style="min-height: 36px; padding: 8px 13px; border-radius: 9px; background: #F0F4FC; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600;">SOP 02 · Makanan Sudah Siap</a>
+      <a href="#sop04" style="min-height: 36px; padding: 8px 13px; border-radius: 9px; background: #F0F4FC; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600;">SOP 04 · Out of Stock</a>
+      <a href="#sop01" style="min-height: 36px; padding: 8px 13px; border-radius: 9px; background: #F0F4FC; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600;">SOP 01 · Write Off</a>
+    </div>
+  </div>
+
+  <div id="sop02" style="width: 100%; max-width: 680px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; overflow: hidden; box-shadow: 0 14px 30px -24px rgba(15,31,61,0.4);">
+    <div style="padding: 18px 20px; background: #E9F0FE; display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #1B4FB8;">SOP 02</div>
+      <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.3;">Нажатие кнопки «Makanan Sudah Siap» в Runchise</div>
+      <div style="font-size: 13px; color: #5A6B87; line-height: 1.5;">Цель: точная фиксация времени подготовки заказа и контроль скорости обслуживания.</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5A6B87; padding-top: 4px;">Ответственные: Cook · Sous Chef · Кассир</div>
+    </div>
+
+    <div style="padding: 19px 20px; display: flex; flex-direction: column; gap: 17px;">
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">1</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Заказы Gojek</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Кнопка «Makanan Sudah Siap» нажимается сразу после того, как заказ действительно готов и собран к передаче.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">2</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Заказы Grab</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Кнопку «Makanan Sudah Siap» нужно нажать до того, как сотрудник покажет PIN заказа приехавшему водителю. После того как PIN передан водителю, кнопка исчезает, и заказ больше не попадает в статистику времени подготовки.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #E05B4F; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">3</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Запрет на нарушение процедуры</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Запрещено показывать PIN водителю Grab до нажатия кнопки «Makanan Sudah Siap».</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">4</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Контроль времени подготовки</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Sous Chef и кассир каждый день следят за правильным использованием кнопки «Makanan Sudah Siap» и разбирают каждое нарушение процедуры.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; padding: 3px 0;">
+        <img src="img/sop02-runchise-order.png" alt="Экран заказа в Runchise с кнопкой «Makanan sudah siap»" style="flex: none; width: 200px; max-width: 100%; border-radius: 12px; border: 1px solid rgba(15,31,61,0.12); display: block;" />
+        <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 7px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Рисунок 1</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Экран заказа: номер заказа сверху, состав в «Produk yang dipesan», комментарий гостя в «Catatan Pesanan». Внизу две кнопки — оранжевая «Makanan sudah siap» нажимается, когда заказ готов и собран. Красная «Tidak pesanan» — отказ от заказа, её сотрудник кухни не нажимает.</div>
+        </div>
+      </div>
+
+      <div style="border-radius: 13px; background: #FDECEA; border: 1px solid rgba(224,91,79,0.3); padding: 14px 15px; display: flex; flex-direction: column; gap: 7px;">
+        <div style="font-size: 13.5px; font-weight: 700; color: #C0392B;">Нарушения</div>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Не нажать «Makanan Sudah Siap» на заказе Gojek после того, как заказ готов.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Показать PIN водителю Grab до нажатия «Makanan Sudah Siap».</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Передать неполный заказ гостю или водителю.</div>
+        </div>
+      </div>
+
+      <div style="border-radius: 13px; background: #FFF8E6; border: 1px solid rgba(196,146,20,0.32); padding: 14px 15px; display: flex; flex-direction: column; gap: 5px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A6A00;">Важно</div>
+        <div style="font-size: 13px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Для заказов Grab кнопка «Makanan Sudah Siap» всегда нажимается до передачи PIN водителю. После передачи PIN кнопка исчезает, и данные о времени подготовки заказа в статистику уже не попадают.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sop04" style="width: 100%; max-width: 680px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; overflow: hidden; box-shadow: 0 14px 30px -24px rgba(15,31,61,0.4);">
+    <div style="padding: 18px 20px; background: #E9F0FE; display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #1B4FB8;">SOP 04</div>
+      <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.3;">Работа с позициями Out of Stock</div>
+      <div style="font-size: 13px; color: #5A6B87; line-height: 1.5;">Цель: команда вовремя знает о наличии сырья, а меню во всех точках соответствует реальности.</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5A6B87; padding-top: 4px;">Ответственные: Line Cook · Sous Chef · Кассир</div>
+    </div>
+
+    <div style="padding: 19px 20px; display: flex; flex-direction: column; gap: 17px;">
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">1</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Продукт закончился</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Сотрудник сразу отправляет информацию в группу Telegram General. В сообщении:</div>
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-left: 2px;">
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— название продукта;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— время, когда продукт закончился;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— ориентировочное время, когда продукт снова будет;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— упоминание Sous Chef и Purchasing.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">2</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Закрытие позиций</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">После сообщения все блюда с этим продуктом переводятся в Out of Stock:</div>
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-left: 2px;">
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— во всех точках;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— во всех блюдах, где используется продукт;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— в меню Create Your Plate.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">3</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Продукт снова в наличии</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Как только продукт появился на кухне, сотрудник сразу пишет в группу Telegram General: название продукта и время, когда его получили или доготовили.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">4</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Открытие позиций обратно</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">После сообщения открываются все ранее закрытые позиции: во всех точках, во всех блюдах с этим продуктом и в Create Your Plate. Позиции открываются сразу, как продукт появился.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">5</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Проверка меню в начале смены</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">В начале каждой смены Sous Chef и кассир, а в ночную смену Line Cook, проверяют корректность меню в Runchise:</div>
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-left: 2px;">
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— всё, что есть в наличии, продаётся;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— все блюда, которые можно приготовить, активны;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— закончившиеся продукты стоят в статусе Out of Stock;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— вернувшиеся продукты открыты для продажи.</div>
+          </div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Если всё в наличии и все блюда активны, в группу General отправляется сообщение «All food available» — оно значит, что меню проверено и совпадает с реальной кухней.</div>
+        </div>
+      </div>
+
+      <div style="border-radius: 13px; background: #FDECEA; border: 1px solid rgba(224,91,79,0.3); padding: 14px 15px; display: flex; flex-direction: column; gap: 7px;">
+        <div style="font-size: 13.5px; font-weight: 700; color: #C0392B;">Нарушения</div>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Не написать в группу General, когда продукт закончился.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Закрыть только часть блюд с этим продуктом.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Не открыть блюда обратно, когда продукт появился.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Оставить блюда активными, когда продукта нет.</div>
+        </div>
+      </div>
+
+      <div style="border-radius: 13px; background: #F0F4FC; padding: 14px 15px; display: flex; flex-direction: column; gap: 7px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #1B4FB8;">KPI</div>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">На каждый закончившийся продукт — сообщение в группу General.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">На каждый вернувшийся продукт — сообщение в группу General.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Позиции закрываются и открываются одновременно во всех точках.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Время между появлением продукта и открытием позиции — минимальное.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Каждая смена начинается сообщением «All food available» или сообщением о позициях в Out of Stock.</div>
+        </div>
+      </div>
+
+      <div style="border-radius: 13px; background: #FFF8E6; border: 1px solid rgba(196,146,20,0.32); padding: 14px 15px; display: flex; flex-direction: column; gap: 6px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A6A00;">Важно</div>
+        <div style="font-size: 13px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Продукт закончился: сначала сообщение в группу General, потом закрытие позиций в Runchise.</div>
+        <div style="font-size: 13px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Продукт вернулся: сначала сообщение в группу General, потом открытие всех связанных позиций.</div>
+        <div style="font-size: 13px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Отсутствие сообщения «All food available» или информации об Out of Stock в начале смены считается непроведённой проверкой меню.</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sop01" style="width: 100%; max-width: 680px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; overflow: hidden; box-shadow: 0 14px 30px -24px rgba(15,31,61,0.4);">
+    <div style="padding: 18px 20px; background: #E9F0FE; display: flex; flex-direction: column; gap: 4px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #1B4FB8;">SOP 01</div>
+      <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.3;">Списание продукта (Write Off Procedure)</div>
+      <div style="font-size: 13px; color: #5A6B87; line-height: 1.5;">Цель: точный учёт сырья и контроль потерь и перерасхода продукта.</div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #5A6B87; padding-top: 4px;">Ответственные: Sous Chef · Cook / Line Cook · Purchasing</div>
+    </div>
+
+    <div style="padding: 19px 20px; display: flex; flex-direction: column; gap: 17px;">
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">1</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Что списывается</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Списывается продукт испорченный, просроченный, непригодный к использованию, а также использованный на trial menu, тестирование или staff meal.</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Не списываются обрезки и очистки (trimming).</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">2</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Фото для списания</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Line Cook обязан:</div>
+          <div style="display: flex; flex-direction: column; gap: 3px; padding-left: 2px;">
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— положить продукт на весы;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— сфотографировать продукт так, чтобы вес был хорошо виден;</div>
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5;">— отправить фото в группу Write Off.</div>
+          </div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">После отправки фото ответственность Line Cook в процессе write off считается выполненной.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; padding: 3px 0;">
+        <img src="img/sop01-writeoff-photos.png" alt="Группа Write Off: фото продукта на весах" style="flex: none; width: 190px; max-width: 100%; border-radius: 12px; border: 1px solid rgba(15,31,61,0.12); display: block;" />
+        <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 7px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Рисунок 2 · группа Write Off</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Так выглядит правильное фото: продукт лежит на весах, цифра веса читается, рядом в сообщении точка и подпись — «Spoiled green bean 45gr», «Omega egg 3 pcs broken». Из фото и подписи видно что списано, сколько и почему.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">3</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Заполнение отчёта</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Sous Chef заполняет Write Off Report один раз за смену по фотографиям и по фактически списанному продукту. В отчёте указываются название продукта, количество или вес, причина списания.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; padding: 3px 0;">
+        <img src="img/sop01-writeoff-report.png" alt="Заполненный Write Off Report в группе Daily Report" style="flex: none; width: 190px; max-width: 100%; border-radius: 12px; border: 1px solid rgba(15,31,61,0.12); display: block;" />
+        <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 7px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Рисунок 3 · группа Daily Report</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Заполненный Write Off Report: строка на каждый продукт с количеством и причиной, отправляется в группу Daily Report с датой смены.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">4</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Внесение данных в Runchise</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Purchasing вносит все данные write off в систему Runchise один раз в неделю по отчётам от Sous Chef. Данные за неделю должны быть внесены не позднее конца рабочего дня в воскресенье.</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Purchasing отвечает за то, чтобы данные в Runchise совпадали с отчётами write off от Sous Chef.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">5</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Отправка отчёта</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Заполненный Write Off Report отправляется в группу Daily Report.</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 13px;">
+        <div style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">6</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 14.5px; font-weight: 700;">Завершение списания</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.55; text-wrap: pretty;">Продукт выбрасывается или уничтожается только после того, как он занесён в Write Off Report.</div>
+        </div>
+      </div>
+
+      <div style="border-radius: 13px; background: #FDECEA; border: 1px solid rgba(224,91,79,0.3); padding: 14px 15px; display: flex; flex-direction: column; gap: 7px;">
+        <div style="font-size: 13.5px; font-weight: 700; color: #C0392B;">Запрещено</div>
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Выбрасывать продукт без правильного процесса write off.</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Оформлять списание задним числом (backdate).</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5;">Скрывать порчу, потерю или перерасход продукта.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%97%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA%D0%B8.dc.html" style="width: 100%; max-width: 680px; min-height: 54px; padding: 16px 20px; border-radius: 14px; background: #2C6BE6; color: #FFFFFF; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center;">Пройти тестирование по стандартам →</a>
+
+</div>
+</x-dc>
+</body>
+</html>

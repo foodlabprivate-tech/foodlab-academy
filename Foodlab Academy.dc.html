@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #FAF5EC; -webkit-font-smoothing: antialiased; }
+  a { color: #1F4A3C; text-decoration: none; }
+  a:hover { color: #C4643C; }
+  * { box-sizing: border-box; }
+  input, select, button, textarea { font-family: inherit; }
+  @keyframes fl-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @keyframes fl-fade { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #FAF5EC; color: #1B2A26; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif;">
+
+<sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+<div style="min-height: 100vh; display: grid; grid-template-columns: 1.05fr 1fr;">
+  <div style="background: #15342B; color: #F3EADA; padding: 56px 56px 40px; display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="width: 34px; height: 34px; border-radius: 9px; background: #E0A33E;"></div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: #E7DCC7;">Foodlab Academy</div>
+    </div>
+    <div style="max-width: 460px; display: flex; flex-direction: column; gap: 22px;">
+      <div style="font-size: 46px; line-height: 1.06; font-weight: 800; letter-spacing: -0.02em; text-wrap: pretty;">Обучение для новой смены — от знакомства с кухней до первого заказа.</div>
+      <div style="font-size: 16px; line-height: 1.6; color: #C8BFAE; text-wrap: pretty;">Видео, рецепты с граммовкой и тест после каждого шага. Следующий шаг открывается, когда предыдущий сдан.</div>
+      <div style="display: flex; gap: 28px; padding-top: 8px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 26px; font-weight: 700;">2</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #A79C89;">точки: Чангу, Улувату</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 26px; font-weight: 700;">{{ lessonCount }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #A79C89;">шагов обучения</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #6F6858; letter-spacing: 0.06em;">PT Foodlab · Canggu · Uluwatu</div>
+  </div>
+
+  <div style="display: flex; align-items: center; justify-content: center; padding: 48px 40px;">
+    <div style="width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 22px; animation: fl-up 0.4s ease both;">
+
+      <sc-if value="{{ stageForm }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 22px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 28px; font-weight: 700; letter-spacing: -0.015em;">Вход по рабочей почте</div>
+          <div style="font-size: 15px; line-height: 1.55; color: #6B7A74;">Пришлём ссылку для входа. Пароль не нужен.</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A968F;">Email</div>
+          <input type="email" placeholder="name@foodlab.id" value="{{ email }}" onChange="{{ onEmail }}" onKeyDown="{{ onEmailKey }}" style="padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(27,42,38,0.16); background: #FFFDF8; font-size: 16px; color: #1B2A26; outline: none;" style-focus="border-color: #1F4A3C; box-shadow: 0 0 0 3px rgba(31,74,60,0.1);" />
+          <sc-if value="{{ emailError }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: 13px; color: #C4643C;">{{ emailError }}</div>
+          </sc-if>
+        </div>
+        <button onClick="{{ sendLink }}" style="padding: 15px 20px; border: none; border-radius: 12px; background: #15342B; color: #F7F1E4; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.18s ease;" style-hover="background: #1F4A3C;">Получить ссылку для входа</button>
+        <div style="border-top: 1px solid rgba(27,42,38,0.1); padding-top: 16px; font-size: 13px; line-height: 1.55; color: #8A968F;">Доступ выдаёт шеф-повар. Если почты нет в списке сотрудников, вход не сработает.</div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ stageSent }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 20px; animation: fl-up 0.35s ease both;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #E0A33E; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #15342B; font-weight: 700;">✓</div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 26px; font-weight: 700; letter-spacing: -0.015em;">Письмо отправлено</div>
+          <div style="font-size: 15px; line-height: 1.55; color: #6B7A74;">Ссылка ушла на {{ email }}. Она действует 15 минут.</div>
+        </div>
+        <div style="border: 1px solid rgba(27,42,38,0.14); border-radius: 14px; background: #FFFDF8; padding: 18px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #A0AAA4;">Так выглядит письмо</div>
+          <div style="font-size: 15px; font-weight: 600;">Ваш вход в Foodlab Academy</div>
+          <div style="font-size: 14px; line-height: 1.5; color: #6B7A74;">Нажмите кнопку ниже, чтобы продолжить обучение.</div>
+          <button onClick="{{ openLink }}" style="align-self: flex-start; padding: 11px 18px; border: none; border-radius: 10px; background: #C4643C; color: #FFF8EE; font-size: 14px; font-weight: 600; cursor: pointer;" style-hover="background: #A9522F;">Открыть ссылку</button>
+        </div>
+        <button onClick="{{ backToForm }}" style="align-self: flex-start; background: none; border: none; padding: 0; font-size: 14px; color: #6B7A74; cursor: pointer; text-decoration: underline;">Изменить почту</button>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ stageRole }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 18px; animation: fl-up 0.35s ease both;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 26px; font-weight: 700; letter-spacing: -0.015em;">Ваша должность</div>
+          <div style="font-size: 14px; line-height: 1.55; color: #6B7A74;">В работе роль назначает шеф-повар. Здесь выберите её сами, чтобы посмотреть прототип.</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <sc-for list="{{ roleCards }}" as="r" hint-placeholder-count="4">
+          <button onClick="{{ r.onPick }}" disabled="{{ r.disabled }}" style="text-align: left; padding: 16px; border-radius: 13px; border: 1px solid rgba(27,42,38,0.14); background: #FFFDF8; cursor: pointer; display: flex; flex-direction: column; gap: 6px; opacity: {{ r.opacity }};" style-hover="border-color: #1F4A3C;">
+            <div style="font-size: 15px; font-weight: 700; color: #1B2A26;">{{ r.name }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #96A09A;">{{ r.note }}</div>
+          </button>
+          </sc-for>
+        </div>
+        <button onClick="{{ enterAdmin }}" style="align-self: flex-start; background: none; border: none; padding: 0; font-size: 14px; color: #1F4A3C; cursor: pointer; text-decoration: underline;">Войти как шеф-повар (панель управления)</button>
+      </div>
+      </sc-if>
+
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApp }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; min-height: 100vh;">
+
+  <div style="position: sticky; top: 0; z-index: 20; background: rgba(250,245,236,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(27,42,38,0.1);">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 14px 28px; display: flex; align-items: center; gap: 22px;">
+      <div onClick="{{ goHome }}" style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+        <div style="width: 26px; height: 26px; border-radius: 7px; background: #E0A33E;"></div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #1B2A26;">Foodlab Academy</div>
+      </div>
+      <div style="display: flex; gap: 4px; margin-left: 10px;">
+        <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="4">
+        <button onClick="{{ n.onClick }}" style="padding: 8px 14px; border: none; border-radius: 9px; background: {{ n.bg }}; color: {{ n.color }}; font-size: 14px; font-weight: 600; cursor: pointer;" style-hover="background: rgba(27,42,38,0.07);">{{ n.label }}</button>
+        </sc-for>
+      </div>
+      <div style="flex: 1;"></div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="padding: 6px 11px; border-radius: 99px; background: rgba(46,125,111,0.12); color: #1F4A3C; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">{{ role }}</div>
+        <div style="font-size: 13px; color: #6B7A74;">{{ email }}</div>
+        <button onClick="{{ logout }}" style="background: none; border: 1px solid rgba(27,42,38,0.16); border-radius: 9px; padding: 7px 12px; font-size: 13px; color: #1B2A26; cursor: pointer;" style-hover="border-color: #C4643C; color: #C4643C;">Выйти</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex: 1; max-width: 1180px; width: 100%; margin: 0 auto; padding: 34px 28px 72px;">
+
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; flex-direction: column; gap: 30px; animation: fl-fade 0.3s ease both;">
+      <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: stretch;">
+        <div style="background: #15342B; color: #F3EADA; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #A79C89;">Программа · {{ role }}</div>
+          <div style="font-size: 34px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; text-wrap: pretty;">{{ nextTitle }}</div>
+          <div style="font-size: 15px; line-height: 1.6; color: #C8BFAE; max-width: 420px; text-wrap: pretty;">{{ nextDesc }}</div>
+          <div style="display: flex; align-items: center; gap: 14px; margin-top: 6px;">
+            <button onClick="{{ continueCourse }}" style="padding: 14px 22px; border: none; border-radius: 12px; background: #E0A33E; color: #15342B; font-size: 15px; font-weight: 700; cursor: pointer;" style-hover="background: #EFB44F;">{{ continueLabel }}</button>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A79C89;">{{ nextMeta }}</div>
+          </div>
+        </div>
+        <div style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 20px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #96A09A;">Прогресс</div>
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <div style="font-size: 52px; font-weight: 800; letter-spacing: -0.03em; color: #15342B;">{{ progressPct }}</div>
+            <div style="font-size: 20px; font-weight: 600; color: #96A09A;">%</div>
+          </div>
+          <div style="height: 8px; border-radius: 99px; background: rgba(27,42,38,0.08); overflow: hidden;">
+            <div style="height: 100%; width: {{ progressBar }}; background: #2E7D6F; border-radius: 99px; transition: width 0.5s ease;"></div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; border-top: 1px solid rgba(27,42,38,0.1); padding-top: 16px;">
+            <div style="display: flex; justify-content: space-between; font-size: 14px;"><span style="color: #6B7A74;">Шагов сдано</span><span style="font-weight: 700;">{{ doneCount }} из {{ lessonCount }}</span></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px;"><span style="color: #6B7A74;">Средний балл</span><span style="font-weight: 700;">{{ avgScore }}</span></div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px;"><span style="color: #6B7A74;">Проходной балл</span><span style="font-weight: 700;">{{ passLabel }}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; align-items: baseline; justify-content: space-between;">
+          <div style="font-size: 20px; font-weight: 700; letter-spacing: -0.01em;">Шаги обучения</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #96A09A;">следующий открывается после теста</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+          <div onClick="{{ s.onClick }}" style="display: grid; grid-template-columns: 52px 1fr auto; gap: 18px; align-items: center; padding: 18px 20px; border-radius: 16px; background: {{ s.bg }}; border: 1px solid {{ s.border }}; cursor: {{ s.cursor }}; opacity: {{ s.opacity }}; transition: transform 0.15s ease;" style-hover="transform: translateX(3px);">
+            <div style="width: 40px; height: 40px; border-radius: 11px; background: {{ s.badgeBg }}; color: {{ s.badgeColor }}; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px;">{{ s.badge }}</div>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-size: 16px; font-weight: 700; color: #1B2A26;">{{ s.title }}</div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: #8A968F;">{{ s.meta }}</div>
+            </div>
+            <div style="padding: 7px 13px; border-radius: 99px; background: {{ s.pillBg }}; color: {{ s.pillColor }}; font-size: 12px; font-weight: 600;">{{ s.status }}</div>
+          </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isLesson }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 26px; animation: fl-fade 0.3s ease both;">
+      <button onClick="{{ goHome }}" style="align-self: flex-start; background: none; border: none; padding: 0; font-size: 14px; color: #6B7A74; cursor: pointer;" style-hover="color: #C4643C;">← К шагам обучения</button>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #96A09A;">Шаг {{ lessonNum }} · {{ lessonDur }}</div>
+        <div style="font-size: 36px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; max-width: 760px; text-wrap: pretty;">{{ lessonTitle }}</div>
+        <div style="font-size: 16px; line-height: 1.65; color: #58665F; max-width: 700px; text-wrap: pretty;">{{ lessonDesc }}</div>
+      </div>
+
+      <div onContextMenu="{{ blockMenu }}" style="position: relative; border-radius: 18px; overflow: hidden; background: #15342B; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; inset: 0; background: repeating-linear-gradient(135deg, rgba(255,255,255,0.045) 0 12px, transparent 12px 24px);"></div>
+        <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding: 24px;">
+          <div style="width: 62px; height: 62px; border-radius: 99px; background: #E0A33E; display: flex; align-items: center; justify-content: center; color: #15342B; font-size: 22px;">▶</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #C8BFAE;">видео с вашего YouTube (доступ по ссылке)</div>
+          <div style="font-size: 15px; color: #F3EADA; font-weight: 600;">{{ lessonVideo }}</div>
+        </div>
+        <div style="position: absolute; right: 14px; bottom: 12px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(243,234,218,0.45);">{{ watermark }}</div>
+      </div>
+
+      <sc-if value="{{ hasRecipes }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-size: 20px; font-weight: 700; letter-spacing: -0.01em;">Рецепты этого шага</div>
+        <sc-for list="{{ recipes }}" as="rc" hint-placeholder-count="2">
+        <div style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: 280px 1fr;">
+          <div onContextMenu="{{ blockMenu }}" style="position: relative; background: #EFE6D4; min-height: 240px; display: flex; align-items: center; justify-content: center;">
+            <div style="position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(27,42,38,0.05) 0 10px, transparent 10px 20px);"></div>
+            <div style="position: relative; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7C8A83; text-align: center; padding: 16px;">фото блюда<br />{{ rc.photoNote }}</div>
+            <div style="position: absolute; left: 12px; bottom: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: rgba(27,42,38,0.32);">{{ watermark }}</div>
+          </div>
+          <div style="padding: 26px 28px; display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;">
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <div style="font-size: 22px; font-weight: 700; letter-spacing: -0.015em;">{{ rc.name }}</div>
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #8A968F;">{{ rc.yield }}</div>
+              </div>
+              <button onClick="{{ printPage }}" style="padding: 9px 14px; border: 1px solid rgba(27,42,38,0.16); border-radius: 10px; background: none; font-size: 13px; font-weight: 600; color: #1B2A26; cursor: pointer; white-space: nowrap;" style-hover="border-color: #1F4A3C;">Печать рецепта</button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 26px;">
+              <div style="display: flex; flex-direction: column; gap: 9px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #96A09A;">Ингредиенты</div>
+                <sc-for list="{{ rc.ing }}" as="i" hint-placeholder-count="5">
+                <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px; padding-bottom: 7px; border-bottom: 1px dotted rgba(27,42,38,0.14);">
+                  <span style="color: #38463F;">{{ i.n }}</span>
+                  <span style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #1B2A26; white-space: nowrap;">{{ i.q }}</span>
+                </div>
+                </sc-for>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 9px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #96A09A;">Приготовление</div>
+                <sc-for list="{{ rc.steps }}" as="st" hint-placeholder-count="4">
+                <div style="display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-size: 14px; line-height: 1.5;">
+                  <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #C4643C; padding-top: 2px;">{{ st.n }}</div>
+                  <div style="color: #38465F0; color: #38463F;">{{ st.t }}</div>
+                </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+        </sc-for>
+      </div>
+      </sc-if>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 26px; border-radius: 18px; background: rgba(46,125,111,0.1); border: 1px solid rgba(46,125,111,0.22);">
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <div style="font-size: 17px; font-weight: 700;">Тест по шагу {{ lessonNum }}</div>
+          <div style="font-size: 14px; color: #58665F;">{{ testMeta }}</div>
+        </div>
+        <button onClick="{{ startTest }}" style="padding: 14px 24px; border: none; border-radius: 12px; background: #15342B; color: #F7F1E4; font-size: 15px; font-weight: 700; cursor: pointer; white-space: nowrap;" style-hover="background: #1F4A3C;">Начать тест</button>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isTest }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px; animation: fl-fade 0.3s ease both;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #96A09A;">{{ lessonTitle }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #58665F;">{{ qCounter }}</div>
+        </div>
+        <div style="height: 6px; border-radius: 99px; background: rgba(27,42,38,0.08); overflow: hidden;">
+          <div style="height: 100%; width: {{ testBar }}; background: #E0A33E; border-radius: 99px; transition: width 0.35s ease;"></div>
+        </div>
+      </div>
+
+      <div style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #C4643C;">{{ qKindLabel }}</div>
+          <div style="font-size: 24px; font-weight: 700; line-height: 1.3; letter-spacing: -0.015em; text-wrap: pretty;">{{ qText }}</div>
+        </div>
+
+        <sc-if value="{{ qHasMedia }}" hint-placeholder-val="{{ false }}">
+        <div onContextMenu="{{ blockMenu }}" style="position: relative; border-radius: 14px; background: #EFE6D4; height: 200px; display: flex; align-items: center; justify-content: center;">
+          <div style="position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(27,42,38,0.05) 0 10px, transparent 10px 20px); border-radius: 14px;"></div>
+          <div style="position: relative; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7C8A83; text-align: center; padding: 14px;">{{ qMedia }}</div>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ qIsChoice }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <sc-for list="{{ qOptions }}" as="o" hint-placeholder-count="4">
+          <div onClick="{{ o.onClick }}" style="display: grid; grid-template-columns: 26px 1fr; gap: 14px; align-items: center; padding: 16px 18px; border-radius: 13px; border: 1.5px solid {{ o.border }}; background: {{ o.bg }}; cursor: pointer; transition: border-color 0.15s ease;" style-hover="border-color: #2E7D6F;">
+            <div style="width: 22px; height: 22px; border-radius: {{ o.markRadius }}; border: 1.5px solid {{ o.markBorder }}; background: {{ o.markBg }}; display: flex; align-items: center; justify-content: center; color: #FFFDF8; font-size: 12px; font-weight: 700;">{{ o.mark }}</div>
+            <div style="font-size: 16px; color: #1B2A26; line-height: 1.4;">{{ o.label }}</div>
+          </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ qIsText }}" hint-placeholder-val="{{ false }}">
+        <input type="text" placeholder="{{ qPlaceholder }}" value="{{ textAnswer }}" onChange="{{ onTextAnswer }}" style="padding: 15px 18px; border-radius: 13px; border: 1.5px solid rgba(27,42,38,0.16); background: #FFFDF8; font-size: 17px; outline: none;" style-focus="border-color: #2E7D6F;" />
+        </sc-if>
+
+        <sc-if value="{{ qIsMatch }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <sc-for list="{{ matchRows }}" as="m" hint-placeholder-count="3">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; padding: 12px 16px; border-radius: 13px; background: rgba(27,42,38,0.035);">
+            <div style="font-size: 15px; font-weight: 600; color: #1B2A26;">{{ m.left }}</div>
+            <select value="{{ m.value }}" onChange="{{ m.onChange }}" style="padding: 11px 13px; border-radius: 10px; border: 1.5px solid rgba(27,42,38,0.16); background: #FFFDF8; font-size: 14px; color: #1B2A26; outline: none;" style-focus="border-color: #2E7D6F;">
+              <sc-for list="{{ m.opts }}" as="op" hint-placeholder-count="4">
+              <option value="{{ op }}">{{ op }}</option>
+              </sc-for>
+            </select>
+          </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(27,42,38,0.1); padding-top: 20px;">
+          <button onClick="{{ quitTest }}" style="background: none; border: none; padding: 0; font-size: 14px; color: #8A968F; cursor: pointer;" style-hover="color: #C4643C;">Прервать</button>
+          <button onClick="{{ nextQuestion }}" disabled="{{ nextDisabled }}" style="padding: 14px 26px; border: none; border-radius: 12px; background: {{ nextBg }}; color: {{ nextColor }}; font-size: 15px; font-weight: 700; cursor: {{ nextCursor }};">{{ nextLabel }}</button>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px; animation: fl-up 0.35s ease both;">
+      <div style="border-radius: 20px; padding: 34px; background: {{ resBg }}; color: {{ resColor }}; display: flex; align-items: center; gap: 32px;">
+        <div style="display: flex; flex-direction: column; gap: 6px; min-width: 150px;">
+          <div style="font-size: 56px; font-weight: 800; letter-spacing: -0.03em; line-height: 1;">{{ resPct }}%</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7;">{{ resScoreLine }}</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 27px; font-weight: 700; letter-spacing: -0.02em;">{{ resTitle }}</div>
+          <div style="font-size: 15px; line-height: 1.6; opacity: 0.82; max-width: 420px; text-wrap: pretty;">{{ resSub }}</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-size: 19px; font-weight: 700; letter-spacing: -0.01em;">Разбор ответов</div>
+        <sc-for list="{{ review }}" as="rv" hint-placeholder-count="4">
+        <div style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-left: 3px solid {{ rv.accent }}; border-radius: 14px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px; justify-content: space-between;">
+            <div style="font-size: 16px; font-weight: 600; line-height: 1.4; text-wrap: pretty;">{{ rv.n }}. {{ rv.text }}</div>
+            <div style="padding: 5px 11px; border-radius: 99px; background: {{ rv.badgeBg }}; color: {{ rv.badgeColor }}; font-size: 12px; font-weight: 700; white-space: nowrap;">{{ rv.badge }}</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 14px;">
+            <div style="color: #6B7A74;">Ваш ответ: <span style="color: #1B2A26; font-weight: 600;">{{ rv.yours }}</span></div>
+            <sc-if value="{{ rv.showRight }}" hint-placeholder-val="{{ false }}">
+            <div style="color: #6B7A74;">Правильно: <span style="color: #1F4A3C; font-weight: 600;">{{ rv.right }}</span></div>
+            </sc-if>
+          </div>
+          <div style="font-size: 14px; line-height: 1.55; color: #58665F; background: rgba(27,42,38,0.035); border-radius: 10px; padding: 12px 14px; text-wrap: pretty;">{{ rv.explain }}</div>
+        </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; gap: 12px;">
+        <button onClick="{{ afterResults }}" style="padding: 14px 24px; border: none; border-radius: 12px; background: #15342B; color: #F7F1E4; font-size: 15px; font-weight: 700; cursor: pointer;" style-hover="background: #1F4A3C;">{{ afterLabel }}</button>
+        <button onClick="{{ retryTest }}" style="padding: 14px 24px; border: 1px solid rgba(27,42,38,0.18); border-radius: 12px; background: none; font-size: 15px; font-weight: 600; color: #1B2A26; cursor: pointer;" style-hover="border-color: #C4643C; color: #C4643C;">Пройти заново</button>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isLibrary }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 22px; animation: fl-fade 0.3s ease both;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 32px; font-weight: 800; letter-spacing: -0.025em;">Библиотека материалов</div>
+        <div style="font-size: 15px; color: #58665F; max-width: 560px; line-height: 1.6;">Рецепты и видео открываются по мере прохождения курса. Скачивание и пересылка закрыты.</div>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <sc-for list="{{ libFilters }}" as="f" hint-placeholder-count="4">
+        <button onClick="{{ f.onClick }}" style="padding: 9px 15px; border-radius: 99px; border: 1px solid {{ f.border }}; background: {{ f.bg }}; color: {{ f.color }}; font-size: 13px; font-weight: 600; cursor: pointer;">{{ f.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <sc-for list="{{ libItems }}" as="li" hint-placeholder-count="6">
+        <div onClick="{{ li.onClick }}" style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 16px; overflow: hidden; cursor: {{ li.cursor }}; opacity: {{ li.opacity }}; transition: transform 0.15s ease;" style-hover="transform: translateY(-3px);">
+          <div onContextMenu="{{ blockMenu }}" style="position: relative; height: 150px; background: #EFE6D4; display: flex; align-items: center; justify-content: center;">
+            <div style="position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(27,42,38,0.05) 0 10px, transparent 10px 20px);"></div>
+            <div style="position: relative; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #7C8A83;">{{ li.kind }}</div>
+          </div>
+          <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 7px;">
+            <div style="font-size: 16px; font-weight: 700; line-height: 1.3;">{{ li.name }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #96A09A;">{{ li.meta }}</div>
+          </div>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width: 860px; display: flex; flex-direction: column; gap: 26px; animation: fl-fade 0.3s ease both;">
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <div style="width: 68px; height: 68px; border-radius: 18px; background: #2E7D6F; color: #F7F1E4; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700;">{{ initials }}</div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 28px; font-weight: 800; letter-spacing: -0.02em;">{{ email }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A968F;">{{ role }} · Foodlab Canggu</div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
+        <sc-for list="{{ profileStats }}" as="p" hint-placeholder-count="3">
+        <div style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em; color: #15342B;">{{ p.v }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #96A09A;">{{ p.k }}</div>
+        </div>
+        </sc-for>
+      </div>
+      <div style="border-radius: 18px; padding: 28px; background: {{ certBg }}; border: 1px solid {{ certBorder }}; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 20px; font-weight: 700;">{{ certTitle }}</div>
+          <div style="font-size: 14px; line-height: 1.55; color: #58665F; max-width: 420px;">{{ certSub }}</div>
+        </div>
+        <button onClick="{{ printPage }}" disabled="{{ certLocked }}" style="padding: 13px 20px; border: none; border-radius: 11px; background: {{ certBtnBg }}; color: {{ certBtnColor }}; font-size: 14px; font-weight: 700; cursor: {{ certCursor }}; white-space: nowrap;">Сертификат</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: 19px; font-weight: 700;">История тестов</div>
+        <sc-for list="{{ history }}" as="h" hint-placeholder-count="3">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 15px 18px; background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 13px;">
+          <div style="font-size: 15px; font-weight: 600;">{{ h.title }}</div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #8A968F;">{{ h.date }}</div>
+            <div style="padding: 5px 11px; border-radius: 99px; background: {{ h.badgeBg }}; color: {{ h.badgeColor }}; font-size: 12px; font-weight: 700;">{{ h.badge }}</div>
+          </div>
+        </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; gap: 28px; animation: fl-fade 0.3s ease both;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #96A09A;">Панель шеф-повара</div>
+          <div style="font-size: 32px; font-weight: 800; letter-spacing: -0.025em;">Кто где застрял</div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button onClick="{{ exportCsv }}" style="padding: 12px 18px; border: 1px solid rgba(27,42,38,0.18); border-radius: 11px; background: none; font-size: 14px; font-weight: 600; color: #1B2A26; cursor: pointer;" style-hover="border-color: #1F4A3C;">Выгрузить таблицу</button>
+          <button onClick="{{ openAddLesson }}" style="padding: 12px 18px; border: none; border-radius: 11px; background: #15342B; color: #F7F1E4; font-size: 14px; font-weight: 600; cursor: pointer;" style-hover="background: #1F4A3C;">Добавить урок</button>
+        </div>
+      </div>
+
+      <div style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 18px; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.6fr 0.9fr; gap: 16px; padding: 14px 22px; background: rgba(27,42,38,0.04); font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #7C8A83;">
+          <div>Сотрудник</div><div>Должность</div><div>Точка</div><div>Прогресс</div><div>Доступ</div>
+        </div>
+        <sc-for list="{{ people }}" as="pp" hint-placeholder-count="6">
+        <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.6fr 0.9fr; gap: 16px; padding: 16px 22px; border-top: 1px solid rgba(27,42,38,0.08); align-items: center;">
+          <div style="display: flex; flex-direction: column; gap: 3px;">
+            <div style="font-size: 15px; font-weight: 600;">{{ pp.name }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #96A09A;">{{ pp.email }}</div>
+          </div>
+          <div style="font-size: 14px; color: #38463F;">{{ pp.role }}</div>
+          <div style="font-size: 14px; color: #38463F;">{{ pp.point }}</div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="height: 6px; border-radius: 99px; background: rgba(27,42,38,0.08); overflow: hidden;">
+              <div style="height: 100%; width: {{ pp.barW }}; background: {{ pp.barColor }}; border-radius: 99px;"></div>
+            </div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #8A968F;">{{ pp.stuck }}</div>
+          </div>
+          <button onClick="{{ pp.onToggle }}" style="justify-self: start; padding: 6px 12px; border-radius: 99px; border: 1px solid {{ pp.accBorder }}; background: {{ pp.accBg }}; color: {{ pp.accColor }}; font-size: 12px; font-weight: 600; cursor: pointer;">{{ pp.accLabel }}</button>
+        </div>
+        </sc-for>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; align-items: start;">
+        <div style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 18px;">
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 19px; font-weight: 700;">Где чаще ошибаются</div>
+            <div style="font-size: 13px; color: #8A968F;">Доля неверных ответов по вопросу</div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <sc-for list="{{ qStats }}" as="qs" hint-placeholder-count="5">
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px;">
+                <span style="color: #38463F; line-height: 1.35;">{{ qs.text }}</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 500; color: {{ qs.color }}; white-space: nowrap;">{{ qs.pct }}%</span>
+              </div>
+              <div style="height: 6px; border-radius: 99px; background: rgba(27,42,38,0.07); overflow: hidden;">
+                <div style="height: 100%; width: {{ qs.barW }}; background: {{ qs.color }}; border-radius: 99px;"></div>
+              </div>
+            </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="background: #15342B; color: #F3EADA; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-size: 19px; font-weight: 700;">Пригласить сотрудника</div>
+            <div style="font-size: 14px; line-height: 1.55; color: #C8BFAE;">Письмо со ссылкой на вход уйдёт на его почту.</div>
+            <input type="email" placeholder="name@foodlab.id" value="{{ inviteEmail }}" onChange="{{ onInviteEmail }}" style="padding: 13px 15px; border-radius: 11px; border: 1px solid rgba(243,234,218,0.25); background: rgba(255,255,255,0.06); color: #F3EADA; font-size: 15px; outline: none;" style-focus="border-color: #E0A33E;" />
+            <select value="{{ inviteRole }}" onChange="{{ onInviteRole }}" style="padding: 13px 15px; border-radius: 11px; border: 1px solid rgba(243,234,218,0.25); background: rgba(255,255,255,0.06); color: #F3EADA; font-size: 15px; outline: none;">
+              <sc-for list="{{ allRoles }}" as="r2" hint-placeholder-count="4">
+              <option value="{{ r2 }}" style="color: #1B2A26;">{{ r2 }}</option>
+              </sc-for>
+            </select>
+            <button onClick="{{ sendInvite }}" style="padding: 13px 18px; border: none; border-radius: 11px; background: #E0A33E; color: #15342B; font-size: 14px; font-weight: 700; cursor: pointer;" style-hover="background: #EFB44F;">Отправить приглашение</button>
+            <sc-if value="{{ inviteNote }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size: 13px; color: #E0A33E;">{{ inviteNote }}</div>
+            </sc-if>
+          </div>
+          <div style="background: #FFFDF8; border: 1px solid rgba(27,42,38,0.12); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="font-size: 16px; font-weight: 700;">Защита материалов</div>
+            <sc-for list="{{ protection }}" as="pr" hint-placeholder-count="3">
+            <div style="display: flex; gap: 10px; font-size: 14px; line-height: 1.5; color: #38463F;">
+              <span style="color: #2E7D6F; font-weight: 700;">·</span>
+              <span>{{ pr }}</span>
+            </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+  </div>
+</div>
+</sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;passingScore&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:80,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:50,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;section&quot;:&quot;Правила&quot;},&quot;showWatermark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Защита материалов&quot;}}">
+class Component extends DCLogic {
+  ROLES = [
+    { name: 'Повар', note: 'кухня, заготовки' },
+    { name: 'Су-шеф', note: 'смена, качество' },
+    { name: 'Кассир', note: 'заказы, выдача' },
+    { name: 'Закупщик', note: 'рынок, склад' },
+    { name: 'Менеджер', note: 'скоро', disabled: true },
+    { name: 'Бухгалтер', note: 'скоро', disabled: true }
+  ];
+
+  LESSONS = [
+    {
+      id: 'l1', title: 'Добро пожаловать в Foodlab', dur: '12 мин',
+      video: 'Экскурсия по кухне в Чангу',
+      desc: 'Как устроены две точки, кто за что отвечает, как идёт заказ от приёма до курьера. Смотрите видео целиком — вопросы теста собраны по нему.',
+      recipes: [],
+      q: [
+        { type: 'single', text: 'Сколько точек у Foodlab сейчас работает?', opts: ['Одна — Чангу', 'Две — Чангу и Улувату', 'Три — Чангу, Улувату, Семиньяк'], correct: 1, explain: 'Две точки: Чангу и Улувату. Кухни работают по одинаковым стандартам и одному меню.' },
+        { type: 'single', text: 'Кто отвечает за качество блюда в смене?', opts: ['Курьер', 'Су-шеф точки', 'Кассир'], correct: 1, explain: 'На каждой точке есть су-шеф. Он проверяет блюда перед упаковкой и решает спорные ситуации в смене.' },
+        { type: 'multi', text: 'Что делает повар перед началом смены?', opts: ['Проверяет заготовки и сроки', 'Сам меняет цены в приложении', 'Проверяет чистоту станции', 'Проверяет наличие упаковки'], correct: [0, 2, 3], explain: 'Цены и меню меняет только шеф-повар. Повар отвечает за заготовки, чистоту станции и упаковку.' }
+      ]
+    },
+    {
+      id: 'l2', title: 'Гигиена, хранение и маркировка', dur: '15 мин',
+      video: 'Маркировка и холодильник: разбор на месте',
+      desc: 'Правила мойки рук, зоны хранения, стикеры со датой и сроком. Это шаг, который проверяют чаще всего.',
+      recipes: [],
+      q: [
+        { type: 'text', text: 'При какой температуре, максимум, хранится готовый соус в холодильнике? Напишите число в градусах Цельсия.', answer: '4', placeholder: 'например: 4', explain: 'До +4 °C. Выше — соус снимается с линии и утилизируется.' },
+        { type: 'single', text: 'Заготовка без стикера с датой. Что делаете?', opts: ['Ставлю стикер с сегодняшней датой', 'Спрашиваю у су-шефа и утилизирую', 'Использую первой, чтобы не пропала'], correct: 1, explain: 'Без стикера срок неизвестен. Такая заготовка не идёт в блюдо: сообщаете су-шефу и утилизируете.' },
+        { type: 'match', text: 'Сопоставьте продукт и полку хранения.', pairs: [['Сырая курица', 'Нижняя полка'], ['Готовые соусы', 'Средняя полка'], ['Зелень и травы', 'Верхняя полка']], explain: 'Сырое — всегда ниже готового, чтобы исключить протечку на готовый продукт.' },
+        { type: 'multi', text: 'Когда мойка рук обязательна?', opts: ['После работы с сырым мясом', 'После телефона', 'Только в начале смены', 'После выноса мусора'], correct: [0, 1, 3], explain: 'Руки моются в начале смены и каждый раз после сырого продукта, телефона и мусора.' }
+      ]
+    },
+    {
+      id: 'l3', title: 'Боулы и салаты', dur: '22 мин',
+      video: 'Сборка боула: граммовка и подача',
+      desc: 'Три позиции постоянного меню. Держите граммовку — от неё зависит и вкус, и себестоимость.',
+      recipes: [
+        {
+          name: 'Боул с темпе и тыквой', yield: 'Выход 480 г · 1 порция', photoNote: 'горизонтальное, 1600×1200',
+          ing: [{ n: 'Тыква, кубик', q: '140 г' }, { n: 'Темпе', q: '90 г' }, { n: 'Рис красный, отварной', q: '120 г' }, { n: 'Кангкунг', q: '50 г' }, { n: 'Соус сатай', q: '60 г' }, { n: 'Кунжут обжаренный', q: '5 г' }, { n: 'Лайм', q: '15 г' }],
+          steps: [{ n: '1', t: 'Тыкву запечь 18 минут при 200 °C, до мягкости и румяной кромки.' }, { n: '2', t: 'Темпе обжарить на воке 3 минуты до золотого цвета.' }, { n: '3', t: 'Кангкунг бросить в вок на 40 секунд.' }, { n: '4', t: 'Собрать: рис — основа, сверху тыква, темпе, зелень.' }, { n: '5', t: 'Соус в отдельный соусник 60 г, кунжут и лайм сверху.' }]
+        },
+        {
+          name: 'Салат из зелёной папайи', yield: 'Выход 320 г · 1 порция', photoNote: 'горизонтальное, 1600×1200',
+          ing: [{ n: 'Папайя зелёная, соломка', q: '180 г' }, { n: 'Морковь, соломка', q: '40 г' }, { n: 'Помидоры черри', q: '50 г' }, { n: 'Арахис обжаренный', q: '20 г' }, { n: 'Дрессинг лайм-чили', q: '35 г' }],
+          steps: [{ n: '1', t: 'Папайю и морковь нарезать соломкой 3 мм, держать в холоде.' }, { n: '2', t: 'Черри разрезать пополам.' }, { n: '3', t: 'Смешать с дрессингом прямо перед выдачей — иначе потечёт.' }, { n: '4', t: 'Арахис добавить последним, сверху.' }]
+        }
+      ],
+      q: [
+        { type: 'text', text: 'Сколько граммов соуса сатай идёт в боул с темпе?', answer: '60', placeholder: 'граммы', explain: '60 г в отдельном соуснике. Соус не льют в боул — в доставке он размочит рис.' },
+        { type: 'media', text: 'На фото — собранный боул. Что нарушено?', media: 'фото собранного боула с ошибкой · 1600×1200', opts: ['Соус налит внутрь боула', 'Мало риса', 'Нет лайма'], correct: 0, explain: 'Соус всегда отдельно. В остальном сборка верная.' },
+        { type: 'multi', text: 'Что добавляется в салат из папайи в последний момент?', opts: ['Дрессинг', 'Арахис', 'Морковь', 'Папайя'], correct: [0, 1], explain: 'Дрессинг и арахис — перед выдачей. Иначе салат течёт, а арахис размокает.' },
+        { type: 'single', text: 'Какой толщины соломка папайи?', opts: ['1 мм', '3 мм', '8 мм'], correct: 1, explain: '3 мм: тоньше — превращается в кашу, толще — жёстко жевать.' },
+        { type: 'match', text: 'Сопоставьте позицию и выход порции.', pairs: [['Боул с темпе', '480 г'], ['Салат из папайи', '320 г']], explain: 'Выход проверяется на весах при отдаче. Отклонение больше 20 г — пересборка.' }
+      ]
+    },
+    {
+      id: 'l4', title: 'Горячий цех: вок и карри', dur: '25 мин',
+      video: 'Вок: температура, порядок закладки, тайминг',
+      desc: 'Порядок закладки и время на воке. На горячем цехе ошибка в 30 секунд видна в тарелке.',
+      recipes: [
+        {
+          name: 'Вок с тофу и кангкунгом', yield: 'Выход 420 г · 1 порция', photoNote: 'горизонтальное, 1600×1200',
+          ing: [{ n: 'Тофу плотный', q: '150 г' }, { n: 'Кангкунг', q: '80 г' }, { n: 'Лапша рисовая, отварная', q: '150 г' }, { n: 'Чеснок', q: '8 г' }, { n: 'Соус вок', q: '45 г' }, { n: 'Масло кокосовое', q: '10 г' }],
+          steps: [{ n: '1', t: 'Вок разогреть до дыма, влить масло.' }, { n: '2', t: 'Чеснок 10 секунд, затем тофу — 90 секунд, не перемешивать часто.' }, { n: '3', t: 'Лапша и соус — 60 секунд.' }, { n: '4', t: 'Кангкунг в самом конце, 30 секунд.' }]
+        }
+      ],
+      q: [
+        { type: 'single', text: 'Что закладывается на вок последним?', opts: ['Тофу', 'Лапша', 'Кангкунг'], correct: 2, explain: 'Кангкунг — 30 секунд в конце, чтобы остался хруст и цвет.' },
+        { type: 'text', text: 'Сколько граммов соуса вок на порцию?', answer: '45', placeholder: 'граммы', explain: '45 г. Больше — блюдо становится солёным и течёт в упаковке.' },
+        { type: 'multi', text: 'Признаки правильно разогретого вока', opts: ['Идёт легкий дым', 'Масло растекается моментально', 'Продукт шипит при закладке', 'Масло дымит чёрным'], correct: [0, 1, 2], explain: 'Чёрный дым — масло горит, вок надо протереть и начать заново.' }
+      ]
+    },
+    {
+      id: 'l5', title: 'Упаковка и передача курьеру', dur: '10 мин',
+      video: 'Сборка заказа на доставку',
+      desc: 'Как собрать заказ так, чтобы через 25 минут в дороге он выглядел как на фото в меню.',
+      recipes: [],
+      q: [
+        { type: 'single', text: 'Горячее и салат в одном заказе. Как упаковать?', opts: ['В один пакет, салат сверху', 'Раздельно, салат в отдельный пакет', 'В один контейнер'], correct: 1, explain: 'Раздельно: тепло от горячего за 20 минут превратит салат в варёный.' },
+        { type: 'multi', text: 'Что проверяете перед передачей курьеру?', opts: ['Комплектность по чеку', 'Наличие приборов и салфеток', 'Плотность крышек', 'Номер телефона гостя'], correct: [0, 1, 2], explain: 'Телефон гостя повару не нужен — это данные заказа, они у курьера в приложении.' },
+        { type: 'text', text: 'Через сколько минут после сборки заказ должен уехать? Напишите число.', answer: '5', placeholder: 'минуты', explain: 'До 5 минут. Дольше — блюдо теряет температуру ещё на кухне.' }
+      ]
+    }
+  ];
+
+  PEOPLE = [
+    { name: 'Wayan Sukra', email: 'wayan@foodlab.id', role: 'Повар', point: 'Чангу', done: 4, stuck: 'Шаг 5 · тест не сдан', active: true },
+    { name: 'Ketut Ariani', email: 'ketut@foodlab.id', role: 'Кассир', point: 'Улувату', done: 5, stuck: 'Обучение завершено', active: true },
+    { name: 'Made Putra', email: 'made@foodlab.id', role: 'Повар', point: 'Улувату', done: 2, stuck: 'Шаг 3 · смотрит видео', active: true },
+    { name: 'Nyoman Adi', email: 'nyoman@foodlab.id', role: 'Су-шеф', point: 'Чангу', done: 5, stuck: 'Обучение завершено', active: true },
+    { name: 'Kadek Sari', email: 'kadek@foodlab.id', role: 'Закупщик', point: 'Чангу', done: 1, stuck: 'Шаг 2 · не начинал', active: true },
+    { name: 'Gede Bayu', email: 'gede@foodlab.id', role: 'Повар', point: 'Улувату', done: 0, stuck: 'Не заходил 6 дней', active: false }
+  ];
+
+  QSTATS = [
+    { text: 'Температура хранения готового соуса', pct: 61 },
+    { text: 'Порядок закладки на воке', pct: 47 },
+    { text: 'Граммовка соуса сатай', pct: 38 },
+    { text: 'Полки хранения: сырое и готовое', pct: 24 },
+    { text: 'Раздельная упаковка салата', pct: 12 }
+  ];
+
+  state = {
+    screen: 'login', stage: 'form', email: '', emailError: '', role: 'Повар',
+    progress: {}, lessonId: 'l1', qIdx: 0, answers: {}, lastResult: null,
+    libFilter: 'Все', inviteEmail: '', inviteRole: 'Повар', inviteNote: '',
+    people: null, admin: false
+  };
+
+  KEY = 'foodlab_academy_v2';
+
+  componentDidMount() {
+    try {
+      const raw = localStorage.getItem(this.KEY);
+      if (raw) this.setState(JSON.parse(raw));
+    } catch (e) {}
+  }
+
+  save(patch) {
+    this.setState(patch, () => {
+      try {
+        const s = this.state;
+        localStorage.setItem(this.KEY, JSON.stringify({
+          screen: s.screen, stage: s.stage, email: s.email, role: s.role,
+          progress: s.progress, lessonId: s.lessonId, people: s.people, admin: s.admin
+        }));
+      } catch (e) {}
+    });
+  }
+
+  pass() { return this.props.passingScore ?? 80; }
+  lesson() { return this.LESSONS.find(l => l.id === this.state.lessonId) || this.LESSONS[0]; }
+  doneCount() { return this.LESSONS.filter(l => (this.state.progress[l.id] || {}).passed).length; }
+  unlockedIdx() { return this.doneCount(); }
+
+  people() { return this.state.people || this.PEOPLE; }
+
+  answerLabel(q, a) {
+    if (a === undefined || a === null || a === '' || (Array.isArray(a) && !a.length)) return 'нет ответа';
+    if (q.type === 'multi') return a.slice().sort().map(i => q.opts[i]).join(', ');
+    if (q.type === 'text') return String(a);
+    if (q.type === 'match') return q.pairs.map((p, i) => p[0] + ' → ' + (a[i] || '—')).join('; ');
+    return q.opts[a];
+  }
+
+  rightLabel(q) {
+    if (q.type === 'multi') return q.correct.map(i => q.opts[i]).join(', ');
+    if (q.type === 'text') return q.answer;
+    if (q.type === 'match') return q.pairs.map(p => p[0] + ' → ' + p[1]).join('; ');
+    return q.opts[q.correct];
+  }
+
+  isRight(q, a) {
+    if (a === undefined || a === null) return false;
+    if (q.type === 'multi') {
+      const x = (a || []).slice().sort().join(','), y = q.correct.slice().sort().join(',');
+      return x === y && x.length > 0;
+    }
+    if (q.type === 'text') return String(a).trim().toLowerCase().replace(/[^0-9a-zа-я.,]/gi, '') === q.answer.toLowerCase();
+    if (q.type === 'match') return q.pairs.every((p, i) => (a || {})[i] === p[1]);
+    return a === q.correct;
+  }
+
+  finishTest() {
+    const l = this.lesson(), a = this.state.answers;
+    const ok = l.q.filter((q, i) => this.isRight(q, a[i])).length;
+    const pct = Math.round(ok / l.q.length * 100);
+    const passed = pct >= this.pass();
+    const prev = this.state.progress[l.id] || {};
+    const progress = Object.assign({}, this.state.progress);
+    progress[l.id] = { passed: passed || prev.passed, pct, date: new Date().toLocaleDateString('ru-RU') };
+    this.save({ screen: 'results', progress, lastResult: { pct, ok, total: l.q.length, passed } });
+  }
+
+  renderVals() {
+    const s = this.state, S = s.screen, l = this.lesson(), pass = this.pass();
+    const done = this.doneCount(), total = this.LESSONS.length;
+    const unlocked = this.unlockedIdx();
+    const wm = this.props.showWatermark === false ? '' : (s.email || 'foodlab') + ' · не для пересылки';
+
+    const nav = [
+      { key: 'home', label: 'Обучение' },
+      { key: 'library', label: 'Материалы' },
+      { key: 'profile', label: 'Профиль' }
+    ];
+    if (s.admin) nav.push({ key: 'admin', label: 'Панель' });
+
+    const scores = this.LESSONS.map(x => (s.progress[x.id] || {}).pct).filter(x => typeof x === 'number');
+    const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) + '%' : '—';
+
+    const nextLesson = this.LESSONS[Math.min(unlocked, total - 1)];
+    const allDone = done === total;
+
+    const q = l.q[Math.min(s.qIdx, l.q.length - 1)] || {};
+    const ans = s.answers[s.qIdx];
+    const isChoice = q.type === 'single' || q.type === 'multi' || q.type === 'media';
+    const isMulti = q.type === 'multi';
+    const kindLabels = { single: 'один правильный ответ', multi: 'несколько правильных ответов', text: 'впишите ответ', match: 'сопоставьте пары', media: 'вопрос по фото' };
+
+    const opts = isChoice ? (q.opts || []).map((label, i) => {
+      const sel = isMulti ? (ans || []).indexOf(i) >= 0 : ans === i;
+      return {
+        label,
+        bg: sel ? 'rgba(46,125,111,0.09)' : '#FFFDF8',
+        border: sel ? '#2E7D6F' : 'rgba(27,42,38,0.14)',
+        markRadius: isMulti ? '6px' : '99px',
+        markBg: sel ? '#2E7D6F' : 'transparent',
+        markBorder: sel ? '#2E7D6F' : 'rgba(27,42,38,0.3)',
+        mark: sel ? '✓' : '',
+        onClick: () => {
+          const a = Object.assign({}, s.answers);
+          if (isMulti) {
+            const cur = (a[s.qIdx] || []).slice();
+            const at = cur.indexOf(i);
+            if (at >= 0) cur.splice(at, 1); else cur.push(i);
+            a[s.qIdx] = cur;
+          } else a[s.qIdx] = i;
+          this.setState({ answers: a });
+        }
+      };
+    }) : [];
+
+    const matchRows = q.type === 'match' ? q.pairs.map((p, i) => ({
+      left: p[0],
+      value: (ans || {})[i] || '',
+      opts: ['— выберите —'].concat(q.pairs.map(x => x[1])),
+      onChange: e => {
+        const a = Object.assign({}, s.answers);
+        const cur = Object.assign({}, a[s.qIdx] || {});
+        cur[i] = e.target.value === '— выберите —' ? '' : e.target.value;
+        a[s.qIdx] = cur;
+        this.setState({ answers: a });
+      }
+    })) : [];
+
+    let answered = false;
+    if (isChoice) answered = isMulti ? (ans || []).length > 0 : typeof ans === 'number';
+    else if (q.type === 'text') answered = !!(ans && String(ans).trim());
+    else if (q.type === 'match') answered = q.pairs.every((p, i) => (ans || {})[i]);
+
+    const last = l.q.length - 1 === s.qIdx;
+    const res = s.lastResult || { pct: 0, ok: 0, total: 0, passed: false };
+
+    const review = l.q.map((qq, i) => {
+      const ok = this.isRight(qq, s.answers[i]);
+      return {
+        n: i + 1, text: qq.text, ok,
+        accent: ok ? '#2E7D6F' : '#C4643C',
+        badge: ok ? 'Верно' : 'Ошибка',
+        badgeBg: ok ? 'rgba(46,125,111,0.14)' : 'rgba(196,100,60,0.14)',
+        badgeColor: ok ? '#1F4A3C' : '#A9522F',
+        yours: this.answerLabel(qq, s.answers[i]),
+        right: this.rightLabel(qq),
+        showRight: !ok,
+        explain: qq.explain
+      };
+    });
+
+    const libCats = ['Все', 'Видео', 'Рецепты'];
+    const libAll = [];
+    this.LESSONS.forEach((x, i) => {
+      const open = i <= unlocked;
+      libAll.push({ cat: 'Видео', kind: 'видео · youtube', name: x.video, meta: 'Шаг ' + (i + 1) + ' · ' + x.dur, open, id: x.id });
+      (x.recipes || []).forEach(r => libAll.push({ cat: 'Рецепты', kind: 'фото блюда', name: r.name, meta: r.yield, open, id: x.id }));
+    });
+    const libItems = libAll.filter(x => s.libFilter === 'Все' || x.cat === s.libFilter).map(x => ({
+      kind: x.open ? x.kind : 'откроется позже',
+      name: x.name, meta: x.meta,
+      opacity: x.open ? 1 : 0.45,
+      cursor: x.open ? 'pointer' : 'not-allowed',
+      onClick: () => { if (x.open) this.save({ screen: 'lesson', lessonId: x.id }); }
+    }));
+
+    return {
+      isLogin: S === 'login', isApp: S !== 'login',
+      isHome: S === 'home', isLesson: S === 'lesson', isTest: S === 'test',
+      isResults: S === 'results', isLibrary: S === 'library', isProfile: S === 'profile', isAdmin: S === 'admin',
+      stageForm: s.stage === 'form', stageSent: s.stage === 'sent', stageRole: s.stage === 'role',
+      email: s.email, emailError: s.emailError, role: s.role, watermark: wm,
+      lessonCount: total, doneCount: done, avgScore: avg,
+      progressPct: Math.round(done / total * 100), progressBar: Math.round(done / total * 100) + '%',
+      passLabel: pass + '%',
+      initials: (s.email || 'FL').slice(0, 2).toUpperCase(),
+
+      onEmail: e => this.setState({ email: e.target.value, emailError: '' }),
+      onEmailKey: e => { if (e.key === 'Enter') this.sendLinkNow(); },
+      sendLink: () => this.sendLinkNow(),
+      backToForm: () => this.setState({ stage: 'form' }),
+      openLink: () => this.setState({ stage: 'role' }),
+      roleCards: this.ROLES.map(r => ({
+        name: r.name, note: r.note, disabled: !!r.disabled, opacity: r.disabled ? 0.45 : 1,
+        onPick: () => { if (!r.disabled) this.save({ role: r.name, admin: false, screen: 'home' }); }
+      })),
+      enterAdmin: () => this.save({ role: 'Шеф-повар', admin: true, screen: 'admin' }),
+      logout: () => this.save({ screen: 'login', stage: 'form' }),
+      goHome: () => this.save({ screen: 'home' }),
+      navItems: nav.map(n => ({
+        label: n.label, onClick: () => this.save({ screen: n.key }),
+        bg: S === n.key ? 'rgba(27,42,38,0.07)' : 'transparent',
+        color: S === n.key ? '#15342B' : '#6B7A74'
+      })),
+
+      nextTitle: allDone ? 'Обучение пройдено' : nextLesson.title,
+      nextDesc: allDone ? 'Все шаги сданы. Сертификат доступен в профиле, материалы остаются открытыми.' : nextLesson.desc,
+      nextMeta: allDone ? 'средний балл ' + avg : 'шаг ' + (unlocked + 1) + ' из ' + total + ' · ' + nextLesson.dur,
+      continueLabel: allDone ? 'Открыть профиль' : (done === 0 ? 'Начать обучение' : 'Продолжить'),
+      continueCourse: () => allDone ? this.save({ screen: 'profile' }) : this.save({ screen: 'lesson', lessonId: nextLesson.id }),
+
+      steps: this.LESSONS.map((x, i) => {
+        const p = s.progress[x.id] || {};
+        const locked = i > unlocked;
+        const cur = i === unlocked && !p.passed;
+        return {
+          title: x.title,
+          meta: x.dur + ' · ' + x.q.length + ' вопросов' + ((x.recipes || []).length ? ' · ' + x.recipes.length + ' рецепта' : ''),
+          badge: p.passed ? '✓' : String(i + 1),
+          badgeBg: p.passed ? '#2E7D6F' : (locked ? 'rgba(27,42,38,0.07)' : '#E0A33E'),
+          badgeColor: p.passed ? '#F7F1E4' : (locked ? '#96A09A' : '#15342B'),
+          status: p.passed ? p.pct + '%' : (locked ? 'закрыто' : (cur ? 'следующий шаг' : 'доступно')),
+          pillBg: p.passed ? 'rgba(46,125,111,0.14)' : (locked ? 'rgba(27,42,38,0.05)' : 'rgba(224,163,62,0.2)'),
+          pillColor: p.passed ? '#1F4A3C' : (locked ? '#96A09A' : '#8A5D14'),
+          bg: locked ? 'rgba(255,253,248,0.5)' : '#FFFDF8',
+          border: cur ? '#E0A33E' : 'rgba(27,42,38,0.12)',
+          opacity: locked ? 0.6 : 1,
+          cursor: locked ? 'not-allowed' : 'pointer',
+          onClick: () => { if (!locked) this.save({ screen: 'lesson', lessonId: x.id }); }
+        };
+      }),
+
+      lessonNum: this.LESSONS.indexOf(l) + 1, lessonTitle: l.title, lessonDur: l.dur,
+      lessonDesc: l.desc, lessonVideo: l.video,
+      hasRecipes: (l.recipes || []).length > 0, recipes: l.recipes || [],
+      testMeta: l.q.length + ' вопросов · проходной балл ' + pass + '% · попытки не ограничены',
+      startTest: () => this.setState({ screen: 'test', qIdx: 0, answers: {} }),
+      printPage: () => window.print(),
+      blockMenu: e => { e.preventDefault(); },
+
+      qCounter: 'вопрос ' + (s.qIdx + 1) + ' из ' + l.q.length,
+      testBar: Math.round((s.qIdx) / l.q.length * 100) + '%',
+      qText: q.text, qKindLabel: kindLabels[q.type] || '',
+      qHasMedia: q.type === 'media', qMedia: q.media || '',
+      qIsChoice: isChoice, qIsText: q.type === 'text', qIsMatch: q.type === 'match',
+      qOptions: opts, matchRows,
+      qPlaceholder: q.placeholder || 'ответ',
+      textAnswer: typeof ans === 'string' ? ans : '',
+      onTextAnswer: e => {
+        const a = Object.assign({}, s.answers); a[s.qIdx] = e.target.value; this.setState({ answers: a });
+      },
+      nextLabel: last ? 'Завершить тест' : 'Дальше',
+      nextDisabled: !answered,
+      nextBg: answered ? '#15342B' : 'rgba(27,42,38,0.1)',
+      nextColor: answered ? '#F7F1E4' : '#96A09A',
+      nextCursor: answered ? 'pointer' : 'not-allowed',
+      nextQuestion: () => { if (!answered) return; if (last) this.finishTest(); else this.setState({ qIdx: s.qIdx + 1 }); },
+      quitTest: () => this.save({ screen: 'lesson' }),
+
+      resPct: res.pct, resScoreLine: res.ok + ' из ' + res.total + ' верно',
+      resTitle: res.passed ? 'Шаг сдан' : 'Пока не сдано',
+      resSub: res.passed ? 'Следующий шаг открыт. Разбор ниже — посмотрите ошибки, они разбираются на смене.' : 'Нужно ' + pass + '%. Посмотрите разбор и пройдите тест заново — попытки не ограничены.',
+      resBg: res.passed ? '#15342B' : '#C4643C',
+      resColor: res.passed ? '#F3EADA' : '#FFF8EE',
+      review,
+      afterLabel: res.passed ? 'К следующему шагу' : 'Вернуться к уроку',
+      afterResults: () => this.save({ screen: res.passed ? 'home' : 'lesson' }),
+      retryTest: () => this.setState({ screen: 'test', qIdx: 0, answers: {} }),
+
+      libFilters: libCats.map(c => ({
+        label: c, onClick: () => this.setState({ libFilter: c }),
+        bg: s.libFilter === c ? '#15342B' : 'transparent',
+        color: s.libFilter === c ? '#F7F1E4' : '#38463F',
+        border: s.libFilter === c ? '#15342B' : 'rgba(27,42,38,0.18)'
+      })),
+      libItems,
+
+      profileStats: [
+        { v: done + '/' + total, k: 'шагов сдано' },
+        { v: avg, k: 'средний балл' },
+        { v: allDone ? 'да' : 'нет', k: 'сертификат' }
+      ],
+      certTitle: allDone ? 'Сертификат Foodlab Academy' : 'Сертификат откроется после всех шагов',
+      certSub: allDone ? 'Выдан ' + new Date().toLocaleDateString('ru-RU') + '. Показывается шеф-повару при допуске к смене.' : 'Осталось шагов: ' + (total - done) + '. После последнего теста сертификат появится здесь.',
+      certBg: allDone ? 'rgba(224,163,62,0.16)' : '#FFFDF8',
+      certBorder: allDone ? '#E0A33E' : 'rgba(27,42,38,0.12)',
+      certLocked: !allDone,
+      certBtnBg: allDone ? '#15342B' : 'rgba(27,42,38,0.1)',
+      certBtnColor: allDone ? '#F7F1E4' : '#96A09A',
+      certCursor: allDone ? 'pointer' : 'not-allowed',
+      history: this.LESSONS.filter(x => s.progress[x.id]).map(x => {
+        const p = s.progress[x.id];
+        return {
+          title: x.title, date: p.date || '',
+          badge: p.pct + '%',
+          badgeBg: p.passed ? 'rgba(46,125,111,0.14)' : 'rgba(196,100,60,0.14)',
+          badgeColor: p.passed ? '#1F4A3C' : '#A9522F'
+        };
+      }),
+
+      people: this.people().map((p, i) => ({
+        name: p.name, email: p.email, role: p.role, point: p.point,
+        barW: Math.round(p.done / total * 100) + '%',
+        barColor: p.done === total ? '#2E7D6F' : (p.done === 0 ? '#C4643C' : '#E0A33E'),
+        stuck: p.stuck,
+        accLabel: p.active ? 'открыт' : 'закрыт',
+        accBg: p.active ? 'rgba(46,125,111,0.12)' : 'rgba(196,100,60,0.12)',
+        accColor: p.active ? '#1F4A3C' : '#A9522F',
+        accBorder: p.active ? 'rgba(46,125,111,0.35)' : 'rgba(196,100,60,0.35)',
+        onToggle: () => {
+          const list = this.people().map(x => Object.assign({}, x));
+          list[i].active = !list[i].active;
+          this.save({ people: list });
+        }
+      })),
+      qStats: this.QSTATS.map(x => ({
+        text: x.text, pct: x.pct, barW: x.pct + '%',
+        color: x.pct >= 45 ? '#C4643C' : (x.pct >= 25 ? '#E0A33E' : '#2E7D6F')
+      })),
+      allRoles: this.ROLES.filter(r => !r.disabled).map(r => r.name),
+      inviteEmail: s.inviteEmail, inviteRole: s.inviteRole, inviteNote: s.inviteNote,
+      onInviteEmail: e => this.setState({ inviteEmail: e.target.value, inviteNote: '' }),
+      onInviteRole: e => this.setState({ inviteRole: e.target.value }),
+      sendInvite: () => {
+        const v = (s.inviteEmail || '').trim();
+        if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v)) { this.setState({ inviteNote: 'Проверьте адрес почты' }); return; }
+        const list = this.people().slice();
+        list.push({ name: v.split('@')[0], email: v, role: s.inviteRole, point: 'Чангу', done: 0, stuck: 'Приглашение отправлено', active: true });
+        this.save({ people: list, inviteEmail: '', inviteNote: 'Приглашение отправлено на ' + v });
+      },
+      exportCsv: () => {
+        const rows = [['Сотрудник', 'Email', 'Должность', 'Точка', 'Сдано шагов', 'Статус']]
+          .concat(this.people().map(p => [p.name, p.email, p.role, p.point, p.done + '/' + total, p.stuck]));
+        const csv = rows.map(r => r.join(';')).join('\n');
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob(['\ufeff' + csv], { type: 'text/csv' }));
+        a.download = 'foodlab-progress.csv';
+        a.click();
+      },
+      openAddLesson: () => this.setState({ inviteNote: 'Форма добавления урока — следующий шаг прототипа' }),
+      protection: [
+        'Правый клик и скачивание с фото и видео отключены',
+        'На материалах — водяной знак с почтой сотрудника',
+        'Доступ закрывается одной кнопкой при увольнении'
+      ]
+    };
+  }
+
+  sendLinkNow() {
+    const v = (this.state.email || '').trim();
+    if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v)) { this.setState({ emailError: 'Введите рабочую почту' }); return; }
+    this.setState({ stage: 'sent', emailError: '' });
+  }
+}
+
+</script>
+</body>
+</html>

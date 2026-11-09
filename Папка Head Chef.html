@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><meta name="fl-access" content="lead">
+<script src="folders-i18n.js"></script>
+</head><body>
+<style>
+body.fl-locked>*:not(#fl-gate){display:none!important}
+#fl-gate{display:none;max-width:460px;margin:80px auto;padding:28px 24px;background:#fff;border:1px solid #D8DED6;border-radius:12px;font:16px/1.5 "Onest",system-ui,sans-serif;color:#17211C}
+body.fl-locked #fl-gate{display:block}
+#fl-gate h2{font-size:20px;margin:0 0 8px}
+#fl-gate a{display:inline-block;margin-top:14px;padding:10px 14px;border-radius:8px;background:#17211C;color:#fff;text-decoration:none;font-weight:600}
+.fl-nav{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.rail .fl-nav{margin:0 0 16px 6px}
+.fl-back{display:inline-block;text-decoration:none;font:600 14px/1 var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:9px 12px}
+.fl-back:hover{border-color:var(--ink-2)}
+.fl-lang{display:inline-flex;gap:2px;padding:3px;background:var(--tint);border-radius:999px}
+.fl-lang button{font:600 12px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:7px 9px;cursor:pointer}
+.fl-lang button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.fl-partial{background:var(--kunyit-bg);color:var(--ink);border-radius:6px;padding:10px 14px;margin:0 0 18px;font-size:14px;max-width:780px}
+@media (max-width:520px){.topbar .fl-folders{display:none}}
+</style>
+<div id="fl-gate" role="alert"></div>
+
+<title>Должностная папка Head Chef</title>
+<meta content="Map Jabatan Head Chef / Должностная папка Head Chef Food Lab." name="description"/>
+<meta content="ru" name="folder-lang"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;family=Unbounded:wght@500;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+/* from hr/p1.html */
+/* Layout: ring-binder operations manual. Colour-coded chapter tabs on a left rail (colours follow the kitchen cutting-board code),
+   one reading column, wide tables break out, key rules printed as kitchen order tickets. */
+:root{
+  --paper:#F5F7F3; --panel:#FFFFFF; --tint:#ECF0EA; --line:#D8DED6; --ink:#17211C; --ink-2:#56625B;
+  --pandan:#2E7D4F; --pandan-bg:#E2EFE6;
+  --kunyit:#8F6500; --kunyit-fill:#E8B23C; --kunyit-bg:#FBF0D3;
+  --cabai:#B6382C; --cabai-bg:#F8E3DF;
+  --laut:#2A66A0; --laut-bg:#E1ECF6;
+  --terong:#6A4A9C; --terong-bg:#ECE6F5;
+  --kayu:#87573A; --kayu-bg:#F2E8E1;
+  --teal:#2B7A80; --teal-bg:#DFEFF0;
+  --steel:#5D6D67; --steel-bg:#E6EBE8;
+  --f-display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-body:"Onest","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101613; --panel:#17201B; --tint:#1D2722; --line:#2C3832; --ink:#E6ECE8; --ink-2:#A3B0A8;
+    --pandan:#6CC08E; --pandan-bg:#1A2E22;
+    --kunyit:#E9BC52; --kunyit-fill:#C99A2E; --kunyit-bg:#2D2613;
+    --cabai:#F07F71; --cabai-bg:#35201C;
+    --laut:#7FB3E8; --laut-bg:#172636;
+    --terong:#B79DE6; --terong-bg:#251E33;
+    --kayu:#D6A683; --kayu-bg:#2E231C;
+    --teal:#71C5CB; --teal-bg:#15292B;
+    --steel:#9FB1AA; --steel-bg:#1F2925;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101613; --panel:#17201B; --tint:#1D2722; --line:#2C3832; --ink:#E6ECE8; --ink-2:#A3B0A8;
+  --pandan:#6CC08E; --pandan-bg:#1A2E22;
+  --kunyit:#E9BC52; --kunyit-fill:#C99A2E; --kunyit-bg:#2D2613;
+  --cabai:#F07F71; --cabai-bg:#35201C;
+  --laut:#7FB3E8; --laut-bg:#172636;
+  --terong:#B79DE6; --terong-bg:#251E33;
+  --kayu:#D6A683; --kayu-bg:#2E231C;
+  --teal:#71C5CB; --teal-bg:#15292B;
+  --steel:#9FB1AA; --steel-bg:#1F2925;
+  color-scheme:dark;
+}
+[data-c="base"]{--c:var(--steel);--c-bg:var(--steel-bg)}
+[data-c="hire"]{--c:var(--pandan);--c-bg:var(--pandan-bg)}
+[data-c="onb"]{--c:var(--laut);--c-bg:var(--laut-bg)}
+[data-c="train"]{--c:var(--kunyit);--c-bg:var(--kunyit-bg)}
+[data-c="ctrl"]{--c:var(--cabai);--c-bg:var(--cabai-bg)}
+[data-c="eval"]{--c:var(--terong);--c-bg:var(--terong-bg)}
+[data-c="exit"]{--c:var(--kayu);--c-bg:var(--kayu-bg)}
+[data-c="data"]{--c:var(--teal);--c-bg:var(--teal-bg)}
+[data-c="app"]{--c:var(--ink-2);--c-bg:var(--tint)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--paper);color:var(--ink);font:400 16px/1.62 var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration-color:var(--line);text-underline-offset:3px}
+a:hover{text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--pandan);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+
+/* ---------- frame ---------- */
+.topbar{display:none;position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 16px;align-items:center;justify-content:space-between;gap:12px}
+.topbar b{font-family:var(--f-display);font-weight:700;font-size:14px;letter-spacing:.01em}
+.btn{font:600 14px/1 var(--f-body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:9px 12px;cursor:pointer}
+.btn:hover{border-color:var(--ink-2)}
+.shell{display:grid;grid-template-columns:276px minmax(0,1fr);max-width:1280px;margin:0 auto}
+.rail{position:sticky;top:0;height:100vh;overflow:auto;padding:26px 14px 40px 18px;border-right:1px solid var(--line)}
+.rail .brand{font-family:var(--f-display);font-weight:700;font-size:15px;line-height:1.25;margin:0 0 4px 6px}
+.rail .brand small{display:block;font-family:var(--f-mono);font-weight:400;font-size:11px;color:var(--ink-2);letter-spacing:.06em;margin-top:6px;text-transform:uppercase}
+.toc{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:2px}
+.toc a{display:grid;grid-template-columns:10px 30px minmax(0,1fr);align-items:center;gap:8px;padding:7px 8px;border-radius:6px;text-decoration:none;color:var(--ink-2);font-size:14px;line-height:1.25}
+.toc a .sw{width:10px;height:22px;border-radius:2px 5px 5px 2px;background:var(--c)}
+.toc a .n{font-family:var(--f-mono);font-size:12px;color:var(--c)}
+.toc a:hover{background:var(--tint);color:var(--ink)}
+.toc a[aria-current="true"]{background:var(--c-bg);color:var(--ink);font-weight:600}
+.toc .sep{height:1px;background:var(--line);margin:10px 6px}
+main{min-width:0;padding-inline:clamp(16px,4.2vw,64px);padding-block:36px 120px}
+.col{max-width:780px}
+section.ch{padding-top:28px;margin-top:56px;border-top:1px solid var(--line)}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(36px,5.6vw,64px);line-height:1.02;letter-spacing:-.01em}
+h2{font-family:var(--f-display);font-weight:700;font-size:clamp(23px,2.8vw,32px);line-height:1.15}
+h3{font-size:22px;font-weight:700;line-height:1.25;margin:52px 0 14px;display:flex;gap:12px;align-items:baseline}
+h3 .no{font-family:var(--f-mono);font-size:14px;font-weight:600;color:var(--c);flex:none}
+h4{font-size:17px;font-weight:700;margin:28px 0 8px}
+p{margin:0 0 12px;max-width:70ch}
+.lead{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:62ch}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin:0 0 10px}
+.muted{color:var(--ink-2)}
+.small{font-size:14px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+strong{font-weight:700}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:4px 0}
+li::marker{color:var(--c,var(--ink-2))}
+.id{display:block;font-size:14px;color:var(--ink-2);font-style:italic;margin-top:4px}
+
+/* ---------- cover ---------- */
+.cover{padding:18px 0 8px}
+.cover h1{margin:6px 0 18px}
+.cover .lead{margin-bottom:26px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px 28px;margin:0 0 28px;padding:18px 0;border-block:1px solid var(--line)}
+.meta div{min-width:0}
+.meta dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.meta dd{margin:2px 0 0;font-weight:500}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px;padding:0;list-style:none}
+.tabs a{display:flex;align-items:center;gap:8px;text-decoration:none;padding:8px 12px 8px 10px;border-radius:4px 10px 10px 4px;background:var(--c-bg);font-weight:600;font-size:14px}
+.tabs a .n{font-family:var(--f-mono);color:var(--c);font-size:13px}
+
+/* ---------- chapter opener ---------- */
+.opener{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 28px;align-items:start;margin-bottom:8px}
+.ch-num{font-family:var(--f-display);font-weight:700;font-size:clamp(64px,9vw,104px);line-height:.85;color:var(--c);min-width:1ch}
+.opener .eyebrow{color:var(--c)}
+.opener h2{margin-bottom:12px}
+.outcome{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 24px;margin-top:16px;padding:14px 16px;background:var(--c-bg);border-radius:6px}
+.outcome dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.outcome dd{margin:2px 0 0;font-size:15px}
+
+/* ---------- badges & chips ---------- */
+.b{display:inline-block;font-family:var(--f-mono);font-size:11.5px;font-weight:600;line-height:1;padding:4px 6px 3px;border-radius:4px;border:1px solid var(--line);background:var(--panel);color:var(--ink);white-space:nowrap;vertical-align:1px}
+.t{display:inline-block;font-family:var(--f-mono);font-size:11.5px;line-height:1;padding:4px 7px 3px;border-radius:999px;background:var(--tint);color:var(--ink-2);white-space:nowrap;vertical-align:1px}
+.pill{display:inline-block;font:600 12px/1 var(--f-mono);padding:5px 8px 4px;border-radius:999px;white-space:nowrap}
+.pill.ok{background:var(--pandan-bg);color:var(--pandan)}
+.pill.mid{background:var(--kunyit-bg);color:var(--kunyit)}
+.pill.bad{background:var(--cabai-bg);color:var(--cabai)}
+
+/* ---------- ticket (key rule) ---------- */
+.ticket{position:relative;background:var(--panel);border:1px solid var(--line);border-top:0;padding:18px 18px 14px;margin:20px 0;max-width:680px}
+.ticket::before{content:"";position:absolute;left:-1px;right:-1px;top:-6px;height:12px;background:radial-gradient(circle at 6px 6px,var(--paper) 0 4px,transparent 4.6px) 0 0/12px 12px repeat-x,linear-gradient(var(--line),var(--line)) 0 6px/100% 1px no-repeat}
+.ticket .th{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--c,var(--ink-2));margin-bottom:6px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+.ticket .th span:last-child{color:var(--ink-2);letter-spacing:.04em;text-transform:none}
+.ticket p:last-child,.ticket ul:last-child{margin-bottom:0}
+.alert{background:var(--cabai-bg);border-radius:6px;padding:14px 16px;margin:18px 0;max-width:780px}
+.alert .th{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--cabai);margin-bottom:4px}
+.alert p:last-child,.alert ul:last-child{margin-bottom:0}
+.note{background:var(--tint);border-radius:6px;padding:14px 16px;margin:18px 0;max-width:780px}
+.note .th{font-family:var(--f-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2);margin-bottom:4px}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+
+/* ---------- steps ---------- */
+ol.steps{list-style:none;padding:0;margin:18px 0 24px;counter-reset:s;display:grid;gap:0;max-width:820px}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 18px 50px;margin:0}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:600 14px/1 var(--f-mono);color:var(--c);background:var(--c-bg)}
+ol.steps>li::after{content:"";position:absolute;left:15.5px;top:36px;bottom:4px;width:1px;background:var(--line)}
+ol.steps>li:last-child::after{display:none}
+.sh{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-bottom:4px;padding-top:4px}
+.sh b{font-size:16.5px;margin-right:4px}
+ol.steps p{margin-bottom:6px}
+ol.steps ul{margin-bottom:6px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:16px 0 22px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--f-mono);font-weight:600;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);background:var(--tint);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td .id{font-size:13px}
+tbody tr.hl td{background:var(--c-bg)}
+
+/* ---------- cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin:18px 0 24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 16px 12px;min-width:0}
+.card h4{margin:0 0 2px}
+.card .sub{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);margin-bottom:10px}
+.card dl{margin:0;display:grid;gap:8px}
+.card dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.card dd{margin:0;font-size:14.5px}
+.card ul{margin:0;padding-left:18px;font-size:14.5px}
+
+/* ---------- checklists ---------- */
+ul.check{list-style:none;padding:0;margin:14px 0 22px;display:grid;gap:2px;max-width:780px}
+ul.check li{margin:0}
+ul.check label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;padding:8px 10px;border-radius:6px;cursor:pointer}
+ul.check label:hover{background:var(--tint)}
+ul.check input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--pandan)}
+ul.check input:checked+span{color:var(--ink-2);text-decoration:line-through;text-decoration-color:var(--line)}
+ul.check .day{font-family:var(--f-mono);font-size:12px;color:var(--c);margin-right:6px}
+
+/* ---------- formula ---------- */
+.formula{font-family:var(--f-mono);font-size:15px;line-height:1.7;background:var(--panel);border:1px dashed var(--c,var(--line));border-radius:6px;padding:14px 16px;margin:16px 0;max-width:780px;overflow-x:auto}
+.formula b{color:var(--c,var(--ink))}
+
+@media (max-width:980px){
+  .topbar{display:flex}
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .rail{display:none;position:fixed;inset:0;z-index:40;height:100%;width:100%;max-width:360px;background:var(--panel);border-right:1px solid var(--line);padding-top:calc(20px + env(safe-area-inset-top,0px));box-shadow:0 0 0 100vmax rgba(0,0,0,.35)}
+  .rail.open{display:block}
+  .rail .close{display:block!important}
+  main{padding-block:20px 96px}
+  h3{margin-top:40px}
+}
+@media (max-width:560px){
+  .opener{grid-template-columns:minmax(0,1fr)}
+  ol.steps>li{padding-left:44px}
+  body{font-size:15.5px}
+}
+/* from hr/p2.html */
+.ladder{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;margin:18px 0 10px;list-style:none;padding:0;max-width:900px}
+.ladder li{position:relative;flex:1 1 150px;min-width:0;margin:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.ladder li .k{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.ladder li b{display:block;font-size:16px;line-height:1.3}
+.ladder li .s{display:block;font-size:13px;color:var(--ink-2);margin-top:2px}
+.ladder.arrows li:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-family:var(--f-mono);font-size:13px;color:var(--ink-2);background:var(--paper);line-height:1;padding:2px 0;z-index:1}
+.shiftviz{--shA:var(--kunyit-fill);--shB:var(--teal);--shC:var(--terong);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px;margin:18px 0 24px;max-width:860px}
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--tint);border-radius:8px;margin-bottom:14px}
+.seg button{font:600 13.5px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:6px;padding:9px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.vizrow{display:grid;grid-template-columns:minmax(200px,290px) minmax(0,1fr);gap:24px;align-items:center}
+.clock{width:100%;height:auto;max-width:290px;display:block}
+.legend{display:grid;gap:10px;min-width:0}
+.legend .row{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:center;font-size:15px}
+.legend .sw{width:14px;height:14px;border-radius:3px}
+.legend .row b{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.legend .tot{border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
+.legend .comp{font-size:14px;color:var(--ink-2)}
+.calc{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:18px 0 26px;max-width:920px;overflow:hidden}
+.calc-in{padding:16px;display:grid;gap:12px;align-content:start;min-width:0}
+.calc-out{padding:16px;background:var(--c-bg);display:grid;gap:10px;align-content:start;min-width:0}
+.calc h4{margin:0 0 2px;font-size:15px}
+.field{display:grid;gap:4px;min-width:0}
+.field label{font-size:13px;color:var(--ink-2);line-height:1.3}
+.field input,.field select{font:500 15px/1.2 var(--f-mono);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:9px 10px;width:100%;min-width:0}
+.fields3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fields2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.presets{display:flex;flex-wrap:wrap;gap:6px}
+.presets button{font:600 13px/1 var(--f-body);background:var(--tint);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 11px;cursor:pointer}
+.presets button:hover{border-color:var(--ink-2)}
+.out{display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.out span{font-size:14px;color:var(--ink-2)}
+.out b{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:16px;text-align:right}
+.out.big b{font-size:21px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);line-height:1.35}
+.chk input{margin-top:2px;accent-color:var(--pandan)}
+.kit{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0;max-width:860px}
+.kit div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 14px 12px;min-width:0}
+.kit .q{font-family:var(--f-display);font-weight:700;font-size:34px;line-height:1;color:var(--c)}
+.kit .w{font-size:14.5px;margin-top:8px;line-height:1.35}
+.tl{list-style:none;margin:20px 0 26px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:2px solid var(--c);max-width:980px}
+.tl li{position:relative;margin:0;padding:18px 14px 0 0;min-width:0}
+.tl li::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--panel);border:2px solid var(--c)}
+.tl .when{font-family:var(--f-mono);font-size:12.5px;font-weight:600;color:var(--c)}
+.tl b{display:block;font-size:15px;line-height:1.3;margin:3px 0 4px}
+.tl p{font-size:14px;color:var(--ink-2);margin:0}
+@media (max-width:720px){
+  .vizrow{grid-template-columns:minmax(0,1fr)} .clock{margin:0 auto}
+  .calc{grid-template-columns:minmax(0,1fr)}
+  .kit{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl{grid-template-columns:minmax(0,1fr);border-top:0;border-left:2px solid var(--c);padding-left:20px}
+  .tl li{padding:0 0 16px}
+  .tl li::before{left:-29px;top:2px}
+}
+.seg button b{font-weight:600}
+.seg button span{font-family:var(--f-mono);font-size:12px;font-weight:400}
+@media (max-width:560px){
+  .seg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .seg button{padding:8px 6px}
+  .seg button span{display:block;margin-top:4px}
+}
+/* from hr/p6.html */
+.crit{display:inline-block;font:600 10.5px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--cabai);background:var(--cabai-bg);border-radius:4px;padding:3px 5px 2px;margin-left:6px;vertical-align:1px;white-space:nowrap}
+.sc td:first-child{width:36px}
+.sc td:nth-child(2){min-width:260px}
+.sc td:nth-child(3),.sc td:nth-child(4){min-width:190px}
+.decide{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0 26px;max-width:900px}
+.decide div{border-radius:6px;padding:12px 14px;min-width:0}
+.decide .y{background:var(--pandan-bg)}
+.decide .r{background:var(--kunyit-bg)}
+.decide .n{background:var(--cabai-bg)}
+.decide b{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.decide .y b{color:var(--pandan)} .decide .r b{color:var(--kunyit)} .decide .n b{color:var(--cabai)}
+.decide p{font-size:14.5px;margin:0}
+.appsec{border-top:1px solid var(--line);margin-top:56px;padding-top:28px}
+/* from hr/p7.html */
+.tpl{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin:14px 0 22px;max-width:860px;overflow:hidden}
+.tpl-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px 9px 16px;border-bottom:1px solid var(--line);background:var(--tint)}
+.tpl-h b{font-size:14.5px}
+.tpl pre{margin:0;padding:14px 16px;font:400 13.5px/1.6 var(--f-mono);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
+.copy{font:600 12.5px/1 var(--f-body);border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:7px 10px;cursor:pointer;flex:none}
+.copy:hover{border-color:var(--ink-2)}
+.foot{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-2);max-width:860px}
+
+/* ---------- folders: language switch ---------- */
+.langblock[lang="ru"]{display:none}
+body.l-ru .langblock[lang="id"]{display:none}
+body.l-ru .langblock[lang="ru"]{display:block}
+.toc[lang="ru"]{display:none}
+body.l-ru .toc[lang="id"]{display:none}
+body.l-ru .toc[lang="ru"]{display:grid}
+.langsw{display:inline-flex;gap:3px;padding:3px;background:var(--tint);border-radius:999px;margin:18px 0 0 6px}
+.langsw button{font:600 12.5px/1 var(--f-body);color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:7px 11px;cursor:pointer;white-space:nowrap}
+.langsw button[aria-pressed="true"]{background:var(--panel);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.topbar .langsw{margin:0}
+.topbar .tb-right{display:flex;gap:8px;align-items:center}
+@media (max-width:420px){.topbar b{display:none}}
+
+/* ---------- folders: header, codes, new marks ---------- */
+.new{display:inline-block;font:600 10.5px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--pandan);background:var(--pandan-bg);border-radius:4px;padding:4px 6px 3px;margin-left:8px;vertical-align:3px;white-space:nowrap}
+h3 .new{margin-left:2px}
+.code{display:inline-block;font:600 11.5px/1 var(--f-mono);padding:4px 7px 3px;border-radius:4px;background:var(--c-bg,var(--tint));color:var(--c,var(--ink));border:1px solid var(--line);white-space:nowrap;vertical-align:1px}
+.policy{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 22px;margin:0 0 26px;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:6px;max-width:940px}
+.policy div{min-width:0}
+.policy dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.policy dd{margin:2px 0 0;font-size:14px}
+.src{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-2);letter-spacing:.02em}
+
+/* ---------- org chain ---------- */
+.chain{list-style:none;padding:0;margin:14px 0 22px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;max-width:940px}
+.chain li{margin:0;padding:8px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);font-size:14px;line-height:1.3}
+.chain li small{display:block;font-family:var(--f-mono);font-size:10.5px;color:var(--ink-2);letter-spacing:.04em;margin-top:2px}
+.chain li.me{background:var(--c-bg);border-color:var(--c);font-weight:700}
+.chain li.arr{border:0;background:none;padding:0;color:var(--ink-2);font-family:var(--f-mono)}
+
+/* ---------- main statistic card ---------- */
+.statcard{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:16px 0 26px;max-width:940px}
+.statcard .eyebrow{color:var(--c)}
+.statcard .gs{font-family:var(--f-display);font-weight:700;font-size:clamp(17px,2.2vw,21px);line-height:1.3;margin:2px 0 14px;text-wrap:balance}
+.statcard dl{display:grid;grid-template-columns:minmax(140px,210px) minmax(0,1fr);gap:8px 18px;margin:0}
+.statcard dt{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+.statcard dd{margin:0;font-size:14.5px}
+@media (max-width:560px){.statcard dl{grid-template-columns:minmax(0,1fr)}.statcard dt{padding-top:6px}}
+
+/* ---------- knowledge check & checksheet ---------- */
+ol.quiz{counter-reset:qq;list-style:none;padding:0;margin:14px 0 8px;display:grid;gap:8px;max-width:840px}
+ol.quiz>li{counter-increment:qq;position:relative;padding:10px 12px 10px 46px;background:var(--panel);border:1px solid var(--line);border-radius:6px;margin:0}
+ol.quiz>li::before{content:counter(qq);position:absolute;left:12px;top:9px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:600 12px/1 var(--f-mono);color:var(--c,var(--ink));background:var(--c-bg,var(--tint))}
+details.key{margin:8px 0 26px;max-width:840px;border:1px dashed var(--line);border-radius:6px;padding:9px 14px;background:var(--paper)}
+details.key summary{cursor:pointer;font:600 13.5px/1.4 var(--f-body);color:var(--ink-2)}
+details.key[open] summary{margin-bottom:6px}
+details.key ol{margin:6px 0 2px;padding-left:22px}
+details.key li{font-size:14.5px}
+.signoff{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 22px;margin:12px 0 26px;max-width:840px}
+.signoff div{border-bottom:1px solid var(--ink-2);padding:26px 0 5px;font-size:12.5px;color:var(--ink-2)}
+.cs-part{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:18px 0 2px}
+
+/* ---------- folders map ---------- */
+.fmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;margin:16px 0 24px;max-width:940px}
+.fmap div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;min-width:0}
+.fmap b{display:block;font-size:15px;margin-bottom:2px}
+.fmap span{font-size:13.5px;color:var(--ink-2)}
+
+@media print{
+  .topbar,.rail,.calc,.seg,.copy,.langsw{display:none!important}
+  .shell{display:block}
+  main{padding:0}
+  section.ch{break-before:page;border-top:0;margin-top:0;padding-top:0}
+  .tw{overflow:visible}
+  .ticket,.tpl,.card,.alert,.note,.statcard,tr,ol.quiz>li{break-inside:avoid}
+  details.key{display:none}
+}
+
+[data-l="ru"]{display:none}body.l-ru [data-l="id"]{display:none}body.l-ru [data-l="ru"]{display:inline}
+.langblock[lang="ru"]{display:block}.toc[lang="ru"]{display:grid}[data-l="ru"]{display:inline}[data-l="id"]{display:none}@media (max-width:420px){.topbar b{display:inline}}
+</style>
+<div class="topbar"><span data-t="ff987abdbf">
+<b>Food Lab · Папка Head Chef</b>
+</span><div class="tb-right"><div class="fl-nav"><a class="fl-back" href="Академия.dc.html" data-fl-ui="back">← Академия</a><a class="fl-back fl-folders" href="Папки.html" data-fl-ui="folders">Все папки</a><span class="fl-lang" role="group" aria-label="Language"><button type="button" data-fl-lang="ru">RU</button><button type="button" data-fl-lang="id">ID</button><button type="button" data-fl-lang="en">EN</button></span></div>
+<button aria-controls="rail" aria-expanded="false" class="btn" data-t="5f2fbe2d4b" id="tocBtn" type="button">Содержание</button>
+</div>
+</div>
+<div class="shell">
+<aside aria-label="Содержание" class="rail" data-ta="aria-label:5f2fbe2d4b" id="rail">
+<button class="btn close" data-t="4ae50d3073" id="tocClose" style="display:none;margin:0 0 14px 6px" type="button">Закрыть</button>
+<div class="fl-nav"><a class="fl-back" href="Академия.dc.html" data-fl-ui="back">← Академия</a><a class="fl-back fl-folders" href="Папки.html" data-fl-ui="folders">Все папки</a><span class="fl-lang" role="group" aria-label="Language"><button type="button" data-fl-lang="ru">RU</button><button type="button" data-fl-lang="id">ID</button><button type="button" data-fl-lang="en">EN</button></span></div>
+  <p class="brand" data-t="70fb8e4501">Food Lab<br/>Должностная папка Head Chef<small><span data-l="id">KODE: HC</span><span data-l="ru">КОД: HC</span> · v1.0</small></p>
+<ul class="toc" lang="ru"><li data-t="5a3eb39b2e"><a data-c="app" href="#cs-ru"><span class="sw"></span><span class="n">0</span><span>Контрольный лист</span></a></li><li data-t="8fdce1eae9"><a data-c="base" href="#post-ru"><span class="sw"></span><span class="n">1</span><span>Пост Head Chef</span></a></li><li data-t="31bb91c5f5"><a data-c="eval" href="#stat-ru"><span class="sw"></span><span class="n">2</span><span>ГС и KPI-бонус</span></a></li><li data-t="857f947d11"><a data-c="base" href="#staff-ru"><span class="sw"></span><span class="n">3</span><span>Штат и ФОТ</span></a></li><li data-t="8b6d8e9caa"><a data-c="hire" href="#hire-ru"><span class="sw"></span><span class="n">4</span><span>Найм и открытие точек</span></a></li><li data-t="3413ed1cb3"><a data-c="ctrl" href="#control-ru"><span class="sw"></span><span class="n">5</span><span>Обучение и дисциплина</span></a></li><li data-t="b52252968d"><a data-c="eval" href="#eval-ru"><span class="sw"></span><span class="n">6</span><span>Оценка и статистики</span></a></li><li data-t="4c912dd700"><a data-c="exit" href="#exit-ru"><span class="sw"></span><span class="n">7</span><span>Увольнение без сюрпризов</span></a></li><li data-t="9925feafb2"><a data-c="data" href="#data-ru"><span class="sw"></span><span class="n">8</span><span>Данные и замещение HR</span></a></li></ul>
+</aside>
+<main id="main">
+<div class="langblock" lang="ru">
+<header class="cover" data-c="eval" id="top-ru">
+<p class="eyebrow" data-t="701f3d89db">PT Food Laboratory Group · Должностная папка · пост: Head Chef · код распределения: HC</p>
+<h1 data-t="0b2f64384d">Должностная<br/>папка Head Chef</h1>
+<p class="lead" data-t="0cfd1ea1e0">Всё, что нужно руководителю кухонь региона: продукт поста, главная статистика региона, KPI-бонус, штат и ФОТ, найм руководителей, открытие точек, дисциплина, оценка, увольнение без сюрпризов и личные данные. Сначала изучите Папку сотрудника, потом эту папку (урок 4.5.2.3). Программа введения нового Head Chef — в папке «Введение в должность руководителей».</p>
+<dl class="policy">
+<div><dt data-t="d8f9fefadb">Компания</dt><dd>PT Food Laboratory Group (Food Lab)</dd></div>
+<div><dt data-t="ac9378da46">Вид политики</dt><dd data-t="fb8b3cef3b">Инструктивное письмо</dd></div>
+<div><dt data-t="d9f964d71b">Уровень</dt><dd data-t="c61305d0f0">Отделение 4 «Производство»</dd></div>
+<div><dt data-t="0dc90fa890">Серия</dt><dd data-t="5892d2de92">Должностные папки · кухня</dd></div>
+<div><dt data-t="2beb5959f0">Код распределения</dt><dd><span class="code">HC</span></dd></div>
+<div><dt data-t="7f9b37d89f">Кто издал</dt><dd data-t="8663d70779">Директор</dd></div>
+<div><dt data-t="77a4f98d0e">Первая публикация</dt><dd class="mono">14.10.2026</dd></div>
+<div><dt data-t="cf0efc1531">Последнее изменение</dt><dd class="mono">14.10.2026</dd></div>
+<div><dt data-t="0c7ac5793a">Одобрил</dt><dd data-t="8663d70779">Директор</dd></div>
+</dl>
+<div class="note"><div class="th" data-t="3259feec1e">Как читать номера разделов</div><p data-t="67dc794160">Номера вида 0.4 или 5.1 — разделы HR Playbook. Они сохранены, чтобы ссылки совпадали во всех папках. Полный текст — в должностной папке HR-менеджера; Head Chef — её второй владелец (7.2).</p></div>
+</header>
+<section class="ch" data-c="app" data-n="0" data-toc="Контрольный лист" id="cs-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">0</div>
+<div>
+<p class="eyebrow" data-t="5a2d059037">Как изучать папку <span class="new">новое · 4.5.2.4</span></p>
+<h2 data-t="e7611a9435">Контрольный лист Head Chef</h2>
+<p class="lead" data-t="09d28588e6">Теория — раздел и вопросы в его конце. Практика — в своём регионе. Пункты подписывает Директор.</p>
+</div>
+</header>
+<p class="cs-part" data-t="ad06a9000e">Теория</p>
+<ul class="check">
+<li><label data-t="b61a2c5c27"><input id="pc1-ru" type="checkbox"/><span>Папка сотрудника: все разделы, проверка сдана</span></label></li>
+<li><label data-t="44cab740f1"><input id="pc2-ru" type="checkbox"/><span>1. Пост Head Chef</span></label></li>
+<li><label data-t="84aee3351d"><input id="pc3-ru" type="checkbox"/><span>2. Главная статистика и KPI-бонус</span></label></li>
+<li><label data-t="f34cfdfbd6"><input id="pc4-ru" type="checkbox"/><span>3. Штат и ФОТ региона</span></label></li>
+<li><label data-t="9e77eb2970"><input id="pc5-ru" type="checkbox"/><span>4. Найм руководителей и открытие точек</span></label></li>
+<li><label data-t="c06761ce04"><input id="pc6-ru" type="checkbox"/><span>5. Обучение, допуски, дисциплина</span></label></li>
+<li><label data-t="6776851102"><input id="pc7-ru" type="checkbox"/><span>6. Оценка и статистики</span></label></li>
+<li><label data-t="9f3ebbb600"><input id="pc8-ru" type="checkbox"/><span>7. Увольнение без сюрпризов</span></label></li>
+<li><label data-t="5f209d4e0a"><input id="pc9-ru" type="checkbox"/><span>8. Личные данные и замещение HR</span></label></li>
+</ul>
+<p class="cs-part" data-t="72a0a50a48">Практика</p>
+<ul class="check">
+<li><label data-t="ab772f0ca0"><input id="pc10-ru" type="checkbox"/><span>Разобрал ГС региона и каждой точки за 4 недели с Директором</span></label></li>
+<li><label data-t="539e939bdd"><input id="pc11-ru" type="checkbox"/><span>Посчитал ФОТ % и KPI-бонус за прошлый месяц и сверил с HR</span></label></li>
+<li><label data-t="2048fb8c9d"><input id="pc12-ru" type="checkbox"/><span>Утвердил недельные графики всех точек и проверил минимум людей на сменах</span></label></li>
+<li><label data-t="eee2f8a397"><input id="pc13-ru" type="checkbox"/><span>Провёл санитарный аудит одной точки</span></label></li>
+<li><label data-t="5589067495"><input id="pc14-ru" type="checkbox"/><span>Составил план набора под открытие точки по неделям (1.4)</span></label></li>
+<li><label data-t="381bb54b09"><input id="pc15-ru" type="checkbox"/><span>Провёл прояснение должностных обязанностей с Sous Chef или закупщиком (2.4)</span></label></li>
+</ul>
+<div class="signoff">
+<div data-t="ef978a6d4c">Head Chef: имя, подпись, дата</div>
+<div data-t="ee5a7fd087">Директор: подпись, дата</div>
+</div>
+</section>
+<section class="ch" data-c="base" data-n="1" data-toc="Пост Head Chef" id="post-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">1</div>
+<div>
+<p class="eyebrow" data-t="a92bf22f01">Раздел 1 <span class="new">новое · 3.1, 4.3, 4.4</span></p>
+<h2 data-t="a353502402">Пост Head Chef</h2>
+<p class="lead" data-t="eff9c56151">Head Chef руководит отделением 4 «Производство» в регионе. ЦКП руководителя равен ЦКП подразделения, которым он руководит (урок 3.1.1.9).</p>
+</div>
+</header>
+<ul aria-label="Место на оргсхеме" class="chain" data-ta="aria-label:ebbf370e45">
+<li data-t="b30cc9e519">Директор<small>отделение 7, офис 19</small></li>
+<li aria-hidden="true" class="arr">→</li>
+<li class="me" data-t="92b7a32873">Head Chef<small>код HC · руководитель отделения 4</small></li>
+<li aria-hidden="true" class="arr">→</li>
+<li data-t="b93fc0de16">Sous Chef точек и закупщик<small>отдел 12 «Кухни» · отдел 10 «Планирование и закупки»</small></li>
+</ul>
+<div class="statcard">
+<p class="eyebrow" data-t="8617bd7be2">ЦКП поста = ЦКП отделения 4</p>
+<p class="gs" data-t="0c372b5664">Заказы, приготовленные и упакованные вовремя, по ТТК, без ошибок — на всех точках.</p>
+<dl>
+<dt data-t="d268596c11">Назначение поста</dt><dd data-t="a6ccea54f8">Чтобы все кухни региона держали стандарт Food Lab без личного присутствия Head Chef и чтобы новые точки открывались с готовой командой.</dd>
+<dt data-t="9a808b573f">Расшифровка ЦКП</dt><dd data-t="525427dc51">Кухни региона с обученной командой, стабильным качеством, себестоимостью и ФОТ в плане (профиль 0.3). Измеряется ГС региона и KPI-бонусом (раздел 2).</dd>
+<dt data-t="d8bb8c29c6">Подчиняется</dt><dd data-t="b5fb1079fc">Директору</dd>
+<dt data-t="b2c7373d56">Подчинённые</dt><dd data-t="4509f59945">Все Sous Chef региона и закупщик</dd>
+<dt data-t="11a568e336">Решает о найме Head Chef</dt><dd data-t="8663d70779">Директор</dd>
+<dt data-t="b455b7e746">Второй пост</dt><dd data-t="6362ae6475">Если Head Chef временно занимает ещё и пост руководителя отделения 5 «Квалификации», это второй пост и вторая папка (урок 4.5.2.3)</dd>
+</dl>
+</div>
+<h3 data-t="88b7bfc9e5" id="roles-ru"><span class="no">0.2</span>Кто за что отвечает</h3>
+<div class="tw"><table>
+<thead><tr><th data-t="ab51a3ace2">Роль</th><th data-t="45e38f3e7e">Что делает в работе с людьми</th></tr></thead>
+<tbody>
+<tr><td data-t="38dd377d6f"><span class="b">ДИР</span> Директор</td><td data-t="e1ac3433b5">Утверждает штатное расписание, ставки и бюджет. Решает найм только Head Chef и HR-менеджера. Подписывает договоры. Решает увольнение по инициативе компании и отстранение. Может выдать предупреждение любой ступени; согласует SP3 для Sous Chef и закупщика.</td></tr>
+<tr><td><span class="b">HC</span> Head Chef</td><td data-t="224ddfacc9">Руководит кухнями региона, всеми Sous Chef и закупщиком. Принимает финальное решение о найме Sous Chef и закупщика. Выдаёт SP1, SP2 и SP3. Вместе с HR-менеджером владеет папкой HR. Если HR-менеджера нет, выполняет его работу, включая метрики.</td></tr>
+<tr><td><span class="b">SC</span> Sous Chef</td><td data-t="e8e43df2b8">Руководит кухней точки и сменами, составляет график. Принимает решение о найме Cook, CDP и Kitchen Helper. Обучает новичков на смене: меню и приготовление. Проводит пробные смены и практический допуск. Выдаёт устные замечания, SP1 и SP2.</td></tr>
+<tr><td><span class="b">CDP</span> Chef de Partie</td><td data-t="a557c60431">Ведёт станцию, может быть старшим смены. Наставник новичка на станции.</td></tr>
+<tr><td data-t="00d9361fe1"><span class="b">HR</span> HR-менеджер</td><td data-t="df3175b22f">Ведёт весь цикл из этой книги: вакансии, отбор, первичные интервью, документы, доступы, обучение правилам и дисциплине, учёт времени, предупреждения, увольнения, опросы, метрики.</td></tr>
+<tr><td data-t="7b9d5ed376"><span class="b">ФИН</span> Бухгалтерия</td><td data-t="dd03418776">Начисляет зарплату, бонусы, THR, взносы BPJS и налоги. Считает окончательный расчёт при увольнении.</td></tr>
+</tbody>
+</table></div>
+<div class="ticket">
+<div class="th" data-t="078bd21d33"><span>Если в регионе нет HR-менеджера</span><span>правило замещения</span></div>
+<p data-t="00ef82f99c">Все задачи HR-менеджера из этой книги выполняет Head Chef региона: поиск и отбор, документы, учёт, журналы и метрики.</p>
+</div>
+<h4 data-t="32f0959d68">Кто что делает в каждом процессе</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="2988c59c8b">Процесс</th><th data-t="a5dc52c1b5">Делает</th><th data-t="774847e78a">Решает</th></tr></thead>
+<tbody>
+<tr><td data-t="39c02f5b0d">Заявка на вакансию</td><td><span class="b">SC</span></td><td data-t="862d490644"><span class="b">HC</span> в пределах штатного расписания; новая должность — <span class="b">ДИР</span></td></tr>
+<tr><td data-t="19e214e61c">Объявления, отбор откликов</td><td><span class="b">HR</span></td><td>—</td></tr>
+<tr><td data-t="acaa1c4e53">Первичное интервью на кухню</td><td data-t="125ee84b8d"><span class="b">HR</span>; в регионе без HR — <span class="b">HC</span></td><td>—</td></tr>
+<tr><td data-t="f8aba98748">Пробная смена</td><td data-t="14325d5dc1"><span class="b">SC</span> или <span class="b">CDP</span></td><td>—</td></tr>
+<tr><td data-t="6723b58685">Найм Cook, CDP, Kitchen Helper</td><td data-t="e64cb702bc"><span class="b">HR</span> собирает оценки</td><td data-t="4a8a51da8d"><span class="b">SC</span> или <span class="b">HC</span></td></tr>
+<tr><td data-t="040363490a">Найм Sous Chef и закупщика</td><td data-t="6bf3d79f6e"><span class="b">HC</span> проводит интервью</td><td><span class="b">HC</span></td></tr>
+<tr><td data-t="f63522050a">Найм Head Chef и HR-менеджера</td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+<tr><td data-t="5eaae2d286">Договор</td><td data-t="3804b71a25"><span class="b">HR</span> готовит</td><td data-t="fecc04b9e6"><span class="b">ДИР</span> подписывает</td></tr>
+<tr><td data-t="18750acb47">Обучение 14 дней</td><td data-t="9b46b7ab58"><span class="b">SC</span> — кухня; <span class="b">HR</span> — правила; Academy — теория и тесты</td><td data-t="a42bc429ae"><span class="b">SC</span> даёт допуск</td></tr>
+<tr><td data-t="e49c12e785">Устное замечание</td><td data-t="1151ab373a"><span class="b">SC</span> или старший смены; <span class="b">HR</span> вносит в журнал</td><td><span class="b">SC</span></td></tr>
+<tr><td>SP1, SP2</td><td data-t="17b65f3b26"><span class="b">HR</span> готовит документ</td><td data-t="7099602790"><span class="b">SC</span>, <span class="b">HC</span> или <span class="b">ДИР</span></td></tr>
+<tr><td>SP3</td><td data-t="17b65f3b26"><span class="b">HR</span> готовит документ</td><td data-t="70350d1840"><span class="b">HC</span>; согласие Директора не нужно для поваров, CDP и Kitchen Helper, а для Sous Chef и закупщика — нужно</td></tr>
+<tr><td data-t="edc24e6f8b">Увольнение по инициативе компании, отстранение</td><td data-t="984b99f653"><span class="b">HR</span> готовит документы</td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+<tr><td data-t="977559182e">HR-метрики и дашборд</td><td data-t="44f6ebf6f1"><span class="b">HR</span>; без HR — <span class="b">HC</span></td><td>—</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="20592075a6">Обязанности</h4>
+<p class="small muted" data-t="e60c6aac9c">По профилю должности (0.3) и процессам HR Playbook.</p>
+<ul>
+<li data-t="c2b1b1b676">Руководит всеми Sous Chef региона и закупщиком; утверждает недельные графики точек.</li>
+<li data-t="85ffb4a783">Стандарты меню и качества; ежемесячный санитарный аудит каждой точки.</li>
+<li data-t="4898f03428">Найм Sous Chef и закупщика: интервью, задание, рекомендации, решение (раздел 4).</li>
+<li data-t="81ec38391c">Предупреждения SP1–SP3; SP3 Sous Chef и закупщику — с согласия Директора.</li>
+<li data-t="e8d8988f17">Контроль закупок и приёмки.</li>
+<li data-t="ab756f30e8">Решение о переходе точки на новый режим штата вместе с Директором; план исправления ФОТ (0.4, 0.5).</li>
+<li data-t="5e8708fbfc">Утверждает допуск «Одиночная ночная смена»; решает по испытательному сроку («прошёл» / «не прошёл»).</li>
+<li data-t="d04160c847">Открытие новых точек; кадровый резерв и подготовка преемников.</li>
+<li data-t="962e8ad07a">Второй владелец папки HR; если HR-менеджера нет — выполняет его работу, включая метрики и статистики.</li>
+</ul>
+<h4 data-t="447a49f5b0">Личные качества поста</h4>
+<p class="small muted" data-t="4500feab6b">Курс 4.3, шаг 2. Проверяются сценариями и письменным кейсом (Приложение A4).</p>
+<ul>
+<li data-t="7f3a81b97d"><strong>Руководитель руководителей:</strong> работает через Sous Chef, а не вместо них.</li>
+<li data-t="fa459573cf"><strong>Системность:</strong> чек-листы, аудиты, KPI, кадровый резерв.</li>
+<li data-t="fd64520c2a"><strong>Честность в цифрах:</strong> закупки, приёмка, отчёт владельцу.</li>
+<li data-t="40b661fa3a"><strong>Готовит преемников:</strong> программа «Старший смены», делегирование.</li>
+<li data-t="ab412b2dd8"><strong>Безопасность гостя важнее всего:</strong> при подозрении на отравление действует в тот же час.</li>
+</ul>
+<h4 data-t="ef804aea6a">Линии связи</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="75d81a59c8">С кем</th><th data-t="e7c9f64baa">По каким вопросам</th></tr></thead>
+<tbody>
+<tr><td data-t="38dd377d6f"><span class="b">ДИР</span> Директор</td><td data-t="5872bfce64">Еженедельная координация: ГС региона, план на неделю; штат, ставки, бюджет; новые должности; увольнения и отстранения; SP3 руководителям; открытие точек</td></tr>
+<tr><td><span class="b">SC</span> Sous Chef</td><td data-t="1ac6af343f">Графики, качество, аудит, найм на кухню, дисциплина, обучение, ГС и KPI точек</td></tr>
+<tr><td data-t="934ca1dc91">Закупщик</td><td data-t="29cca96345">Заявки, поставщики, цены, чеки, системы учёта; KPI-бонус закупщика утверждает Head Chef</td></tr>
+<tr><td data-t="00d9361fe1"><span class="b">HR</span> HR-менеджер</td><td data-t="d261a8fd96">Вакансии, кандидаты на Sous Chef и закупщика, журнал предупреждений, метрики, KPI-бонус Head Chef, личные данные</td></tr>
+<tr><td data-t="7b9d5ed376"><span class="b">ФИН</span> Бухгалтерия</td><td data-t="c39ee321ff">ФОТ, себестоимость, выплаты</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="aa539f6761">Почему ЦКП Head Chef совпадает с ЦКП отделения 4?</li>
+<li data-t="bc36d7c082">Кого нанимает Head Chef и кого — только Директор?</li>
+<li data-t="7235b633cd">Кто даёт SP3 повару, а кто — Sous Chef?</li>
+<li data-t="5b0c69d284">Что делает Head Chef, если в регионе нет HR-менеджера?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="5e485aac2f">ЦКП руководителя равен ЦКП подразделения, которым он руководит (3.1).</li>
+<li data-t="a698fddc79">Head Chef — Sous Chef и закупщика; Директор — Head Chef и HR-менеджера.</li>
+<li data-t="bea2ae35cb">Повару — Head Chef без согласия Директора; Sous Chef — Head Chef с согласия Директора.</li>
+<li data-t="27e343dc58">Выполняет всю работу HR: поиск и отбор, документы, учёт, журналы, метрики и статистики.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="eval" data-n="2" data-toc="ГС и KPI-бонус" id="stat-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">2</div>
+<div>
+<p class="eyebrow" data-t="aa5f08f492">Раздел 2 <span class="new">новое · 5.2</span> · из HR Playbook 0.6 и 5.2</p>
+<h2 data-t="fd44a25c3d">Главная статистика и KPI-бонус</h2>
+<p class="lead" data-t="d6e0581fbf">Главная статистика показывает продукт отделения за неделю. KPI-бонус — месячные дополнительные статистики, по которым платится бонус до Rp 2 000 000.</p>
+</div>
+</header>
+<div class="statcard">
+<p class="eyebrow" data-t="65f6b12975">Главная статистика поста (ГС) · курс 5.2</p>
+<p class="gs" data-t="0d68e8e852">Стоимость заказов безупречного качества всех точек региона за неделю</p>
+<dl>
+<dt data-t="9b034f5ab8">Отделение</dt><dd data-t="cb4ff9a68f">4 · Производство</dd>
+<dt data-t="39312c8c6d">Для каких должностей</dt><dd data-t="f63082da07">Head Chef. Это сумма ГС всех Sous Chef региона</dd>
+<dt data-t="e705983e07">ГС / ДС</dt><dd data-t="03f76737c0">ГС</dd>
+<dt data-t="f5441f6aee">Описание</dt><dd data-t="8eab013b8b">Чистые продажи (Rp) всех заказов точек региона за неделю минус заказы, отменённые или возвращённые по вине кухни, и заказы с негативным отзывом (1–2 звезды или жалоба).</dd>
+<dt data-t="00d5769872">Периодичность</dt><dd data-t="4750eddb47">Неделя; график по региону и по каждой точке</dd>
+<dt data-t="88f1a5a112">Вид</dt><dd data-t="e9a5c22af2">Прямая: чем выше, тем лучше</dd>
+<dt data-t="1e459fc922">Ежедневный учёт</dt><dd data-t="3e38f84583">Да: отчёты смен на точках</dd>
+<dt data-t="8290a3dbc0">Источник</dt><dd data-t="bdc490bbea">Отчёты Grab и Gojek, отчёты смен</dd>
+<dt data-t="f7e9869a0d">Кто считает</dt><dd data-t="b3c7c03dbc">HR-менеджер по понедельникам (5.5); без HR — Head Chef</dd>
+<dt data-t="a211f43dd4">Как читать</dt><dd data-t="a36c229bcb">Падает ГС региона — сначала смотрим, какая точка тянет вниз, потом её KPI.</dd>
+</dl>
+</div>
+<h4 data-t="4ae18f499a">KPI-бонус руководителей: до Rp 2 000 000 в месяц</h4>
+<p data-t="8191b6fa1b">Получают Head Chef, закупщик и HR-менеджер. У каждого — свои KPI с весами: Head Chef — в таблице ниже, закупщик и HR-менеджер — в разделе 5.2.</p>
+<div class="formula" data-t="d0e4fc7f5c"><b>Бонус</b> = Rp 2 000 000 × сумма весов выполненных KPI<br/><span class="muted">KPI либо выполнен полностью, либо нет. Пример: Head Chef выполнил ФОТ, качество и стандарты → 25% + 20% + 15% = 60% → Rp 1 200 000.</span></div>
+<div class="tw"><table>
+<thead><tr><th>KPI Head Chef</th><th class="num" data-t="38348dbdf4">Вес</th><th data-t="8d0b6f333f">Норма за месяц по всем точкам Head Chef</th></tr></thead>
+<tbody>
+<tr><td data-t="f8c8c3cb5b">ФОТ кухни</td><td class="num">25%</td><td data-t="44710889d4">≤ 13% чистых продаж</td></tr>
+<tr><td data-t="4856904566">Себестоимость (food cost)</td><td class="num">25%</td><td data-t="2a9f93b0fe">не выше плана из Financial Playbook</td></tr>
+<tr><td data-t="fa7e315bc4">Качество</td><td class="num">20%</td><td data-t="cd543d417b">не больше 1 негативного отзыва на 200 заказов на каждой точке (негативный — оценка 1–2 звезды или жалоба)</td></tr>
+<tr><td data-t="0fe2342c2e">Команда</td><td class="num">15%</td><td data-t="06bfdd43ae">смены укомплектованы на 100%; нет вакансии Sous Chef или CDP дольше норматива (глава 1.1)</td></tr>
+<tr><td data-t="82a3b5b692">Стандарты</td><td class="num">15%</td><td data-t="cd46289a7e">санитарный аудит ≥ 90% на каждой точке; 100% сотрудников прошли ежемесячную аттестацию</td></tr>
+</tbody>
+</table></div>
+<div class="ticket" data-c="ctrl">
+<div class="th" data-t="e2703aaa99"><span>Стоп-фактор</span><span>бонус за месяц = 0</span></div>
+<p data-t="4c650ccae4">У получателя в этом месяце было SP. У Head Chef — ещё подтверждённый случай угрозы здоровью гостя (пищевое отравление, нарушение при санитарной проверке). У закупщика — закупка без чека или «откат» от поставщика (это ещё и грубое нарушение по ст. 9.3).</p>
+</div>
+<div class="tw"><table>
+<thead><tr><th data-t="824b0eb5b3">Чей бонус</th><th data-t="f4ab4f13d3">Считает до 10-го числа</th><th data-t="7bc4bb4908">Утверждает</th><th data-t="2562d50ffb">Выплата</th></tr></thead>
+<tbody>
+<tr><td>Head Chef</td><td><span class="b">HR</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="8f671647fd">20-го числа</td></tr>
+<tr><td data-t="934ca1dc91">Закупщик</td><td><span class="b">HR</span></td><td><span class="b">HC</span></td><td data-t="8f671647fd">20-го числа</td></tr>
+<tr><td data-t="4c5d13affe">HR-менеджер</td><td data-t="b81e2277de"><span class="b">ФИН</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="8f671647fd">20-го числа</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="d2b0a33a12">Дополнительные статистики</h4>
+<h4>Head Chef</h4>
+<p data-t="54071feb42">KPI-бонус до Rp 2 000 000 — в разделе 0.6. Кроме того, Head Chef отвечает за выполнение KPI всеми Sous Chef региона и за открытие новых точек в срок.</p>
+<h4>Sous Chef</h4>
+<div class="tw"><table>
+<thead><tr><th>KPI</th><th data-t="2b944228bd">Норма</th><th data-t="8290a3dbc0">Источник</th><th data-t="db5001506d">Как часто</th></tr></thead>
+<tbody>
+<tr><td data-t="c66e85d21b">Смены укомплектованы по графику</td><td>100%</td><td data-t="003c81ef05">График и сканер</td><td data-t="9207563dab">Неделя</td></tr>
+<tr><td data-t="97879ae4d1">График опубликован за 3 дня до недели</td><td data-t="5d6b0b43ad">100% недель</td><td data-t="9ba6335610">Рабочая группа</td><td data-t="9207563dab">Неделя</td></tr>
+<tr><td data-t="38972f7b0e">Опоздания команды</td><td data-t="abaa49e664">≤ 5% смен</td><td data-t="8d78ddb24d">Сканер</td><td data-t="9207563dab">Неделя</td></tr>
+<tr><td data-t="2fdfd22e46">Новички сдали итоговый экзамен с первой попытки</td><td>≥ 80%</td><td>Academy</td><td data-t="e558fb6e24">Месяц</td></tr>
+<tr><td data-t="01a62034d9">Новички прошли испытательный срок</td><td>≥ 70%</td><td data-t="9b70fa492f">Реестр сотрудников</td><td data-t="b89362af29">Квартал</td></tr>
+<tr><td data-t="b42116641d">Средний балл ежемесячной аттестации команды</td><td>≥ 85%</td><td>Academy</td><td data-t="e558fb6e24">Месяц</td></tr>
+<tr><td data-t="35db71fd74">Санитарный аудит точки</td><td>≥ 90%</td><td data-t="c20e0aa4d6">Аудит HC</td><td data-t="e558fb6e24">Месяц</td></tr>
+<tr><td data-t="7a1f1f34dc">Негативные отзывы (оценка 1–2 звезды или жалоба)</td><td data-t="911009a08f">≤ 1 на 200 заказов</td><td data-t="1a5872390b">Агрегаторы</td><td data-t="9207563dab">Неделя</td></tr>
+<tr><td data-t="24993fca91">Себестоимость</td><td data-t="e4afad2b97">Не выше плана</td><td data-t="5d82e8a697">ФИН</td><td data-t="e558fb6e24">Месяц</td></tr>
+<tr><td data-t="a1c29d20c3">ФОТ точки</td><td>≤ 13%</td><td data-t="bd9039414c">ФИН и HR</td><td data-t="e558fb6e24">Месяц</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="934ca1dc91">Закупщик</h4>
+<div class="tw"><table>
+<thead><tr><th>KPI</th><th data-t="2b944228bd">Норма</th><th data-t="8290a3dbc0">Источник</th><th data-t="db5001506d">Как часто</th><th class="num" data-t="e0a0e8e0ed">Вес в бонусе</th></tr></thead>
+<tbody>
+<tr><td data-t="f5096dbdf3">Поставки вовремя</td><td>≥ 95%</td><td data-t="6195fb7201">Журнал закупок</td><td data-t="9207563dab">Неделя</td><td class="num">20%</td></tr>
+<tr><td data-t="0bfd601056">Стоп-листы из-за отсутствия продукта по вине закупки</td><td>0</td><td data-t="2c68d06df5">Отчёты смен</td><td data-t="9207563dab">Неделя</td><td class="num">20%</td></tr>
+<tr><td data-t="aff776d0a3">Закупки только по подписанной заявке</td><td>100%</td><td data-t="6195fb7201">Журнал закупок</td><td data-t="e558fb6e24">Месяц</td><td class="num">15%</td></tr>
+<tr><td data-t="a951ba30ca">Чеки и накладные внесены в отчёт закупок в день покупки</td><td>100%</td><td data-t="e289b59d94">Отчёт по чекам</td><td data-t="9207563dab">Неделя</td><td class="num">15%</td></tr>
+<tr><td data-t="8859cd890a">Данные в системах учёта актуальны: заявки, поступления, остатки, цены</td><td>100%</td><td data-t="018a458814">Система учёта</td><td data-t="9207563dab">Неделя</td><td class="num">10%</td></tr>
+<tr><td data-t="5a1ee5badd">Два предложения для новых закупок от Rp 500 000</td><td>100%</td><td data-t="6195fb7201">Журнал закупок</td><td data-t="e558fb6e24">Месяц</td><td class="num">10%</td></tr>
+<tr><td data-t="86262d2154">Сообщение о росте цены больше 10% в тот же день</td><td>100%</td><td data-t="6195fb7201">Журнал закупок</td><td data-t="e558fb6e24">Месяц</td><td class="num">10%</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="de9a4ee5d1">Как называется ГС Head Chef и как она связана с ГС Sous Chef?</li>
+<li data-t="8bd81457b1">Назови KPI Head Chef и их веса.</li>
+<li data-t="fd14c61b25">Head Chef выполнил ФОТ, качество и стандарты. Какой бонус?</li>
+<li data-t="11523a4746">Что обнуляет бонус Head Chef за месяц?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="8fe5142c1c">Стоимость заказов безупречного качества всех точек региона за неделю; это сумма ГС всех Sous Chef.</li>
+<li data-t="3243c754ea">ФОТ 25%, себестоимость 25%, качество 20%, команда 15%, стандарты 15%.</li>
+<li>25% + 20% + 15% = 60% → Rp 1 200 000.</li>
+<li data-t="462b54a8c9">SP в этом месяце или подтверждённый случай угрозы здоровью гостя (отравление, нарушение при санитарной проверке).</li>
+</ol></details>
+</section>
+<section class="ch" data-c="base" data-n="3" data-toc="Штат и ФОТ" id="staff-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">3</div>
+<div>
+<p class="eyebrow" data-t="eca9459ce3">Раздел 3 · из HR Playbook 0.4, 0.5, 4.2</p>
+<h2 data-t="70056cf0b0">Штат и ФОТ региона</h2>
+<p class="lead" data-t="302f176c9c">Режимы штата, переход с запуска на стандарт, графики и ФОТ в пределах 13%.</p>
+</div>
+</header>
+<h3 data-t="906ad85975" id="staffing-ru"><span class="no">0.4</span>Штат точки: смены 24/7</h3>
+<p data-t="da6227e282">Точка 24/7 закрывает сутки тремя сменами по 8 часов. 8 часов включают 30 минут оплачиваемого перерыва (договор, ст. 4); перерывы берут по очереди, чтобы линия не оставалась пустой. Каждый сотрудник работает 5 смен в неделю и 2 дня отдыхает: это около 22 смен и 172 часов в месяц.</p>
+<div class="tw"><table>
+<thead><tr><th data-t="d5ff8affff">Смена</th><th data-t="c80d7e8172">Время</th><th data-t="e56dc5e7d1">Особенность</th></tr></thead>
+<tbody>
+<tr><td data-t="cbc815b223"><strong>A</strong> · утро</td><td class="mono">07:00–15:00</td><td data-t="e5632a2b23">Заготовки и подготовка к дневным заказам</td></tr>
+<tr><td data-t="a44ca23c33"><strong>B</strong> · вечер</td><td class="mono">15:00–23:00</td><td data-t="be375f6775">Как правило, самый загруженный период</td></tr>
+<tr><td data-t="7785d21fbc"><strong>C</strong> · ночь</td><td class="mono">23:00–07:00</td><td data-t="ab6d4b0242">Меньше заказов, меньший состав, подготовка к утру</td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="20f99eb759">Начало смен можно сдвинуть под пики конкретной точки (решает HC). Длина смены не меняется: 8 часов.</p>
+<div class="shiftviz">
+<div aria-label="Режим укомплектования" class="seg" data-ta="aria-label:8ed0efca5c" role="group">
+<button aria-pressed="true" data-mode="launch" data-t="4208f3f30b" type="button"><b>Запуск</b> <span>2/2/1</span></button>
+<button aria-pressed="false" data-mode="growth" data-t="2a12f2f39f" type="button"><b>Рост</b> <span>3/3/1</span></button>
+<button aria-pressed="false" data-mode="std" data-t="a9a5e55735" type="button"><b>Стандарт</b> <span>4/4/2</span></button>
+</div>
+<div class="vizrow">
+<svg aria-label="Сутки точки: три смены и число людей в каждой" class="clock" data-ta="aria-label:965316fd3f" role="img" viewbox="0 0 300 300"></svg>
+<div aria-live="polite" class="legend"></div>
+</div>
+</div>
+<div class="formula" data-t="09dc2119a6">Штат точки = (люди в смене <b>A</b> + <b>B</b> + <b>C</b>) × 7 дней ÷ 5 смен на человека × <b>1,15</b><br/><span class="muted">1,15 — резерв 15% на отпуска (14 рабочих дней в год), больничные, обучение и время закрытия вакансий. Результат округляем до целого.</span></div>
+<div class="tw"><table>
+<thead><tr><th data-t="ff0fbd56f4">Режим</th><th data-t="725347e425">Когда</th><th class="num">A / B / C</th><th class="num" data-t="c7c4563d58">Человеко-смен в неделю</th><th class="num" data-t="c3e6f7c5ba">Без резерва</th><th class="num" data-t="1e75bec216">Штат</th><th data-t="c374072006">Состав</th></tr></thead>
+<tbody>
+<tr><td data-t="f2b1b863e7"><strong>Запуск</strong></td><td data-t="c641cbb2f3">Первые ~2 месяца после открытия, пока растут заказы</td><td class="num">2 / 2 / 1</td><td class="num">35</td><td class="num">7</td><td class="num"><strong>8</strong></td><td>1 Sous Chef · 2 CDP · 5 Cook</td></tr>
+<tr><td data-t="64ade38ce7"><strong>Рост</strong></td><td data-t="4f66e0c0d8">По решению HC: заказов больше, но не на всех сменах</td><td class="num">3 / 3 / 1</td><td class="num">49</td><td class="num">9,8</td><td class="num"><strong>11</strong></td><td>1 Sous Chef · 3 CDP · 7 Cook</td></tr>
+<tr><td data-t="7ac1b54ea9"><strong>Стандарт</strong></td><td data-t="e1815036a4">После роста заказов</td><td class="num">4 / 4 / 2</td><td class="num">70</td><td class="num">14</td><td class="num"><strong>16</strong></td><td>1 Sous Chef · 4 CDP · 11 Cook</td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="f64b5cfaf3">Почему в стандарте 4 CDP: на каждой из 21 смены в неделю нужен старший. Sous Chef и 4 CDP дают 25 смен старших, с запасом. В запуске Sous Chef и 2 CDP дают 15 смен старших и закрывают все утренние и вечерние смены (14 в неделю); ночью работает повар с допуском.</p>
+<div class="ticket">
+<div class="th" data-t="8c41271a1f"><span>Правила штата</span><span>для всех точек</span></div>
+<ul>
+<li data-t="b2738cdfa4">На каждой смене есть старший: Sous Chef или CDP. В запуске ночью работает один человек — только повар с допуском «Одиночная ночная смена» (глава 3.5).</li>
+<li data-t="f73869cbc9">Head Chef не входит в расчёт смен. Он руководит кухнями региона и выходит на смену только в экстренной ситуации.</li>
+<li data-t="16ca8b99b7">Kitchen Helper и закупщик в расчёт не входят. Эти должности вводит Директор.</li>
+<li data-t="a2a3c35626">Минимум, ниже которого нельзя опускаться ради экономии: 2 человека утром и вечером, 1 человек ночью.</li>
+<li data-t="0425e770a2">Людей добавляем ступенями: сначала в самую загруженную смену.</li>
+</ul>
+</div>
+<h4 data-t="a4f8110cea">Как перейти с запуска на стандарт</h4>
+<ol class="steps">
+<li><div class="sh" data-t="62ec32ec9c"><b>Смотреть нагрузку каждую неделю</b><span class="b">HC</span></div><p data-t="0d042c1d84">Успевает ли смена отдавать заказы в норматив в пиковые часы.</p></li>
+<li><div class="sh" data-t="113e6e9317"><b>Сигнал к росту</b></div><p data-t="f84a37474b">В пиковые часы заказы не успевают 3 и более дней за неделю, или выручка уже позволяет держать ФОТ ≤ 13% при большем штате (калькулятор в 0.5).</p></li>
+<li><div class="sh" data-t="133dcfe6f7"><b>Решение о ступени</b><span class="b">HC</span><span class="b">ДИР</span></div><p data-t="4bfde0f24e">Какую смену усилить и сколько людей нанять. HR открывает вакансии (глава 1).</p></li>
+<li><div class="sh" data-t="470a222298"><b>Выход в график только после допуска</b><span class="b">SC</span></div><p data-t="f6a4fc0a26">Новые люди работают самостоятельно только после 14 дней обучения и допуска (глава 3).</p></li>
+</ol>
+<div class="alert">
+<div class="th" data-t="00fc0c0d80">Важно · ночные смены по закону (UU 13/2003, ст. 76)</div>
+<ul>
+<li data-t="eca76df4f7">Нанимаем только с 18 лет. Сотрудников до 18 лет нельзя ставить на смены с 23:00 до 07:00.</li>
+<li data-t="4687b7c3d7">Беременную сотрудницу нельзя ставить в ночь с 23:00 до 07:00, если врач подтвердил риск для неё или ребёнка.</li>
+<li data-t="3ff66d8963">Женщинам, которые работают с 23:00 до 07:00, компания обеспечивает питание и напитки, а также безопасность на рабочем месте.</li>
+<li data-t="7dcf2e2ea3">Если сотрудница едет на работу или с работы между 23:00 и 05:00, компания обеспечивает транспорт туда и обратно.</li>
+</ul>
+</div>
+<div class="frag" data-f="night-safety">
+<div class="note">
+<div class="th" data-t="e8d069ff82">Безопасность одиночной ночной смены</div>
+<ul>
+<li data-t="b05bc90255">Дежурный руководитель (SC или HC) на телефоне всю ночь. Его номер висит на кухне.</li>
+<li data-t="4c3781a065">Сотрудник пишет в рабочую группу в начале смены, около 03:00 и при передаче смены.</li>
+<li data-t="0406ba3382">Вход закрыт для посторонних, камеры работают, аптечка и огнетушитель на месте.</li>
+<li data-t="fcaf1fdc50">При пожаре, травме, отключении света или поломке холодильника: сначала безопасность людей, затем звонок дежурному.</li>
+</ul>
+</div></div>
+<h3 data-t="9e57c10291" id="schedule-ru"><span class="no">4.2</span>График смен</h3>
+<ul>
+<li data-t="8b5caa07ce">Составляет Sous Chef на неделю, утверждает Head Chef. Публикуется не позже чем за 3 дня до начала недели (договор, ст. 4).</li>
+<li data-t="fb3b03c6e8">У каждого 5 смен по 8 часов и 2 выходных. В каждой смене — минимум людей по режиму точки (0.4) и старший.</li>
+<li data-t="047439890a">Ночные смены — по очереди и только с допуском для одиночной ночи (3.5).</li>
+<li data-t="7aa4a713a1">Меняться сменами самостоятельно нельзя: только с письменного согласия SC в рабочей группе.</li>
+<li data-t="ef154fa477">Отпуска — по графику отпусков точки. Одновременно в отпуске не больше одного старшего (SC или CDP) и не больше двух поваров.</li>
+<li data-t="5823478204">Праздничные смены распределяются заранее и по очереди (оплата — 0.6).</li>
+</ul>
+<h3 data-t="ef58d36e9b" id="fot-ru"><span class="no">0.5</span>ФОТ: цель — 13% от выручки</h3>
+<p data-t="62fa7f4346">ФОТ — фонд оплаты труда. ФОТ кухни точки за месяц должен быть не больше 13% чистых продаж точки за тот же месяц.</p>
+<div class="formula" data-t="d4018a8842"><b>ФОТ точки</b> = оплата часов всех сотрудников кухни (включая Sous Chef) + сверхурочные и праздничные + бонус 1% + начисление THR (1/12 месячной зарплаты) + взносы компании в BPJS + доля Head Chef<br/><b>ФОТ %</b> = ФОТ точки ÷ чистые продажи точки × 100% → цель ≤ 13%</div>
+<p class="small muted" data-t="afdee4d869">Чистые продажи — продажи после налогов и комиссий агрегаторов, та же база, от которой считается бонус 1%. Если Head Chef ведёт несколько точек, его оплата делится между ними пропорционально продажам.</p>
+<ol class="steps">
+<li><div class="sh" data-t="1fb515ea03"><b>Посчитать до 10-го числа</b><span class="b">HR</span><span class="t">ежемесячно</span></div><p data-t="6f547ccf07">ФОТ % каждой точки за прошлый месяц по данным ФИН. Без HR-менеджера считает HC.</p></li>
+<li><div class="sh" data-t="5d55546276"><b>Оценить</b></div><p data-t="7cf6d9f268">≤ 13% <span class="pill ok">норма</span> · 13–15% <span class="pill mid">разбор</span>: HC проверяет график — лишние люди в часы без заказов, сверхурочные, больничные · больше 15% или выше 13% два месяца подряд <span class="pill bad">план</span>: HC даёт Директору план исправления на 30 дней.</p></li>
+<li><div class="sh" data-t="99ae07af72"><b>Чинить правильно</b></div><p data-t="feb3fa14df">ФОТ нельзя снижать нарушением закона или опусканием смены ниже минимума людей (0.4).</p></li>
+</ol>
+<div class="note"><div class="th" data-t="92e1ce5388">Открытие новой точки</div><p data-t="ce7e48bb49">В первые 2 месяца после открытия ФОТ % обычно выше цели: штат уже набран, а продажи ещё растут. Это закладывается в план открытия. Цель 13% действует с 3-го месяца работы точки.</p></div>
+<h4 data-t="2075277504">Ориентир: при каких продажах штат укладывается в 13%</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="ff0fbd56f4">Режим</th><th class="num" data-t="cdaa624cf0">Бали · ставка ≈ Rp 24 000/ч</th><th class="num" data-t="9cb05aa952">Джакарта · ставка ≈ Rp 34 500/ч</th></tr></thead>
+<tbody>
+<tr><td data-t="3896826dd7">Запуск · 8 человек</td><td class="num" data-t="20a9715be1">≈ Rp 340 млн в месяц</td><td class="num" data-t="84b6f05d8a">≈ Rp 490 млн в месяц</td></tr>
+<tr><td data-t="951aaf7eab">Рост · 11 человек</td><td class="num" data-t="f1aa650322">≈ Rp 470 млн</td><td class="num" data-t="8fa0f010a8">≈ Rp 670 млн</td></tr>
+<tr><td data-t="800c15161d">Стандарт · 16 человек</td><td class="num" data-t="26d550b36b">≈ Rp 680 млн</td><td class="num" data-t="ff8b09aa30">≈ Rp 980 млн</td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="19604e86b5">Расчёт: люди × средняя ставка × 172 часа × 1,23 (THR 1/12, BPJS компании ≈ 10,5%, праздничные смены ≈ 4,4%), плюс бонус 1% от продаж. Доля Head Chef не учтена. Для точного расчёта используйте калькулятор со своими ставками.</p>
+<form autocomplete="off" class="calc calc-staff" data-c="base">
+<div class="calc-in">
+<h4 data-t="a4c332ae73">Калькулятор штата и ФОТ</h4>
+<div aria-label="Быстрый выбор" class="presets" data-ta="aria-label:65739df6c0">
+<button data-p="2,2,1" data-t="8835ed428e" type="button">Запуск 2/2/1</button>
+<button data-p="3,3,1" data-t="776ad52ee7" type="button">Рост 3/3/1</button>
+<button data-p="4,4,2" data-t="433a86efe4" type="button">Стандарт 4/4/2</button>
+<button data-rate="24000" data-t="de46c199f4" type="button">Ставка Бали</button>
+<button data-rate="34500" data-t="0e2d2a2b71" type="button">Ставка Джакарты</button>
+</div>
+<div class="fields3">
+<div class="field"><label data-t="b06bf25765" for="cA-ru">Смена A, чел.</label><input data-k="A" id="cA-ru" inputmode="numeric" max="30" min="0" step="1" type="number" value="4"/></div>
+<div class="field"><label data-t="adcc2a2d29" for="cB-ru">Смена B, чел.</label><input data-k="B" id="cB-ru" inputmode="numeric" max="30" min="0" step="1" type="number" value="4"/></div>
+<div class="field"><label data-t="2086e13904" for="cC-ru">Смена C, чел.</label><input data-k="C" id="cC-ru" inputmode="numeric" max="30" min="0" step="1" type="number" value="2"/></div>
+</div>
+<div class="fields2">
+<div class="field"><label data-t="e3e6c54639" for="cRes-ru">Резерв, %</label><input data-k="res" id="cRes-ru" inputmode="numeric" max="50" min="0" step="1" type="number" value="15"/></div>
+<div class="field"><label data-t="800e4a42cb" for="cRate-ru">Средняя ставка, Rp/час</label><input data-k="rate" id="cRate-ru" inputmode="numeric" min="0" step="500" type="number" value="34500"/></div>
+</div>
+<div class="field"><label data-t="835d450922" for="cSales-ru">Чистые продажи точки за месяц, Rp</label><input data-k="sales" id="cSales-ru" inputmode="numeric" min="0" step="10000000" type="number" value="1000000000"/></div>
+<label class="chk" data-t="47d5896126" for="cHol-ru"><input checked="" data-k="hol" id="cHol-ru" type="checkbox"/><span>Учитывать праздничные смены (оплата × 2, ≈ +4,4%)</span></label>
+<p class="small muted" data-t="8f08ecb25d" style="margin:0">Пример заполнен для стандартной точки в Джакарте. Замените на свои числа.</p>
+</div>
+<div aria-live="polite" class="calc-out">
+<div class="out" data-t="5a8fde9bb9"><span>Человеко-смен в неделю</span><b data-o="ps">—</b></div>
+<div class="out" data-t="fd7fbbd3ac"><span>Людей без резерва</span><b data-o="base">—</b></div>
+<div class="out big" data-t="232165561f"><span>Штат с резервом</span><b data-o="staff">—</b></div>
+<div class="out" data-t="37f98f1ddb"><span>ФОТ в месяц (оценка)</span><b data-o="fot">—</b></div>
+<div class="out big" data-t="b84936fc98"><span>ФОТ % от чистых продаж</span><b data-o="pct">—</b></div>
+<div class="out" data-t="8f6c11c1fe"><span>Продажи, при которых ФОТ = 13%</span><b data-o="min">—</b></div>
+<p class="small muted" data-t="211fe7e33a" style="margin:0">ФОТ = штат × ставка × 172 ч × (1 + THR 1/12 + BPJS 10,5% + праздничные) + 1% продаж.</p>
+</div>
+</form>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="7c83e56ed5">Какой сигнал к переходу точки с запуска на следующую ступень штата?</li>
+<li data-t="d587904ef7">С какого месяца работы точки действует цель ФОТ 13%?</li>
+<li data-t="bf11d17cc8">ФОТ точки выше 15%. Что делает Head Chef?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="130f61dd26">В пиковые часы заказы не успевают 3 и более дней за неделю, или выручка позволяет держать ФОТ ≤ 13% при большем штате.</li>
+<li data-t="615c47ad49">С 3-го месяца.</li>
+<li data-t="ed7d69dd4f">Даёт Директору план исправления на 30 дней, не нарушая закон и минимум людей на сменах.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="hire" data-n="4" data-toc="Найм и открытие точек" id="hire-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">4</div>
+<div>
+<p class="eyebrow" data-t="d2ff6aca8a">Раздел 4 · из HR Playbook 1.1–1.7, A3, A6</p>
+<h2 data-t="8264472edf">Найм руководителей и открытие точек</h2>
+<p class="lead" data-t="eba92508f9">Head Chef нанимает Sous Chef и закупщика, отвечает за набор команды под открытие и, если в регионе нет HR-менеджера, ведёт весь найм сам.</p>
+</div>
+</header>
+<h3 data-t="6874286cdf" id="hire-rules-ru"><span class="no">1.1</span>Принципы и нормативы</h3>
+<ul>
+<li data-t="168db45fd0"><strong>Нанимаем за характер, учим навыкам.</strong> Надёжность, честность, аккуратность, выносливость и умение работать в команде не переучить. Рецептам научат Academy и Sous Chef.</li>
+<li data-t="f5b2d110d9"><strong>Скорость решает.</strong> Лучший кандидат уходит к тому, кто ответил первым. Отклики не копим, чтобы «выбрать потом»: с каждым работаем в тот же день.</li>
+<li data-t="b91332d7be"><strong>Воронка открыта всегда.</strong> Даже без вакансий держим резерв кандидатов на каждую должность.</li>
+<li data-t="1b719b2338"><strong>Один отбор для всех.</strong> Одинаковые вопросы, тесты и оценочные листы (Приложение A), поэтому решения честные и их можно сравнить.</li>
+</ul>
+<div class="tw"><table>
+<thead><tr><th data-t="73557e6987">Этап</th><th class="num" data-t="caaba66991">Норматив</th></tr></thead>
+<tbody>
+<tr><td data-t="afdf04bcbb">Ответ кандидату на отклик</td><td class="num" data-t="5330c95ac8">≤ 3 рабочих часов</td></tr>
+<tr><td data-t="aa02ccb5f3">Публикация после утверждения вакансии</td><td class="num" data-t="e0b51b43e0">≤ 1 часа</td></tr>
+<tr><td data-t="3c6f10a47b">Интервью после скрининга</td><td class="num" data-t="9efc9c946d">≤ 2 дней</td></tr>
+<tr><td data-t="ee66229baa">Пробная смена после интервью</td><td class="num" data-t="a9efc5ffce">≤ 3 дней</td></tr>
+<tr><td data-t="95ef5333d6">Решение после пробной смены</td><td class="num" data-t="c074a75559">≤ 24 часов</td></tr>
+<tr><td data-t="9b011dd70e">Закрытие вакансии: Cook, CDP, Kitchen Helper</td><td class="num" data-t="a26d054bc4">≤ 5 дней</td></tr>
+<tr><td data-t="fa8b01ebd3">Закрытие вакансии: Sous Chef</td><td class="num" data-t="0159caf4fb">≤ 10 дней</td></tr>
+<tr><td data-t="83e0f07ec9">Закрытие вакансии: закупщик, HR-менеджер</td><td class="num" data-t="c6d9f76e3a">≤ 14 дней</td></tr>
+<tr><td data-t="be20660061">Закрытие вакансии: Head Chef</td><td class="num" data-t="b77a4108bc">≤ 30 дней</td></tr>
+<tr><td data-t="2dbaee6c85">Конверсия: отклик → интервью → пробная смена → найм</td><td class="num">≥ 20% → ≥ 30% → ≥ 50%</td></tr>
+</tbody>
+</table></div>
+<h3 data-t="a4cd830b48" id="funnel-ru"><span class="no">1.2</span>Путь кандидата: 9 шагов</h3>
+<ol class="steps">
+<li><div class="sh" data-t="6b8da98778"><b>Заявка на вакансию</b><span class="b">SC</span><span class="b">HC</span></div><p data-t="3fc4e5b02a">Sous Chef заполняет заявку (Приложение B4): должность, точка, причина (новая точка, замена, рост), дата выхода, смены. Head Chef утверждает, если должность есть в штатном расписании; новую должность утверждает Директор. HR открывает вакансию в реестре кандидатов.</p></li>
+<li><div class="sh" data-t="92370980a6"><b>Проверить резерв</b><span class="b">HR</span><span class="t">срок: в день открытия</span></div><p data-t="1572d56763">Обзвонить кандидатов на эту должность и регион из папок «Резерв» (03_Reserve) и «Шорт-лист» (02_Shortlist).</p></li>
+<li><div class="sh" data-t="d8db7c7f98"><b>Опубликовать</b><span class="b">HR</span><span class="t">срок: ≤ 1 часа</span></div><p data-t="b2066435f1">Во все каналы из раздела 1.3 по шаблону (Приложение B1).</p></li>
+<li><div class="sh" data-t="db6942efa8"><b>Скрининг откликов</b><span class="b">HR</span><span class="t">срок: ≤ 3 рабочих часов</span></div><p data-t="2d236efdf1">Короткий звонок или переписка в WhatsApp на 5–7 минут по скрипту (Приложение B3). Стоп-вопросы: возраст 18+, есть KTP, дорога до точки, готовность к сменам 24/7, ожидания по оплате, дата выхода. Прошёл — приглашение на интервью (Приложение B2).</p></li>
+<li><div class="sh" data-t="72a08017dc"><b>Интервью и тест знаний</b><span class="b">HR</span><span class="b">HC</span><span class="t">срок: ≤ 2 дней</span></div><p data-t="512d0c801c">По оценочному листу должности (Приложение A), структура — в разделе 1.5. Кухонные должности интервьюирует HR-менеджер региона, а в регионе без HR — Head Chef. Sous Chef и закупщика интервьюирует Head Chef. Head Chef и HR-менеджера — Директор.</p></li>
+<li><div class="sh" data-t="616b434d86"><b>Пробная смена</b><span class="b">SC</span><span class="b">CDP</span><span class="t">срок: ≤ 3 дней</span></div><p data-t="8fad7acbad">Оплачивается по часовой ставке должности. Правила — ниже в этом разделе.</p></li>
+<li><div class="sh" data-t="ae5166d178"><b>Решение</b><span class="t">срок: ≤ 24 часов</span></div><p data-t="87bfc33ad4">Решает владелец решения из раздела 0.2 по порогам оценочного листа. Три исхода: <strong>нанять</strong>, <strong>резерв</strong>, <strong>отказ</strong>. Для Sous Chef и выше до оффера проверяем рекомендации (1.6).</p></li>
+<li><div class="sh" data-t="839ad6956d"><b>Оффер</b><span class="b">HR</span><span class="t">срок: в день решения</span></div><p data-t="c45f7dbeee">Сообщение в WhatsApp (Приложение B2): должность, ставка, график, первый день, список документов. Кандидат подтверждает письменно.</p></li>
+<li><div class="sh" data-t="446393c9d8"><b>Ответ остальным</b><span class="b">HR</span><span class="t">срок: в день решения</span></div><p data-t="4591237e76">Вежливый отказ. Сильных кандидатов с их согласия — в резерв, остальных — в «Отказ» (04_Rejected) с кодом причины.</p></li>
+</ol>
+<div class="tw"><table>
+<thead><tr><th data-t="ec000fe468">Статус в реестре кандидатов</th><th data-t="bc5431b599">Папка</th></tr></thead>
+<tbody>
+<tr><td data-t="f837130320">Новый отклик</td><td class="mono">01_New</td></tr>
+<tr><td data-t="bae827df44">Шорт-лист → интервью → пробная смена → оффер</td><td class="mono">02_Shortlist</td></tr>
+<tr><td data-t="10cd18e1b4">Нанят</td><td data-t="615b6b3144">переходит в реестр сотрудников</td></tr>
+<tr><td data-t="408bb27b11">Резерв (подходит, но нет позиции или сроков)</td><td class="mono">03_Reserve</td></tr>
+<tr><td data-t="9cfcbd2c07">Отказ с кодом причины: опыт · тест · пробная смена · график · оплата · не пришёл · красный флаг</td><td class="mono">04_Rejected</td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="bbe89b2e31">Коды причин отказа нужны, чтобы видеть, на каком шаге и почему теряем кандидатов.</p>
+<div class="frag" data-f="trial-shift">
+<h4 data-t="cc880c9fe4">Пробная смена: как проводить</h4>
+<ul>
+<li data-t="350c84f584"><strong>Длительность.</strong> Cook, CDP, Kitchen Helper — одна смена, до 8 часов. Sous Chef — одна-две смены. Head Chef — практический день на работающей кухне и письменный кейс.</li>
+<li data-t="84c23c95cd"><strong>Оплата.</strong> По часовой ставке должности за фактические часы, при любом решении. Выплата в течение 7 дней по ведомости пробных смен, кандидат расписывается.</li>
+<li data-t="d15dc5b594"><strong>Перед началом.</strong> Кандидат подписывает лист конфиденциальности (рецепты и процессы — тайна компании) и проходит 10-минутный инструктаж по гигиене и безопасности. Кепку и фартук выдаём из запаса, после смены они возвращаются. Кандидат приходит в длинных брюках и закрытой обуви.</li>
+<li data-t="ac6cf2d5b6"><strong>Контроль.</strong> Кандидат не остаётся один на станции. Блюдо кандидата уходит гостю только после проверки старшим.</li>
+<li data-t="25dd67b1a5"><strong>Оценка.</strong> SC или CDP заполняет практический лист должности (Приложение A) в конце смены.</li>
+</ul>
+</div>
+<form autocomplete="off" class="calc calc-funnel" data-c="hire">
+<div class="calc-in">
+<h4 data-t="ebe2538eb7">Калькулятор воронки</h4>
+<div class="field"><label data-t="1314afd1b9" for="fPlan-ru">Сколько человек нужно нанять</label><input data-k="plan" id="fPlan-ru" inputmode="numeric" max="200" min="1" step="1" type="number" value="7"/></div>
+<div class="fields3">
+<div class="field"><label data-t="d1304959bb" for="f1-ru">Отклик → интервью, %</label><input data-k="c1" id="f1-ru" inputmode="numeric" max="100" min="1" type="number" value="20"/></div>
+<div class="field"><label data-t="d2b9369b57" for="f2-ru">Интервью → пробная, %</label><input data-k="c2" id="f2-ru" inputmode="numeric" max="100" min="1" type="number" value="30"/></div>
+<div class="field"><label data-t="92cc1d4518" for="f3-ru">Пробная → найм, %</label><input data-k="c3" id="f3-ru" inputmode="numeric" max="100" min="1" type="number" value="50"/></div>
+</div>
+<p class="small muted" data-t="5f84e99c56" style="margin:0">Пример: 7 человек — команда запуска без Sous Chef (2 CDP и 5 Cook).</p>
+</div>
+<div aria-live="polite" class="calc-out">
+<div class="out" data-t="72a282efbd"><span>Пробных смен</span><b data-o="trial">—</b></div>
+<div class="out" data-t="a912503914"><span>Интервью</span><b data-o="int">—</b></div>
+<div class="out big" data-t="e8fefd536e"><span>Откликов нужно</span><b data-o="app">—</b></div>
+<p class="small muted" data-t="6b7e2bec15" style="margin:0">Откликов = план ÷ (конверсия 1 × конверсия 2 × конверсия 3). При нормативах это план × 33,3.</p>
+</div>
+</form>
+<h3 data-t="b91a1dd8a4" id="opening-ru"><span class="no">1.4</span>Набор команды под открытие точки</h3>
+<p data-t="ae0de19f22">D — день открытия. Команда запуска: Sous Chef, 2 CDP и 5 Cook (0.4). В новом городе первым нанимаем Head Chef.</p>
+<ul class="tl">
+<li><span data-t="a50ec2a0f7"><span class="when">D − 8 недель</span><b>Штат и бюджет</b></span><p data-t="a8b19e1f23">Директор утверждает штат запуска, ставки зоны и бюджет рекламы. HR готовит шаблон договора региона. Head Chef нового города уже нанят.</p></li>
+<li><span data-t="2ca327aef1"><span class="when">D − 7 недель</span><b>Sous Chef</b></span><p data-t="00f69ca3ad">Найм Sous Chef, решает Head Chef.</p></li>
+<li><span data-t="238e6e88cc"><span class="when">D − 6 недель</span><b>Массовый найм</b></span><p data-t="784a8c3ff3">Реклама, все группы Facebook, Jobstreet, школы. Цель: 7 наймов × 33 ≈ 230 откликов плюс резерв.</p></li>
+<li><span data-t="8c8ea7dc3d"><span class="when">D − 5…3 недели</span><b>Интервью и пробные смены</b></span><p data-t="9db5849a0e">На работающей точке сети или на новой кухне после монтажа оборудования.</p></li>
+<li><span data-t="b5edb2e5a6"><span class="when">D − 3 недели</span><b>Офферы и подготовка</b></span><p data-t="576e8cc604">Документы, заказ формы по размерам, сканер отпечатков, кабинеты Academy.</p></li>
+<li><span data-t="da4dfcec49"><span class="when">D − 14 дней</span><b>Первый день команды</b></span><p data-t="e9d5a74245">Договоры подписаны. Старт 14-дневного обучения.</p></li>
+<li><span data-t="70c4f4a396"><span class="when">D − 2 дня</span><b>Экзамен и репетиция</b></span><p data-t="f9f2f712fc">Итоговый экзамен, практический допуск, тестовый день на внутренних заказах.</p></li>
+<li><span data-t="0c34f09fde"><span class="when">D</span><b>Открытие</b></span><p data-t="abcb2f5103">Режим «Запуск» 2/2/1. Ночью — только сотрудник с допуском.</p></li>
+<li><span data-t="72ab9a2f99"><span class="when">D + 30</span><b>Первая оценка</b></span><p data-t="c942604a7e">Оценка испытательного срока, добор недостающих.</p></li>
+<li><span data-t="1bccb68bd5"><span class="when">D + 60</span><b>Решение о стандарте</b></span><p data-t="cbbdbcc139">Переход к 4/4/2 по правилам из 0.4.</p></li>
+</ul>
+<div class="ticket">
+<div class="th" data-t="9c6bbc25df"><span>Первый рабочий день = первый день обучения</span><span>бюджет открытия</span></div>
+<p data-t="84401c904e">Дни обучения оплачиваются как обычные рабочие часы. Команда выходит на зарплату за 14 дней до открытия, и это заложено в бюджет открытия.</p>
+</div>
+<div class="note"><div class="th" data-t="2f271a53cb">Новый регион: до первого объявления</div>
+<ul>
+<li data-t="0d4bd5c970">Юрист проверил шаблон договора региона: минимум оплаты, праздник для THR, регион в пункте о конкуренции.</li>
+<li data-t="5aca81cf79">Объявления переведены и адаптированы под местный язык и район.</li>
+<li data-t="fce30620d5">Собран список групп Facebook района, найдены колледжи и, при необходимости, агентство.</li>
+</ul>
+</div>
+<h3 data-t="b3ddebff62" id="interview-ru"><span class="no">1.5</span>Как проводить интервью</h3>
+<div class="tw"><table>
+<thead><tr><th data-t="e415da32ea">Должность</th><th data-t="d4168ace06">Длительность</th><th data-t="b77816e15b">Проводит</th><th data-t="6e2000bf2a">Из чего состоит</th></tr></thead>
+<tbody>
+<tr><td>Cook, Kitchen Helper</td><td data-t="f3791edb73">30 минут</td><td data-t="74f15b54b6"><span class="b">HR</span> или <span class="b">HC</span></td><td data-t="2f5e104502">Сценарии и тест знаний</td></tr>
+<tr><td>CDP</td><td data-t="0ace77201e">40 минут</td><td data-t="74f15b54b6"><span class="b">HR</span> или <span class="b">HC</span></td><td data-t="2f5e104502">Сценарии и тест знаний</td></tr>
+<tr><td>Sous Chef</td><td data-t="0ba1e8bbc9">60 минут + задание</td><td><span class="b">HC</span></td><td data-t="725f57f6a2">Сценарии, тест, практическое задание</td></tr>
+<tr><td>Head Chef</td><td data-t="ab279689df">90 минут + кейс</td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="293094d500">Сценарии и письменный кейс</td></tr>
+<tr><td data-t="934ca1dc91">Закупщик</td><td data-t="0ba1e8bbc9">60 минут + задание</td><td><span class="b">HC</span></td><td data-t="10fb5e4e6d">Сценарии и практическое задание</td></tr>
+<tr><td data-t="4c5d13affe">HR-менеджер</td><td data-t="0ba1e8bbc9">60 минут + задание</td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="10fb5e4e6d">Сценарии и практическое задание</td></tr>
+</tbody>
+</table></div>
+<ol class="steps">
+<li><div class="sh" data-t="795bdba95f"><b>Знакомство и рассказ о компании</b><span class="t">5 минут</span></div><p data-t="c8fa63ed4e">Короткий рассказ о Food Lab по скрипту (Приложение B3).</p></li>
+<li><div class="sh" data-t="bd64f60392"><b>Опыт по резюме</b><span class="t">10 минут</span></div><p data-t="84d81fae5f">Где работал, что готовил, на какой станции, сколько заказов было в смену, почему ушёл.</p></li>
+<li><div class="sh" data-t="3beb272136"><b>Сценарные вопросы</b><span class="t">15 минут</span></div><p data-t="9f6d210b65">Из Приложения A. Читаем дословно на индонезийском. Каждый ответ сразу оцениваем от 1 до 5.</p></li>
+<li><div class="sh" data-t="0fb3fc0f6b"><b>Тест знаний</b><span class="t">10 минут</span></div><p data-t="03192b344e">Письменно или в онлайн-форме.</p></li>
+<li><div class="sh" data-t="ff6beb2db3"><b>Условия и вопросы кандидата</b><span class="t">5 минут</span></div><p data-t="98e7564f46">Ставка, график 5/2, ночные смены, BPJS, THR, испытательный срок 3 месяца, обучение 14 дней, форма.</p></li>
+</ol>
+<div class="tw"><table>
+<thead><tr><th class="num" data-t="923379146b">Балл</th><th data-t="ea5fdd4a6a">Как оценивать ответ на сценарий</th></tr></thead>
+<tbody>
+<tr><td class="num">5</td><td data-t="3666c39fde">Конкретный пример из опыта, правильное действие, думает о госте и команде</td></tr>
+<tr><td class="num">4</td><td data-t="72a635b4d7">Правильное действие, но без примера</td></tr>
+<tr><td class="num">3</td><td data-t="f5908e53be">В целом верно, но неполно</td></tr>
+<tr><td class="num">2</td><td data-t="8bcf2ccc11">Неуверенно, частично неверно</td></tr>
+<tr><td class="num">1</td><td data-t="e1af7e0c80">Неверно, опасно или нечестно</td></tr>
+</tbody>
+</table></div>
+<div class="alert">
+<div class="th" data-t="57d7af1a9f">Красные флаги: отказ при любых баллах</div>
+<ul>
+<li data-t="1ca52289c5">Пренебрегает гигиеной или безопасностью пищи.</li>
+<li data-t="d8aa6d141d">Готов отправить гостю блюдо не по стандарту.</li>
+<li data-t="1a37c5c236">Говорит неправду о фактах: опыт, места работы, причины ухода.</li>
+<li data-t="eba6265347">Агрессия или неуважение к собеседнику.</li>
+<li data-t="a9f542d2cf">Во всех проблемах винит прошлых работодателей.</li>
+<li data-t="2e64509db2">Не готов к графику, на который нанимаем.</li>
+</ul>
+</div>
+<p class="small muted" data-t="8b9a9be31d">На интервью не спрашиваем о религии, семейных планах, беременности и национальности.</p>
+<h3 data-t="8fc02b1550" id="refs-ru"><span class="no">1.6</span>Проверка рекомендаций</h3>
+<p data-t="2bad59903f">Для Sous Chef, Head Chef, закупщика и HR-менеджера — обязательно, до оффера.</p>
+<ol class="steps">
+<li><div class="sh" data-t="91a0909519"><b>Получить контакты</b><span class="b">HR</span></div><p data-t="b74293a0e4">Два человека с прошлых мест работы, с согласия кандидата.</p></li>
+<li><div class="sh" data-t="ab5b7a2326"><b>Задать три вопроса</b><span class="b">HR</span></div><p data-t="0dc13a6ecf">Должность и период работы. Надёжность: опоздания, честность, отношение к стандартам. Взяли бы этого человека снова?</p></li>
+<li><div class="sh" data-t="dc7f5ffa53"><b>Записать результат</b><span class="b">HR</span></div><p data-t="4c80d43a95">В карточку кандидата. Если оба ответа отрицательные, оффер не делаем.</p></li>
+</ol>
+<h4 data-t="8673a2c8e5">Личные качества по должностям</h4>
+<p class="small muted" data-t="5cb43c1e67">Определяем до начала найма (шаг 2). Навыкам научат Academy и Sous Chef, характер не переучить (1.1).</p>
+<div class="tw"><table>
+<thead><tr><th data-t="e415da32ea">Должность</th><th data-t="d092b4e5ed">Главные качества</th><th data-t="7cbd2f43d5">Где проверяем</th></tr></thead>
+<tbody>
+<tr><td>Cook</td><td data-t="fd670c1463">Надёжность и пунктуальность, честность, аккуратность и чистоплотность, выносливость, работа в команде, сразу сообщает о проблеме</td><td data-t="f75d43777c">A1: сценарии, пробная смена</td></tr>
+<tr><td>CDP</td><td data-t="74ac436e94">Всё, что у Cook, и ещё: спокойствие в пик, умеет объяснять, держит приоритеты, отвечает за станцию и смену</td><td data-t="8239784ad2">A2: сценарии 1, 2, 4, 6; пункты 7–9 пробной смены</td></tr>
+<tr><td>Sous Chef</td><td data-t="72194d0ff8">Организатор: планирует людей и смены, держит правила одинаковыми для всех, решает по фактам, не теряется в аварии, учит других</td><td data-t="88a96137d9">A3: сценарии 2, 3, 6, 7; практическое задание</td></tr>
+<tr><td>Head Chef</td><td data-t="3e196f1249">Руководитель руководителей: системность, честность в цифрах, готовит преемников, держит стандарт без личного присутствия</td><td data-t="3f25a243a8">A4: сценарии 3, 4, 6, 7; письменный кейс</td></tr>
+<tr><td>Kitchen Helper</td><td data-t="58fb6cdba4">Аккуратность, выносливость, внимание к безопасности, выполняет указания</td><td>A5</td></tr>
+<tr><td data-t="934ca1dc91">Закупщик</td><td data-t="a6a192995e">Безупречная честность, аккуратность с чеками и данными, умеет торговаться</td><td data-t="86ab8a049e">A6: сценарии 4 и 6</td></tr>
+<tr><td data-t="4c5d13affe">HR-менеджер</td><td data-t="66b3e133c5">Любит порядок и любит людей (урок 4.3.19), аккуратность с личными данными, твёрдость в правилах</td><td>A7</td></tr>
+</tbody>
+</table></div>
+<h3 class="appsec" id="a3-ru"><span class="no">A3</span>Sous Chef</h3>
+<h4 data-t="741652b32f">Стоп-критерии на скрининге</h4>
+<ul>
+<li data-t="5ad0643ae3">Опыт на кухне от 3 лет, из них от 1 года руководил сменой или станцией. Опыт доставки или dark kitchen — плюс.</li>
+<li data-t="82e57ca90e">Базовый английский. Готов к звонкам дежурного руководителя ночью по графику дежурств.</li>
+</ul>
+<h4 data-t="23cbe0df93">Сценарии</h4>
+<div class="tw"><table class="sc">
+<thead><tr><th class="num">№</th><th data-t="be2d4d95a1">Вопрос</th><th data-t="6b83635c01">На «5» слышим</th><th data-t="b8009f901d">Сразу «1»</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td data-t="456cea5bb9">Через две недели открытие. В команде 8 человек, трое никогда не работали на линии. Как распределишь обучение и смены?<span class="id">Dua minggu lagi outlet dibuka. Timmu 8 orang, tiga di antaranya belum pernah bekerja di line. Bagaimana kamu membagi pelatihan dan shift?</span></td><td data-t="298371aa29">Пары «опытный + новичок», план 14 дней, тест каждый день, новички не работают ночью одни, запасной план на случай несданного экзамена.</td><td data-t="8ddc2b0e61">«Научатся в процессе»</td></tr>
+<tr><td class="num">2</td><td data-t="8e88dd9dee">Повар отлично готовит, но третий раз за месяц опаздывает и спорит с CDP. Что делаешь — по нашему договору?<span class="id">Seorang juru masak masakannya sangat bagus, tetapi sudah tiga kali terlambat bulan ini dan sering berdebat dengan CDP. Apa yang kamu lakukan sesuai kontrak kerja?</span></td><td data-t="48c48d9c12">Факты из сканера, разговор один на один, ступень по матрице (повторное опоздание после устного замечания — SP1) через HR и журнал, конфликт разбирает отдельно. Навыки не отменяют правил.</td><td data-t="42773c4a2d">«Он ценный, закрою глаза» или «уволю сегодня»</td></tr>
+<tr><td class="num">3</td><td data-t="29ed8af4aa">Пятница, вечер, двое поваров не вышли, заказы идут. Что делаешь в первые 15 минут и после смены?<span class="id">Jumat malam, dua juru masak tidak masuk, pesanan terus berdatangan. Apa yang kamu lakukan dalam 15 menit pertama dan setelah shift?</span></td><td data-t="42750daa63">Перераспределяет станции, сам встаёт на линию, ставит в стоп-лист самые долгие позиции, звонит резерву, предупреждает HC. После смены — процедура неявки и разбор графика.</td><td data-t="c9d9f3ab3f">Паника; закрывает кухню без согласования</td></tr>
+<tr><td class="num">4</td><td data-t="0f016b9d9f">ФОТ точки за месяц — 15% при цели 13%. Где будешь искать причину?<span class="id">Biaya tenaga kerja outlet bulan ini 15% dari penjualan, targetnya 13%. Di mana kamu akan mencari penyebabnya?</span></td><td data-t="e6a6fb0587">Сравнивает график с часами заказов, смотрит сверхурочные, больничные и замены, ставки; проверяет, не упали ли продажи.</td><td data-t="a8395f24af">«Уберу ночную смену» или «это вопрос бухгалтерии»</td></tr>
+<tr><td class="num">5</td><td data-t="832e246fe1">Себестоимость выросла на 3 пункта. Как найдёшь причину?<span class="id">Food cost naik 3 poin. Bagaimana kamu mencari penyebabnya?</span></td><td data-t="df2d18555e">Контрольные взвешивания порций, списания, приёмка (вес и цена в накладных), цены поставщиков, ТТК, инвентаризация на пропажи.</td><td data-t="bab2aebcce">Называет одну причину без проверки</td></tr>
+<tr><td class="num">6</td><td data-t="d8c1c36843">В 02:00 ночной повар сообщает, что сломался холодильник. Что делаешь сейчас и какое правило введёшь для команды?<span class="id">Pukul 02.00 juru masak shift malam melapor kulkas rusak. Apa yang kamu lakukan sekarang dan aturan apa yang kamu buat untuk tim ke depan?</span></td><td data-t="0e8e4c2ae5">По телефону ведёт по шагам: температура, перенос, списание, стоп-лист. Утром — ремонт. Правило: чек-лист аварий, номер дежурного на кухне, журнал температур.</td><td data-t="ec4e694af5">«Разберёмся утром»</td></tr>
+<tr><td class="num">7</td><td data-t="92e6591d3e">Составь недельный график 5/2 для 8 человек на режим 2/2/1 так, чтобы на каждой смене был старший. Решение — на бумаге.<span class="id">Buat jadwal mingguan 5/2 untuk 8 orang dengan pola 2/2/1 sehingga setiap shift selalu ada senior.</span></td><td data-t="d72ae043d7">Закрыты все 35 смен; у каждого 5 смен и 2 выходных; старшие на всех утренних и вечерних сменах; ночью — повар с допуском; запасные смены — на пики.</td><td data-t="659112820d">Нарушает 5/2 или оставляет смену без старшего</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="f24270dbd1">Практическое задание: 60–90 минут, 3 блока по 10 баллов</h4>
+<ol>
+<li data-t="401a289652"><strong>График</strong> — сценарий 7 выше.</li>
+<li data-t="e2bd578235"><strong>Кухня</strong> — приготовить 3 блюда по ТТК и найти ошибки в блюде, которое приготовили с намеренными ошибками.</li>
+<li data-t="b0573650a0"><strong>Цифры</strong> — по данным месяца (продажи, часы, ставки) посчитать ФОТ % и предложить, что изменить в графике.</li>
+</ol>
+<h4 data-t="273839fff9">Тест знаний: 12 вопросов</h4>
+<div class="tw"><table>
+<thead><tr><th class="num">№</th><th data-t="be2d4d95a1">Вопрос</th><th data-t="bd730b88ec">Правильный ответ</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td data-t="1df7f5cf15">Опасная зона температур? <span class="crit">крит.</span></td><td data-t="3b7cb4dd8c">От +5 до +60 °C</td></tr>
+<tr><td class="num">2</td><td data-t="3469ffed55">Норма в холодильнике и морозильнике? <span class="crit">крит.</span></td><td data-t="41660ad88c">Не выше +5 °C; −18 °C и ниже</td></tr>
+<tr><td class="num">3</td><td data-t="7e32f6cca3">Формула себестоимости?</td><td data-t="adf542799a">Стоимость продуктов ÷ выручка × 100%</td></tr>
+<tr><td class="num">4</td><td data-t="648e9d8b70">Формула ФОТ %?</td><td data-t="afacb17a0d">ФОТ ÷ чистые продажи × 100%</td></tr>
+<tr><td class="num">5</td><td data-t="f638368fc0">Когда сотрудник считается опоздавшим?</td><td data-t="860b61f6dc">Отметка больше чем на 10 минут позже начала смены</td></tr>
+<tr><td class="num">6</td><td data-t="4715c0c299">За сколько публикуется график?</td><td data-t="201de2d2df">Не позже чем за 3 дня до начала недели</td></tr>
+<tr><td class="num">7</td><td data-t="d31f66b056">Сколько действует SP?</td><td data-t="9419dcd40b">6 месяцев</td></tr>
+<tr><td class="num">8</td><td data-t="fbcde27a93">Можно ли уволить без SP?</td><td data-t="bd6cf3bec0">Только за грубое нарушение из ст. 9.3 договора, решение Директора</td></tr>
+<tr><td class="num">9</td><td data-t="8478062e59">Кто разрешает сверхурочные и какой лимит?</td><td data-t="6b63412f3e">Руководитель, письменно и до начала; не больше 4 часов в день и 18 в неделю</td></tr>
+<tr><td class="num">10</td><td data-t="82cfa6b0ff">Сколько длится испытательный срок и можно ли его продлить?</td><td data-t="a7f55869eb">3 месяца; продлить нельзя</td></tr>
+<tr><td class="num">11</td><td data-t="2936933d74">Подозрение на пищевое отравление гостя. Что делаешь? <span class="crit">крит.</span></td><td data-t="e541ffbae6">Снять блюдо с продажи; сохранить остатки и записи (партия, температуры, кто готовил); сообщить HC и Директору</td></tr>
+<tr><td class="num">12</td><td data-t="5ede270e84">Минимальный состав смены по стандарту?</td><td data-t="8c90e705bc">2 человека утром и вечером, 1 ночью; на каждой смене старший</td></tr>
+</tbody>
+</table></div>
+<div class="decide">
+<div class="y"><span data-t="de1b47d1b5"><b>Нанять</b></span><p data-t="7cc0c84750">Сценарии в среднем ≥ 3,8, вопросы 2, 3 и 6 — не ниже 3. Задание ≥ 24 из 30. Тест ≥ 10 из 12, все критические верно. Две рекомендации проверены. Финальное интервью с Head Chef, 1–2 пробные смены.</p></div>
+<div class="r"><span data-t="4c6c25224b"><b>Резерв</b></span><p data-t="649ddcbdf1">Сильный кандидат, но не хватило задания или опыта: предложить роль CDP с планом роста.</p></div>
+<div class="n"><span data-t="9eca5f7c07"><b>Отказ</b></span><p data-t="2d7d017b67">Всё остальное или любой красный флаг.</p></div>
+</div>
+<h3 class="appsec" data-t="c1a4091225" id="a6-ru"><span class="no">A6</span>Закупщик · Procurement Officer</h3>
+<h4 data-t="014bdb7749">Стоп-критерии</h4>
+<ul><li data-t="998acf5ce2">Опыт закупок от 1 года в ресторанах, отелях или рознице. Уверенно работает в Google Sheets или Excel и в системах учёта склада или закупок. Свой транспорт для поездок к поставщикам — плюс.</li></ul>
+<h4 data-t="23cbe0df93">Сценарии</h4>
+<div class="tw"><table class="sc">
+<thead><tr><th class="num">№</th><th data-t="be2d4d95a1">Вопрос</th><th data-t="6b83635c01">На «5» слышим</th><th data-t="b8009f901d">Сразу «1»</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td data-t="4778ec36aa">Поставщик поднял цену на ключевой продукт на 15%. Что делаешь?<span class="id">Pemasok menaikkan harga bahan utama sebesar 15%. Apa yang kamu lakukan?</span></td><td data-t="3ae10d9148">Сообщает в тот же день, запрашивает 2–3 альтернативы, ведёт переговоры, считает влияние на себестоимость.</td><td data-t="e66a5a1c47">Молча платит</td></tr>
+<tr><td class="num">2</td><td data-t="850652e521">Перед пиком пришла неполная поставка. Твои действия?<span class="id">Menjelang jam sibuk, pengiriman datang tidak lengkap. Apa yang kamu lakukan?</span></td><td data-t="f0a458c0c6">Фиксирует недопоставку в накладной, срочно ищет замену, предупреждает SC о возможном стоп-листе, предъявляет претензию поставщику.</td><td data-t="74b5afb948">«Подпишу как есть»</td></tr>
+<tr><td class="num">3</td><td data-t="dbed86865c">Повар просит срочно купить продукт без заявки. Что делаешь?<span class="id">Seorang juru masak minta dibelikan bahan secara mendesak tanpa permintaan resmi. Apa yang kamu lakukan?</span></td><td data-t="e0694445a2">Просит письменное согласование руководителя (WhatsApp подходит), покупает после него, записывает.</td><td data-t="43933d6109">Покупает без записи</td></tr>
+<tr><td class="num">4</td><td data-t="b59614fdbb">Поставщик предлагает тебе личную «благодарность», если выберешь его. Что ответишь?<span class="id">Seorang pemasok menawarkan "ucapan terima kasih" pribadi jika kamu memilihnya. Apa jawabanmu?</span></td><td data-t="eaf222d658">Отказывается и сообщает руководству.</td><td data-t="cf1422fc5d">Любые колебания — отказ в найме (это ст. 9.3)</td></tr>
+<tr><td class="num">5</td><td data-t="8ca6609c77">Как сравнишь три предложения на один продукт?<span class="id">Bagaimana kamu membandingkan tiga penawaran untuk satu bahan?</span></td><td data-t="1e7aecc46e">Цена за кг с учётом отходов, качество по пробной партии, надёжность и сроки, условия оплаты.</td><td data-t="68b5832f8b">«Беру самое дешёвое»</td></tr>
+<tr><td class="num">6</td><td data-t="f61f3ad5a7">Ты купил продукты на рынке за наличные, а чек потерялся. Что делаешь?<span class="id">Kamu membeli bahan di pasar secara tunai, tetapi struknya hilang. Apa yang kamu lakukan?</span></td><td data-t="f22b336c58">Сразу сообщает руководителю, восстанавливает подтверждение (повторный чек у продавца, фото товара, письменное объяснение), вносит в отчёт с пометкой. Впредь фотографирует чек сразу после покупки.</td><td data-t="292faa65c2">«Впишу сумму по памяти»</td></tr>
+</tbody>
+</table></div>
+<p data-t="0b85dba321"><strong>Задания:</strong> 1) таблица из трёх предложений на один продукт — выбрать поставщика, обосновать выбор, посчитать отклонение цены от прайса; 2) внести 5 чеков в отчёт закупок и сверить их с заявками. Каждое — 10 баллов.</p>
+<div class="decide">
+<div class="y"><span data-t="de1b47d1b5"><b>Нанять</b></span><p data-t="5d457779ae">Сценарии в среднем ≥ 3,5, вопрос 4 — только 4 или 5. Задания ≥ 16 из 20. Рекомендации проверены. Решает Head Chef.</p></div>
+<div class="r"><span data-t="4c6c25224b"><b>Резерв</b></span><p data-t="50af545ac8">Не хватило одного порога на 1 балл, честность без вопросов.</p></div>
+<div class="n"><span data-t="9eca5f7c07"><b>Отказ</b></span><p data-t="d27105a097">Всё остальное или любые сомнения в честности.</p></div>
+</div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="286a8bcc5d">Какие нормативы закрытия вакансий Sous Chef и закупщика?</li>
+<li data-t="d41e1cd54f">Что нужно сделать за 8 недель до открытия точки?</li>
+<li data-t="7f0ec0cc5e">Пороги «Нанять» для Sous Chef?</li>
+<li data-t="4e7630b496">Когда подключаем кадровое агентство?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="bf6b6b5667">Sous Chef — не больше 10 дней; закупщик — не больше 14 дней.</li>
+<li data-t="796e324b7e">Директор утверждает штат запуска, ставки и бюджет рекламы; HR готовит шаблон договора региона; Head Chef нового города уже нанят.</li>
+<li data-t="bd70d4cf01">Сценарии в среднем ≥ 3,8, вопросы 2, 3 и 6 не ниже 3; задание ≥ 24 из 30; тест ≥ 10 из 12 и все критические верно; две рекомендации; финальное интервью с HC; 1–2 пробные смены.</li>
+<li data-t="0bcbc11b29">Если вакансия не закрыта за двойной норматив: Cook и CDP — 10 дней, Sous Chef — 20 дней; только с оплатой за результат.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="ctrl" data-n="5" data-toc="Обучение и дисциплина" id="control-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">5</div>
+<div>
+<p class="eyebrow" data-t="7ca0b3aa17">Раздел 5 · из HR Playbook 3.4, 3.5, 4.5</p>
+<h2 data-t="23f7de53e6">Обучение, допуски, дисциплина</h2>
+<p class="lead" data-t="0805d60060">Head Chef отвечает за аттестацию всей команды региона, утверждает ночные допуски и выдаёт SP3.</p>
+</div>
+</header>
+<h3 data-t="7567c966ca" id="attestation-ru"><span class="no">3.4</span>Постоянное обучение и аттестация</h3>
+<div class="tw"><table>
+<thead><tr><th data-t="e3ece45657">Что</th><th data-t="725347e425">Когда</th><th data-t="0c65a41dc0">Кто</th><th data-t="23d893aca4">Порог</th><th data-t="230051e4a0">Если не сдал</th></tr></thead>
+<tbody>
+<tr><td data-t="7ac9874d36"><strong>Ежемесячная аттестация:</strong> тест по правилам компании и тест по меню</td><td data-t="441d1a0bea">1–7 число каждого месяца</td><td data-t="8232fe93a7">Academy; результаты собирает <span class="b">HR</span></td><td class="mono">≥ 80%</td><td data-t="f08469783e">Переобучение и пересдача за 7 дней. Не сдал снова — устное замечание и план исправления на 30 дней с SC. План не выполнен — SP1 за неисполнение обязанностей (договор, ст. 7.2 и 16)</td></tr>
+<tr><td data-t="f2bcd12b6d"><strong>Новое блюдо или новый бренд</strong></td><td data-t="9a557b9364">До запуска в продажу</td><td data-t="8651fa809f"><span class="b">SC</span> и Academy</td><td class="mono" data-t="0322d03cf9">мини-тест ≥ 90% + приготовление при SC</td><td data-t="a46b677260">Кто не прошёл, это блюдо не готовит</td></tr>
+<tr><td data-t="14375fb61e"><strong>Гигиена и безопасность пищи</strong></td><td data-t="831c953336">Раз в 6 месяцев</td><td>Academy</td><td class="mono" data-t="e55f0d3708">100% критических вопросов</td><td data-t="8c658b0e8f">Пересдача за 3 дня; до неё — работа только под контролем старшего</td></tr>
+<tr><td data-t="70ee4f704b"><strong>Практическая проверка станций</strong></td><td data-t="dd5c1de664">Раз в квартал, выборочно</td><td><span class="b">SC</span></td><td class="mono" data-t="0722ec0493">≥ 90% пунктов</td><td data-t="8adfeea2e3">Дообучение на станции, обновление матрицы навыков</td></tr>
+<tr><td data-t="e72315a49c"><strong>Программа «Старший смены»</strong> для кандидатов в CDP</td><td data-t="ef5dde8cc4">После 3 месяцев аттестаций ≥ 90%</td><td><span class="b">SC</span> <span class="b">HC</span></td><td>—</td><td data-t="8f24525ea6">Темы: управление сменой, график, обучение новичков, контроль качества</td></tr>
+</tbody>
+</table></div>
+<div class="note"><div class="th" data-t="1dd12d253f">Матрица навыков точки</div><p data-t="bd76e75eb7">Таблица «сотрудник × станция» со статусами: учится · допущен · может обучать. Ведёт Sous Chef. HR смотрит её, когда планирует график, отпуска и найм: на каждой станции и в каждой смене должен быть допущенный человек.</p></div>
+<h3 data-t="2d7948dab8" id="night-ru"><span class="no">3.5</span>Допуск «Одиночная ночная смена»</h3>
+<p data-t="da26409040">Без этого допуска сотрудник не работает ночью один. Проверяет Sous Chef, утверждает Head Chef, запись — в матрице навыков.</p>
+<ul class="check">
+<li><label data-t="246581df6e"><input id="n1-ru" type="checkbox"/><span>Итоговый экзамен сдан на 90% и выше</span></label></li>
+<li><label data-t="81a72900d7"><input id="n2-ru" type="checkbox"/><span>Практический допуск по всем станциям ночного меню</span></label></li>
+<li><label data-t="b1a4bb5f85"><input id="n3-ru" type="checkbox"/><span>Инструктаж по безопасности ночью: кому звонить, пожар, электричество, травма, посторонние у входа</span></label></li>
+<li><label data-t="b2c8d0c169"><input id="n4-ru" type="checkbox"/><span>Умеет поставить блюдо в стоп-лист и передать смену по чек-листу</span></label></li>
+</ul>
+<h3 data-t="813b994426" id="discipline-ru"><span class="no">4.5</span>Дисциплина — строго по договору</h3>
+<ul aria-label="Ступени дисциплины по договору" class="ladder arrows" data-ta="aria-label:b35f91c200">
+<li data-t="465df14319"><span class="k">Ступень 1</span><b>Устное</b><span class="s">записывается в личное дело</span></li>
+<li data-t="0e79a725cd"><span class="k">Ступень 2</span><b>SP1</b><span class="s">письменное, подписывает сотрудник</span></li>
+<li data-t="a81da727e1"><span class="k">Ступень 3</span><b>SP2</b><span class="s">письменное, подписывает сотрудник</span></li>
+<li data-t="5f3d9c4913"><span class="k">Ступень 4</span><b>SP3</b><span class="s">последнее предупреждение</span></li>
+<li data-t="82b07fc4f4"><span class="k">Итог</span><b>PHK</b><span class="s">увольнение по закону</span></li>
+</ul>
+<div class="ticket">
+<div class="th" data-t="a8fc110a1c"><span>Как работают ступени</span><span>договор, ст. 7.2 и 9.3</span></div>
+<ul>
+<li data-t="3a4dc5267a">Ступень выбирают по тяжести нарушения; начинать с устного не обязательно.</li>
+<li data-t="7958e5a070">Каждое SP действует 6 месяцев.</li>
+<li data-t="43d1a10d1c">Новое нарушение, пока SP действует, — следующая ступень.</li>
+<li data-t="02c48fb6fa">Устное замечание учитывается 30 дней: повторное лёгкое нарушение в эти 30 дней — SP1.</li>
+<li data-t="8bd06257de">6 месяцев без нарушений — SP теряет силу; следующее нарушение снова оценивается по тяжести.</li>
+<li data-t="4d7cf59074">Грубые нарушения (ст. 9.3) — увольнение без SP1–SP3. На время проверки — отстранение (skorsing); о преступлении можно сообщить в полицию.</li>
+</ul>
+</div>
+<h4 data-t="6efcf34959">Матрица нарушений: с какой ступени начинать</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="5efc8b765a">Тяжесть</th><th data-t="59221eefb0">Примеры</th><th data-t="19239083c4">Ступень</th></tr></thead>
+<tbody>
+<tr><td data-t="11dfd86656"><strong>Лёгкое</strong></td><td data-t="5a7c756754">Опоздание больше 10 минут (первое за 30 дней). Неполная или грязная форма. Не заполнен чек-лист или не отправлен фотоотчёт. Беспорядок на станции. Телефон на линии вне перерыва. Две и больше пропущенные отметки сканера за месяц.</td><td data-t="9ce877a371">Устное</td></tr>
+<tr><td data-t="c13ec9eb0a"><strong>Среднее</strong></td><td data-t="9e4eb7e9fe">Неявка без сообщения за 2 часа. Повторное лёгкое нарушение (например, опоздание) в течение 30 дней после устного замечания. Ушёл со смены без согласования. Отказ выполнить законное указание старшего. Работа с готовой едой без головного убора или перчаток. Вышел на смену с симптомами болезни и не сообщил. Фото кухни или рецептов в соцсетях без разрешения. Использование продукта без маркировки или с истёкшим сроком.</td><td>SP1</td></tr>
+<tr><td data-t="75bb0d5539"><strong>Тяжёлое</strong></td><td data-t="c39ff0e88c">Грубая небрежность с крупным ущербом или списанием. Оскорбление коллеги или гостя. Сознательное нарушение стандарта безопасности пищи.</td><td>SP3</td></tr>
+<tr><td data-t="9bc4344b78"><strong>Грубое (ст. 9.3)</strong></td><td data-t="3e8275b588">Кража, мошенничество, присвоение. Драка, насилие, угрозы. Сексуальные домогательства, дискриминация. Работа в состоянии опьянения или под наркотиками. Умышленная порча имущества. Подделка отметок, документов, отчётов. Взятки и «откаты» от поставщиков. Разглашение тайны компании.</td><td data-t="8ba40787a5">Увольнение без SP, отстранение на время проверки</td></tr>
+</tbody>
+</table></div>
+<h4 data-t="e29ccda60b">Кто выдаёт</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="19239083c4">Ступень</th><th>Cook, CDP, Kitchen Helper</th><th data-t="05193ee414">Sous Chef, закупщик</th><th data-t="7813adba32">Head Chef, HR-менеджер</th></tr></thead>
+<tbody>
+<tr><td data-t="9ce877a371">Устное</td><td data-t="a7bd5dd4c8"><span class="b">SC</span>, старший смены или <span class="b">HC</span></td><td><span class="b">HC</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+<tr><td>SP1, SP2</td><td data-t="7099602790"><span class="b">SC</span>, <span class="b">HC</span> или <span class="b">ДИР</span></td><td data-t="cf14f8737d"><span class="b">HC</span> или <span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+<tr><td>SP3</td><td data-t="1262d04a40"><span class="b">HC</span>, согласие Директора не нужно</td><td data-t="8e9e00e107"><span class="b">HC</span> с согласия <span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+<tr><td data-t="96b4c3fd18">Увольнение, отстранение</td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="14c8aab67f">Предупреждение всегда выдаёт руководитель выше по должности. Документ в любом случае готовит HR.</p>
+<h4 data-t="dde606b975">Как выдать предупреждение: 8 шагов</h4>
+<ol class="steps">
+<li><div class="sh" data-t="7e2b90eec7"><b>Зафиксировать факт</b><span class="b">SC</span><span class="b">HR</span><span class="t">срок: 24 часа</span></div><p data-t="ff5b13223d">Что, когда, где. Доказательства: фото или видео с камер, чек-листы, данные POS, переписка, показания свидетелей, инвентаризация.</p></li>
+<li><div class="sh" data-t="fb1ca47d05"><b>Получить объяснение сотрудника</b><span class="t">срок: 1 рабочий день</span></div><p data-t="4374b01640">Письменно или в WhatsApp.</p></li>
+<li><div class="sh" data-t="2cc163f89f"><b>Выбрать ступень</b><span class="t">срок: 3 рабочих дня после нарушения</span></div><p data-t="bfaf3bcb41">Решает тот, кто выдаёт предупреждение (таблица выше), — по матрице и с учётом действующих SP.</p></li>
+<li><div class="sh" data-t="77371a328c"><b>Подготовить документ</b><span class="b">HR</span></div><p data-t="bd8e45ec4a">Шаблон SP (Приложение B8) на бланке компании, на индонезийском и английском: нарушение с датой и фактами, пункт договора, прежние предупреждения, последствия следующего нарушения, срок действия 6 месяцев.</p></li>
+<li><div class="sh" data-t="b202fb7f53"><b>Вручить на короткой встрече</b><span class="b">HR</span></div><p data-t="56f0e1493e">Вручает тот, кто выдаёт, вместе с HR. Сотрудник подписывает. Если отказался — запись «отказался подписать» и подпись свидетеля. Подтверждение получения в WhatsApp тоже засчитывается.</p></li>
+<li><div class="sh" data-t="578884877c"><b>Записать в журнал предупреждений</b><span class="b">HR</span><span class="t">срок: в тот же день</span></div><p data-t="09fdee6eb8">Это единственный журнал: больше нигде предупреждения не ведутся. Скан SP — в личное дело.</p></li>
+<li><div class="sh" data-t="de3efcc7db"><b>Решить по бонусу</b><span class="b">HR</span></div><p data-t="84f445f4fc">При SP бонус за этот месяц не выплачивается (0.6). Отметка — в той же строке журнала.</p></li>
+<li><div class="sh" data-t="5ade5308c9"><b>План исправления</b><span class="b">SC</span></div><p data-t="4eb0e126bf">Что изменить и к какой дате. SC проверяет и записывает итог.</p></li>
+</ol>
+<div class="ticket">
+<div class="th" data-t="dd8fe0bc41"><span>Чего не делаем</span><span>никогда</span></div>
+<ul>
+<li data-t="9583a4db78">Не штрафуем деньгами сверх того, что разрешает договор (удержание за ущерб — ст. 10).</li>
+<li data-t="35baa8b964">Не разбираем нарушения публично в общих чатах.</li>
+<li data-t="8e0854e628">Не выносим предупреждения «на словах» без записи.</li>
+<li data-t="93f9ff88d0">Не ведём журналы предупреждений где-то ещё.</li>
+</ul>
+</div>
+<div class="note"><div class="th" data-t="79f2b318e1">Если сотрудник не согласен · договор, ст. 14</div><p data-t="c92f46d207">Сначала он обращается к непосредственному руководителю. Если вопрос не решён за 5 рабочих дней — письменно к Директору. Если и это не помогло — в Disnaker (трудовую инспекцию) по закону UU 2/2004.</p></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="7753a7801e">Что HR делает по учёту времени каждый рабочий день?</li>
+<li data-t="4cb3893fb1">Опиши процедуру неявки по дням.</li>
+<li data-t="5977fbc638">Кто выдаёт SP3 повару, а кто — Sous Chef?</li>
+<li data-t="c448b2b408">В какой срок нарушение попадает в журнал предупреждений?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="30531e9ef5">Сверяет сканер с графиком: опоздания, неявки, задержки без согласования.</li>
+<li data-t="b1d55e27d8">День 1 — звонок SC и фиксация; день 2 — вызов №1 (B7); день 3 — вызов №2; дальше — решение по ст. 8.1 после юридической проверки.</li>
+<li data-t="6c5fc57a3e">Повару — HC без согласия Директора; Sous Chef — HC с согласия Директора.</li>
+<li data-t="1105fc2436">В течение 24 часов; SP — в день вручения.</li>
+</ol></details>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="308c96eb9f">Кто проходит программу «Старший смены» и когда?</li>
+<li data-t="73d18963cd">Что Head Chef проверяет перед тем, как утвердить ночной допуск?</li>
+<li data-t="fbcde27a93">Можно ли уволить без SP?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="f433ec74b6">Кандидаты в CDP после 3 месяцев аттестаций ≥ 90%; ведут SC и HC.</li>
+<li data-t="0ec0e63091">Экзамен ≥ 90%, допуск по всем станциям ночного меню, инструктаж по ночной безопасности, стоп-лист и передача смены.</li>
+<li data-t="15ba4bde8a">Только за грубое нарушение из ст. 9.3, решением Директора.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="eval" data-n="6" data-toc="Оценка и статистики" id="eval-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">6</div>
+<div>
+<p class="eyebrow" data-t="5334c0c518">Раздел 6 · из HR Playbook 5.1, 5.3–5.5, 0.3</p>
+<h2 data-t="d3ffef4db2">Оценка и статистики</h2>
+<p class="lead" data-t="d9fdac8329">Решения по испытательному сроку, регулярные оценки, вовлечённость, главные статистики постов и повышения.</p>
+</div>
+</header>
+<h3 data-t="9456fa7081" id="probation-ru"><span class="no">5.1</span>Испытательный срок: 3 месяца</h3>
+<ul class="tl">
+<li><span data-t="32f011144f"><span class="when">День 1</span><b>Старт</b></span><p data-t="d9168e114d">Первый день обучения.</p></li>
+<li><span data-t="c3811df457"><span class="when">День 14</span><b>Экзамен и допуск</b></span><p data-t="45152ca9f4">Итог обучения (3.2).</p></li>
+<li><span data-t="7025f27ac7"><span class="when">День 30</span><b>Оценка 1</b></span><p data-t="ad7e11f8c3">Лист из 8 критериев, разговор.</p></li>
+<li><span data-t="59302486a0"><span class="when">День 60</span><b>Оценка 2</b></span><p data-t="7a8495b837">Тот же лист, динамика.</p></li>
+<li><span data-t="af7a38bfd5"><span class="when">День 75–80</span><b>Итоговое решение</b></span><p data-t="6e64d4d732">Прошёл или нет. Оформление.</p></li>
+<li><span data-t="2ead070987"><span class="when">День 90</span><b>Конец срока</b></span><p data-t="3c0223404c">Работа продолжается по бессрочному договору.</p></li>
+</ul>
+<div class="alert">
+<div class="th" data-t="d21f153dee">Важно · испытательный срок не продлевается</div>
+<p data-t="5476de7bda">По закону он не больше 3 месяцев (UU 13/2003, ст. 60). Продлить можно только обучение (до 7 дней) и только внутри этих 3 месяцев. Итоговое решение принимаем до 80-го дня, чтобы успеть оформить его до конца срока.</p>
+</div>
+<h4 data-t="ed21dbdb7e">Оценочный лист: 8 критериев, от 1 до 5</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="ac49f8b69f">Критерий</th><th data-t="74ad409a40">На что смотрим</th></tr></thead>
+<tbody>
+<tr><td data-t="d9e82029f1">Качество работы</td><td data-t="d8bc80e224">Блюда по ТТК, переделки, жалобы</td></tr>
+<tr><td data-t="f34a08188a">Знание работы</td><td data-t="129dc36456">Меню, ТТК, результаты тестов</td></tr>
+<tr><td data-t="849673bb8c">SOP и гигиена</td><td data-t="d29f4e2776">Чек-листы, маркировка, руки и перчатки</td></tr>
+<tr><td data-t="f8487c87b1">Пунктуальность и явка</td><td data-t="588b8cc03f">Сканер: опоздания, неявки</td></tr>
+<tr><td data-t="2979523bea">Командная работа</td><td data-t="905ee8547a">Помогает, не создаёт конфликтов</td></tr>
+<tr><td data-t="90eb41d562">Коммуникация</td><td data-t="ce469d09df">Вовремя сообщает о проблемах, понимает указания</td></tr>
+<tr><td data-t="c10ff7d51b">Инициатива</td><td data-t="00221bb3d3">Замечает и решает проблемы на станции</td></tr>
+<tr><td data-t="dc3b222d2b">Форма и внешний вид</td><td data-t="c355317cf0">По стандарту 0.7</td></tr>
+</tbody>
+</table></div>
+<div class="ticket">
+<div class="th" data-t="33a480797e"><span>Правило «прошёл»</span><span>итоговое решение</span></div>
+<p data-t="c9a3bad536">Средний балл не ниже 3,5, нет оценок ниже 3 и нет действующего SP2 или SP3. Если есть SP1, решает Head Chef.</p>
+</div>
+<ol class="steps">
+<li><div class="sh" data-t="4472165a7b"><b>Оценить</b><span class="b">SC</span></div><p data-t="a9159a08db">Заполнить лист по 8 критериям и написать 2–3 строки комментария.</p></li>
+<li><div class="sh" data-t="1206e32c6b"><b>Решить</b><span class="b">HC</span></div><p data-t="d9eb86107c">По правилу «прошёл».</p></li>
+<li><div class="sh" data-t="77b0a77551"><b>Поговорить с сотрудником</b><span class="b">SC</span><span class="b">HR</span><span class="t">15 минут</span></div><p data-t="96acab3163">Итог, сильные стороны, что улучшить.</p></li>
+<li><div class="sh" data-t="23c72249b9"><b>Оформить «прошёл»</b><span class="b">HR</span></div><p data-t="418cadcb5a">Отметка в карточке и листе обучения. Работа продолжается по бессрочному договору, стаж считается с первого дня (договор, ст. 3.3).</p></li>
+<li><div class="sh" data-t="20ee97d088"><b>Оформить «не прошёл»</b><span class="b">HR</span><span class="b">HC</span></div><p data-t="9b9d4efdd6">Письменное уведомление о прекращении договора в период испытательного срока (ст. 3.2). Выплачивается только заработанное до последнего дня. Дальше — шаги главы 6.</p></li>
+</ol>
+<h3 data-t="f703b3acbc" id="reviews-ru"><span class="no">5.3</span>Регулярные разговоры и оценки</h3>
+<div class="tw"><table>
+<thead><tr><th data-t="db5001506d">Как часто</th><th data-t="e3ece45657">Что</th><th data-t="0c65a41dc0">Кто</th></tr></thead>
+<tbody>
+<tr><td data-t="5d3b2f5f41">Каждую неделю</td><td data-t="f32b073e19">Планёрка на точке, 15 минут: итоги недели, новые блюда, проблемы</td><td><span class="b">SC</span></td></tr>
+<tr><td data-t="2c789c20f2">Каждый месяц</td><td data-t="bebf60135f">Разговор один на один с каждым, 10 минут: KPI-карта, что получилось, что улучшить, вопросы. HR собирает риски ухода</td><td><span class="b">SC</span> <span class="b">HR</span></td></tr>
+<tr><td data-t="dd28ee8927">Каждый квартал</td><td data-t="2ae45c6cc2">Оценка всех по 8 критериям из 5.1. Итог: отлично · хорошо · удовлетворительно · нужно улучшение. По результатам — кадровый резерв и план обучения</td><td><span class="b">SC</span> <span class="b">HC</span> <span class="b">HR</span></td></tr>
+</tbody>
+</table></div>
+<h3 data-t="ac45cee6e2" id="engagement-ru"><span class="no">5.4</span>Вовлечённость: опрос раз в квартал</h3>
+<ol class="steps">
+<li><div class="sh" data-t="7b70d94900"><b>Запустить</b><span class="b">HR</span><span class="t">первая неделя квартала</span></div><p data-t="79c2715a50">Анонимная анкета без поля для имени (вопросы — Приложение B10). Ответы не связываются с людьми.</p></li>
+<li><div class="sh" data-t="86e45c9587"><b>Отчёт</b><span class="b">HR</span><span class="t">срок: 7 дней</span></div><p data-t="bfd6f27a8f">Средний балл по точкам, доля ответов «5 и ниже», главные темы. Имён в отчёте нет.</p></li>
+<li><div class="sh" data-t="42e7ba8f5c"><b>План действий</b><span class="b">HR</span><span class="b">HC</span></div><p data-t="23263b6697">Таблица «что делаем · кто · срок» в трёх горизонтах: 2 недели, месяц, квартал.</p></li>
+<li><div class="sh" data-t="08beeba688"><b>Ответ команде</b><span class="b">SC</span><span class="t">срок: неделя после отчёта</span></div><p data-t="75b3f2d759">Рассказать каждой точке, что услышали и что меняем.</p></li>
+<li><div class="sh" data-t="12632934f3"><b>Проверка</b></div><p data-t="272e754bd2">В следующем опросе обязательно спросить, видны ли изменения после прошлого.</p></li>
+</ol>
+<p data-t="e9803edd20"><strong>Норма:</strong> средний балл не ниже 7 из 10. Если балл ниже 6 или больше 30% ответов «5 и ниже» — разговоры один на один со всей командой точки и план за 2 недели.</p>
+<h3 data-t="3daf6aed0c" id="gs-ru"><span class="no">5.5</span>Главные статистики постов <span class="new">новое · 5.2</span></h3>
+<p data-t="eab75ad28b">По курсу 5.2 у каждого поста одна главная статистика (ГС) — число, которое показывает продукт поста за неделю. KPI из 5.2 остаются дополнительными статистиками (ДС): они показывают, за счёт чего ГС растёт или падает, и по ним считается бонус.</p>
+<div class="ticket">
+<div class="th" data-t="04f0652eac"><span>Правила статистик</span><span>курс 5.2</span></div>
+<ul>
+<li data-t="c5a56f452b">Одна ГС на пост. ГС руководителя — это ГС подразделения, которым он руководит.</li>
+<li data-t="adb51dd292">Одна и та же статистика может стоять у нескольких постов по вертикали: у поваров смены, у Sous Chef точки, у Head Chef региона.</li>
+<li data-t="3a8ed0ee76">Качество встроено в формулировку: в ГС кухни входят только заказы безупречного качества.</li>
+<li data-t="c84cbfd654">Считаем по неделям, показываем графиком, цифры берём только из проверяемых источников. Ложная статистика недопустима.</li>
+</ul>
+</div>
+<div class="tw"><table>
+<thead><tr><th data-t="b7024e5681">Пост</th><th data-t="415de3eeb6">Главная статистика</th><th data-t="88f1a5a112">Вид</th><th data-t="8290a3dbc0">Источник</th></tr></thead>
+<tbody>
+<tr><td>Cook</td><td data-t="c1b32971e3">Стоимость заказов безупречного качества за смены повара за неделю, Rp</td><td data-t="797d238c30">прямая</td><td data-t="6ebea723e8">Grab, Gojek; график и сканер</td></tr>
+<tr><td>CDP</td><td data-t="2e2f8c9a21">Стоимость заказов безупречного качества за смены CDP за неделю, Rp</td><td data-t="797d238c30">прямая</td><td data-t="6ebea723e8">Grab, Gojek; график и сканер</td></tr>
+<tr><td>Sous Chef</td><td data-t="1f7160d2a1">Стоимость заказов безупречного качества точки за неделю, Rp</td><td data-t="797d238c30">прямая</td><td>Grab, Gojek</td></tr>
+<tr><td>Head Chef</td><td data-t="7aa7e5e517">Стоимость заказов безупречного качества всех точек региона за неделю, Rp</td><td data-t="797d238c30">прямая</td><td>Grab, Gojek</td></tr>
+<tr><td data-t="4c5d13affe">HR-менеджер</td><td data-t="2c86fc1f73">Количество введённых в должность сотрудников на конец недели</td><td data-t="797d238c30">прямая</td><td data-t="68f8c56e0e">Реестр сотрудников, лист обучения, журнал проверок</td></tr>
+</tbody>
+</table></div>
+<div class="formula" data-t="6e45d41d41"><b>Заказы безупречного качества</b> = чистые продажи заказов за период − заказы, отменённые или возвращённые по вине кухни − заказы с негативным отзывом (оценка 1–2 звезды или жалоба)<br/><span class="muted">Чистые продажи — та же база, что для бонуса 1%: после налогов и комиссий. Смены повара — часы его смен по графику, подтверждённые сканером: A 07:00–15:00, B 15:00–23:00, C 23:00–07:00.</span></div>
+<ol class="steps">
+<li><div class="sh" data-t="8a03013aab"><b>Каждый день</b><span class="b">старший смены</span></div><p data-t="82e2f2c647">В отчёте смены: отмены и возвраты по вине кухни, жалобы.</p></li>
+<li><div class="sh" data-t="2846d7fd61"><b>Понедельник</b><span class="b">HR</span></div><p data-t="9471f24694">Выгрузить из Grab и Gojek заказы прошлой недели по часам, разнести по сменам и людям, вычесть отмены, возвраты и заказы с негативным отзывом. ГС всех постов — в недельный дашборд (7.4), графиком по каждому посту.</p></li>
+<li><div class="sh" data-t="e2d17708d3"><b>Разговор по графику</b><span class="b">SC</span><span class="b">HC</span></div><p data-t="94b9dfb131">Растёт — продолжаем то, что сработало. Падает — ищем причину по ДС (KPI) и записываем, что меняем.</p></li>
+</ol>
+<p class="small muted" data-t="4ce23065b5">Справочник статистик Business Booster даёт отделу 12 статистику «Стоимость предоставленного продукта», а отделу качества 13 — «Стоимость предоставленного продукта безупречного качества». ГС кухни Food Lab соединяет обе. Если HR-менеджера нет, ГС считает Head Chef (0.2).</p>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="f9c9a7b6dd">Какое правило «прошёл» испытательный срок?</li>
+<li data-t="8f93ac333c">До какого дня принимаем итоговое решение и почему?</li>
+<li data-t="e984dcaa70">Какая ГС у Sous Chef? Что такое заказ безупречного качества?</li>
+<li data-t="7770bde8fb">Какая норма опроса вовлечённости и что делаем при балле ниже 6?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="a760e7e6fa">Средний балл ≥ 3,5, нет оценок ниже 3, нет действующего SP2 или SP3; при SP1 решает HC.</li>
+<li data-t="cc8a971ec5">До 80-го дня: испытательный срок по закону не больше 3 месяцев и не продлевается.</li>
+<li data-t="54dd0bba31">Стоимость заказов безупречного качества точки за неделю. Это заказ без отмены или возврата по вине кухни и без негативного отзыва (1–2 звезды или жалоба).</li>
+<li data-t="43f1199e5b">Не ниже 7 из 10. Ниже 6 — разговоры один на один со всей командой точки и план за 2 недели.</li>
+</ol></details>
+<h4 data-t="2b0ac8a320">Как растут: условия перехода</h4>
+<div class="tw"><table>
+<thead><tr><th data-t="0568837ba1">Переход</th><th data-t="3b06e9c8e8">Минимум в должности</th><th data-t="5b1c65c008">Условия</th><th data-t="774847e78a">Решает</th></tr></thead>
+<tbody>
+<tr><td>Cook → CDP</td><td data-t="9419dcd40b">6 месяцев</td><td data-t="520b5318c4">Средний балл ежемесячных аттестаций за 3 месяца ≥ 90%. Допуск ко всем станциям точки. Нет действующего SP. Оценка по весам ≥ 4,0 из 5: отношение к работе 30%, коммуникация 20%, решение проблем 20%, базовые знания 15%, лидерский потенциал 15%.</td><td data-t="4a8a51da8d"><span class="b">SC</span> или <span class="b">HC</span></td></tr>
+<tr><td>CDP → Sous Chef</td><td data-t="05ca1eab2a">6 месяцев в роли CDP</td><td data-t="6e70f34e90">Регулярно вёл смены как старший. Обучил минимум двух новичков, которые сдали экзамен. Прошёл оценочный лист Sous Chef (Приложение A3).</td><td><span class="b">HC</span></td></tr>
+<tr><td>Sous Chef → Head Chef</td><td data-t="461ac51757">12 месяцев в роли Sous Chef</td><td data-t="8ea3028c15">Точка выполняла KPI минимум 4 месяца из последних 6. Участвовал в открытии точки. Сдал кейс Head Chef (Приложение A4).</td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+</tbody>
+</table></div>
+<ol class="steps">
+<li><div class="sh" data-t="222df6d115"><b>Номинация</b><span class="b">SC</span><span class="b">HR</span></div><p data-t="86afaa657d">Sous Chef предлагает кандидата, или сотрудник просит сам. HR вносит его в кадровый резерв точки.</p></li>
+<li><div class="sh" data-t="05027476bd"><b>Оценка</b></div><p data-t="e60296fbc2">Проверка условий из таблицы и разговор с тем, кто решает о назначении.</p></li>
+<li><div class="sh" data-t="eda6f919e8"><b>Исполнение обязанностей</b><span class="t">срок: 1 месяц</span></div><p data-t="a68bea2c01">Месяц в новой роли. Всё это время сотрудник получает ставку новой должности как временную доплату, и это заранее оформляется письменно.</p></li>
+<li><div class="sh" data-t="c37e2b8530"><b>Решение</b></div><p data-t="b423f2d185">Решает тот, кто решает о найме на новую должность (таблица выше). Назначить или вернуть на прежнюю должность. Если не назначили, временная доплата прекращается.</p></li>
+<li><div class="sh" data-t="851c273751"><b>Документы</b><span class="b">HR</span></div><p data-t="0003bb3372">Дополнительное соглашение к договору: должность, ставка, обязанности. HR обновляет карточку сотрудника.</p></li>
+</ol>
+<p data-t="4b5e323286"><strong>Кадровый резерв.</strong> HR ведёт список кандидатов на CDP и Sous Chef по каждой точке и пересматривает его раз в квартал. Когда открывается позиция, сначала смотрим резерв, потом ищем снаружи.</p>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="cc460376f5">Новичок с SP1 дошёл до итоговой оценки. Кто решает и по какому правилу?</li>
+<li data-t="cbb25fb926">Что Head Chef делает по итогам квартального опроса вовлечённости?</li>
+<li data-t="c22a1d7794">Кто решает о повышении CDP → Sous Chef и Sous Chef → Head Chef?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="ce19e3a4e7">Head Chef: правило «прошёл» — средний балл ≥ 3,5, нет оценок ниже 3, нет действующего SP2 или SP3; при SP1 решает HC.</li>
+<li data-t="6f413eaf5d">Вместе с HR составляет план действий в трёх горизонтах: 2 недели, месяц, квартал.</li>
+<li data-t="bf527e19f5">CDP → Sous Chef — Head Chef; Sous Chef → Head Chef — Директор.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="exit" data-n="7" data-toc="Увольнение без сюрпризов" id="exit-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">7</div>
+<div>
+<p class="eyebrow" data-t="b19df371ea">Раздел 7 · из HR Playbook 6.1, 6.3, 6.5–6.8 <span class="new">новое · 4.7</span></p>
+<h2 data-t="d06c93460c">Увольнение без сюрпризов</h2>
+<p class="lead" data-t="918ecad9b8">Head Chef ведёт разговор об увольнении Sous Chef и закупщика вместе с HR и следит, чтобы Sous Chef увольняли людей по тем же правилам.</p>
+</div>
+</header>
+<h3 data-t="5d399fd268" id="exit-types-ru"><span class="no">6.1</span>Виды увольнения</h3>
+<div class="tw"><table>
+<thead><tr><th data-t="88f1a5a112">Вид</th><th data-t="481d8f73e7">Основание</th><th data-t="8a9524f875">Как оформляется</th><th data-t="4db570573b">Что получает сотрудник</th></tr></thead>
+<tbody>
+<tr><td data-t="5c6d1b774a"><strong>По собственному желанию</strong></td><td data-t="eb81d3f73e">Договор, ст. 9.2</td><td data-t="80e572b0e7">Письменное заявление за 14 дней (шаблон B9). Работает до последнего дня, возвращает имущество</td><td data-t="e5a5458bb3">Заработанное + компенсация отпуска (ст. 9.4) − удержания</td></tr>
+<tr><td data-t="534262a26a"><strong>В испытательный срок</strong>, по инициативе любой стороны</td><td data-t="074b7e5ef9">Ст. 3.2</td><td data-t="c4408a5e7a">Письменное уведомление в любой момент</td><td data-t="c21d1508ae">Только заработанное до последнего дня</td></tr>
+<tr><td data-t="4c2bf65853"><strong>По инициативе компании</strong> после SP3 или по другим основаниям</td><td data-t="7d79c6a949">Ст. 7.2, 9.1; PP 35/2021</td><td data-t="6e3b61001c">Письменное уведомление за 14 календарных дней. До отправки — юридическая проверка</td><td data-t="95ad37e51f">Заработанное + компенсация отпуска (ст. 9.4); итог сверяет юрист по PP 35/2021</td></tr>
+<tr><td data-t="865e22a1b8"><strong>Грубое нарушение</strong></td><td data-t="1fc7121e5b">Ст. 9.3</td><td data-t="a084abb756">Отстранение на время проверки (6.3), решение Директора</td><td data-t="98f6790778">По PP 35/2021, итог сверяет юрист</td></tr>
+<tr><td data-t="3020fc97a7"><strong>Неявка</strong>: 3 рабочих дня и 2 письменных вызова</td><td data-t="87a12e892a">Ст. 8.1</td><td data-t="af08e64c6b">Считается увольнением по собственному желанию; процедура — 4.3</td><td data-t="e5a5458bb3">Заработанное + компенсация отпуска (ст. 9.4) − удержания</td></tr>
+<tr><td data-t="02d8e46e8e"><strong>По соглашению сторон</strong></td><td data-t="9212938d64">Письменное соглашение</td><td data-t="71fe9c4dd3">Дата и условия по соглашению; юридическая проверка</td><td data-t="deb50d7d54">По соглашению</td></tr>
+</tbody>
+</table></div>
+<div class="alert">
+<div class="th" data-t="6c4d6c367d">Важно · юридическая проверка</div>
+<p data-t="355babb57b">Любое увольнение по инициативе компании, кроме испытательного срока, до отправки письма проверяет юрист или бухгалтер: основание, доказательства и расчёт по PP 35/2021. Подписывает решение только Директор.</p>
+</div>
+<h3 data-t="88f1e4000b" id="skorsing-ru"><span class="no">6.3</span>Отстранение при грубом нарушении</h3>
+<ol class="steps">
+<li><div class="sh" data-t="17265be98d"><b>Снять со смены</b><span class="b">SC</span><span class="b">HC</span><span class="t">сразу</span></div><p data-t="a8dc2876da">Сначала безопасность людей.</p></li>
+<li><div class="sh" data-t="38d8b0d7bc"><b>Закрыть доступы</b><span class="b">HR</span><span class="t">сразу</span></div><p data-t="e2fadd6bfd">Academy, рабочие группы, ключи.</p></li>
+<li><div class="sh" data-t="eeec6032ea"><b>Письмо об отстранении</b><span class="b">ДИР</span><span class="t">в тот же день</span></div><p data-t="d280eaa373">Готовит HR, подписывает Директор. На время отстранения зарплата сохраняется (по закону).</p></li>
+<li><div class="sh" data-t="0331035aac"><b>Проверка</b><span class="b">HR</span><span class="b">HC</span><span class="t">до 7 дней</span></div><p data-t="c814922327">Доказательства: камеры, POS, инвентаризация, свидетели. Письменное объяснение сотрудника.</p></li>
+<li><div class="sh" data-t="03c6b1ede1"><b>Решение</b><span class="b">ДИР</span></div><p data-t="b3866af63e">Увольнение по ст. 9.3 или возврат на работу. При преступлении — заявление в полицию.</p></li>
+<li><div class="sh" data-t="806ab498e3"><b>Дальше</b></div><p data-t="2ea5f0e2df">Шаги из 6.2.</p></li>
+</ol>
+<h3 data-t="441a1c3e77" id="no-surprise-ru"><span class="no">6.5</span>Увольнение без сюрпризов <span class="new">новое · 4.7</span></h3>
+<p data-t="1d4442b073">Разделы 6.1–6.4 — юридическая сторона: какие бывают увольнения и как их оформить. Разделы 6.5–6.8 — управленческая сторона по курсу 4.7: как прийти к решению и как его сообщить.</p>
+<div class="ticket" data-c="ctrl">
+<div class="th" data-t="e471e5b7d9"><span>Основное правило</span><span>урок 4.7.6</span></div>
+<p data-t="d8e8fec321">Увольнение не должно быть сюрпризом. Сотрудник заранее знает свои результаты, чего не хватает и сколько времени есть, чтобы исправить. Исключение — только грубые нарушения, опасные для компании: кража, подделка, разглашение тайны и другие случаи из ст. 9.3 (6.3).</p>
+</div>
+<h4 data-t="d36c57a9a6">Как сделать, чтобы сюрпризов не было</h4>
+<ul>
+<li data-t="e101218f34"><strong>Статистика каждую неделю.</strong> У каждого поста есть ГС (5.5), человек видит свой график.</li>
+<li data-t="142a1c65dc"><strong>Обратная связь каждый месяц.</strong> Разговор один на один по KPI-карте (5.3). Проблему называем сразу, не копим.</li>
+<li data-t="eec2ee4fc1"><strong>Каждое нарушение записано.</strong> Устные и SP — в журнале предупреждений (4.5).</li>
+<li data-t="647c6240e2"><strong>Не затягиваем.</strong> Если ясно, что человек не справляется, решение принимаем, а не даём «ещё один шанс» месяцами (урок 4.7.5).</li>
+</ul>
+<h4 data-t="c9f18ac6eb">Досье до решения</h4>
+<p data-t="3849fd90e6">Решение принимаем по фактам, а не по ощущениям. До разговора руководитель и HR собирают досье (урок 4.7.6):</p>
+<div class="tw"><table>
+<thead><tr><th data-t="e3ece45657">Что</th><th data-t="b17b142c7e">Откуда</th></tr></thead>
+<tbody>
+<tr><td data-t="c305216c55">ГС поста за 8–12 недель: график и сравнение с командой</td><td data-t="d81eab1724">Дашборд (5.5, 7.4)</td></tr>
+<tr><td data-t="2b8f2c127b">KPI-карты за 3 месяца</td><td data-t="e2af9eb9f0">Папка KPI (5.2)</td></tr>
+<tr><td data-t="fe68f80de8">Аттестации и тесты</td><td>Academy (3.4)</td></tr>
+<tr><td data-t="b6b8209a26">Опоздания и неявки</td><td data-t="66bc6d6943">Сканер, табель (4.1)</td></tr>
+<tr><td data-t="f515f67350">Предупреждения и планы исправления</td><td data-t="df5198e065">Журнал предупреждений (4.5)</td></tr>
+<tr><td data-t="885a615ee0">Оценки по 8 критериям</td><td>5.1, 5.3</td></tr>
+<tr><td data-t="cfd527024e">Сильные стороны и вклад: за что его ценим</td><td data-t="3dc6493346">Руководитель</td></tr>
+</tbody>
+</table></div>
+<p class="small muted" data-t="b2412758c5">Досье хранится в личном деле, в папке HR (7.1).</p>
+<h3 data-t="62903fed59" id="exit-talk-ru"><span class="no">6.6</span>Разговор об увольнении: вдвоём и по шагам <span class="new">новое · 4.7</span></h3>
+<div class="ticket">
+<div class="th" data-t="c3e42cc555"><span>Кто ведёт разговор</span><span>урок 4.7.4</span></div>
+<p data-t="ce585737ca">Всегда вдвоём: непосредственный руководитель и HR-менеджер. Руководитель говорит о результатах и причинах, HR следит, чтобы всё было по договору и закону. Решение об увольнении по инициативе компании по-прежнему принимает только Директор (6.1).</p>
+</div>
+<div class="tw"><table>
+<thead><tr><th data-t="64b269c58e">Кого увольняем</th><th data-t="4889e86a21">Ведут разговор</th></tr></thead>
+<tbody>
+<tr><td>Cook, CDP, Kitchen Helper</td><td><span class="b">SC</span> + <span class="b">HR</span></td></tr>
+<tr><td data-t="05193ee414">Sous Chef, закупщик</td><td><span class="b">HC</span> + <span class="b">HR</span></td></tr>
+<tr><td>Head Chef</td><td data-t="f79577e47a"><span class="b">ДИР</span> + <span class="b">HR</span></td></tr>
+<tr><td data-t="4c5d13affe">HR-менеджер</td><td data-t="a30f12960b"><span class="b">ДИР</span></td></tr>
+</tbody>
+</table></div>
+<h4 data-t="947023ee61">Подготовка</h4>
+<ul>
+<li data-t="2e1bd54ae7">Досье собрано (6.5), юридическая проверка пройдена (6.1), решение Директора есть, расчёт посчитан (6.2).</li>
+<li data-t="3eb0304374">Разговор отрепетирован: HR задаёт руководителю трудные вопросы и возражения сотрудника — «у меня семья», «я исправлюсь», «это несправедливо» (урок 4.7.6).</li>
+<li data-t="4a426a1e93">Время — не в конце смены и не перед выходными. Место — отдельное, без свидетелей из команды (урок 4.7.6).</li>
+<li data-t="32423d9723">Сотрудника предупреждают, что разговор серьёзный, но тему заранее не называют.</li>
+</ul>
+<h4 data-t="fa1fa96291">Структура разговора: 8 шагов</h4>
+<ol class="steps">
+<li><div class="sh" data-t="0a636d3db9"><b>Досье и место</b></div><p data-t="2c879235e9">Всё готово, разговор в отдельном месте.</p></li>
+<li><div class="sh" data-t="5b37a10190"><b>Начать с хорошего</b></div><p data-t="0bd48c6c5f">Обратиться по имени, назвать конкретный вклад и сильные качества.</p></li>
+<li><div class="sh" data-t="6a22170f9e"><b>Факты о результатах</b></div><p data-t="c56a321db5">«Цель была X, результат — Y». Цифры из досье, без оценок личности. Спросить о причинах и выслушать. Если человеку подходит другая роль и она есть — обсудить её.</p></li>
+<li><div class="sh" data-t="de2f5d351e"><b>Поддержка</b></div><p data-t="42400c752c">Показать понимание: трудности бывают у всех.</p></li>
+<li><div class="sh" data-t="c37e2b8530"><b>Решение</b></div><p data-t="e173305607">Сообщить спокойно и ясно. Говорим о продукте поста и результатах, а не о человеке.</p></li>
+<li><div class="sh" data-t="50de8720fa"><b>Следующие шаги</b></div><p data-t="cba09f9a89">Последний день, расчёт, возврат имущества, документы (6.2). Срок уведомления — по 6.1; работает ли человек эти дни, решает Директор.</p></li>
+<li><div class="sh" data-t="4d46c2581c"><b>Завершить бережно</b></div><p data-t="7b38595394">Поблагодарить, ответить на вопросы, дать время. Договориться, что и как скажем команде.</p></li>
+<li><div class="sh" data-t="209306fad3"><b>Рекомендации</b></div><p data-t="32168c955a">По ситуации: при уходе по результатам можно дать рекомендацию по сильным сторонам; при грубом нарушении — нет.</p></li>
+</ol>
+<p class="small muted" data-t="e51242379f">Порядок шагов — по чек-листу урока 4.7.7. Записывать разговор можно только с согласия сотрудника.</p>
+<h3 data-t="aad4556262" id="cannot-ru"><span class="no">6.7</span>Путь «не может»: дисциплинирован, но продукта нет <span class="new">новое · 4.7</span></h3>
+<p data-t="0d80e6b1a9">Ступени SP (4.5) — для нарушений, то есть для случая «не хочет». Бывает другое: человек приходит вовремя и соблюдает правила, но продукта поста нет — блюда с ошибками, станция не успевает, аттестации не сданы. За это SP не выдаём. Для этого случая — отдельный путь.</p>
+<ul aria-label="Путь «не может»" class="ladder arrows" data-ta="aria-label:801cd00b9c">
+<li data-t="ac97e6bb1e"><span class="k">Шаг 1</span><b>Разговор с цифрами</b><span class="s">руководитель + HR, досье</span></li>
+<li data-t="1c8874c84a"><span class="k">Шаг 2</span><b>План на 2–4 недели</b><span class="s">переобучение, наставник</span></li>
+<li data-t="dc91a75d77"><span class="k">Шаг 3</span><b>Подходящая роль</b><span class="s">только с письменного согласия</span></li>
+<li data-t="def12ce917"><span class="k">Шаг 4</span><b>Последний шанс</b><span class="s">письменно, со сроком</span></li>
+<li data-t="d59d0d0496"><span class="k">Итог</span><b>Расставание</b><span class="s">по договору и закону</span></li>
+</ul>
+<ol class="steps">
+<li><div class="sh" data-t="995f6f9631"><b>Разговор с цифрами</b><span class="b">SC</span><span class="b">HR</span></div><p data-t="d16b8de53f">Показать ГС и KPI за последние недели, спросить о причинах. Записать, что сказал человек.</p></li>
+<li><div class="sh" data-t="2ab6d7702f"><b>План улучшения</b><span class="t">2–4 недели</span></div><p data-t="d0a6c874d4">Что именно должно измениться и в каких цифрах. Переобучение в Academy, наставник на станции, проверка раз в неделю — как план после несданной аттестации (3.4).</p></li>
+<li><div class="sh" data-t="6c607e20e8"><b>Подходящая роль</b></div><p data-t="1a0c74b4dd">Если есть роль, где человек сильнее (например, CDP → Cook или Cook → Kitchen Helper), её можно предложить. Понижение — только с письменного согласия сотрудника и дополнительным соглашением к договору; ставка — по новой должности.</p></li>
+<li><div class="sh" data-t="636aea023e"><b>Последний шанс</b><span class="t">например, 2 недели</span></div><p data-t="8e7d2f45ce">Письменно: цель, срок и что будет, если цель не достигнута (уроки 4.7.6–4.7.7). Без сюрпризов.</p></li>
+<li><div class="sh" data-t="bc2f04863d"><b>Расставание</b><span class="b">ДИР</span></div><p data-t="759f7ffcd3">В испытательный срок — уведомлением по ст. 3.2 (5.1). После испытательного срока — по соглашению сторон (6.1) с юридической проверкой по PP 35/2021. Разговор — по 6.6. Если план сорван из-за отношения (пропускает переобучение, не выполняет указания), это уже «не хочет»: ступени 4.5, как в 3.4.</p></li>
+</ol>
+<div class="note"><div class="th" data-t="593670fd61">Откуда этот путь</div><p data-t="53204a8093">В курсе 4.7 есть обратная связь, поиск подходящей роли и последний шанс со сроком; отдельного пути «не может» в курсе нет. Путь собран из этих элементов для Food Lab — это рекомендация, не из курса. Юридическое основание каждого расставания проверяет юрист (6.1).</p></div>
+<h3 data-t="c5262912bb" id="leave-signs-ru"><span class="no">6.8</span>Признаки скорого ухода <span class="new">новое · 4.7</span></h3>
+<p data-t="c4db434c02">Сильные сотрудники тоже уходят. Руководитель и HR замечают признаки заранее (урок 4.7.3) и говорят с человеком до того, как он принесёт заявление.</p>
+<div class="tw"><table>
+<thead><tr><th data-t="d356d9e665">Признак</th><th data-t="a2ab32a068">Где видно</th></tr></thead>
+<tbody>
+<tr><td data-t="1a2ca914bf">Падает интерес: меньше инициативы, нет вопросов и предложений</td><td data-t="a0a905e0bb">Смена, разговор один на один</td></tr>
+<tr><td data-t="0a602c40dc">Отдаляется от команды</td><td data-t="33081ba7d3">Смена, рабочий чат</td></tr>
+<tr><td data-t="d62cfcf033">Падают ГС и KPI</td><td data-t="9684e78ac8">Дашборд (5.5), KPI-карта</td></tr>
+<tr><td data-t="636c480129">Падает дисциплина: опоздания, пропущенные отметки</td><td data-t="639b03bbc4">Сканер (4.1)</td></tr>
+<tr><td data-t="72afa8ae9d">Безразличие к обучению и обратной связи</td><td data-t="f742534099">Academy, аттестация (3.4)</td></tr>
+</tbody>
+</table></div>
+<p data-t="8ae631226a">Два признака и больше — разговор один на один в течение недели: что изменилось, что мешает, что можно сделать. Итог — в риски ухода, которые HR собирает каждый месяц (5.3).</p>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="d2e3e33cd9">Какое основное правило увольнения по курсу 4.7 и какие из него исключения?</li>
+<li data-t="07b4b65796">Кто ведёт разговор об увольнении повара и кто принимает решение?</li>
+<li data-t="6a1f73cce6">Чем путь «не может» отличается от ступеней SP?</li>
+<li data-t="31c8d723c6">За сколько дней закрываем увольнение и что входит в закрытие?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="298a5308d1">Увольнение не должно быть сюрпризом; исключения — грубые нарушения из ст. 9.3.</li>
+<li data-t="4b726fbfc0">Ведут Sous Chef и HR-менеджер вдвоём; решение — Директор.</li>
+<li data-t="5c550c2dd9">SP — за нарушения («не хочет»). «Не может» — человек дисциплинирован, но продукта нет: разговор с цифрами, план на 2–4 недели, подходящая роль, последний шанс, расставание по закону; SP не выдают.</li>
+<li data-t="50dad570ea">За 7 дней: расчёт, бонус, ключи, форма, инвентарь, exit-интервью, Academy, отпечаток, группы.</li>
+</ol></details>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="9cd158ab06">Кто ведёт разговор об увольнении Sous Chef?</li>
+<li data-t="ad6a1a97be">Почему нельзя давать «ещё один шанс» месяцами?</li>
+<li data-t="c0ebb0d3d0">Какие признаки скорого ухода сильного сотрудника?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="b10985cacc">Head Chef и HR-менеджер вдвоём; решение — Директор.</li>
+<li data-t="5cb909c361">Затягивание — частая ошибка руководителя (урок 4.7.5): падают результаты команды и самого руководителя.</li>
+<li data-t="425e9d6f7d">Падает интерес, отдаляется от команды, падают ГС и KPI, падает дисциплина, безразличие к обучению и обратной связи.</li>
+</ol></details>
+</section>
+<section class="ch" data-c="data" data-n="8" data-toc="Данные и замещение HR" id="data-ru">
+<header class="opener">
+<div aria-hidden="true" class="ch-num">8</div>
+<div>
+<p class="eyebrow" data-t="ff9f06647b">Раздел 8 · из HR Playbook 7.2</p>
+<h2 data-t="7edbc70598">Личные данные и замещение HR</h2>
+<p class="lead" data-t="b259ee513b">Head Chef — второй владелец папки HR. Правила доступа к личным данным для него те же, что для HR-менеджера.</p>
+</div>
+</header>
+<h3 data-t="f78a316ebe" id="privacy-ru"><span class="no">7.2</span>Персональные данные</h3>
+<div class="ticket" data-c="ctrl">
+<div class="th" data-t="e12b5dce75"><span>Кто имеет доступ</span><span>строго</span></div>
+<p data-t="59c0d51fa4">Владельцы папки HR — HR-менеджер и Head Chef. Доступ к папке есть только у них и у Директора компании. У Sous Chef, CDP, поваров и закупщика доступа нет.</p>
+</div>
+<ul>
+<li data-t="ec0abc1a9c">KTP, KK, банковские данные, номера BPJS, дата рождения, зарплата хранятся только в папке HR.</li>
+<li data-t="2f833ecb2e">Нельзя пересылать фото KTP и других документов в чаты, хранить их в личном телефоне, печатать без необходимости, выкладывать в группы.</li>
+<li data-t="3ed603189a">Бухгалтерии или юристу даём доступ к конкретному документу, только на просмотр и на время задачи. Потом доступ снимаем.</li>
+<li data-t="6d392760cc">Согласие на обработку персональных данных подписывает каждый сотрудник и даёт каждый кандидат в анкете (UU 27/2022).</li>
+<li data-t="b18e8bf580">Сроки хранения: данные кандидатов, которых не наняли, удаляем через 12 месяцев или раньше по их просьбе. Личные дела уволенных храним 5 лет, документы по зарплате и налогам — 10 лет.</li>
+<li data-t="c0a577f0af">Раз в квартал HR проверяет, у кого есть доступ к папке, и снимает лишний. Когда уходит HR-менеджер или Head Chef, его доступ закрывается в последний рабочий день.</li>
+<li data-t="5de448844c">При утечке или потере (например, украли телефон с доступом) в тот же день сообщить Директору, сменить пароли и выяснить, чьи данные затронуты.</li>
+</ul>
+<div class="note"><div class="th" data-t="78aa1d6deb">Если HR-менеджера нет</div><p data-t="1555ba4e84">Head Chef выполняет его работу по должностной папке HR-менеджера: поиск и отбор, документы, учёт, журналы, метрики и главные статистики постов (0.2).</p></div>
+<h4 data-t="a144da688e">Проверка знаний</h4>
+<ol class="quiz">
+<li data-t="af603154e8">Кто имеет доступ к папке HR?</li>
+<li data-t="28cc37e189">Что делаешь, если украли телефон с доступом к папке HR?</li>
+</ol>
+<details class="key"><summary data-t="8ac6df4161">Ответы для проверяющего</summary><ol>
+<li data-t="97ebe585d3">HR-менеджер и Head Chef — владельцы, и Директор компании.</li>
+<li data-t="fe4a500243">В тот же день сообщаю Директору, меняю пароли и выясняю, чьи данные затронуты.</li>
+</ol></details>
+</section>
+</div>
+</main>
+</div>
+<script>FL_FOLD.dyn({"A · утро 07:00–15:00": "cb63d05d41", "B · вечер 15:00–23:00": "047c036729", "C · ночь 23:00–07:00": "52e217c49d", "# чел.": "bc30540283", "Человеко-смен в неделю": "c7c4563d58", "Без резерва (÷ 5)": "6e6ecc1c03", "Штат с резервом 15%": "d5da58a71c", "человек в штате": "6ceb9ce69b", "Скопировано": "8922542f90", "Копировать": "4a05d8619d", "Выделено: Ctrl+C": "a3af8a1fcb"});FL_FOLD.apply();</script>
+<script>
+(function(){
+  var body=document.body, LS='foodlab-folders-lang', fixed=document.querySelector('meta[name="folder-lang"]');
+  function all(sel,root){return [].slice.call((root||document).querySelectorAll(sel));}
+  function langOf(el){var b=el.closest('.langblock');return b&&b.getAttribute('lang')==='ru'?'ru':'id';}
+  function fmts(el){var loc=window.FL_LOC||'ru-RU';return {nf:new Intl.NumberFormat(loc,{maximumFractionDigits:0}),nf1:new Intl.NumberFormat(loc,{maximumFractionDigits:1})};}
+  function rp(nf,v){return 'Rp '+nf.format(Math.round(v));}
+
+  /* language */
+  function setLang(l,scroll){
+    body.classList.remove('l-id','l-ru');body.classList.add('l-'+l);
+    document.documentElement.lang=l;
+    all('[data-setlang]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.setlang===l?'true':'false');});
+    if(!fixed){try{localStorage.setItem(LS,l);}catch(e){}}
+    if(scroll)window.scrollTo(0,0);
+  }
+  var start=fixed?fixed.getAttribute('content'):'id';
+  if(!fixed){try{var s=localStorage.getItem(LS);if(s==='ru'||s==='id')start=s;}catch(e){}}
+  all('[data-setlang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.setlang,true);});});
+  setLang(start,false);
+
+  /* table of contents: mobile drawer */
+  var rail=document.getElementById('rail'),btn=document.getElementById('tocBtn'),closeBtn=document.getElementById('tocClose');
+  function openToc(o){rail.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');}
+  if(btn)btn.addEventListener('click',function(){openToc(!rail.classList.contains('open'));});
+  if(closeBtn)closeBtn.addEventListener('click',function(){openToc(false);});
+  rail.addEventListener('click',function(e){if(e.target.closest('.toc a')&&window.matchMedia('(max-width:980px)').matches)openToc(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')openToc(false);});
+
+  /* table of contents: current section */
+  var links=all('.toc a'),map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){var a=map[en.target.id];if(!a)return;all('a',a.closest('.toc')).forEach(function(l){l.removeAttribute('aria-current');});a.setAttribute('aria-current','true');}
+      });
+    },{rootMargin:'-15% 0px -75% 0px'});
+    Object.keys(map).forEach(function(id){var t=document.getElementById(id);if(t)io.observe(t);});
+  }
+
+  /* 24-hour shift clock */
+  var MODES={launch:[2,2,1],growth:[3,3,1],std:[4,4,2]};
+  var CL={
+    ru:{A:'A · утро 07:00–15:00',B:'B · вечер 15:00–23:00',C:'C · ночь 23:00–07:00',p:'чел.',ps:'Человеко-смен в неделю',base:'Без резерва (÷ 5)',staff:'Штат с резервом 15%',center:'человек в штате',
+        comp:{launch:'1 Sous Chef · 2 CDP · 5 Cook',growth:'1 Sous Chef · 3 CDP · 7 Cook',std:'1 Sous Chef · 4 CDP · 11 Cook'}},
+    id:{A:'A · pagi 07.00–15.00',B:'B · sore 15.00–23.00',C:'C · malam 23.00–07.00',p:'org',ps:'Shift-orang per minggu',base:'Tanpa cadangan (÷ 5)',staff:'Tim + cadangan 15%',center:'orang dalam tim',
+        comp:{launch:'1 Sous Chef · 2 CDP · 5 Cook',growth:'1 Sous Chef · 3 CDP · 7 Cook',std:'1 Sous Chef · 4 CDP · 11 Cook'}}
+  };
+  function polar(cx,cy,r,h){var a=(h/24)*2*Math.PI-Math.PI/2;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+  function arc(cx,cy,r,h1,h2){var p1=polar(cx,cy,r,h1),p2=polar(cx,cy,r,h2);return 'M'+p1[0].toFixed(2)+' '+p1[1].toFixed(2)+' A'+r+' '+r+' 0 '+((h2-h1)>12?1:0)+' 1 '+p2[0].toFixed(2)+' '+p2[1].toFixed(2);}
+  function drawClock(box,mode){
+    var L=CL[langOf(box)],svg=box.querySelector('svg.clock'),leg=box.querySelector('.legend');if(!svg||!leg)return;
+    var m=MODES[mode],cx=150,cy=150,R=112,s='',nf1=fmts(box).nf1;
+    var sh=[{h1:7,h2:15,n:m[0],c:'var(--shA)',t:L.A},{h1:15,h2:23,n:m[1],c:'var(--shB)',t:L.B},{h1:23,h2:31,n:m[2],c:'var(--shC)',t:L.C}];
+    s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" style="fill:none;stroke:var(--tint);stroke-width:34"/>';
+    sh.forEach(function(x){
+      s+='<path d="'+arc(cx,cy,R,x.h1+0.1,x.h2-0.1)+'" style="fill:none;stroke:'+x.c+';stroke-width:34"/>';
+      for(var i=0;i<x.n;i++){var p=polar(cx,cy,R,x.h1+(x.h2-x.h1)*(i+0.5)/x.n),X=p[0],Y=p[1];
+        s+='<circle cx="'+X.toFixed(2)+'" cy="'+Y.toFixed(2)+'" r="10" style="fill:var(--panel);stroke:var(--ink);stroke-width:1.5"/>';
+        s+='<circle cx="'+X.toFixed(2)+'" cy="'+(Y-3).toFixed(2)+'" r="2.8" style="fill:var(--ink)"/>';
+        s+='<path d="M'+(X-4.6).toFixed(2)+' '+(Y+5.4).toFixed(2)+' a4.6 4.4 0 0 1 9.2 0 z" style="fill:var(--ink)"/>';}
+    });
+    [0,6,12,18].forEach(function(h){var p=polar(cx,cy,R-44,h);s+='<text x="'+p[0].toFixed(1)+'" y="'+(p[1]+4).toFixed(1)+'" text-anchor="middle" style="font:11px \'JetBrains Mono\',monospace;fill:var(--ink-2)">'+(h<10?'0'+h:h)+':00</text>';});
+    var total=Math.round((m[0]+m[1]+m[2])*7/5*1.15),ps=(m[0]+m[1]+m[2])*7;
+    s+='<text x="'+cx+'" y="'+(cy+8)+'" text-anchor="middle" style="font:700 40px Unbounded,\'Arial Black\',sans-serif;fill:var(--ink)">'+total+'</text>';
+    s+='<text x="'+cx+'" y="'+(cy+28)+'" text-anchor="middle" style="font:12px Onest,system-ui,sans-serif;fill:var(--ink-2)">'+L.center+'</text>';
+    svg.innerHTML=s;
+    leg.innerHTML=sh.map(function(x){return '<div class="row"><span class="sw" style="background:'+x.c+'"></span><span>'+x.t+'</span><b>'+x.n+' '+L.p+'</b></div>';}).join('')+
+      '<div class="row tot"><span></span><span>'+L.ps+'</span><b>'+ps+'</b></div>'+
+      '<div class="row"><span></span><span>'+L.base+'</span><b>'+nf1.format(ps/5)+'</b></div>'+
+      '<div class="row"><span></span><span><strong>'+L.staff+'</strong></span><b>'+total+'</b></div>'+
+      '<div class="comp">'+L.comp[mode]+'</div>';
+  }
+  all('.shiftviz').forEach(function(box){
+    var bs=all('.seg button',box);
+    bs.forEach(function(b){b.addEventListener('click',function(){bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});drawClock(box,b.dataset.mode);});});
+    drawClock(box,'launch');
+  });
+
+  /* calculators */
+  function inp(f,k){return f.querySelector('[data-k="'+k+'"]');}
+  function val(f,k){var e=inp(f,k);var v=e?parseFloat(e.value):0;return isFinite(v)&&v>0?v:0;}
+  function put(f,k,t,html){var e=f.querySelector('[data-o="'+k+'"]');if(!e)return;if(html)e.innerHTML=t;else e.textContent=t;}
+  function wire(f,fn){f.addEventListener('input',fn);f.addEventListener('change',fn);f.addEventListener('submit',function(e){e.preventDefault();});fn();}
+
+  all('form.calc-staff').forEach(function(f){
+    function calc(){
+      var F=fmts(f),A=val(f,'A'),B=val(f,'B'),C=val(f,'C'),res=val(f,'res'),rate=val(f,'rate'),sales=val(f,'sales'),hol=inp(f,'hol')&&inp(f,'hol').checked;
+      var ps=(A+B+C)*7,base=ps/5,staff=Math.round(base*(1+res/100)),fixed=staff*rate*172*(1+1/12+0.105+(hol?0.044:0)),fot=fixed+0.01*sales;
+      put(f,'ps',F.nf.format(ps));put(f,'base',F.nf1.format(base));put(f,'staff',F.nf.format(staff));put(f,'fot',rp(F.nf,fot));
+      if(sales>0){var pct=fot/sales*100;put(f,'pct','<span class="pill '+(pct<=13?'ok':(pct<=15?'mid':'bad'))+'">'+F.nf1.format(pct)+'%</span>',true);}else{put(f,'pct','—');}
+      put(f,'min',rate>0?rp(F.nf,fixed/0.12):'—');
+    }
+    all('.presets button',f).forEach(function(b){b.addEventListener('click',function(){
+      if(b.dataset.p){var v=b.dataset.p.split(',');inp(f,'A').value=v[0];inp(f,'B').value=v[1];inp(f,'C').value=v[2];}
+      if(b.dataset.rate){inp(f,'rate').value=b.dataset.rate;}
+      calc();});});
+    wire(f,calc);
+  });
+  all('form.calc-funnel').forEach(function(f){
+    wire(f,function(){
+      var F=fmts(f),plan=val(f,'plan'),c1=val(f,'c1')/100,c2=val(f,'c2')/100,c3=val(f,'c3')/100;
+      if(!(plan&&c1&&c2&&c3)){put(f,'trial','—');put(f,'int','—');put(f,'app','—');return;}
+      var t=Math.ceil(plan/c3-1e-9),i=Math.ceil(t/c2-1e-9),a=Math.ceil(i/c1-1e-9);
+      put(f,'trial',F.nf.format(t));put(f,'int',F.nf.format(i));put(f,'app',F.nf.format(a));
+    });
+  });
+  all('form.calc-exit').forEach(function(f){
+    wire(f,function(){
+      var F=fmts(f),m=Math.floor(val(f,'months')),w=val(f,'wage'),e=val(f,'earned'),b=val(f,'bonus'),d=val(f,'ded'),prob=inp(f,'prob')&&inp(f,'prob').checked;
+      var leave=prob?0:m*0.1*w,pay=e+b,gross=leave+pay,total=Math.max(0,gross-d);
+      put(f,'leave',rp(F.nf,leave));put(f,'pay',rp(F.nf,pay));put(f,'ded',d>0?'− '+rp(F.nf,d):rp(F.nf,0));put(f,'total',rp(F.nf,total));
+      var w2=f.querySelector('[data-o="warn"]');if(w2)w2.hidden=!(d>0.5*gross);
+    });
+  });
+
+  /* copy buttons */
+  all('.copy').forEach(function(b){
+    var label=b.textContent;
+    b.addEventListener('click',function(){
+      var pre=document.getElementById(b.dataset.target);if(!pre)return;
+      var done=b.dataset.done||'OK';
+      function ok(){b.textContent=done;setTimeout(function(){b.textContent=label;},1600);}
+      function fb(){var r=document.createRange();r.selectNodeContents(pre);var sel=window.getSelection();sel.removeAllRanges();sel.addRange(r);b.textContent='Ctrl+C';setTimeout(function(){b.textContent=label;},2600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(pre.innerText).then(ok,fb);}else{fb();}
+    });
+  });
+})();
+
+</script>
+</body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #F5F8FE; -webkit-font-smoothing: antialiased; }
+  a { color: #1B4FB8; text-decoration: none; }
+  a:hover { color: #E05B4F; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F5F8FE; color: #0F1F3D; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; padding: 40px 28px 72px;">
+  <div style="max-width: 1140px; margin: 0 auto; display: flex; flex-direction: column; gap: 34px;">
+
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #7C8BA6;">Menu ONLYEGGS · Kartu teknologi</div>
+        <div style="font-size: 40px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.08;">American Breakfast</div>
+        <div style="font-size: 17px; color: #5A6B87;">Sarapan ala Amerika</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
+        <div style="padding: 7px 13px; border-radius: 99px; background: rgba(44,107,230,0.14); color: #1B4FB8; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;">Текст импортирован · 14 шагов</div>
+        <div style="font-size: 12px; color: #93A0B5; font-family: 'IBM Plex Mono', monospace;">источник: sites.google.com/view/foodlab-edu</div>
+      </div>
+    </div>
+
+    <div style="background: #FFF4E8; border: 1px solid rgba(224,91,79,0.25); border-radius: 16px; padding: 18px 22px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #B4552F;">Фото нужно перенести</div>
+      <div style="font-size: 15px; line-height: 1.6; color: #5A4234; max-width: 780px; text-wrap: pretty;">Google не отдаёт картинки с Google Sites по внешней ссылке — проверено, все варианты адреса закрыты. Поэтому фото не подтягиваются автоматически. Перетащите изображение мышью в любую рамку ниже — оно останется на месте после перезагрузки. Второй путь: выложить фото в общую папку Google Диска, оттуда ссылки работают.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+      <image-slot id="fl-ab-hero-1" shape="rounded" radius="18" placeholder="Фото блюда · 1" style="width: 100%; height: 300px;"></image-slot>
+      <image-slot id="fl-ab-hero-2" shape="rounded" radius="18" placeholder="Фото блюда · 2" style="width: 100%; height: 300px;"></image-slot>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1.15fr; gap: 22px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Table setting · Penyajian</div>
+        <image-slot id="fl-ab-plating" shape="rounded" radius="18" placeholder="Фото подачи" style="width: 100%; height: 280px;"></image-slot>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Cooking video · Video memasak</div>
+        <div style="border-radius: 18px; overflow: hidden; background: #0F1F3D; aspect-ratio: 16 / 9; border: 1px solid rgba(15,31,61,0.08);">
+          <iframe src="https://www.youtube.com/embed/VsUCQUjpWtM" title="Cooking video" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen="true" style="width: 100%; height: 100%; border: 0; display: block;"></iframe>
+        </div>
+        <div style="font-size: 13px; color: #93A0B5;">Видео работает — YouTube подключается по ссылке без ограничений.</div>
+      </div>
+    </div>
+
+    <div style="height: 1px; background: rgba(15,31,61,0.1);"></div>
+
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+        <div style="font-size: 24px; font-weight: 700; letter-spacing: -0.015em;">Процесс приготовления</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93A0B5;">{{ stepCountLabel }}</div>
+      </div>
+      <div style="display: grid; grid-template-columns: {{ stepColumns }}; gap: 16px;">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+          <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="position: relative; height: 190px;">
+              <image-slot id="{{ s.slotId }}" shape="rect" placeholder="{{ s.slotHint }}" style="width: 100%; height: 100%;"></image-slot>
+              <div style="position: absolute; top: 10px; left: 10px; width: 28px; height: 28px; border-radius: 99px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 2;">{{ s.n }}</div>
+            </div>
+            <div style="padding: 14px 16px 18px; font-size: 14px; line-height: 1.5; color: #0F1F3D; text-wrap: pretty;">{{ s.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background: #E9F0FE; border-radius: 18px; padding: 22px 24px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Что дальше</div>
+      <div style="font-size: 15px; line-height: 1.6; color: #5A6B87; max-width: 780px; text-wrap: pretty;">Текст всех 14 шагов, название и видео сняты с вашего сайта автоматически — вручную остаются только фото. На сайте ещё 4 меню: ONLYEGGS, Healthy Fit, ONLY KEBAB, Hey Italia, около 50 карточек. Тексты и видео к ним я перенесу так же, рамки под фото будут расставлены заранее.</div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;stepsPerRow&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:2,&quot;max&quot;:4,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Шаги&quot;}}">
+const STEPS = [
+  'add oil and salt',
+  'start fry 2 eggs with low fire',
+  'fry 2 slice bacon',
+  'semifinished pancake',
+  'need fry 2 pcs pancake',
+  'need hot oil for hash brown',
+  'pancake need fry double side with low fire',
+  'bacon need fry until crispy',
+  '2 eggs ready',
+  'bacon need to dry without oil (with napkins)',
+  'pancake ready need to dry without oil (with napkins)',
+  'hash brown also need to dry without oil (with napkins)',
+  '1 slice brioche for 1 portion (need to cut to 2 pcs)',
+  'ready portion looks same lie as photo'
+];
+
+class Component extends DCLogic {
+  renderVals() {
+    const cols = this.props.stepsPerRow ?? 3;
+    return {
+      steps: STEPS.map((t, i) => ({
+        n: i + 1,
+        text: t,
+        slotId: 'fl-ab-step-' + (i + 1),
+        slotHint: 'Шаг ' + (i + 1)
+      })),
+      stepColumns: 'repeat(' + cols + ', 1fr)',
+      stepCountLabel: STEPS.length + ' шагов'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

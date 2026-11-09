@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #F2EFE9; -webkit-font-smoothing: antialiased; }
+  a { color: #1F4A3C; text-decoration: none; }
+  a:hover { color: #C4643C; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+<div style="min-height: 100vh; padding: 44px 40px 72px; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #1B1B1B;">
+  <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 30px;">
+    <div style="display: flex; flex-direction: column; gap: 10px; max-width: 720px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8A82;">Foodlab Academy · warna / colours / цвет</div>
+      <div style="font-size: 34px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.1;">Десять цветовых вариантов</div>
+      <div style="font-size: 15px; line-height: 1.6; color: #55554E;">Каждый вариант показан на одном и том же куске интерфейса: шапка, экран шага, кнопка, статус теста. Скажите номер — перекрашу весь сайт в него.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px;">
+      <sc-for list="{{ palettes }}" as="p" hint-placeholder-count="10">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: baseline; gap: 10px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #A0A099;">{{ p.num }}</div>
+          <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">{{ p.name }}</div>
+          <div style="font-size: 13px; color: #77776F;">{{ p.note }}</div>
+        </div>
+
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid rgba(0,0,0,0.1); background: {{ p.bg }};">
+          <div style="display: flex; align-items: center; gap: 14px; padding: 13px 18px; background: {{ p.bar }}; border-bottom: 1px solid {{ p.line }};">
+            <div style="width: 22px; height: 22px; border-radius: 6px; background: {{ p.accent }};"></div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ p.barInk }};">Foodlab</div>
+            <div style="flex: 1;"></div>
+            <div style="padding: 5px 10px; border-radius: 99px; background: {{ p.chipBg }}; color: {{ p.chipInk }}; font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;">Koki</div>
+          </div>
+
+          <div style="padding: 20px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="border-radius: 14px; padding: 20px; background: {{ p.hero }}; color: {{ p.heroInk }}; display: flex; flex-direction: column; gap: 12px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.65;">Langkah 3 · 18 min</div>
+              <div style="font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;">Aturan penyimpanan produk</div>
+              <div style="display: flex; align-items: center; gap: 12px; margin-top: 2px;">
+                <div style="padding: 10px 16px; border-radius: 10px; background: {{ p.accent }}; color: {{ p.accentInk }}; font-size: 13px; font-weight: 700;">Mulai tes</div>
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; opacity: 0.6;">3 pertanyaan</div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div style="border-radius: 12px; padding: 14px; background: {{ p.card }}; border: 1px solid {{ p.line }}; display: flex; flex-direction: column; gap: 8px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: {{ p.muted }};">Progres</div>
+                <div style="font-size: 24px; font-weight: 800; color: {{ p.ink }}; letter-spacing: -0.02em;">60%</div>
+                <div style="height: 6px; border-radius: 99px; background: {{ p.track }}; overflow: hidden;">
+                  <div style="height: 100%; width: 60%; background: {{ p.ok }}; border-radius: 99px;"></div>
+                </div>
+              </div>
+              <div style="border-radius: 12px; padding: 14px; background: {{ p.card }}; border: 1px solid {{ p.line }}; display: flex; flex-direction: column; gap: 9px; justify-content: center;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="padding: 4px 9px; border-radius: 99px; background: {{ p.okBg }}; color: {{ p.ok }}; font-size: 11px; font-weight: 700;">Lulus 100%</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="padding: 4px 9px; border-radius: 99px; background: {{ p.warnBg }}; color: {{ p.warn }}; font-size: 11px; font-weight: 700;">Belum lulus</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <sc-for list="{{ p.swatches }}" as="sw" hint-placeholder-count="5">
+          <div style="display: flex; align-items: center; gap: 7px; padding: 4px 9px 4px 5px; border-radius: 99px; background: rgba(0,0,0,0.04);">
+            <div style="width: 16px; height: 16px; border-radius: 99px; background: {{ sw }}; border: 1px solid rgba(0,0,0,0.12);"></div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #6B6B64;">{{ sw }}</div>
+          </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1320,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  P = [
+    { name: 'Rimba', note: 'сейчас на сайте: лес и куркума', bg: '#FAF5EC', bar: '#FFFDF8', line: 'rgba(27,42,38,0.12)', barInk: '#1B2A26', ink: '#1B2A26', muted: '#96A09A', hero: '#15342B', heroInk: '#F3EADA', accent: '#E0A33E', accentInk: '#15342B', card: '#FFFDF8', chipBg: 'rgba(46,125,111,0.12)', chipInk: '#1F4A3C', track: 'rgba(27,42,38,0.1)', ok: '#2E7D6F', okBg: 'rgba(46,125,111,0.14)', warn: '#C4643C', warnBg: 'rgba(196,100,60,0.14)' },
+    { name: 'Batik Indigo', note: 'индиго и медь', bg: '#F4F2EE', bar: '#FFFFFF', line: 'rgba(26,32,64,0.12)', barInk: '#1A2040', ink: '#1A2040', muted: '#8B8FA6', hero: '#1E2555', heroInk: '#EDEBF5', accent: '#C97B45', accentInk: '#1E2555', card: '#FFFFFF', chipBg: 'rgba(30,37,85,0.1)', chipInk: '#1E2555', track: 'rgba(26,32,64,0.1)', ok: '#3A6EA5', okBg: 'rgba(58,110,165,0.14)', warn: '#B4553C', warnBg: 'rgba(180,85,60,0.14)' },
+    { name: 'Kelapa', note: 'кокос, тёплое дерево, красный', bg: '#FBF6EF', bar: '#FFFFFF', line: 'rgba(58,38,26,0.12)', barInk: '#3A261A', ink: '#3A261A', muted: '#9C8877', hero: '#4A2F1E', heroInk: '#F6EADC', accent: '#D9533B', accentInk: '#FFF6F0', card: '#FFFFFF', chipBg: 'rgba(74,47,30,0.09)', chipInk: '#4A2F1E', track: 'rgba(58,38,26,0.1)', ok: '#6E8B3D', okBg: 'rgba(110,139,61,0.15)', warn: '#D9533B', warnBg: 'rgba(217,83,59,0.13)' },
+    { name: 'Laut Bali', note: 'океан и песок', bg: '#F3F6F5', bar: '#FFFFFF', line: 'rgba(12,52,58,0.12)', barInk: '#0C343A', ink: '#0C343A', muted: '#7E9A9C', hero: '#0C343A', heroInk: '#E6F1F0', accent: '#EBC77C', accentInk: '#0C343A', card: '#FFFFFF', chipBg: 'rgba(12,52,58,0.09)', chipInk: '#0C343A', track: 'rgba(12,52,58,0.1)', ok: '#1E8A82', okBg: 'rgba(30,138,130,0.14)', warn: '#C96A4E', warnBg: 'rgba(201,106,78,0.14)' },
+    { name: 'Merah Putih', note: 'белый, кирпичный, графит', bg: '#F7F7F6', bar: '#FFFFFF', line: 'rgba(24,24,24,0.12)', barInk: '#181818', ink: '#181818', muted: '#8E8E8B', hero: '#1C1C1C', heroInk: '#F4F4F2', accent: '#C42B27', accentInk: '#FFF4F2', card: '#FFFFFF', chipBg: 'rgba(196,43,39,0.1)', chipInk: '#9E2320', track: 'rgba(24,24,24,0.1)', ok: '#2F7A4F', okBg: 'rgba(47,122,79,0.13)', warn: '#C42B27', warnBg: 'rgba(196,43,39,0.12)' },
+    { name: 'Padi', note: 'рисовое поле и солома', bg: '#F7F6EC', bar: '#FFFEF6', line: 'rgba(44,48,28,0.12)', barInk: '#2C301C', ink: '#2C301C', muted: '#93977E', hero: '#3D4526', heroInk: '#F2F2E2', accent: '#D8C25C', accentInk: '#2C301C', card: '#FFFEF6', chipBg: 'rgba(61,69,38,0.1)', chipInk: '#3D4526', track: 'rgba(44,48,28,0.1)', ok: '#6B8F3E', okBg: 'rgba(107,143,62,0.15)', warn: '#B96A2E', warnBg: 'rgba(185,106,46,0.14)' },
+    { name: 'Malam', note: 'тёмная тема, лаймовый акцент', bg: '#141614', bar: '#1C1F1C', line: 'rgba(255,255,255,0.1)', barInk: '#E8EDE6', ink: '#E8EDE6', muted: '#7E877B', hero: '#232823', heroInk: '#E8EDE6', accent: '#B9E04C', accentInk: '#1A1D19', card: '#1C1F1C', chipBg: 'rgba(185,224,76,0.14)', chipInk: '#B9E04C', track: 'rgba(255,255,255,0.1)', ok: '#7FCF8A', okBg: 'rgba(127,207,138,0.14)', warn: '#E5844F', warnBg: 'rgba(229,132,79,0.14)' },
+    { name: 'Terakota', note: 'глина и обожжённый кирпич', bg: '#FAF3EE', bar: '#FFFCF9', line: 'rgba(63,34,26,0.12)', barInk: '#3F221A', ink: '#3F221A', muted: '#A6867A', hero: '#8C4A32', heroInk: '#FBEDE4', accent: '#E9A05A', accentInk: '#40200F', card: '#FFFCF9', chipBg: 'rgba(140,74,50,0.11)', chipInk: '#8C4A32', track: 'rgba(63,34,26,0.1)', ok: '#5E8C63', okBg: 'rgba(94,140,99,0.15)', warn: '#B94A32', warnBg: 'rgba(185,74,50,0.13)' },
+    { name: 'Es Kelapa', note: 'светлый, мята и тёмно-синий', bg: '#F2F7F5', bar: '#FFFFFF', line: 'rgba(20,34,58,0.12)', barInk: '#14223A', ink: '#14223A', muted: '#87949F', hero: '#14223A', heroInk: '#EAF3EF', accent: '#7FD1B2', accentInk: '#0F2033', card: '#FFFFFF', chipBg: 'rgba(127,209,178,0.2)', chipInk: '#1B5745', track: 'rgba(20,34,58,0.1)', ok: '#2E9B78', okBg: 'rgba(46,155,120,0.14)', warn: '#D2724F', warnBg: 'rgba(210,114,79,0.14)' },
+    { name: 'Kunyit', note: 'куркума и эспрессо', bg: '#FBF4E4', bar: '#FFFBF1', line: 'rgba(48,32,17,0.12)', barInk: '#302011', ink: '#302011', muted: '#A18F76', hero: '#302011', heroInk: '#F8EEDA', accent: '#F0B429', accentInk: '#302011', card: '#FFFBF1', chipBg: 'rgba(240,180,41,0.18)', chipInk: '#6B4C12', track: 'rgba(48,32,17,0.1)', ok: '#6D8F2F', okBg: 'rgba(109,143,47,0.15)', warn: '#C15A28', warnBg: 'rgba(193,90,40,0.13)' }
+  ];
+
+  renderVals() {
+    return {
+      palettes: this.P.map((p, i) => Object.assign({}, p, {
+        num: (i + 1 < 10 ? '0' : '') + (i + 1),
+        swatches: [p.hero, p.accent, p.bg, p.ok, p.warn]
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

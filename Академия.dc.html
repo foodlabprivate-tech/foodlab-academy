@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./fl-theme.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<script src="./i18n.js"></script>
+<script src="./fl-lang.js"></script>
+<script src="./cards.js"></script>
+<script src="./avatars.js"></script>
+<script src="./card-photos.js"></script>
+<script src="./photos.js"></script>
+<script src="./questions.js"></script>
+<script src="./db-config.js"></script>
+<script src="./data.js"></script>
+<style>
+  body { margin: 0; background: #E7EDF7; -webkit-font-smoothing: antialiased; }
+  a { color: #1B4FB8; text-decoration: none; }
+  a:hover { color: #E05B4F; }
+  * { box-sizing: border-box; }
+  input, button, select { font-family: inherit; }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #E7EDF7; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #0F1F3D; padding: 24px 20px 70px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+
+  <div style="width: 100%; max-width: 780px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+    <a href="#" onClick="{{ goHome }}" style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: #CFE0F2; display: flex; align-items: center; justify-content: center;">
+      <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="30.5" stroke="#4E749F" stroke-width="1.4" />
+        <circle cx="32" cy="32" r="25" stroke="#4E749F" stroke-width="0.8" opacity="0.5" />
+        <path d="M32 17 L32 47" stroke="#4E749F" stroke-width="1.4" />
+        <path d="M24 20 L24 30 Q24 34 28 34 L28 47" stroke="#1B2D47" stroke-width="2" stroke-linecap="round" />
+        <path d="M24 20 L24 27 M27 20 L27 27" stroke="#1B2D47" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M40 20 Q44 24 41 31 L37 33 L40 47" stroke="#1B2D47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+    <div style="flex: 1; min-width: 140px; display: flex; flex-direction: column; gap: 2px;">
+      <div style="font-family: 'Instrument Serif', Georgia, serif; font-size: 15px; letter-spacing: 0.01em; color: #3F6285;">Foodlab Academy</div>
+      <div style="font-size: 19px; font-weight: 800; letter-spacing: -0.02em;">{{ pageTitle }}</div>
+    </div>
+    <a href="#" onClick="{{ goHome }}" style="flex: none; min-height: 36px; padding: 10px 13px; border: 1px solid rgba(15,31,61,0.14); border-radius: 10px; background: #FFFFFF; color: #5A6B87; font-size: 12.5px; font-weight: 600; transition: background 140ms ease;" style-hover="background: #F4F7FD; color: #5A6B87;">{{ homeLabel }}</a>
+    <div style="flex: none; display: flex; gap: 5px;">
+      <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+        <button onClick="{{ l.pick }}" style="min-height: 36px; padding: 0 11px; border: 1.5px solid {{ l.border }}; border-radius: 10px; background: {{ l.bg }}; color: {{ l.color }}; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600; cursor: pointer; transition: border-color 140ms ease;" style-hover="border-color: #2C6BE6;">{{ l.label }}</button>
+      </sc-for>
+    </div>
+    <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+      <div style="flex: none; display: flex; align-items: center; gap: 9px;">
+        <div style="text-align: right; display: flex; flex-direction: column; gap: 1px;">
+          <div style="font-size: 13px; font-weight: 700;">{{ userName }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #7C8BA6;">{{ userRole }}</div>
+        </div>
+        <button onClick="{{ logout }}" style="min-height: 38px; padding: 0 13px; border: 1px solid rgba(15,31,61,0.14); border-radius: 10px; background: #FFFFFF; color: #5A6B87; font-size: 12.5px; font-weight: 600; cursor: pointer; transition: background 140ms ease;" style-hover="background: #F4F7FD;">{{ logoutLabel }}</button>
+      </div>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+  <div style="width: 100%; max-width: 420px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 14px 30px -22px rgba(15,31,61,0.4);">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em;">{{ signInTitle }}</div>
+      <div style="font-size: 13px; color: #5A6B87; line-height: 1.5;">{{ signInHint }}</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 7px;">
+      <label style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">{{ loginLabel }}</label>
+      <input value="{{ loginName }}" onInput="{{ setLogin }}" onKeyDown="{{ onKey }}" autocomplete="username" style="min-height: 46px; padding: 0 14px; border: 1.5px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FBFCFE; font-size: 15px; color: #0F1F3D; outline: none;" style-focus="border-color: #2C6BE6; background: #FFFFFF;" />
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 7px;">
+      <label style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">{{ passLabel }}</label>
+      <input value="{{ loginPass }}" onInput="{{ setPass }}" onKeyDown="{{ onKey }}" type="password" autocomplete="current-password" style="min-height: 46px; padding: 0 14px; border: 1.5px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FBFCFE; font-size: 15px; color: #0F1F3D; outline: none;" style-focus="border-color: #2C6BE6; background: #FFFFFF;" />
+    </div>
+    <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+      <div style="border-radius: 11px; background: #FDECEA; border: 1px solid rgba(224,91,79,0.3); padding: 11px 13px; font-size: 13px; color: #C0392B; line-height: 1.45;">{{ errorText }}</div>
+    </sc-if>
+    <button onClick="{{ doLogin }}" style="min-height: 50px; border: 0; border-radius: 13px; background: #2C6BE6; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 10px 22px -14px rgba(15,31,61,0.9); transition: filter 150ms ease, transform 120ms ease;" style-hover="filter: brightness(1.07); transform: translateY(-1px);" style-active="transform: translateY(0);">{{ loginBtn }}</button>
+    <button onClick="{{ goCode }}" style="min-height: 44px; border: 1px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FFFFFF; color: #1B4FB8; font-size: 13.5px; font-weight: 700; cursor: pointer; transition: background 140ms ease;" style-hover="background: #F4F7FD;">{{ haveCodeLabel }}</button>
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #93A0B5; line-height: 1.5;">{{ dbStatus }}</div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isCode }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 420px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 14px 30px -22px rgba(15,31,61,0.4);">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em;">{{ codeTitle }}</div>
+      <div style="font-size: 13px; color: #5A6B87; line-height: 1.5; text-wrap: pretty;">{{ codeHint }}</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 7px;">
+      <label style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">{{ codeLabel }}</label>
+      <input value="{{ code }}" onInput="{{ setCode }}" placeholder="A1B2C3" style="min-height: 50px; padding: 0 14px; border: 1.5px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FBFCFE; font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: #0F1F3D; outline: none;" style-focus="border-color: #2C6BE6; background: #FFFFFF;" />
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 7px;">
+      <label style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">{{ newPassLabel }}</label>
+      <input value="{{ pass1 }}" onInput="{{ setPass1 }}" type="password" autocomplete="new-password" style="min-height: 46px; padding: 0 14px; border: 1.5px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FBFCFE; font-size: 15px; outline: none;" style-focus="border-color: #2C6BE6; background: #FFFFFF;" />
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 7px;">
+      <label style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">{{ repeatPassLabel }}</label>
+      <input value="{{ pass2 }}" onInput="{{ setPass2 }}" onKeyDown="{{ onCodeKey }}" type="password" autocomplete="new-password" style="min-height: 46px; padding: 0 14px; border: 1.5px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FBFCFE; font-size: 15px; outline: none;" style-focus="border-color: #2C6BE6; background: #FFFFFF;" />
+    </div>
+    <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+      <div style="border-radius: 11px; background: #FDECEA; border: 1px solid rgba(224,91,79,0.3); padding: 11px 13px; font-size: 13px; color: #C0392B; line-height: 1.45;">{{ errorText }}</div>
+    </sc-if>
+    <button onClick="{{ doActivate }}" style="min-height: 50px; border: 0; border-radius: 13px; background: #1F7A4D; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 0 10px 22px -14px rgba(15,31,61,0.9); transition: filter 150ms ease;" style-hover="filter: brightness(1.08);">{{ activateLabel }}</button>
+    <button onClick="{{ goLoginScreen }}" style="min-height: 42px; border: 0; background: none; color: #5A6B87; font-size: 13px; font-weight: 600; cursor: pointer;" style-hover="color: #1B4FB8;">{{ haveLoginLabel }}</button>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isPosition }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 460px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 14px 30px -22px rgba(15,31,61,0.4);">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em;">{{ posTitle }}</div>
+      <div style="font-size: 13px; color: #5A6B87; line-height: 1.5; text-wrap: pretty;">{{ posHint }}</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <sc-for list="{{ posOptions }}" as="p" hint-placeholder-count="7">
+        <button onClick="{{ p.pick }}" style="width: 100%; text-align: left; min-height: 50px; padding: 13px 15px; border: 1.5px solid {{ p.border }}; border-radius: 13px; background: {{ p.bg }}; color: {{ p.color }}; font-size: 14.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 11px; transition: border-color 150ms ease, background 150ms ease, transform 120ms ease;" style-hover="border-color: #2C6BE6; transform: translateY(-1px);">
+          <span style="flex: none; width: 22px; height: 22px; border-radius: 99px; border: 1.5px solid {{ p.markBorder }}; background: {{ p.markBg }}; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ p.mark }}</span>
+          <span style="flex: 1; min-width: 0;">{{ p.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <button onClick="{{ savePosition }}" style="min-height: 50px; border: 0; border-radius: 13px; background: {{ posBtnBg }}; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: {{ posBtnCursor }}; box-shadow: 0 10px 22px -14px rgba(15,31,61,0.9); transition: filter 150ms ease;" style-hover="filter: brightness(1.07);">{{ posSaveLabel }}</button>
+    <div style="font-size: 12px; color: #93A0B5; line-height: 1.45;">{{ posNote }}</div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isHub }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 780px; display: flex; flex-direction: column; gap: 13px;">
+
+    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; overflow: hidden; box-shadow: 0 14px 30px -26px rgba(15,31,61,0.4);">
+      <div style="padding: 20px 21px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+        <button onClick="{{ pickAvatar }}" title="{{ avatarHint }}" style="flex: none; width: 92px; height: 92px; padding: 0; border: 1px solid rgba(15,31,61,0.1); border-radius: 24px; overflow: hidden; background: #FFFFFF; cursor: pointer; transition: transform 140ms ease, box-shadow 140ms ease;" style-hover="transform: translateY(-2px); box-shadow: 0 14px 26px -22px rgba(15,31,61,0.5);">
+          <img ref="{{ setAvatar }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+        </button>
+        <sc-if value="{{ showRing }}" hint-placeholder-val="{{ true }}">
+        <div style="flex: none; width: 92px; height: 92px; border-radius: 99px; background: {{ ringBg }}; display: flex; align-items: center; justify-content: center;">
+          <div style="width: 72px; height: 72px; border-radius: 99px; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;">
+            <div style="font-size: 19px; font-weight: 800; letter-spacing: -0.02em; color: {{ ringInk }};">{{ myPct }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: #93A0B5;">{{ bestLabel }}</div>
+          </div>
+        </div>
+        </sc-if>
+        <div style="flex: 1; min-width: 190px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em;">{{ greeting }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7C8BA6;">{{ userMeta }}</div>
+          <div style="font-size: 13px; color: #5A6B87; line-height: 1.5; text-wrap: pretty; padding-top: 2px;">{{ myStatus }}</div>
+          <sc-if value="{{ hasAvatarNote }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size: 12.5px; color: #C0392B; line-height: 1.45; text-wrap: pretty;">{{ avatarNote }}</div>
+          </sc-if>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; border-top: 1px solid rgba(15,31,61,0.08);">
+        <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
+          <div style="flex: 1; min-width: 150px; padding: 13px 18px; border-right: 1px solid rgba(15,31,61,0.06); display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: 0.13em; text-transform: uppercase; color: #93A0B5;">{{ f.label }}</div>
+            <div style="font-size: 15px; font-weight: 700; color: {{ f.color }};">{{ f.value }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 11px;">
+      <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+        <button onClick="{{ t.go }}" style="text-align: left; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; padding: 17px 18px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; transition: transform 140ms ease, box-shadow 140ms ease; box-shadow: 0 12px 26px -26px rgba(15,31,61,0.5);" style-hover="transform: translateY(-2px); box-shadow: 0 18px 32px -24px rgba(15,31,61,0.45);">
+          <div style="display: flex; align-items: center; gap: 9px;">
+            <span style="width: 9px; height: 9px; border-radius: 99px; background: {{ t.color }};"></span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #93A0B5;">{{ t.kicker }}</span>
+          </div>
+          <div style="font-size: 16px; font-weight: 700; letter-spacing: -0.01em;">{{ t.title }}</div>
+          <div style="font-size: 13px; color: #5A6B87; line-height: 1.45; text-wrap: pretty;">{{ t.desc }}</div>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isMaterials }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 12px;">
+    <button onClick="{{ goHub }}" style="align-self: flex-start; min-height: 40px; padding: 0 14px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; cursor: pointer;" style-hover="background: #F4F7FD;">{{ backLabel }}</button>
+    <sc-for list="{{ materials }}" as="m" hint-placeholder-count="2">
+      <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; overflow: hidden; box-shadow: 0 14px 30px -26px rgba(15,31,61,0.4);">
+        <sc-if value="{{ m.hasImg }}" hint-placeholder-val="{{ false }}">
+          <img ref="{{ m.setImg }}" alt="" style="width: 100%; height: 200px; object-fit: cover; display: block; background: #EDF1F7;" />
+        </sc-if>
+        <div style="padding: 17px 19px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3;">{{ m.title }}</div>
+          <div style="font-size: 13.5px; color: #33445E; line-height: 1.6; white-space: pre-line; text-wrap: pretty;">{{ m.body }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 780px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 11px;">
+      <div style="display: flex; align-items: center; gap: 11px; flex-wrap: wrap;">
+        <button onClick="{{ goHub }}" style="min-height: 40px; padding: 0 14px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; cursor: pointer;" style-hover="background: #F4F7FD;">{{ backLabel }}</button>
+        <input value="{{ query }}" onInput="{{ setQuery }}" placeholder="{{ searchPlaceholder }}" style="flex: 1; min-width: 180px; min-height: 44px; padding: 0 14px; border: 1.5px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FBFCFE; font-size: 14.5px; outline: none;" style-focus="border-color: #2C6BE6; background: #FFFFFF;" />
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #93A0B5;">{{ foundText }}</div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="11">
+          <button onClick="{{ c.pick }}" style="min-height: 36px; padding: 0 12px; border: 1.5px solid {{ c.border }}; border-radius: 99px; background: {{ c.bg }}; color: {{ c.color }}; font-size: 12.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: border-color 140ms ease;" style-hover="border-color: #2C6BE6;">
+            <span>{{ c.label }}</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; opacity: 0.7;">{{ c.count }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 9px;">
+      <sc-for list="{{ visibleCards }}" as="c" hint-placeholder-count="12">
+        <a href="{{ c.href }}" style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 13px; padding: 10px; display: flex; align-items: center; gap: 11px; transition: transform 140ms ease, box-shadow 140ms ease;" style-hover="transform: translateY(-2px); box-shadow: 0 14px 26px -22px rgba(15,31,61,0.45);">
+          <sc-if value="{{ c.hasImg }}" hint-placeholder-val="{{ false }}">
+            <img ref="{{ c.setImg }}" alt="" style="flex: none; width: 56px; height: 56px; object-fit: cover; border-radius: 10px; display: block; background: #EDF1F7;" />
+          </sc-if>
+          <sc-if value="{{ c.noImg }}" hint-placeholder-val="{{ true }}">
+            <div style="flex: none; width: 56px; height: 56px; border-radius: 10px; background: #EDF1F7; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; color: {{ c.color }};">{{ c.initial }}</div>
+          </sc-if>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: {{ c.color }};">{{ c.cat }}</div>
+            <div style="font-size: 13.5px; font-weight: 700; color: #0F1F3D; line-height: 1.3;">{{ c.name }}</div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isProgram }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 640px; display: flex; flex-direction: column; gap: 12px;">
+    <button onClick="{{ goHub }}" style="align-self: flex-start; min-height: 40px; padding: 0 14px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; cursor: pointer;" style-hover="background: #F4F7FD;">{{ backLabel }}</button>
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+      <div style="background: #FFFFFF; border: 1px solid {{ s.border }}; border-radius: 16px; padding: 17px 19px; display: flex; gap: 14px; align-items: flex-start;">
+        <div style="flex: none; width: 30px; height: 30px; border-radius: 10px; background: {{ s.numBg }}; color: {{ s.numColor }}; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">{{ s.n }}</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-size: 15.5px; font-weight: 700; line-height: 1.3;">{{ s.title }}</div>
+          <div style="font-size: 13px; color: #5A6B87; line-height: 1.5; text-wrap: pretty;">{{ s.desc }}</div>
+          <sc-if value="{{ s.isLink }}" hint-placeholder-val="{{ true }}">
+            <a href="{{ s.href }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em; padding-top: 2px;">{{ s.action }}</a>
+          </sc-if>
+          <sc-if value="{{ s.isButton }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ s.go }}" style="align-self: flex-start; min-height: 36px; padding: 0; border: 0; background: none; color: #1B4FB8; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; text-align: left;" style-hover="color: #E05B4F;">{{ s.action }}</button>
+          </sc-if>
+        </div>
+        <div style="flex: none; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: {{ s.statusColor }};">{{ s.status }}</div>
+      </div>
+    </sc-for>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 12px;">
+    <button onClick="{{ goHub }}" style="align-self: flex-start; min-height: 40px; padding: 0 14px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; cursor: pointer;" style-hover="background: #F4F7FD;">{{ backLabel }}</button>
+
+    <sc-if value="{{ hasMyResults }}" hint-placeholder-val="{{ true }}">
+    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; overflow: hidden;">
+      <div style="padding: 13px 16px; background: #E9F0FE; font-size: 14.5px; font-weight: 700; color: #1B4FB8;">{{ myAttemptsLabel }}</div>
+      <sc-for list="{{ myResults }}" as="r" hint-placeholder-count="3">
+        <div style="padding: 13px 16px; border-top: 1px solid rgba(15,31,61,0.07); display: flex; align-items: center; gap: 13px; flex-wrap: wrap;">
+          <div style="flex: none; width: 52px; height: 52px; border-radius: 99px; background: {{ r.ring }}; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 40px; height: 40px; border-radius: 99px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: {{ r.ink }};">{{ r.pct }}</div>
+          </div>
+          <div style="flex: 1; min-width: 140px; display: flex; flex-direction: column; gap: 2px;">
+            <div style="font-size: 14px; font-weight: 700; color: {{ r.ink }};">{{ r.verdict }}</div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7C8BA6;">{{ r.meta }}</div>
+          </div>
+          <div style="flex: none; font-size: 12.5px; color: #5A6B87; text-align: right; line-height: 1.4; max-width: 240px;">{{ r.weak }}</div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ noMyResults }}" hint-placeholder-val="{{ false }}">
+      <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; padding: 20px; font-size: 13.5px; color: #5A6B87; line-height: 1.5;">{{ noAttemptsText }}</div>
+    </sc-if>
+
+    <a href="%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20-%20%D0%97%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA%D0%B8.dc.html" style="min-height: 50px; padding: 15px; border-radius: 13px; background: #2C6BE6; color: #FFFFFF; font-size: 14.5px; font-weight: 700; display: flex; align-items: center; justify-content: center;" style-hover="filter: brightness(1.07); color: #FFFFFF;">{{ takeTestLabel }}</a>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isTrainer }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 12px;">
+    <button onClick="{{ goHub }}" style="align-self: flex-start; min-height: 40px; padding: 0 14px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; cursor: pointer;" style-hover="background: #F4F7FD;">{{ backLabel }}</button>
+
+    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 16px; min-height: 260px; box-shadow: 0 14px 30px -24px rgba(15,31,61,0.4);">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #7C8BA6;">{{ cardCounter }}</div>
+        <div style="padding: 4px 10px; border-radius: 99px; background: #F0F4FC; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; font-weight: 600; color: #1B4FB8;">{{ noGradeLabel }}</div>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 11px; justify-content: center;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #E0703F;">{{ cardDish }}</div>
+        <div style="font-size: 19px; font-weight: 700; line-height: 1.35; text-wrap: pretty;">{{ cardFront }}</div>
+        <sc-if value="{{ flipped }}" hint-placeholder-val="{{ false }}">
+          <div style="border-radius: 13px; background: #E8F6EE; border: 1px solid rgba(31,122,77,0.28); padding: 14px 15px; font-size: 16px; font-weight: 700; color: #1F7A4D; line-height: 1.4;">{{ cardBack }}</div>
+        </sc-if>
+      </div>
+      <div style="display: flex; gap: 9px; flex-wrap: wrap;">
+        <button onClick="{{ flip }}" style="flex: 1; min-width: 140px; min-height: 48px; border: 0; border-radius: 12px; background: #2C6BE6; color: #FFFFFF; font-size: 14.5px; font-weight: 700; cursor: pointer; transition: filter 150ms ease;" style-hover="filter: brightness(1.07);">{{ flipLabel }}</button>
+        <button onClick="{{ nextCard }}" style="min-height: 48px; padding: 0 18px; border: 1px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FFFFFF; color: #5A6B87; font-size: 13.5px; font-weight: 600; cursor: pointer;" style-hover="background: #F4F7FD;">{{ nextCardLabel }}</button>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const FACTS = [
+  ['American Breakfast', 'Сколько яиц в порции?', '2 pcs'],
+  ['American Breakfast', 'Сколько панкейков?', '2 pcs'],
+  ['English Breakfast', 'Red bean in tomato?', '40 g'],
+  ['English Breakfast', 'Сколько маленьких колбасок?', '2 pcs'],
+  ['Farmers Breakfast', 'Сколько яиц?', '3 pcs'],
+  ['Farmers Breakfast', 'Baby potato?', '80 g'],
+  ['Keto Breakfast', 'Авокадо брутто / нетто?', '240 g / 120 g'],
+  ['Shakshuka Eggs', 'Sauce sha-shuka в форму?', '250 g'],
+  ['Shakshuka Eggs', 'Сколько пропаривать?', '6 минут'],
+  ['Avocado Toast Salmon', 'Какой хлеб и сколько?', 'Sourdough 1 slice 80 g'],
+  ['Avocado Toast Salmon', 'Cream cheese и авокадо?', '40 g и 120 g'],
+  ['Greek Scramble', 'Greek feta cheese?', '50 g'],
+  ['Yogurt Granola', 'Йогурт, гранола, мед?', '200 g / 40 g / 40 g'],
+  ['Любая пицца', 'Pizza Dough (S/F)?', '350 g'],
+  ['Pizza Margherita', 'Моцарелла и соус?', '80 g и Tomato Pizza sauce 100 g'],
+  ['Pizza Pepperoni', 'Pepperoni Villa и оливки?', '80 g и 30 g'],
+  ['Pizza Ham Mushroom', 'Fried Mushrooms (S/F)?', '60 g'],
+  ['Pizza Truffle Triple Cheese', 'Три сыра и масло?', 'Mozzarella 80, Cheddar 50, Parmesan 10, Truffle Oil 2'],
+  ['Pasta Carbonara', 'Паста, сливки, желток?', 'Spaghetti 100 g, Cream 100 g, Egg yolk 50 g'],
+  ['Pasta Bolognese', 'Паста и соусы?', 'Fusilli 100 g, Bolognese 150 g + Tomato 100 g'],
+  ['Pasta Salmon Pesto', 'Лосось брутто / нетто и песто?', '70 g / 50 g, Pesto 30 g'],
+  ['Penne Mediterranean', 'Креветка и соус?', 'Shrimp 100 g / 50 g, Tomat Pizza sauce 150 g'],
+  ['Espresso', 'Капсулы и выход?', '1 капсула (30 ml), выход 30 ml'],
+  ['Americano', 'Вода и выход?', 'Hot Water 190 ml, выход 220 ml'],
+  ['Cappuccino', 'Капсулы и молоко?', '1 капсула (30 ml), Hot Milk 200 ml'],
+  ['Latte', 'Капсулы и молоко?', '2 капсулы (60 ml), Hot Milk 200 ml'],
+  ['Flat White', 'Молоко?', 'Hot Milk 170 ml'],
+  ['SOP 02 · Runchise', 'Кнопка готовности?', '«Makanan Sudah Siap» — до показа PIN водителю Grab'],
+  ['SOP 04 · Out of Stock', 'Порядок при нехватке продукта?', 'Сначала сообщение в группу General, потом закрытие позиций'],
+  ['SOP 04 · Out of Stock', 'Сообщение в начале смены?', '«All food available»'],
+  ['SOP 01 · Write Off', 'Фото для списания?', 'Продукт на весах, вес виден, фото в группу Write Off'],
+  ['SOP 01 · Write Off', 'Когда выбрасывать продукт?', 'Только после занесения в Write Off Report']
+];
+
+// Семь карт, у которых ключ хранилища не выводится из названия.
+// Сверено с ключами внутри самих тех.карт — без этого превью встало бы чужое.
+const KEY_FIX = {
+  'American Lite Breakfast': 'american-lite-breakfast-v2-g',
+  'Keto Breakfast': 'keto-breakfast-g',
+  'Feta Cheese Shakshuka': 'feta-shakshuka',
+  'Mac & Cheese with sausage': 'mac-cheese-sausage',
+  'Carrot for Poke Bowl': 'carrot-poke-bowl',
+  'Sauce for Poke Bowl': 'sauce-poke-bowl',
+  'Japanese Style Shawarma': 'japanese-shawarma',
+  'Healthy Breakfast Avocado': 'healthy-breakfast-avocado-g',
+  'Protein Healthy Breakfast': 'protein-healthy-breakfast-g'
+};
+
+const CAT_COLOR = {
+  'Завтраки': '#E0703F', 'Пицца': '#C0392B', 'Паста': '#B8860B', 'Кофе': '#7A4B2A',
+  'Напитки': '#2E7D8F', 'Салаты и боулы': '#1F7A4D', 'Стрит-фуд': '#D08700',
+  'Горячее': '#A0522D', 'Супы': '#6B3FA0', 'Соусы': '#1B4FB8', 'Десерты': '#C2185B', 'Прочее': '#5A6B87'
+};
+
+class Component extends DCLogic {
+  state = {
+    db: null, ready: false, screen: 'login', lang: 'ru',
+    loginName: '', loginPass: '', error: '', busy: false,
+    user: null, cards: [], results: [], settings: null,
+    query: '', cat: '__all', card: 0, flipped: false, avatarNote: '',
+    pickedPosition: '', photos: {},
+    code: '', pass1: '', pass2: ''
+  };
+
+  async doActivate() {
+    const s = this.state;
+    const t = this.t.bind(this);
+    if (!s.code.trim()) { this.setState({ error: t('errCode') }); return; }
+    if (s.pass1.length < 4) { this.setState({ error: t('errShort') }); return; }
+    if (s.pass1 !== s.pass2) { this.setState({ error: t('errRepeat') }); return; }
+    this.setState({ busy: true, error: '' });
+    try {
+      const res = await s.db.activate(s.code.trim(), s.pass1);
+      if (res.error) { this.setState({ error: this.mapError(res.error), busy: false }); return; }
+      this.setState({ user: res.user, screen: this.afterLogin(res.user), busy: false, code: '', pass1: '', pass2: '' });
+      this.loadResults();
+    } catch (e) {
+      this.setState({ error: e.message, busy: false });
+    }
+  }
+
+  imgRef(url) { return el => { if (el && url) el.src = url; }; }
+
+  // Своё фото: уменьшается в браузере и уходит в общую базу,
+  // поэтому видно и с телефона, и в админке
+  async changeAvatar() {
+    const s = this.state;
+    const av = window.FL_AVATARS;
+    if (!s.user || !av) return;
+    const file = await av.chooseFile();
+    if (!file) return;
+    this.setState({ avatarNote: this.t('avatarBusy') });
+    try {
+      const url = await av.upload(s.user.id, file);
+      await s.db.saveUser({
+        id: s.user.id, name: s.user.name, login: s.user.login,
+        role: s.user.role, position: s.user.position, avatar: url
+      });
+      const user = Object.assign({}, s.user, { avatar: url });
+      s.db.setSession(user);
+      this.setState({ user, avatarNote: '' });
+    } catch (e) {
+      this.setState({ avatarNote: e.message });
+    }
+  }
+
+  // Превью блюда: главное фото карты из перенесённого card-photos.js
+  cardThumb(name) {
+    const pool = window.FL_CARD_PHOTOS;
+    if (!pool) return '';
+    const slug = String(name).toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const key = 'foodlab-card-' + (KEY_FIX[name] || slug);
+    const items = pool[key];
+    if (!items || !items.length) return '';
+    let heroId = '';
+    try {
+      const raw = (window.FL_CARD_STATE && window.FL_CARD_STATE[key])
+        || localStorage.getItem(key);
+      if (raw) heroId = (JSON.parse(raw).hero || {}).photo || '';
+    } catch (e) {}
+    const hero = heroId && items.find(p => p.id === heroId);
+    const pick = hero || items.find(p => !p.hidden) || items[0];
+    return (pick && pick.url) || '';
+  }
+
+  // Должность не задана — значит вход первый: сначала спрашиваем её
+  afterLogin(user) {
+    return user && user.position ? 'hub' : 'position';
+  }
+
+  async submitPosition() {
+    const s = this.state;
+    if (!s.pickedPosition || !s.user) return;
+    const user = Object.assign({}, s.user, { position: s.pickedPosition });
+    try {
+      await s.db.saveUser({ id: user.id, name: user.name, login: user.login, role: user.role, position: s.pickedPosition });
+    } catch (e) {}
+    s.db.setSession(user);
+    this.setState({ user, screen: 'hub' });
+  }
+
+  // Экран держится в адресе: возврат из тех.карты приходит с #catalog,
+  // а кнопка «назад» в браузере работает как ожидается.
+  SCREENS = ['hub', 'catalog', 'program', 'progress', 'trainer', 'materials'];
+
+  hashScreen() {
+    const h = String(location.hash || '').replace('#', '');
+    return this.SCREENS.indexOf(h) >= 0 ? h : '';
+  }
+
+  go(screen, extra) {
+    const next = Object.assign({ screen }, extra || {});
+    this.setState(next);
+    try {
+      const want = '#' + screen;
+      if (location.hash !== want) history.pushState(null, '', want);
+    } catch (e) {}
+  }
+
+  async componentDidMount() {
+    window.addEventListener('hashchange', () => {
+      const s = this.hashScreen();
+      if (s && this.state.user && s !== this.state.screen) this.setState({ screen: s });
+    });
+    window.addEventListener('popstate', () => {
+      const s = this.hashScreen();
+      if (s && this.state.user && s !== this.state.screen) this.setState({ screen: s });
+    });
+    for (let i = 0; i < 60 && !(window.FL_DB && window.FL_I18N); i++) await new Promise(r => setTimeout(r, 50));
+    const db = window.FL_DB;
+    this.i18n = window.FL_I18N;
+    if (!db) { this.setState({ error: 'Не загрузился data.js', ready: true }); return; }
+    this.setState({ db, lang: this.i18n ? this.i18n.current() : 'ru' });
+    // Каталог и кадры встроены скриптами, чтобы сайт работал и без сервера
+    if (window.FL_CARDS) this.setState({ cards: window.FL_CARDS });
+    if (window.FL_PHOTOS) this.setState({ photos: window.FL_PHOTOS });
+    const s = db.session();
+    if (s) {
+      const start = this.afterLogin(s);
+      this.setState({ user: s, screen: start === 'hub' ? (this.hashScreen() || 'hub') : start, ready: true });
+      this.loadResults(db);
+    } else {
+      db.ensureAdmin().finally(() => this.setState({ ready: true }));
+    }
+    db.getSettings().then(settings => this.setState({ settings })).catch(() => {});
+  }
+
+  async loadResults(db) {
+    try {
+      const results = await (db || this.state.db).listResults();
+      this.setState({ results });
+    } catch (e) { this.setState({ error: 'База недоступна: ' + e.message }); }
+  }
+
+  async doLogin() {
+    const { db, loginName, loginPass } = this.state;
+    if (!db || !loginName.trim()) return;
+    this.setState({ busy: true, error: '' });
+    try {
+      const res = await db.login(loginName.trim(), loginPass);
+      if (res.error) { this.setState({ error: this.mapError(res.error), busy: false }); return; }
+      this.setState({ user: res.user, screen: this.afterLogin(res.user), busy: false, loginPass: '' });
+      this.loadResults();
+    } catch (e) {
+      this.setState({ error: e.message, busy: false });
+    }
+  }
+
+  // Сообщения об ошибке приходят из слоя данных по-русски — переводим под язык интерфейса
+  mapError(text) {
+    const t = this.t.bind(this);
+    if (text.indexOf('Код не найден') >= 0) return t('errCode');
+    if (text.indexOf('короче') >= 0) return t('errShort');
+    if (text.indexOf('не найден') >= 0) return t('errNoUser');
+    if (text.indexOf('пароль') >= 0) return t('errPass');
+    if (text.indexOf('отключ') >= 0) return t('errOff');
+    return text;
+  }
+
+  t(key, vars) { return this.i18n ? this.i18n.t(key, vars) : key; }
+
+  myBest() {
+    const { user, results } = this.state;
+    if (!user) return null;
+    const mine = results.filter(r => r.user_id === user.id);
+    if (!mine.length) return null;
+    return mine.reduce((a, b) => (b.percent > a.percent ? b : a));
+  }
+
+  renderVals() {
+    const s = this.state;
+    const db = s.db;
+    const t = this.t.bind(this);
+    const i18n = this.i18n;
+    const locale = i18n ? i18n.locale() : 'ru-RU';
+    const threshold = (s.settings && s.settings.threshold) || 80;
+    const mine = s.user ? s.results.filter(r => r.user_id === s.user.id) : [];
+    const best = this.myBest();
+    const quota = (s.settings && s.settings.quota) || (window.FL_QUESTIONS && window.FL_QUESTIONS.QUOTA) || {};
+    const qTotal = Object.keys(quota).reduce((n, g) => n + (quota[g] || 0), 0);
+    const qWord = i18n && qTotal ? i18n.questions(qTotal) : '';
+    const cardsWord = i18n ? i18n.cards(s.cards.length || 141) : String(s.cards.length || 141);
+    const TITLES = {
+      login: t('titleLogin'), code: t('codeTitle'), position: t('posTitle'), hub: t('titleCabinet'), catalog: t('titleCatalog'),
+      program: t('titleProgram'), progress: t('titleProgress'), trainer: t('titleTrainer'),
+      materials: t('titleMaterials')
+    };
+    const materials = (s.settings && s.settings.materials) || [];
+    // Админ не проходит аттестацию — у него панель контроля вместо личного результата
+    const isAdmin = !!(s.user && s.user.role === 'admin');
+    const isSous = !!(s.user && s.user.role === 'sous');
+    const hrTile = s.user ? [
+      { kicker: t('kHr'), color: '#2E7D4F', title: t('tHr'), desc: t('dHr'), go: () => { window.location.href = 'Папки.html'; } }
+    ] : [];
+
+    const base = {
+      pageTitle: TITLES[s.screen] || t('academy'),
+      langs: (i18n ? i18n.langs : []).map(l => ({
+        label: l[1],
+        bg: s.lang === l[0] ? '#0F1F3D' : '#FFFFFF',
+        color: s.lang === l[0] ? '#FFFFFF' : '#33445E',
+        border: s.lang === l[0] ? '#0F1F3D' : 'rgba(15,31,61,0.14)',
+        pick: () => {
+          i18n.set(l[0]);
+          if (window.FL_LANG) window.FL_LANG.set(l[0]);
+          this.setState({ lang: l[0] });
+        }
+      })),
+      signedIn: !!s.user,
+      userName: s.user ? s.user.name : '',
+      userRole: s.user ? ((db && db.ROLES[s.user.role]) || s.user.role) : '',
+      logoutLabel: t('logout'),
+      backLabel: t('back'),
+      homeLabel: t('home'),
+      // Главная = личный кабинет своей роли; выбор языка живёт в кнопках RU/ID/EN
+      goHome: e => {
+        if (e && e.preventDefault) e.preventDefault();
+        if (s.user) this.go('hub', { error: '' });
+        else this.setState({ screen: 'login', error: '' });
+      },
+      logout: () => { db.clearSession(); this.setState({ user: null, screen: 'login', results: [] }); },
+      isLogin: s.screen === 'login', isCode: s.screen === 'code', isPosition: s.screen === 'position',
+      haveCodeLabel: t('haveCode'), haveLoginLabel: t('haveLogin'),
+      codeTitle: t('codeTitle'), codeHint: t('codeHint'), codeLabel: t('codeLabel'),
+      newPassLabel: t('newPass'), repeatPassLabel: t('repeatPass'),
+      activateLabel: s.busy ? t('checking') : t('activate'),
+      code: s.code, pass1: s.pass1, pass2: s.pass2,
+      setCode: e => this.setState({ code: e.target.value.toUpperCase() }),
+      setPass1: e => this.setState({ pass1: e.target.value }),
+      setPass2: e => this.setState({ pass2: e.target.value }),
+      onCodeKey: e => { if (e.key === 'Enter') this.doActivate(); },
+      doActivate: () => this.doActivate(),
+      goCode: () => this.setState({ screen: 'code', error: '' }),
+      goLoginScreen: () => this.setState({ screen: 'login', error: '' }),
+      isHub: s.screen === 'hub', isCatalog: s.screen === 'catalog',
+      isProgram: s.screen === 'program', isProgress: s.screen === 'progress', isTrainer: s.screen === 'trainer',
+      isMaterials: s.screen === 'materials',
+      materials: materials.map(m => ({
+        title: m.title, body: m.body,
+        hasImg: !!s.photos['mat-' + m.id],
+        setImg: this.imgRef(s.photos['mat-' + m.id] || '')
+      })),
+      goHub: () => this.go('hub'),
+
+      signInTitle: t('signIn'), signInHint: t('signInHint'),
+      loginLabel: t('login'), passLabel: t('password'),
+      loginName: s.loginName, loginPass: s.loginPass,
+      setLogin: e => this.setState({ loginName: e.target.value }),
+      setPass: e => this.setState({ loginPass: e.target.value }),
+      onKey: e => { if (e.key === 'Enter') this.doLogin(); },
+      doLogin: () => this.doLogin(),
+      loginBtn: s.busy ? t('checking') : t('enter'),
+      hasError: !!s.error, errorText: s.error,
+      dbStatus: db && db.isRemote() ? t('dbShared') : t('dbLocal'),
+
+      posTitle: t('posTitle'), posHint: t('posHint'),
+      posSaveLabel: t('posSave'),
+      posNote: s.pickedPosition ? '' : t('posPick'),
+      posBtnBg: s.pickedPosition ? '#2C6BE6' : '#AFC2E0',
+      posBtnCursor: s.pickedPosition ? 'pointer' : 'not-allowed',
+      savePosition: () => this.submitPosition(),
+      posOptions: ((db && db.POSITIONS) || []).map(p => ({
+        label: p,
+        bg: s.pickedPosition === p ? '#EDF3FE' : '#FBFCFE',
+        color: '#0F1F3D',
+        border: s.pickedPosition === p ? '#2C6BE6' : 'rgba(15,31,61,0.12)',
+        markBg: s.pickedPosition === p ? '#2C6BE6' : '#FFFFFF',
+        markBorder: s.pickedPosition === p ? '#2C6BE6' : 'rgba(15,31,61,0.2)',
+        mark: s.pickedPosition === p ? '●' : '',
+        pick: () => this.setState({ pickedPosition: p })
+      })),
+
+      isAdmin: isAdmin,
+      avatarHint: t('avatarHint'),
+      avatarNote: s.avatarNote || '',
+      hasAvatarNote: !!s.avatarNote,
+      setAvatar: this.imgRef(window.FL_AVATARS ? window.FL_AVATARS.forUser(s.user) : ''),
+      pickAvatar: () => this.changeAvatar(),
+      greeting: s.user ? t('hello') + ', ' + String(s.user.name).split(' ')[0] : '',
+      userMeta: s.user ? [s.user.position, (db && db.ROLES[s.user.role]) || s.user.role, '@' + s.user.login].filter(Boolean).join(' · ') : '',
+      bestLabel: t('best'),
+      showRing: !isAdmin,
+      myPct: best ? best.percent + '%' : '—',
+      ringBg: best
+        ? 'conic-gradient(' + (best.passed ? '#1F7A4D' : '#E05B4F') + ' ' + best.percent + '%, rgba(15,31,61,0.12) ' + best.percent + '% 100%)'
+        : 'rgba(15,31,61,0.1)',
+      ringInk: best ? (best.passed ? '#1F7A4D' : '#C0392B') : '#93A0B5',
+      myStatus: isAdmin ? t('adminStatus') : (best
+        ? (best.passed ? t('passedNote', { t: threshold }) : t('belowNote', { t: threshold }))
+        : t('notPassed')),
+      facts: isAdmin ? [
+        { label: t('statAttempts'), value: String(s.results.length), color: '#0F1F3D' },
+        {
+          label: t('statAvg'),
+          value: s.results.length ? Math.round(s.results.reduce((n, r) => n + r.percent, 0) / s.results.length) + '%' : '—',
+          color: '#1B4FB8'
+        },
+        {
+          label: t('statQuestions'),
+          value: String((window.FL_QUESTIONS && window.FL_QUESTIONS.Q.length) || 0),
+          color: '#0F1F3D'
+        }
+      ] : [
+        { label: t('attempts'), value: String(mine.length), color: '#0F1F3D' },
+        {
+          label: t('lastAttempt'),
+          value: mine.length ? new Date(mine[0].created_at).toLocaleDateString(locale, { day: '2-digit', month: '2-digit', year: '2-digit' }) : '—',
+          color: '#0F1F3D'
+        },
+        {
+          label: t('certificate'),
+          value: best && best.passed ? t('certReady') : t('certLocked'),
+          color: best && best.passed ? '#1F7A4D' : '#93A0B5'
+        }
+      ],
+
+      tiles: (isAdmin ? [
+        { kicker: t('kControl'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } },
+        { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog') },
+        { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } }
+      ].concat(hrTile).concat(materials.length ? [
+        { kicker: t('kMaterials'), color: '#2E7D8F', title: t('tMaterials'), desc: t('dMaterials', { n: materials.length }), go: () => this.go('materials') }
+      ] : []) : [
+        { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog') },
+        { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } },
+        { kicker: t('kProgram'), color: '#1F7A4D', title: t('tProgram'), desc: t('dProgram'), go: () => this.go('program') }
+      ].concat(materials.length ? [
+        { kicker: t('kMaterials'), color: '#2E7D8F', title: t('tMaterials'), desc: t('dMaterials', { n: materials.length }), go: () => this.go('materials') }
+      ] : []).concat([
+        { kicker: t('kTrainer'), color: '#B8860B', title: t('tTrainer'), desc: t('dTrainer'), go: () => this.go('trainer', { card: 0, flipped: false }) },
+        { kicker: t('kExam'), color: '#C0392B', title: t('tTest'), desc: t('dTest', { q: qWord }), go: () => { window.location.href = 'Тестирование - Завтраки.dc.html'; } },
+        { kicker: t('kProgress'), color: '#6B3FA0', title: t('tProgress'), desc: t('dProgress'), go: () => this.go('progress') }
+      ].concat(isSous ? [
+        { kicker: t('kAdmin'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } }
+      ] : []).concat(hrTile)))
+    };
+
+    if (s.screen === 'catalog') {
+      const q = s.query.trim().toLowerCase();
+      const counts = {};
+      s.cards.forEach(c => { counts[c.c] = (counts[c.c] || 0) + 1; });
+      const catNames = ['__all'].concat(Object.keys(counts).sort());
+      const filtered = s.cards.filter(c =>
+        (s.cat === '__all' || c.c === s.cat) && (!q || c.n.toLowerCase().indexOf(q) >= 0)
+      );
+      Object.assign(base, {
+        searchPlaceholder: t('search'),
+        query: s.query,
+        setQuery: e => this.setState({ query: e.target.value }),
+        foundText: t('foundOf', { a: filtered.length, b: s.cards.length }),
+        cats: catNames.map(name => ({
+          label: name === '__all' ? t('all') : name,
+          count: name === '__all' ? s.cards.length : counts[name],
+          bg: s.cat === name ? '#0F1F3D' : '#FFFFFF',
+          color: s.cat === name ? '#FFFFFF' : '#33445E',
+          border: s.cat === name ? '#0F1F3D' : 'rgba(15,31,61,0.14)',
+          pick: () => this.setState({ cat: name })
+        })),
+        visibleCards: filtered.slice(0, 300).map(c => {
+          const thumb = this.cardThumb(c.n);
+          return {
+            name: c.n, cat: c.c, href: encodeURI(c.f), color: CAT_COLOR[c.c] || '#5A6B87',
+            hasImg: !!thumb, noImg: !thumb, setImg: this.imgRef(thumb),
+            initial: String(c.n).trim().charAt(0).toUpperCase()
+          };
+        })
+      });
+    }
+
+    if (s.screen === 'program') {
+      const done = !!best;
+      const passed = best && best.passed;
+      const dict = i18n ? i18n.dict() : { steps: [] };
+      const targets = ['screen:catalog', 'Стандарты - SOP.dc.html', 'screen:trainer', 'Тестирование - Завтраки.dc.html', 'Тестирование - Завтраки.dc.html'];
+      Object.assign(base, {
+        steps: (dict.steps || []).map((st, i) => {
+          const stepDone = i < 3 ? true : (i === 3 ? done : passed);
+          const target = targets[i];
+          const inner = target.indexOf('screen:') === 0 ? target.slice(7) : '';
+          return {
+            n: i + 1, title: st[0],
+            desc: String(st[1]).split('{t}').join(threshold),
+            action: st[2] + ' →',
+            isLink: !inner, isButton: !!inner,
+            href: inner ? '' : encodeURI(target),
+            go: () => this.go(inner, { card: 0, flipped: false }),
+            border: stepDone ? 'rgba(31,122,77,0.3)' : 'rgba(15,31,61,0.1)',
+            numBg: stepDone ? '#1F7A4D' : '#E9F0FE',
+            numColor: stepDone ? '#FFFFFF' : '#1B4FB8',
+            status: i < 3 ? t('selfPaced') : stepDone ? t('done') : t('notDone'),
+            statusColor: stepDone && i >= 3 ? '#1F7A4D' : '#93A0B5'
+          };
+        })
+      });
+    }
+
+    if (s.screen === 'progress') {
+      const TT = (window.FL_QUESTIONS && window.FL_QUESTIONS.TOPIC_TITLE) || {};
+      Object.assign(base, {
+        myAttemptsLabel: t('myAttempts'),
+        noAttemptsText: t('noAttempts'),
+        takeTestLabel: t('takeTest'),
+        hasMyResults: mine.length > 0,
+        noMyResults: mine.length === 0,
+        myResults: mine.map(r => {
+          const topics = r.topics || {};
+          const weak = Object.keys(topics)
+            .filter(k => topics[k].correct < topics[k].asked)
+            .map(k => TT[k] || k).slice(0, 3).join(', ');
+          return {
+            pct: r.percent + '%',
+            ring: 'conic-gradient(' + (r.passed ? '#1F7A4D' : '#E05B4F') + ' ' + r.percent + '%, rgba(15,31,61,0.12) ' + r.percent + '% 100%)',
+            ink: r.passed ? '#1F7A4D' : '#C0392B',
+            verdict: r.passed ? t('passed') : t('failed'),
+            meta: new Date(r.created_at).toLocaleString(locale, { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + ' · ' + t('variant') + ' ' + r.variant + ' · ' + r.correct + '/' + r.total,
+            weak: weak ? t('weakTopics', { list: weak }) : t('noMistakes')
+          };
+        })
+      });
+    }
+
+    if (s.screen === 'trainer') {
+      const f = FACTS[s.card % FACTS.length];
+      Object.assign(base, {
+        cardCounter: t('cardOf', { a: (s.card % FACTS.length) + 1, b: FACTS.length }),
+        noGradeLabel: t('noGrade'),
+        cardDish: f[0], cardFront: f[1], cardBack: f[2],
+        flipped: s.flipped,
+        flip: () => this.setState({ flipped: !s.flipped }),
+        flipLabel: s.flipped ? t('hideAnswer') : t('showAnswer'),
+        nextCardLabel: t('nextCard'),
+        nextCard: () => this.setState({ card: s.card + 1, flipped: false })
+      });
+    }
+
+    return base;
+  }
+}
+</script>
+</body>
+</html>

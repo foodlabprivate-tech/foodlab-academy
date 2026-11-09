@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./fl-theme.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<script src="./questions.js"></script>
+<script src="./photos.js"></script>
+<script src="./card-photos.js"></script>
+<script src="./db-config.js"></script>
+<script src="./data.js"></script>
+<style>
+  body { margin: 0; background: #E7EDF7; -webkit-font-smoothing: antialiased; }
+  a { color: #1B4FB8; text-decoration: none; }
+  a:hover { color: #E05B4F; }
+  * { box-sizing: border-box; }
+  input, button, select { font-family: inherit; }
+  @media print {
+    body { background: #FFFFFF; }
+    [data-noprint] { display: none !important; }
+    [data-cert] { box-shadow: none !important; border: 1px solid #0F1F3D !important; }
+  }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #E7EDF7; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #0F1F3D; padding: 30px 20px 70px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+
+  <div data-noprint="1" style="width: 100%; max-width: 600px; display: flex; align-items: center; gap: 13px;">
+    <div style="flex: none; width: 46px; height: 46px; border-radius: 14px; background: #0F1F3D; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px -10px rgba(15,31,61,0.7);">
+      <div style="width: 24px; height: 24px; border-radius: 99px; background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 11px; height: 11px; border-radius: 99px; background: #E0703F;"></div>
+      </div>
+    </div>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #7C8BA6;">Foodlab Academy · аттестация</div>
+      <div style="font-size: 19px; font-weight: 800; letter-spacing: -0.02em;">Кухня и бар: состав и стандарты</div>
+    </div>
+    <a href="%D0%90%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D0%B8%D1%8F.dc.html" style="flex: none; min-height: 36px; padding: 10px 13px; border: 1px solid rgba(15,31,61,0.14); border-radius: 10px; background: #FFFFFF; color: #5A6B87; font-size: 12.5px; font-weight: 600;">← Кабинет</a>
+    <div style="flex: none; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7C8BA6; text-align: right; line-height: 1.5; max-width: 150px;">{{ headMeta }}</div>
+  </div>
+
+  <sc-if value="{{ isLogin }}" hint-placeholder-val="{{ true }}">
+  <div style="width: 100%; max-width: 600px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 14px 30px -22px rgba(15,31,61,0.4);">
+    <div style="position: relative; width: 100%; height: 170px; background: #DCE4F2;">
+      <img ref="{{ heroRef }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,31,61,0.82), rgba(15,31,61,0.05));"></div>
+      <div style="position: absolute; left: 20px; right: 20px; bottom: 15px; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;">
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.85);">Аттестация персонала</div>
+          <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF; line-height: 1.2;">Знаешь кухню?</div>
+        </div>
+        <div style="flex: none; padding: 7px 12px; border-radius: 99px; background: rgba(255,255,255,0.95); font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; color: #0F1F3D;">{{ qCountBadge }}</div>
+      </div>
+    </div>
+
+    <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 16px; font-weight: 700;">Перед началом</div>
+      <div style="font-size: 13px; color: #5A6B87; line-height: 1.5; text-wrap: pretty;">Тест по тех.картам и стандартам: завтраки, пицца, паста, кофе, гигиена, доставка и три SOP — Makanan Sudah Siap, Out of Stock, Write Off. Отвечаешь по одному вопросу, в конце — разбор ошибок со ссылками на карты и процедуры.</div>
+      <a href="%D0%A1%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%D1%8B%20-%20SOP.dc.html" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;">Сначала прочитать стандарты →</a>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 7px;">
+      <label style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">Имя и фамилия</label>
+      <input value="{{ name }}" onInput="{{ setName }}" placeholder="Например, Алишер Каримов" style="min-height: 46px; padding: 0 14px; border: 1.5px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FBFCFE; font-size: 15px; color: #0F1F3D; outline: none;" style-focus="border-color: #2C6BE6; background: #FFFFFF;" />
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <label style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">Должность</label>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <sc-for list="{{ roles }}" as="r" hint-placeholder-count="5">
+          <button onClick="{{ r.pick }}" style="min-height: 40px; padding: 0 15px; border: 1.5px solid {{ r.border }}; border-radius: 11px; background: {{ r.bg }}; color: {{ r.color }}; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: border-color 150ms ease, background 150ms ease, transform 120ms ease;" style-hover="border-color: #2C6BE6; transform: translateY(-1px);">{{ r.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <label style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">{{ variantLabel }}</label>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+        <sc-for list="{{ variants }}" as="v" hint-placeholder-count="11">
+          <button onClick="{{ v.pick }}" style="min-height: 38px; min-width: 40px; padding: 0 12px; border: 1.5px solid {{ v.border }}; border-radius: 10px; background: {{ v.bg }}; color: {{ v.color }}; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; cursor: pointer; transition: border-color 150ms ease, background 150ms ease, transform 120ms ease;" style-hover="border-color: #1B4FB8; transform: translateY(-1px);">{{ v.label }}</button>
+        </sc-for>
+      </div>
+      <div style="font-size: 12px; color: #7C8BA6; line-height: 1.45;">{{ variantNote }}</div>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 7px;">
+      <sc-for list="{{ topics }}" as="t" hint-placeholder-count="10">
+        <div style="display: flex; align-items: center; gap: 8px; padding: 7px 12px 7px 10px; border-radius: 99px; background: #F4F7FD; border: 1px solid rgba(15,31,61,0.07);">
+          <span style="flex: none; width: 8px; height: 8px; border-radius: 99px; background: {{ t.color }};"></span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #33445E;">{{ t.label }}</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #93A0B5;">{{ t.count }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <button onClick="{{ start }}" style="min-height: 50px; padding: 0 24px; border: 0; border-radius: 13px; background: {{ startBg }}; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: {{ startCursor }}; box-shadow: 0 10px 22px -14px rgba(15,31,61,0.9); transition: filter 150ms ease, transform 120ms ease;" style-hover="filter: brightness(1.07); transform: translateY(-1px);" style-active="transform: translateY(0);">{{ startLabel }}</button>
+      <div style="flex: 1; min-width: 130px; font-size: 12.5px; color: #7C8BA6; line-height: 1.45;">{{ loginHint }}</div>
+    </div>
+
+    <div style="border-top: 1px solid rgba(15,31,61,0.08); padding-top: 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <button onClick="{{ goPantry }}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid rgba(44,107,230,0.35); border-radius: 12px; background: #FFFFFF; color: #1B4FB8; font-size: 13.5px; font-weight: 700; cursor: pointer; transition: background 140ms ease, transform 140ms ease;" style-hover="background: #EDF3FE; transform: translateY(-1px);">Кладовая: фото продуктов</button>
+      <a href="%D0%A1%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%D1%8B%20-%20SOP.dc.html" style="min-height: 44px; padding: 12px 16px; border: 1px solid rgba(15,31,61,0.14); border-radius: 12px; font-size: 13.5px; font-weight: 700; transition: background 140ms ease;" style-hover="background: #F0F4FC;">Стандарты SOP</a>
+      <div style="flex: 1; min-width: 130px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #93A0B5;">{{ pantryCount }}</div>
+    </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isPantry }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 12px;">
+    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; padding: 15px 17px; display: flex; align-items: center; gap: 13px; flex-wrap: wrap;">
+      <button onClick="{{ leavePantry }}" style="min-height: 42px; padding: 0 15px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; cursor: pointer;">← К тесту</button>
+      <div style="flex: 1; min-width: 180px; display: flex; flex-direction: column; gap: 3px;">
+        <div style="font-size: 15px; font-weight: 700;">Кладовая</div>
+        <div style="font-size: 12px; color: #5A6B87; line-height: 1.45; text-wrap: pretty;">{{ pantryNote }}</div>
+      </div>
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #93A0B5;">{{ pantryCount }}</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px;">
+      <sc-for list="{{ products }}" as="p" hint-placeholder-count="12">
+        <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;">
+          <div style="width: 100%; height: 110px; background: #EDF1F7;">
+            <image-slot id="{{ p.id }}" placeholder="{{ p.ph }}" shape="rounded" radius="0"></image-slot>
+          </div>
+          <div style="padding: 9px 10px; font-size: 12.5px; font-weight: 600; line-height: 1.3;">{{ p.label }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isQuiz }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 12px;">
+
+    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 14px; padding: 12px 15px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 9px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #7C8BA6;">{{ counterText }}</div>
+          <sc-if value="{{ showStreak }}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 3px 9px; border-radius: 99px; background: #E8F6EE; color: #1F7A4D; font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.06em;">{{ streakText }}</div>
+          </sc-if>
+        </div>
+        <div style="padding: 4px 10px; border-radius: 99px; background: {{ accentSoft }}; color: {{ accent }}; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; font-weight: 600;">{{ kindLabel }}</div>
+      </div>
+      <div style="height: 7px; border-radius: 99px; background: #E7EDF7; overflow: hidden;">
+        <div style="height: 100%; width: {{ progressPct }}; background: {{ accent }}; border-radius: 99px; transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1), background 200ms ease;"></div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 4px; flex-wrap: wrap;">
+        <sc-for list="{{ dots }}" as="d" hint-placeholder-count="24">
+          <div style="height: 7px; width: {{ d.w }}; border-radius: 99px; background: {{ d.bg }}; transition: width 220ms ease, background 220ms ease;"></div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 15px; box-shadow: 0 14px 30px -24px rgba(15,31,61,0.4);">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="width: 9px; height: 9px; border-radius: 99px; background: {{ accent }};"></div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ accent }};">{{ qDish }}</div>
+        </div>
+        <div style="font-size: 17.5px; font-weight: 700; line-height: 1.35; letter-spacing: -0.01em; text-wrap: pretty;">{{ qTitle }}</div>
+        <div style="font-size: 12.5px; color: #7C8BA6; line-height: 1.45;">{{ qHint }}</div>
+      </div>
+
+      <sc-if value="{{ hasPhotoImg }}" hint-placeholder-val="{{ false }}">
+        <img ref="{{ photoImgRef }}" alt="" style="width: 100%; height: 300px; object-fit: {{ photoFit }}; border-radius: 14px; display: block; background: #EDF1F7;" />
+      </sc-if>
+
+      <sc-if value="{{ isPhoto }}" hint-placeholder-val="{{ false }}">
+        <div style="width: 100%; height: 230px; border-radius: 14px; overflow: hidden; background: #EDF1F7;">
+          <image-slot id="{{ photoSlotId }}" placeholder="{{ photoHint }}" shape="rounded" radius="14"></image-slot>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isPlate }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px;">
+            <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="8">
+              <button onClick="{{ t.pick }}" style="position: relative; border: 1.5px solid {{ t.border }}; border-radius: 14px; background: {{ t.bg }}; padding: 0; overflow: hidden; cursor: {{ t.cursor }}; display: flex; flex-direction: column; text-align: left; min-height: 44px;">
+                <sc-if value="{{ t.hasImg }}" hint-placeholder-val="{{ false }}">
+                  <img ref="{{ t.setImg }}" alt="" style="width: 100%; height: 96px; object-fit: cover; display: block; background: #EDF1F7;" />
+                </sc-if>
+                <sc-if value="{{ t.noImg }}" hint-placeholder-val="{{ true }}">
+                  <div style="width: 100%; height: 96px; background: #EDF1F7; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #AAB6C8;">нет фото</div>
+                </sc-if>
+                <span style="padding: 9px 10px; font-size: 13px; font-weight: 600; color: #0F1F3D; line-height: 1.3;">{{ t.label }}</span>
+                <span style="position: absolute; top: 7px; right: 7px; width: 24px; height: 24px; border-radius: 8px; background: {{ t.badgeBg }}; color: #FFFFFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ t.badge }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <div style="font-size: 11.5px; color: #93A0B5; line-height: 1.45;">{{ plateHint }}</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isPick }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 9px;">
+          <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
+            <button onClick="{{ o.pick }}" style="width: 100%; text-align: left; min-height: 52px; padding: 12px 14px; border: 1.5px solid {{ o.border }}; border-radius: 13px; background: {{ o.bg }}; color: {{ o.color }}; font-size: 14.5px; font-weight: 600; cursor: {{ o.cursor }}; display: flex; align-items: center; gap: 11px; line-height: 1.35; transition: border-color 150ms ease, background 150ms ease, transform 120ms ease;" style-hover="border-color: #2C6BE6; transform: translateY(-1px);" style-active="transform: translateY(0) scale(0.995);">
+              <span style="flex: none; width: 24px; height: 24px; border-radius: {{ o.markRadius }}; border: 1.5px solid {{ o.markBorder }}; background: {{ o.markBg }}; color: #FFFFFF; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ o.mark }}</span>
+              <span style="flex: 1; min-width: 0;">{{ o.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isOrder }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <sc-for list="{{ orderItems }}" as="it" hint-placeholder-count="5">
+            <div draggable="{{ it.draggable }}" onDragStart="{{ it.dragStart }}" onDragOver="{{ it.dragOver }}" onDrop="{{ it.drop }}" onDragEnd="{{ it.dragEnd }}" style="display: flex; align-items: stretch; gap: 10px; border: 1.5px solid {{ it.border }}; border-radius: 13px; background: {{ it.bg }}; padding: 10px 11px; opacity: {{ it.opacity }};">
+              <div style="flex: none; width: 30px; height: 30px; border-radius: 9px; background: {{ it.numBg }}; color: {{ it.numColor }}; font-family: 'IBM Plex Mono', monospace; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center;">{{ it.n }}</div>
+              <sc-if value="{{ it.hasImg }}" hint-placeholder-val="{{ false }}">
+                <img ref="{{ it.setImg }}" alt="" draggable="false" style="flex: none; width: 76px; height: 60px; object-fit: cover; border-radius: 10px; display: block; background: #EDF1F7;" />
+              </sc-if>
+              <div style="flex: 1; min-width: 0; font-size: 14px; font-weight: 600; line-height: 1.35; align-self: center; color: {{ it.textColor }};">{{ it.label }}</div>
+              <div style="flex: none; display: flex; flex-direction: column; gap: 3px;">
+                <button onClick="{{ it.up }}" style="width: 30px; height: 20px; border: 1px solid rgba(15,31,61,0.14); border-radius: 7px; background: #FFFFFF; color: #5A6B87; font-size: 11px; cursor: pointer; padding: 0;">↑</button>
+                <button onClick="{{ it.down }}" style="width: 30px; height: 20px; border: 1px solid rgba(15,31,61,0.14); border-radius: 7px; background: #FFFFFF; color: #5A6B87; font-size: 11px; cursor: pointer; padding: 0;">↓</button>
+              </div>
+            </div>
+          </sc-for>
+          <div style="font-size: 11.5px; color: #93A0B5; line-height: 1.45;">{{ orderHint }}</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showFb }}" hint-placeholder-val="{{ false }}">
+        <div style="border-radius: 13px; background: {{ fbBg }}; border: 1px solid {{ fbBorder }}; padding: 13px 14px; display: flex; flex-direction: column; gap: 5px;">
+          <div style="font-size: 14px; font-weight: 700; color: {{ fbColor }};">{{ fbTitle }}</div>
+          <div style="font-size: 13px; color: #33445E; line-height: 1.5; text-wrap: pretty; display: flex; flex-wrap: wrap; gap: 5px;">
+            <span>По карте</span>
+            <span>{{ fbCard }}</span>
+          </div>
+          <sc-if value="{{ fbHasRight }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size: 13px; color: #33445E; line-height: 1.5; white-space: pre-line; text-wrap: pretty;">{{ fbRight }}</div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <button onClick="{{ primary }}" style="min-height: 48px; padding: 0 22px; border: 0; border-radius: 12px; background: {{ primaryBg }}; color: #FFFFFF; font-size: 14.5px; font-weight: 700; cursor: {{ primaryCursor }}; transition: filter 150ms ease, transform 120ms ease; box-shadow: 0 8px 18px -12px rgba(15,31,61,0.8);" style-hover="filter: brightness(1.07); transform: translateY(-1px);" style-active="transform: translateY(0);">{{ primaryLabel }}</button>
+        <button onClick="{{ skip }}" style="min-height: 48px; padding: 0 16px; border: 1px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FFFFFF; color: #5A6B87; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background 150ms ease;" style-hover="background: #F4F7FD;">{{ skipLabel }}</button>
+        <div style="flex: 1; min-width: 90px; text-align: right; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: #93A0B5;">{{ liveScore }}</div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+  <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 13px;">
+
+    <div style="background: {{ resBg }}; border: 1px solid {{ resBorder }}; border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap;">
+        <div style="flex: none; width: 104px; height: 104px; border-radius: 99px; background: {{ ringBg }}; display: flex; align-items: center; justify-content: center;">
+          <div style="width: 80px; height: 80px; border-radius: 99px; background: {{ resBg }}; display: flex; align-items: center; justify-content: center; font-size: 23px; font-weight: 800; letter-spacing: -0.02em; color: {{ resInk }};">{{ pctText }}</div>
+        </div>
+        <div style="flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 3px;">
+          <div style="font-size: 17px; font-weight: 700; color: {{ resInk }};">{{ verdict }}</div>
+          <div style="font-size: 13px; color: #5A6B87; line-height: 1.45;">{{ scoreText }}</div>
+        </div>
+      </div>
+      <div style="font-size: 13px; color: #33445E; line-height: 1.5; text-wrap: pretty;">{{ resNote }}</div>
+    </div>
+
+    <sc-if value="{{ hasMistakes }}" hint-placeholder-val="{{ true }}">
+    <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 18px; overflow: hidden;">
+      <div style="padding: 14px 17px; background: #E9F0FE; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 14.5px; font-weight: 700; color: #1B4FB8;">Разбор ошибок</div>
+        <div style="font-size: 11.5px; color: #5A6B87;">{{ mistakesSub }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ mistakes }}" as="m" hint-placeholder-count="2">
+          <div style="padding: 14px 17px; border-top: 1px solid rgba(15,31,61,0.07); display: flex; flex-direction: column; gap: 7px; background: {{ m.bg }};">
+            <div style="font-size: 14px; font-weight: 700; line-height: 1.35; text-wrap: pretty;">{{ m.q }}</div>
+            <div style="display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-size: 12.5px; color: #E05B4F; line-height: 1.45; white-space: pre-line;">{{ m.your }}</div>
+              <div style="font-size: 12.5px; color: #1F7A4D; line-height: 1.45; white-space: pre-line;">{{ m.right }}</div>
+            </div>
+            <sc-if value="{{ m.hasCard }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ m.href }}" style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em;">{{ m.cardLabel }}</a>
+            </sc-if>
+            <sc-if value="{{ m.noCard }}" hint-placeholder-val="{{ false }}">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; font-weight: 600; letter-spacing: 0.04em; color: #93A0B5;">{{ m.topicLabel }}</div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <div data-cert="1" style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.12); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 14px 30px -24px rgba(15,31,61,0.4);">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(15,31,61,0.1); padding-bottom: 13px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div style="flex: none; width: 30px; height: 30px; border-radius: 9px; background: #0F1F3D; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 15px; height: 15px; border-radius: 99px; background: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+              <div style="width: 7px; height: 7px; border-radius: 99px; background: #E0703F;"></div>
+            </div>
+          </div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #1B4FB8;">Foodlab Academy</div>
+        </div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #93A0B5;">{{ certDate }}</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 5px;">
+        <div style="font-size: 12px; color: #7C8BA6;">Аттестация по тех.картам кухни и бара</div>
+        <div style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15;">{{ certName }}</div>
+        <div style="font-size: 13.5px; color: #5A6B87;">{{ certRole }}</div>
+      </div>
+      <div style="display: flex; gap: 22px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: #93A0B5;">Результат</div>
+          <div style="font-size: 17px; font-weight: 700;">{{ certScore }}</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: #93A0B5;">Статус</div>
+          <div style="font-size: 17px; font-weight: 700; color: {{ resInk }};">{{ verdict }}</div>
+        </div>
+        <div style="flex: 1; min-width: 140px; display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: #93A0B5;">Подпись шефа</div>
+          <div style="height: 26px; border-bottom: 1px solid rgba(15,31,61,0.22);"></div>
+        </div>
+      </div>
+    </div>
+
+    <div data-noprint="1" style="display: flex; gap: 9px; flex-wrap: wrap;">
+      <button onClick="{{ printCert }}" style="min-height: 48px; padding: 0 20px; border: 0; border-radius: 12px; background: #2C6BE6; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">Распечатать сертификат</button>
+      <sc-if value="{{ hasMistakes }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ retryWrong }}" style="min-height: 48px; padding: 0 18px; border: 1.5px solid rgba(44,107,230,0.4); border-radius: 12px; background: #FFFFFF; color: #1B4FB8; font-size: 14px; font-weight: 700; cursor: pointer;">{{ retryLabel }}</button>
+      </sc-if>
+      <button onClick="{{ restart }}" style="min-height: 48px; padding: 0 18px; border: 1px solid rgba(15,31,61,0.14); border-radius: 12px; background: #FFFFFF; color: #5A6B87; font-size: 13.5px; font-weight: 600; cursor: pointer;">{{ restartLabel }}</button>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;passThreshold&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:80,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:50,&quot;max&quot;:100,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;section&quot;:&quot;Правила теста&quot;},&quot;instantFeedback&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Правила теста&quot;}}">
+const KEY = 'foodlab-test-breakfast-v1';
+
+// [название, файл карты, тема]
+let CARD = {};
+let Q = [];
+let QUOTA = {};
+let TOPIC_TITLE = {};
+let TOPIC_COLOR = {};
+let QLEN = 0;
+
+function topic(q) { return q.g || CARD[q.c][2]; }
+
+// Сколько вопросов в прогоне — считается при отрисовке, а не один раз при
+// загрузке: настройки могут прийти из общей базы позже, чем нарисуется экран.
+function quotaLen() { return Object.keys(QUOTA).reduce((n, g) => n + (QUOTA[g] || 0), 0); }
+
+
+// 10 вариантов: детерминированная выборка по темам, чтобы результаты
+// разных стажёров были сравнимы, но наборы вопросов не совпадали.
+
+
+
+const VARIANTS = 10;
+
+function rng(seed) {
+  let a = seed >>> 0;
+  return () => {
+    a += 0x6D2B79F5;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function shuffled(arr, r) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(r() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+
+
+function buildVariant(v) {
+  const r = rng(9176 + v * 7919);
+  let out = [];
+  Object.keys(QUOTA).forEach(g => {
+    const pool = Q.map((q, i) => i).filter(i => topic(Q[i]) === g);
+    out = out.concat(shuffled(pool, r).slice(0, QUOTA[g]));
+  });
+  return shuffled(out, r);
+}
+
+// Кладовая: фото продуктов. Шеф заполняет один раз, фото живут в сайдкаре
+// и подставляются в задания «собери тарелку» как обычные картинки.
+const PRODUCTS = [
+  ['prod-eggs', 'Chicken eggs'], ['prod-bacon', 'Bacon'], ['prod-hashbrown', 'Hash brown'],
+  ['prod-pancake', 'Pancake'], ['prod-brioche', 'Toast bread / brioche'], ['prod-sausage', 'Sausage small halal'],
+  ['prod-beans', 'Red bean in tomato'], ['prod-avocado', 'Avocado'], ['prod-salad', 'Salad latucce'],
+  ['prod-cabbage-w', 'White cabbage'], ['prod-cabbage-r', 'Red cabbage'], ['prod-babypotato', 'Baby potato'],
+  ['prod-peppers', 'Bell peppers mix'], ['prod-onion', 'Onion'], ['prod-feta', 'Greek feta cheese'],
+  ['prod-salmon', 'Smoked salmon'], ['prod-sourdough', 'Sourdough bread'], ['prod-shakshuka', 'Sauce sha-shuka'],
+  ['prod-cucumber', 'Cucumber'], ['prod-broccoli', 'Broccoli'], ['prod-yogurt', 'Greek yogurt'],
+  ['prod-granola', 'Granola choklat'], ['prod-mango', 'Mango'], ['prod-honey', 'Honey'],
+  ['prod-dough', 'Pizza Dough (S/F)'], ['prod-pizzasauce', 'Tomato Pizza sauce (S/F)'], ['prod-whitesauce', 'White Pizza sauce (S/F)'],
+  ['prod-mozzarella', 'Mozzarella'], ['prod-parmesan', 'Parmesan'], ['prod-cheddar', 'Cheddar'],
+  ['prod-pepperoni', 'Pepperoni Villa'], ['prod-olives', 'Olives'], ['prod-ham', 'Smoked Ham'],
+  ['prod-mushrooms', 'Fried Mushrooms (S/F)'], ['prod-pineapple', 'Fried Pineapple (S/F)'], ['prod-shrimp', 'Shrimp 20-25'],
+  ['prod-spaghetti', 'Boiled Spaghetti (S/F)'], ['prod-fusilli', 'Boiled Fusilli (S/F)'], ['prod-penne', 'Boiled Penne (S/F)'],
+  ['prod-cream', 'Cream'], ['prod-pesto', 'Pesto sauce (S/F)'], ['prod-bolognese', 'Bolognese sauce (S/F)'],
+  ['prod-capsule', 'Indonesso Capsules'], ['prod-hotmilk', 'Hot Milk'], ['prod-coffeecup', 'Coffee cup']
+];
+
+const ROLES = ['Повар-стажёр', 'Повар', 'Су-шеф', 'Официант', 'Менеджер'];
+
+function sameSet(a, b) {
+  if (a.length !== b.length) return false;
+  const x = a.slice().sort(), y = b.slice().sort();
+  return x.every((v, i) => v === y[i]);
+}
+
+class Component extends DCLogic {
+  state = {
+    screen: 'login', name: '', role: '',
+    live: Q.map((q, i) => i),
+    i: 0, pick: [], order: null, revealed: false,
+    answers: {}, attempt: 1, dragFrom: null, photos: {},
+    variant: 0, curVariant: 1, bankReady: false, user: null
+  };
+
+  async loadBank() {
+    for (let i = 0; i < 60 && !window.FL_QUESTIONS; i++) await new Promise(r => setTimeout(r, 50));
+    const m = window.FL_QUESTIONS;
+    if (!m) return;
+    CARD = m.CARD;
+    QUOTA = m.QUOTA;
+    TOPIC_TITLE = m.TOPIC_TITLE;
+    TOPIC_COLOR = m.TOPIC_COLOR;
+    Q = m.Q.map((q, i) => Object.assign({ id: 'q' + i }, q));
+    // Настройки и правки вопросов из админки
+    try {
+      const db = window.FL_DB;
+      if (!db) throw new Error('no db');
+      this.db = db;
+      const st = await db.getSettings();
+      if (st && st.quota) QUOTA = st.quota;
+      this.settings = st;
+      const patch = await db.getQuestionPatch();
+      if (patch) {
+        if (patch.edited) Q = Q.map(q => (patch.edited[q.id] ? Object.assign({}, q, patch.edited[q.id]) : q));
+        if (patch.added && patch.added.length) Q = Q.concat(patch.added);
+        if (patch.removed && patch.removed.length) Q = Q.filter(q => patch.removed.indexOf(q.id) < 0);
+      }
+      const s = db.session();
+      if (s) this.setState({ name: s.name, role: s.position || s.name, user: s });
+    } catch (e) {}
+    QLEN = quotaLen();
+    this.setState({ bankReady: true });
+  }
+
+  componentDidMount() {
+    this.loadBank();
+    // Фото продуктов и шагов лежат в сайдкаре image-slot — читаем как есть
+    // Кадры встроены скриптом, чтобы тест работал и без сервера
+    if (window.FL_PHOTOS) this.setState({ photos: window.FL_PHOTOS });
+    this._photoEv = () => this.forceUpdate();
+    window.addEventListener('fl-card-photos', this._photoEv);
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) {
+        const s = JSON.parse(raw);
+        this.setState({ name: s.name || '', role: s.role || '', attempt: s.attempt || 1 });
+      }
+    } catch (e) {}
+  }
+
+  persist(extra) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(Object.assign({
+        name: this.state.name, role: this.state.role, attempt: this.state.attempt
+      }, extra || {})));
+    } catch (e) {}
+  }
+
+  get threshold() { return (this.settings && this.settings.threshold) || this.props.passThreshold || 80; }
+  get instant() { return this.props.instantFeedback ?? true; }
+
+  qAt(n) { return Q[this.state.live[n]]; }
+
+  startOrder(q) {
+    const src = q.s || q.o.map((x, i) => i);
+    return src.slice();
+  }
+
+  begin(list, v) {
+    this.saved = false;
+    const first = Q[list[0]];
+    this.setState({
+      screen: 'quiz', live: list, i: 0, pick: [], revealed: false, answers: {},
+      curVariant: v || this.state.curVariant,
+      order: (first.k === 'order' || first.k === 'photoOrder') ? this.startOrder(first) : null
+    });
+  }
+
+  goto(n) {
+    const q = this.qAt(n);
+    this.setState({ i: n, pick: [], revealed: false, order: (q.k === 'order' || q.k === 'photoOrder') ? this.startOrder(q) : null });
+  }
+
+  isRight(q, ans) {
+    if (!ans) return false;
+    if (q.k === 'order' || q.k === 'photoOrder') return ans.order.every((v, i) => v === i);
+    return sameSet(ans.pick, q.a);
+  }
+
+  commit() {
+    const s = this.state, q = this.qAt(s.i);
+    const ans = (q.k === 'order' || q.k === 'photoOrder') ? { order: s.order.slice() } : { pick: s.pick.slice() };
+    const answers = Object.assign({}, s.answers);
+    answers[s.live[s.i]] = ans;
+    if (this.instant) this.setState({ answers, revealed: true });
+    else this.setState({ answers }, () => this.advance(answers));
+  }
+
+  advance(answers) {
+    const s = this.state;
+    if (s.i + 1 >= s.live.length) {
+      this.setState({ screen: 'result', answers: answers || s.answers });
+      this.pushResult(answers || s.answers);
+      this.persist({ attempt: s.attempt });
+    } else this.goto(s.i + 1);
+  }
+
+  // Результат уходит в базу: попадает в админку и в «Мой прогресс»
+  async pushResult(answers) {
+    if (!this.db || this.saved) return;
+    this.saved = true;
+    const s = this.state;
+    const asked = s.live.length;
+    const okList = s.live.filter(idx => this.isRight(Q[idx], answers[idx]));
+    const topics = {};
+    s.live.forEach(idx => {
+      const g = topic(Q[idx]);
+      topics[g] = topics[g] || { asked: 0, correct: 0 };
+      topics[g].asked++;
+      if (this.isRight(Q[idx], answers[idx])) topics[g].correct++;
+    });
+    const wrong = s.live.filter(idx => !this.isRight(Q[idx], answers[idx])).map(idx => ({
+      id: Q[idx].id, q: Q[idx].t, topic: topic(Q[idx]),
+      your: this.answerText(Q[idx], answers[idx]), right: this.rightText(Q[idx])
+    }));
+    const pct = Math.round((okList.length / asked) * 100);
+    const user = s.user || null;
+    try {
+      await this.db.saveResult({
+        user_id: user ? user.id : null,
+        name: s.name || (user ? user.name : ''),
+        position: s.role || (user ? user.position : ''),
+        variant: s.curVariant, total: asked, correct: okList.length,
+        percent: pct, passed: pct >= this.threshold, topics, wrong
+      });
+    } catch (e) {}
+  }
+
+  move(from, to) {
+    this.setState(prev => {
+      const arr = prev.order.slice();
+      if (to < 0 || to >= arr.length) return null;
+      const v = arr.splice(from, 1)[0];
+      arr.splice(to, 0, v);
+      return { order: arr };
+    });
+  }
+
+  toggle(n) {
+    this.setState(prev => {
+      const p = prev.pick.slice();
+      const at = p.indexOf(n);
+      if (at >= 0) p.splice(at, 1); else p.push(n);
+      return { pick: p };
+    });
+  }
+
+  imgRef(url) {
+    return el => { if (el && url) el.src = url; };
+  }
+
+  // Ключ кадра: либо файл в проекте (img/…), либо слот из сайдкара
+  // Вопрос без своего фото показывает главное фото своей тех.карты
+  heroUrl(q) {
+    if (!q || q.k === 'photo' || q.k === 'photoOrder' || !window.FL_CARD_HERO) return '';
+    const card = window.FL_QUESTIONS && window.FL_QUESTIONS.CARD && window.FL_QUESTIONS.CARD[q.c];
+    return card && card[1] ? window.FL_CARD_HERO(card[1]) : '';
+  }
+
+  imgUrl(key) {
+    if (!key) return '';
+    if (/^(img\/|photos\/|data:|https?:)/.test(key)) return key;
+    return this.state.photos[key] || '';
+  }
+
+  answerText(q, ans) {
+    if (!ans) return 'нет ответа';
+    if (q.k === 'order' || q.k === 'photoOrder') return ans.order.map((v, i) => (i + 1) + '. ' + q.o[v]).join('\n');
+    if (!ans.pick.length) return 'нет ответа';
+    return ans.pick.map(i => q.o[i]).join(', ');
+  }
+
+  rightText(q) {
+    if (q.k === 'order' || q.k === 'photoOrder') return q.o.map((t, i) => (i + 1) + '. ' + t).join('\n');
+    return q.a.map(i => q.o[i]).join(', ');
+  }
+
+  qlen() { return quotaLen() || QLEN; }
+
+  renderVals() {
+    const s = this.state;
+    const total = s.live.length;
+    const answeredIdx = Object.keys(s.answers);
+    const correctCount = answeredIdx.filter(k => this.isRight(Q[k], s.answers[k])).length;
+
+    const base = {
+      isLogin: s.screen === 'login', isQuiz: s.screen === 'quiz', isResult: s.screen === 'result',
+      isPantry: s.screen === 'pantry',
+      goPantry: () => this.setState({ screen: 'pantry' }),
+      leavePantry: () => this.setState({ screen: 'login' }),
+      pantryNote: 'Перетащи фото продукта в рамку — оно встанет во все задания «собери тарелку». Пустые рамки показываются в тесте просто названием.',
+      pantryCount: Object.keys(s.photos).filter(k => k.indexOf('prod-') === 0).length + ' из ' + PRODUCTS.length + ' продуктов с фото',
+      products: PRODUCTS.map(p => ({ id: p[0], label: p[1], ph: p[1] })),
+      headMeta: (s.screen === 'login' || s.screen === 'pantry')
+        ? (this.qlen() + ' вопросов из ' + Q.length + ' · порог ' + this.threshold + '%')
+        : ('Вариант ' + s.curVariant + ' · ' + (s.name || 'без имени') + (s.role ? ' · ' + s.role : '')),
+      name: s.name,
+      heroRef: this.imgRef(this.imgUrl('fin-hero')),
+      qCountBadge: this.qlen() + ' вопросов',
+      setName: e => this.setState({ name: e.target.value }),
+      roles: ROLES.map(r => ({
+        label: r,
+        bg: s.role === r ? '#2C6BE6' : '#FFFFFF',
+        color: s.role === r ? '#FFFFFF' : '#33445E',
+        border: s.role === r ? '#2C6BE6' : 'rgba(15,31,61,0.14)',
+        pick: () => this.setState({ role: r }, () => this.persist())
+      })),
+      startLabel: 'Начать тест →',
+      startBg: s.name.trim() && s.role ? '#2C6BE6' : '#AFC2E0',
+      startCursor: s.name.trim() && s.role ? 'pointer' : 'not-allowed',
+      loginHint: s.name.trim() && s.role ? this.qlen() + ' вопросов, примерно 8 минут' : 'Заполни имя и выбери должность',
+      variantLabel: 'Вариант теста',
+      variantNote: s.variant ? ('Вариант ' + s.variant + ' — один и тот же набор вопросов при каждом запуске') : 'Вариант выпадет случайно из десяти',
+      variants: [{ n: 0, label: 'Случайный' }].concat(
+        Array.from({ length: VARIANTS }, (x, i) => ({ n: i + 1, label: String(i + 1) }))
+      ).map(v => ({
+        label: v.label,
+        bg: s.variant === v.n ? '#1B4FB8' : '#FFFFFF',
+        color: s.variant === v.n ? '#FFFFFF' : '#33445E',
+        border: s.variant === v.n ? '#1B4FB8' : 'rgba(15,31,61,0.14)',
+        pick: () => this.setState({ variant: v.n })
+      })),
+      topics: Object.keys(QUOTA).map(g => ({
+        label: TOPIC_TITLE[g],
+        count: QUOTA[g],
+        color: TOPIC_COLOR[g] || '#2C6BE6'
+      })),
+      start: () => {
+        if (!s.name.trim() || !s.role) return;
+        this.persist();
+        const v = s.variant || (1 + Math.floor(Math.random() * VARIANTS));
+        this.begin(buildVariant(v), v);
+      }
+    };
+
+    if (s.screen === 'quiz') {
+      const q = this.qAt(s.i);
+      const ans = s.answers[s.live[s.i]];
+      const right = s.revealed && this.isRight(q, ans);
+      const isOrderKind = q.k === 'order' || q.k === 'photoOrder';
+      const canSubmit = isOrderKind ? true : s.pick.length > 0;
+      const KINDS = { order: 'порядок шагов', photoOrder: 'порядок по фото', many: 'несколько верных', photo: 'по фото', plate: 'собери тарелку', one: 'один ответ' };
+      Object.assign(base, {
+        counterText: 'Вопрос ' + (s.i + 1) + ' / ' + total,
+        kindLabel: KINDS[q.k] || 'один ответ',
+        accent: TOPIC_COLOR[topic(q)] || '#2C6BE6',
+        accentSoft: (TOPIC_COLOR[topic(q)] || '#2C6BE6') + '1A',
+        topicName: TOPIC_TITLE[topic(q)] || '',
+        dots: s.live.map((idx, n) => {
+          const done = s.answers.hasOwnProperty(idx);
+          const ok = done && this.isRight(Q[idx], s.answers[idx]);
+          return {
+            bg: n === s.i ? '#2C6BE6' : done ? (ok ? '#1F7A4D' : '#E05B4F') : 'rgba(15,31,61,0.14)',
+            w: n === s.i ? '18px' : '7px'
+          };
+        }),
+        streakText: correctCount >= 3 && correctCount === answeredIdx.length ? 'Без ошибок' : '',
+        showStreak: correctCount >= 3 && correctCount === answeredIdx.length,
+        progressPct: Math.round((s.i / total) * 100) + '%',
+        qDish: CARD[q.c][0],
+        qTitle: q.t,
+        qHint: q.h || '',
+        isPhoto: q.k === 'photo' && !this.imgUrl(q.imgId),
+        hasPhotoImg: !!(this.imgUrl(q.imgId) || this.heroUrl(q)),
+        photoImgRef: this.imgRef(this.imgUrl(q.imgId) || this.heroUrl(q)),
+        photoFit: q.fit || 'cover',
+        photoSlotId: q.slot || 'test-bf-photo',
+        photoHint: q.ph || '',
+        isPick: q.k === 'one' || q.k === 'many' || q.k === 'photo',
+        isPlate: q.k === 'plate',
+        isOrder: isOrderKind,
+        orderHint: q.k === 'photoOrder' ? 'Перетаскивай кадры или двигай стрелками ↑↓' : 'Перетаскивай карточки или двигай стрелками ↑↓',
+        plateHint: s.pick.length ? 'На тарелке: ' + s.pick.length : 'Нажимай на продукты — они лягут на тарелку',
+        liveScore: 'верно: ' + correctCount + ' / ' + answeredIdx.length,
+        tiles: q.k !== 'plate' ? [] : q.o.map((label, n) => {
+          const chosen = s.pick.indexOf(n) >= 0;
+          const isAns = q.a.indexOf(n) >= 0;
+          let border = 'rgba(15,31,61,0.12)', bg = '#FBFCFE', badgeBg = 'rgba(15,31,61,0.18)', badge = '';
+          if (chosen) { border = '#2C6BE6'; bg = '#EDF3FE'; badgeBg = '#2C6BE6'; badge = '✓'; }
+          if (s.revealed) {
+            if (isAns) { border = '#1F7A4D'; bg = '#E8F6EE'; badgeBg = '#1F7A4D'; badge = '✓'; }
+            else if (chosen) { border = '#E05B4F'; bg = '#FDECEA'; badgeBg = '#E05B4F'; badge = '×'; }
+            else { badge = ''; badgeBg = 'rgba(15,31,61,0.18)'; }
+          }
+          const src = q.img ? this.imgUrl(q.img[n]) : '';
+          return {
+            label, border, bg, badge, badgeBg,
+            setImg: this.imgRef(src),
+            hasImg: !!src, noImg: !src,
+            cursor: s.revealed ? 'default' : 'pointer',
+            pick: () => { if (!s.revealed) this.toggle(n); }
+          };
+        }),
+        options: (isOrderKind || q.k === 'plate') ? [] : q.o.map((label, n) => {
+          const chosen = s.pick.indexOf(n) >= 0;
+          const isAns = q.a.indexOf(n) >= 0;
+          let bg = '#FBFCFE', border = 'rgba(15,31,61,0.12)', color = '#0F1F3D', markBg = '#FFFFFF', markBorder = 'rgba(15,31,61,0.2)', mark = '';
+          if (chosen) { bg = '#EDF3FE'; border = '#2C6BE6'; markBg = '#2C6BE6'; markBorder = '#2C6BE6'; mark = q.k === 'many' ? '✓' : '●'; }
+          if (s.revealed) {
+            if (isAns) { bg = '#E8F6EE'; border = '#1F7A4D'; markBg = '#1F7A4D'; markBorder = '#1F7A4D'; mark = '✓'; }
+            else if (chosen) { bg = '#FDECEA'; border = '#E05B4F'; markBg = '#E05B4F'; markBorder = '#E05B4F'; mark = '×'; }
+            else { mark = ''; markBg = '#FFFFFF'; }
+          }
+          return {
+            label, bg, border, color, mark, markBg, markBorder,
+            markRadius: q.k === 'many' ? '7px' : '99px',
+            cursor: s.revealed ? 'default' : 'pointer',
+            pick: () => {
+              if (s.revealed) return;
+              if (q.k === 'many') this.toggle(n);
+              else this.setState({ pick: [n] });
+            }
+          };
+        }),
+        orderItems: !isOrderKind ? [] : s.order.map((srcIdx, pos) => {
+          const ok = s.revealed && srcIdx === pos;
+          const src = q.img ? this.imgUrl(q.img[srcIdx]) : '';
+          return {
+            label: q.o[srcIdx], n: pos + 1, setImg: this.imgRef(src), hasImg: !!src,
+            draggable: !s.revealed,
+            opacity: s.dragFrom === pos ? 0.45 : 1,
+            bg: s.revealed ? (ok ? '#E8F6EE' : '#FDECEA') : '#FBFCFE',
+            border: s.revealed ? (ok ? '#1F7A4D' : '#E05B4F') : 'rgba(15,31,61,0.12)',
+            numBg: s.revealed ? (ok ? '#1F7A4D' : '#E05B4F') : '#E9F0FE',
+            numColor: s.revealed ? '#FFFFFF' : '#1B4FB8',
+            textColor: '#0F1F3D',
+            up: () => !s.revealed && this.move(pos, pos - 1),
+            down: () => !s.revealed && this.move(pos, pos + 1),
+            dragStart: () => this.setState({ dragFrom: pos }),
+            dragOver: e => { e.preventDefault(); },
+            drop: e => {
+              e.preventDefault();
+              if (s.dragFrom === null || s.dragFrom === pos) return;
+              this.move(s.dragFrom, pos);
+              this.setState({ dragFrom: null });
+            },
+            dragEnd: () => this.setState({ dragFrom: null })
+          };
+        }),
+        showFb: s.revealed,
+        fbBg: right ? '#E8F6EE' : '#FDECEA',
+        fbBorder: right ? 'rgba(31,122,77,0.3)' : 'rgba(224,91,79,0.3)',
+        fbColor: right ? '#1F7A4D' : '#C0392B',
+        fbTitle: right ? 'Верно' : 'Неверно',
+        // Подпись, название карты и верный ответ — отдельными узлами:
+        // склеенная строка не находится ни в словаре, ни в шаблонах.
+        fbCard: CARD[q.c][0],
+        fbHasRight: !right,
+        fbRight: right ? '' : this.rightText(q),
+        primaryLabel: s.revealed ? (s.i + 1 >= total ? 'Посмотреть результат' : 'Дальше →') : 'Ответить',
+        primaryBg: (s.revealed || canSubmit) ? '#2C6BE6' : '#AFC2E0',
+        primaryCursor: (s.revealed || canSubmit) ? 'pointer' : 'not-allowed',
+        primary: () => {
+          if (s.revealed) { this.advance(); return; }
+          if (!canSubmit) return;
+          this.commit();
+        },
+        skipLabel: s.i + 1 >= total ? 'Завершить' : 'Пропустить',
+        skip: () => this.advance()
+      });
+    }
+
+    if (s.screen === 'result') {
+      const asked = s.live.length;
+      const ok = s.live.filter(idx => this.isRight(Q[idx], s.answers[idx])).length;
+      const pct = Math.round((ok / asked) * 100);
+      const passed = pct >= this.threshold;
+      const wrong = s.live.filter(idx => !this.isRight(Q[idx], s.answers[idx]));
+      Object.assign(base, {
+        pctText: pct + '%',
+        ringBg: 'conic-gradient(' + (passed ? '#1F7A4D' : '#E05B4F') + ' ' + pct + '%, rgba(15,31,61,0.12) ' + pct + '% 100%)',
+        verdict: passed ? 'Сдал' : 'Не сдал',
+        resInk: passed ? '#1F7A4D' : '#C0392B',
+        resBg: passed ? '#E8F6EE' : '#FDECEA',
+        resBorder: passed ? 'rgba(31,122,77,0.28)' : 'rgba(224,91,79,0.28)',
+        scoreText: ok + ' из ' + asked + ' верно · вариант ' + s.curVariant + ' · порог ' + this.threshold + '%',
+        resNote: passed
+          ? 'Результат зачтён. Ошибки ниже стоит всё равно пересмотреть по картам.'
+          : 'Нужно пересмотреть карты из разбора ниже и пройти тест снова.',
+        hasMistakes: wrong.length > 0,
+        mistakesSub: wrong.length + ' из ' + asked + ' — с ссылкой на карту',
+        mistakes: wrong.map((idx, n) => {
+          const q = Q[idx];
+          return {
+            q: q.t,
+            your: 'Твой ответ: ' + this.answerText(q, s.answers[idx]),
+            right: 'Верно: ' + this.rightText(q),
+            href: encodeURI(CARD[q.c][1] || ''),
+            hasCard: !!CARD[q.c][1], noCard: !CARD[q.c][1],
+            cardLabel: 'Открыть карту → ' + CARD[q.c][0],
+            topicLabel: TOPIC_TITLE[topic(q)] || '',
+            bg: n % 2 ? '#FBFCFE' : '#FFFFFF'
+          };
+        }),
+        certName: s.name || '—',
+        certRole: s.role || '',
+        certScore: ok + ' / ' + asked + ' · ' + pct + '% · вариант ' + s.curVariant,
+        certDate: new Date().toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+        printCert: () => window.print(),
+        retryLabel: 'Пройти только ошибки (' + wrong.length + ')',
+        retryWrong: () => { this.setState({ attempt: s.attempt + 1 }); this.begin(wrong, s.curVariant); },
+        restart: () => {
+          const v = s.variant || (1 + Math.floor(Math.random() * VARIANTS));
+          this.setState({ attempt: s.attempt + 1 });
+          this.begin(buildVariant(v), v);
+        },
+        restartLabel: s.variant ? 'Пройти вариант ' + s.variant + ' заново' : 'Новый вариант'
+      });
+    }
+
+    return base;
+  }
+}
+</script>
+</body>
+</html>

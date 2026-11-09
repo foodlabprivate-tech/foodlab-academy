@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #E7EDF7; -webkit-font-smoothing: antialiased; }
+  a { color: #1B4FB8; text-decoration: none; }
+  a:hover { color: #E05B4F; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+
+<section style="padding: 40px 36px 60px; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #0F1F3D; display: flex; flex-direction: column; gap: 26px;">
+
+  <div style="display: flex; flex-direction: column; gap: 8px; max-width: 900px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #7C8BA6;">Ход 1 · три варианта тех.карты</div>
+    <div style="font-size: 30px; font-weight: 800; letter-spacing: -0.025em;">Сколько фото нужно на одно блюдо</div>
+    <div style="font-size: 15px; line-height: 1.6; color: #5A6B87; text-wrap: pretty;">Все три варианта на одном блюде — American Breakfast, ваши 14 шагов с сайта. Разница в том, сколько фото придётся собрать: одно, шесть или четырнадцать. Выбранный вариант я поставлю в кабинет повара для всех 106 карточек.</div>
+  </div>
+
+  <div style="display: flex; gap: 22px; flex-wrap: wrap; align-items: flex-start;">
+
+    <div id="1a" style="width: 420px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; background: #0F1F3D; color: #FFFFFF; padding: 4px 9px; border-radius: 7px;">1a</div>
+        <div style="font-size: 15px; font-weight: 700;">Видео главное</div>
+        <div style="margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #2F6B3A; background: #DCEBDD; padding: 4px 9px; border-radius: 99px;">1 фото</div>
+      </div>
+      <div style="background: #F5F8FE; border: 1px solid rgba(15,31,61,0.1); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 13px;">
+        <div style="border-radius: 14px; overflow: hidden; background: #0F1F3D; aspect-ratio: 16 / 9;">
+          <iframe src="https://www.youtube.com/embed/VsUCQUjpWtM" title="video" allowfullscreen="true" style="width: 100%; height: 100%; border: 0; display: block;"></iframe>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+          <div style="flex: none; width: 96px; height: 96px; border-radius: 13px; overflow: hidden;">
+            <image-slot id="var-a-hero" shape="rect" placeholder="результат" style="width: 100%; height: 100%;"></image-slot>
+          </div>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px;">
+            <div style="font-size: 18px; font-weight: 700; line-height: 1.2;">American Breakfast</div>
+            <div style="font-size: 12px; color: #7C8BA6;">ONLYEGGS · Завтраки</div>
+            <div style="font-size: 12px; color: #5A6B87; line-height: 1.45;">Eggs 2 · Bacon 2 · Pancake 2 · Hash brown 1 · Brioche 1</div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Порядок работы</div>
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="14">
+            <div style="display: flex; align-items: flex-start; gap: 10px; min-height: 34px; padding: 6px 10px; border-radius: 9px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.07);">
+              <span style="flex: none; width: 18px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #2C6BE6; padding-top: 1px;">{{ s.n }}</span>
+              <span style="flex: 1; font-size: 12.5px; line-height: 1.4; text-wrap: pretty;">{{ s.text }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="font-size: 12.5px; line-height: 1.55; color: #5A6B87; background: #FFFFFF; border-radius: 12px; padding: 12px 14px;">Повар смотрит видео, текст — как напоминание. Собрать можно все 106 карточек за пару вечеров: одно фото результата на блюдо. Слабое место — у плиты видео перематывать неудобно.</div>
+    </div>
+
+    <div id="1b" style="width: 420px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; background: #2C6BE6; color: #FFFFFF; padding: 4px 9px; border-radius: 7px;">1b</div>
+        <div style="font-size: 15px; font-weight: 700;">Ключевые моменты</div>
+        <div style="margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #1B4FB8; background: #E9F0FE; padding: 4px 9px; border-radius: 99px;">6 фото</div>
+      </div>
+      <div style="background: #F5F8FE; border: 1px solid rgba(15,31,61,0.1); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 13px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 18px; font-weight: 700; line-height: 1.2;">American Breakfast</div>
+          <div style="font-size: 12px; color: #7C8BA6;">ONLYEGGS · Завтраки · 14 шагов</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 9px;">
+          <sc-for list="{{ keyShots }}" as="k" hint-placeholder-count="6">
+            <div style="border-radius: 12px; overflow: hidden; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.08); display: flex; flex-direction: column;">
+              <div style="position: relative; height: 104px;">
+                <image-slot id="{{ k.slotId }}" shape="rect" placeholder="{{ k.hint }}" style="width: 100%; height: 100%;"></image-slot>
+                <div style="position: absolute; top: 7px; left: 7px; width: 24px; height: 24px; border-radius: 8px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 11px; display: flex; align-items: center; justify-content: center; pointer-events: none; z-index: 2;">{{ k.n }}</div>
+              </div>
+              <div style="padding: 8px 10px 10px; font-size: 12px; font-weight: 600; line-height: 1.35; text-wrap: pretty;">{{ k.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Остальное текстом</div>
+          <sc-for list="{{ minorSteps }}" as="s" hint-placeholder-count="8">
+            <div style="display: flex; align-items: flex-start; gap: 9px; font-size: 12px; line-height: 1.45; color: #5A6B87;">
+              <span style="flex: none; width: 16px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #ADB9CB;">{{ s.n }}</span>
+              <span style="flex: 1;">{{ s.text }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border-radius: 12px; overflow: hidden; background: #0F1F3D; aspect-ratio: 16 / 9;">
+          <iframe src="https://www.youtube.com/embed/VsUCQUjpWtM" title="video" allowfullscreen="true" style="width: 100%; height: 100%; border: 0; display: block;"></iframe>
+        </div>
+      </div>
+      <div style="font-size: 12.5px; line-height: 1.55; color: #5A6B87; background: #FFFFFF; border-radius: 12px; padding: 12px 14px;">Фото только там, где ошибаются: степень прожарки, толщина нарезки, подача. Мелкие шаги остаются текстом. Шесть фото на блюдо вместо четырнадцати — работы вдвое меньше, а понятность почти та же.</div>
+    </div>
+
+    <div id="1c" style="width: 420px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 500; background: #0F1F3D; color: #FFFFFF; padding: 4px 9px; border-radius: 7px;">1c</div>
+        <div style="font-size: 15px; font-weight: 700;">Полная пошаговая</div>
+        <div style="margin-left: auto; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #B4552F; background: #FFF0E6; padding: 4px 9px; border-radius: 99px;">14 фото</div>
+      </div>
+      <div style="background: #F5F8FE; border: 1px solid rgba(15,31,61,0.1); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 13px;">
+        <div style="border: 2px dashed rgba(44,107,230,0.45); border-radius: 14px; background: #EDF3FE; padding: 15px 16px; display: flex; align-items: center; gap: 13px;">
+          <div style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #2C6BE6; color: #FFFFFF; font-size: 19px; display: flex; align-items: center; justify-content: center;">↓</div>
+          <div style="flex: 1; display: flex; flex-direction: column; gap: 3px;">
+            <div style="font-size: 13.5px; font-weight: 700; color: #1B4FB8;">Перетащите сюда папку с фото</div>
+            <div style="font-size: 11.5px; color: #5A6B87; line-height: 1.4;">Снимки встанут по шагам в порядке имён файлов</div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 18px; font-weight: 700; line-height: 1.2;">American Breakfast</div>
+          <div style="font-size: 12px; color: #7C8BA6;">ONLYEGGS · Завтраки · 14 шагов</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="14">
+            <div style="display: flex; gap: 10px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.08); border-radius: 12px; padding: 8px;">
+              <div style="flex: none; width: 100px; height: 68px; border-radius: 9px; overflow: hidden;">
+                <image-slot id="{{ s.slotId }}" shape="rect" placeholder="фото шага" style="width: 100%; height: 100%;"></image-slot>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; padding-top: 2px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #2C6BE6; letter-spacing: 0.1em;">ШАГ {{ s.n }}</div>
+                <div style="font-size: 12.5px; line-height: 1.4; text-wrap: pretty;">{{ s.text }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="font-size: 12.5px; line-height: 1.55; color: #5A6B87; background: #FFFFFF; border-radius: 12px; padding: 12px 14px;">То, что уже собрано, плюс зона массовой загрузки. Скачали папку с фото со страницы, кинули целиком — все 14 шагов заполнены за одно движение. Тогда полный вариант перестаёт быть дорогим.</div>
+    </div>
+
+  </div>
+
+  <div style="max-width: 900px; background: #FFFFFF; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 9px; border: 1px solid rgba(15,31,61,0.08);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #7C8BA6;">Как быстро снять фото со страницы</div>
+    <div style="font-size: 13.5px; line-height: 1.65; color: #5A6B87; text-wrap: pretty;">Откройте опубликованную страницу карточки, нажмите Ctrl+S и выберите «Веб-страница полностью» — рядом появится папка со всеми фото этой карточки сразу. Расширение браузера «Image Downloader» делает то же в один клик и умеет забирать пачкой. Дальше папка перетаскивается в карточку целиком.</div>
+  </div>
+
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const AB = ['add oil and salt','start fry 2 eggs with low fire','fry 2 slice bacon','semifinished pancake','need fry 2 pcs pancake','need hot oil for hash brown','pancake need fry double side with low fire','bacon need fry until crispy','2 eggs ready','bacon need to dry without oil (with napkins)','pancake ready need to dry without oil (with napkins)','hash brown also need to dry without oil (with napkins)','1 slice brioche for 1 portion (need to cut to 2 pcs)','ready portion looks same lie as photo'];
+
+const KEY = [0, 1, 6, 7, 11, 13];
+
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      steps: AB.map((text, i) => ({ n: i + 1, text, slotId: 'var-c-' + (i + 1) })),
+      keyShots: KEY.map(i => ({ n: i + 1, text: AB[i], hint: 'шаг ' + (i + 1), slotId: 'var-b-' + (i + 1) })),
+      minorSteps: AB.map((text, i) => ({ n: i + 1, text })).filter((s, i) => KEY.indexOf(i) === -1)
+    };
+  }
+}
+
+</script>
+</body>
+</html>

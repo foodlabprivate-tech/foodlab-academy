@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #E7EDF7; -webkit-font-smoothing: antialiased; }
+  a { color: #1B4FB8; text-decoration: none; }
+  a:hover { color: #E05B4F; }
+  * { box-sizing: border-box; }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #E7EDF7; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #0F1F3D; padding: 34px 24px 80px; display: flex; flex-direction: column; align-items: center; gap: 26px;">
+
+  <div style="width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 7px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #7C8BA6;">Foodlab academy · на проверку шефу</div>
+    <div style="font-size: 30px; font-weight: 800; letter-spacing: -0.02em;">Недочёты в рецептах</div>
+    <div style="font-size: 13.5px; color: #5A6B87; line-height: 1.55; max-width: 620px; text-wrap: pretty;">Всё, что вызвало сомнение при переносе состава в карточки. Названия ингредиентов приведены к заглавной букве, вес — к граммам и миллилитрам. Ниже то, что автоматически привести нельзя: нужен ответ шефа.</div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-size: 16px; font-weight: 800;">1 · Брутто меньше нетто</div>
+    <div style="font-size: 13px; color: #5A6B87; line-height: 1.55;">Похоже, в одной колонке сухой продукт, в другой отварной. Нужно решить, что писать в брутто.</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px;"><div style="flex: 1;">Boiled rice · 85 g → 150 g</div><div style="flex: none; color: #7C8BA6; font-size: 12px;">Chicken Curry Rice, Honey Garlic Chicken Rice</div></div>
+      <div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px;"><div style="flex: 1;">Rice (boiled) · 80–85 g → 150 g</div><div style="flex: none; color: #7C8BA6; font-size: 12px;">Stir Fry Chicken Rice, Stir Fry Prawn Rice</div></div>
+      <div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px;"><div style="flex: 1;">Boiled Quinoa · 40 g → 80 g</div><div style="flex: none; color: #7C8BA6; font-size: 12px;">Protein Chicken Lunch, Protein Salmon Lunch</div></div>
+      <div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px;"><div style="flex: 1;">Mustard · 14 g → 15 g</div><div style="flex: none; color: #7C8BA6; font-size: 12px;">Caesar Chicken</div></div>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-size: 16px; font-weight: 800;">2 · В составе нет веса, стоит действие</div>
+    <div style="font-size: 13px; color: #5A6B87; line-height: 1.55;">В колонке веса — слово вместо числа. Нужны граммы; текст уйдёт в шаги приготовления.</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Protein Healthy Breakfast</b> · Chicken breast «обжарить», Mushroom «обжарить», Spinach «—»</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Keto Breakfast</b> · Cucumber «нарезать», Boiled broccoli «—», Avocado «1/2 · слайсами», Scramble «2 яйца»</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Healthy Breakfast Avocado</b> · Greek yogurt «намазать», Avocado «ломтиками»</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>English Breakfast</b> · Salad «latucce + white + red cabbage» — нет веса</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Farmers Breakfast</b> · Bell peppers mix «yellow + green + red» — нет веса</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Fried Egg Parmesan</b> · в составе стоит инструкция: «Need to serving 45 gr parmesan cheese» / «обжарить 3 яйца на медленном огне»</div>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-size: 16px; font-weight: 800;">3 · Непонятная запись веса</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;"><b>German Sausage Eggs</b> · Sausage «1 pack (150)» — сколько сосисок в упаковке и сколько на порцию</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;"><b>Masala Omelette</b> · Green onion «10 (20)» — 10 или 20 g</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;"><b>Yogurt Granola</b> · Mango «30 (35%) 0.65» — что означает 0.65</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;"><b>American Breakfast</b> · Pancake «2 pcs (55x2=110)» — оставить формулу или писать 110 g</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;"><b>Shakshuka Sause</b> · было «100 (20 %)» → записал «100 g (20%)». Подтвердить, что 20% — отход</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;"><b>Simple Syrup</b> · было «1 kg» и «1 litr» → записал «1000 g» и «1000 ml»</div>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-size: 16px; font-weight: 800;">4 · Штуки, ломтики и слайсы</div>
+    <div style="font-size: 13px; color: #5A6B87; line-height: 1.55;">Оставил как в тех.карте. Нужен вес одной единицы, чтобы всё свести к граммам.</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Toast bread / Sourdough · 1 slice = 65–80 g — вес отличается от карточки к карточке</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Bacon · 2 slice = 65 g; Ham · 4 slice = 40 g; Cheddar slice · 3 slice = 45 g</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Muffin · 1 pcs = 50 g; Hash brown · 1 pcs = 43 g брутто / 40 g нетто</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Avocado · 0,5 pcs: в Benedict Avocado брутто 220 g, в Benedict Salmon — 110 g. Одна и та же половина?</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Eggs · везде «pcs». Считать 1 яйцо = 55–57 g или оставить штуки?</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Тара и изделия: Coffee cup, Bottle juice, Espresso cup, Almond Croissant — «1 pcs», вес не нужен</div>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-size: 16px; font-weight: 800;">5 · Пустые граммовки</div>
+    <div style="font-size: 13px; color: #5A6B87; line-height: 1.55;">В списке порции есть ингредиент, но веса нет ни в брутто, ни в нетто.</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Caesar Smoked Salmon</b> · салат айсберг, салат романо, пармезан, лосось копчёный, сухарики</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Grilled Broccoli</b> · брокколи отварная, чеснок, соль, масло подсолнечное</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Mushroom Scramble</b> · грибы (полуфабрикат), соль, масло подсолнечное, тост</div>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-size: 16px; font-weight: 800;">6 · Полуфабрикаты: выход или расход</div>    <div style="font-size: 13px; color: #5A6B87; line-height: 1.55;">В составе стоит выход всей заготовки, а не расход на порцию. Нужен расход.</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Spicy Mayo · 240 g — Breakfast Croissant, Ham Cheese Croissant</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Whipping cream cheese · 1 kg — Salmon Croissant</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Berry Jam / Mango Jam · 500 g — Cheesecake Berry, Cheesecake Mango</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Dressing for Caesar · 550 g / 10 порций — Caesar Chicken, Caesar Prawn, Caesar Smoked Salmon</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Honey Garlic sauce · 500 g и Sauce for Wok · 1000 g — Honey Garlic Chicken Rice, Stir Fry ×2</div>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-size: 16px; font-weight: 800;">7 · Названия и опечатки</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Один полуфабрикат назван тремя способами: «Sauce shak-shuka», «Soce shak-shuka», «Sauce sha-shuka». Карточка называется «Shakshuka Sause» — вероятно, Sauce</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">«Wipping cream cheese» → Whipping · «parmesen» → parmesan · «latucce» → lettuce · «Fruits Plater» → Platter</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #FFF6F4; font-size: 13px; line-height: 1.5;"><b>Spaghetti With Chicken</b> · Chicken breast — брутто 110 g, нетто 10 g (10%). При отходе 10% нетто должно быть 100 g — подтвердить</div>
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;">Часть карточек вела состав по-русски — всё приведено к английскому</div>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFF9EF; border: 1px solid rgba(200,150,60,0.28); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="font-size: 16px; font-weight: 800;">8 · Выход не совпадает с меню</div>
+    <div style="font-size: 13px; color: #5A4234; line-height: 1.55;">Соки: в меню 240 ml, в рецептуре выход 220 ml — Apple Juice, Apple-Carrot Juice, Carrot Juice, Orange Juice.</div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 18px; padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="font-size: 16px; font-weight: 800;">9 · Ингредиент блюда отсутствует в составе</div>
+    <div style="font-size: 13px; color: #5A6B87; line-height: 1.55;">Продукт есть в блюде и в шагах, но в таблице состава строки нет — граммовку взять неоткуда.</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="padding: 10px 12px; border-radius: 11px; background: #F7F9FD; font-size: 13px; line-height: 1.5;"><b>Spaghetti With Chicken</b> · спагетти в таблице не было — внесены отдельно: 150 g отварных. Нужен вес сухих для закупки</div>
+    </div>
+  </div>
+
+  <div style="width: 100%; max-width: 760px; display: flex; gap: 10px;">
+    <a href="./Каталог - Выпечка и Боксы.dc.html" style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,45,90,0.14); border-radius: 12px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600;">← Каталог карточек</a>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

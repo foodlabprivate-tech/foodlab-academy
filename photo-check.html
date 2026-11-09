@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Проверка фото — Foodlab Academy</title>
+<script src="./card-photos-static.js" onerror="window.FL_PACK_MISSING = true"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #E7EDF7; color: #0F1F3D; font-family: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif; padding: 26px 18px 60px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  a { color: #1B4FB8; }
+  a:hover { color: #E05B4F; }
+  .card { width: 100%; max-width: 720px; background: #FFFFFF; border: 1px solid rgba(15,31,61,.1); border-radius: 16px; padding: 18px 20px; }
+  h1 { font-size: 20px; margin: 0 0 6px; letter-spacing: -.02em; }
+  .sub { font-size: 13px; color: #5A6B87; line-height: 1.5; }
+  .row { display: flex; align-items: flex-start; gap: 11px; padding: 11px 0; border-top: 1px solid rgba(15,31,61,.08); }
+  .row:first-of-type { border-top: 0; }
+  .dot { flex: none; width: 10px; height: 10px; border-radius: 99px; margin-top: 5px; }
+  .ok { background: #1F9D5B; } .bad { background: #D64545; } .warn { background: #E0A030; }
+  .label { font-size: 14px; font-weight: 700; }
+  .val { font-size: 12.5px; color: #5A6B87; line-height: 1.5; font-family: 'IBM Plex Mono', ui-monospace, monospace; word-break: break-all; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 9px; margin-top: 12px; }
+  .shots div { aspect-ratio: 1; border-radius: 11px; background: #EDF1F7; overflow: hidden; }
+  .shots img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .fix { font-size: 13.5px; line-height: 1.6; }
+  .fix b { font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Проверка фото</h1>
+    <div class="sub">Страница смотрит, лежат ли фото тех.карт рядом с сайтом и открываются ли они в этом браузере. Вход не нужен — можно открыть у любого сотрудника и прислать скриншот.</div>
+  </div>
+  <div class="card" id="out"></div>
+  <div class="card" id="fix"></div>
+
+<script>
+(function () {
+  var out = document.getElementById('out');
+  var fixBox = document.getElementById('fix');
+  var rows = [];
+  function row(state, label, val) { rows.push({ s: state, l: label, v: val }); }
+
+  var proto = location.protocol;
+  row(proto === 'file:' ? 'warn' : 'ok', 'Как открыт сайт', proto + '//' + (location.host || 'локальная папка'));
+
+  var pack = window.FL_CARD_PHOTOS;
+  var missing = !!window.FL_PACK_MISSING;
+  var keys = pack ? Object.keys(pack) : [];
+  var withPhotos = keys.filter(function (k) { return (pack[k] || []).length; });
+  row(missing ? 'bad' : (withPhotos.length ? 'ok' : 'warn'),
+    'Файл card-photos.js',
+    missing ? 'не найден рядом с этой страницей' : (keys.length ? withPhotos.length + ' карт с фото из ' + keys.length : 'найден, но пустой (заглушка)'));
+
+  var total = 0, dataUrls = 0, paths = 0;
+  withPhotos.forEach(function (k) {
+    (pack[k] || []).forEach(function (p) {
+      total++;
+      if (p && /^data:/.test(p.url || '')) dataUrls++; else if (p && p.url) paths++;
+    });
+  });
+  row(total ? 'ok' : 'bad', 'Кадров всего', total + (paths ? ' · файлами в папке: ' + paths : '') + (dataUrls ? ' · внутри JS: ' + dataUrls : ''));
+
+  var state = window.FL_CARD_STATE || {};
+  var stateKeys = Object.keys(state);
+  row(stateKeys.length ? 'ok' : 'warn', 'Раскладка по шагам', stateKeys.length ? stateKeys.length + ' карт' : 'нет — фото будут в ленте, но не встанут в шаги');
+
+  var lsOk = true;
+  try { localStorage.setItem('foodlab-probe', '1'); localStorage.removeItem('foodlab-probe'); } catch (e) { lsOk = false; }
+  row(lsOk ? 'ok' : 'warn', 'Память браузера (localStorage)', lsOk ? 'доступна' : 'заблокирована — раскладка по шагам не сохранится');
+
+  var html = rows.map(function (r) {
+    return '<div class="row"><div class="dot ' + r.s + '"></div><div><div class="label">' + r.l + '</div><div class="val">' + r.v + '</div></div></div>';
+  }).join('');
+  out.innerHTML = html;
+
+  // Живая проверка: пробуем реально показать первые кадры
+  var sample = [];
+  withPhotos.slice(0, 3).forEach(function (k) {
+    (pack[k] || []).slice(0, 4).forEach(function (p) { if (p && p.url) sample.push(p.url); });
+  });
+  if (sample.length) {
+    var box = document.createElement('div');
+    box.className = 'shots';
+    sample.forEach(function (u) {
+      var d = document.createElement('div');
+      var im = document.createElement('img');
+      im.onerror = function () { d.style.background = '#FDECEA'; d.title = 'не открылось: ' + u; };
+      im.src = u;
+      d.appendChild(im);
+      box.appendChild(d);
+    });
+    out.appendChild(box);
+    var note = document.createElement('div');
+    note.className = 'val';
+    note.style.marginTop = '9px';
+    note.textContent = 'Если квадраты ниже пустые или красные — файлы фото не на месте. Первый путь: ' + sample[0].slice(0, 80);
+    out.appendChild(note);
+  }
+
+  var fix = [];
+  if (missing) {
+    fix.push('<b>Файла card-photos.js рядом нет.</b> Распакуйте архив foodlab-photos.zip в ту же папку, где лежит index.html — рядом должны появиться card-photos.js и папка photos.');
+  } else if (!withPhotos.length) {
+    fix.push('<b>Файл есть, но пустой.</b> Это заглушка из архива сайта. Настоящий файл делает администратор: Админка → Фото продуктов → «Скачать папку с фото (ZIP)», затем архив распаковывается рядом с index.html.');
+  } else if (paths && sample.length) {
+    fix.push('<b>Фото подключены файлами.</b> Если квадраты пустые — папка photos лежит не рядом с index.html, а внутри лишней папки. Перенесите её на один уровень с index.html.');
+  } else if (dataUrls) {
+    fix.push('<b>Фото внутри JS-файла.</b> Так тоже работает, но файл тяжёлый и на слабых компьютерах может не успеть загрузиться. Надёжнее пересобрать: Админка → «Скачать папку с фото (ZIP)».');
+  }
+  if (proto === 'file:') {
+    fix.push('Сайт открыт из папки (file://). Так работает, но часть браузеров ограничивает память страницы. Если фото не появляются — залейте папку на хостинг или откройте её через локальный сервер.');
+  }
+  fix.push('Что прислать, если не помогло: скриншот этой страницы целиком.');
+  fixBox.innerHTML = '<div class="label" style="margin-bottom:8px;">Что делать</div><div class="fix">' + fix.map(function (f) { return '<p style="margin:0 0 9px;">' + f + '</p>'; }).join('') + '</div>';
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="./fl-theme.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #E7EDF7; -webkit-font-smoothing: antialiased; }
+  a { color: #1B4FB8; text-decoration: none; }
+  a:hover { color: #E05B4F; }
+  * { box-sizing: border-box; }
+  input, button, textarea { font-family: inherit; }
+  .fl-scroll::-webkit-scrollbar { width: 0; }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #E7EDF7; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #0F1F3D; padding: 36px 24px 56px; display: flex; flex-direction: column; align-items: center; gap: 26px;">
+
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 7px;">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #7C8BA6;">Foodlab Academy · v5</div>
+    <div style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Кабинет повара</div>
+    <div style="font-size: 13px; color: #5A6B87;">{{ catalogNote }}</div>
+  </div>
+
+  <div style="width: 390px; height: 844px; background: #F5F8FE; border-radius: 36px; overflow: hidden; position: relative; box-shadow: 0 26px 60px -18px rgba(15,31,61,0.4), 0 0 0 9px #0F1F3D; display: flex; flex-direction: column;">
+
+    <sc-if value="{{ isLang }}" hint-placeholder-val="{{ true }}">
+      <div style="position: absolute; inset: 0; background: #2C6BE6; z-index: 40; display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 34px 26px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.7);">Foodlab Academy</div>
+          <div style="font-size: 27px; font-weight: 800; color: #FFFFFF; line-height: 1.15;">Bahasa · Language · Язык</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+            <button onClick="{{ l.pick }}" style="width: 100%; min-height: 54px; border: 0; border-radius: 14px; background: #FFFFFF; color: #0F1F3D; font-size: 16px; font-weight: 700; text-align: left; padding: 0 18px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;" style-hover="background:#E9F0FE">
+              <span>{{ l.label }}</span>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7C8BA6; letter-spacing: 0.1em;">{{ l.code }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="font-size: 12px; color: rgba(255,255,255,0.72); line-height: 1.5;">Выбор сохраняется. Поменять можно в профиле.</div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCook }}" hint-placeholder-val="{{ false }}">
+      <div style="position: absolute; inset: 0; background: #0F1F3D; z-index: 30; display: flex; flex-direction: column;">
+        <div style="padding: 16px 18px 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E8BC4;">{{ tCookMode }}</div>
+            <div style="font-size: 15px; font-weight: 700; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ dishName }}</div>
+          </div>
+          <button onClick="{{ exitCook }}" style="flex: none; min-width: 44px; min-height: 44px; border: 0; border-radius: 12px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 20px; cursor: pointer;">×</button>
+        </div>
+        <div style="flex: 1; padding: 6px 18px 0; display: flex; flex-direction: column; gap: 14px; min-height: 0;">
+          <div style="position: relative; height: 300px; border-radius: 18px; overflow: hidden; background: #17294A;">
+            <image-slot id="{{ cookSlotId }}" shape="rect" placeholder="{{ cookSlotHint }}" style="width: 100%; height: 100%;"></image-slot>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="flex: none; width: 46px; height: 46px; border-radius: 14px; background: #2C6BE6; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 20px; display: flex; align-items: center; justify-content: center;">{{ cookStepNo }}</div>
+            <div style="font-size: 21px; font-weight: 600; color: #FFFFFF; line-height: 1.35; text-wrap: pretty;">{{ cookStepText }}</div>
+          </div>
+        </div>
+        <div style="padding: 14px 18px 22px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="height: 4px; border-radius: 99px; background: rgba(255,255,255,0.16); overflow: hidden;">
+            <div style="height: 100%; width: {{ cookProgress }}; background: #6FA0FF;"></div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button onClick="{{ prevStep }}" style="flex: 1; min-height: 52px; border: 0; border-radius: 14px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 15px; font-weight: 600; cursor: pointer;">Назад</button>
+            <button onClick="{{ nextStep }}" style="flex: 2; min-height: 52px; border: 0; border-radius: 14px; background: #2C6BE6; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer;">{{ cookNextLabel }}</button>
+          </div>
+          <div style="font-size: 11px; color: #6E8BC4; text-align: center;">Экран не гаснет, пока открыт этот режим</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="flex: none; padding: 14px 16px 12px; background: #FFFFFF; border-bottom: 1px solid rgba(15,31,61,0.09); display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <sc-if value="{{ showBack }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ goBack }}" style="flex: none; width: 34px; height: 34px; border: 0; border-radius: 10px; background: #E9F0FE; color: #1B4FB8; font-size: 17px; cursor: pointer;">‹</button>
+        </sc-if>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px;">
+          <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ headerTitle }}</div>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #93A0B5;">{{ headerSub }}</div>
+        </div>
+        <div style="flex: none; width: 34px; height: 34px; border-radius: 99px; background: #2C6BE6; color: #FFFFFF; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 12px; background: #F0F4FC; border: 1px solid rgba(15,31,61,0.08);">
+        <span style="font-size: 13px; color: #93A0B5;">⌕</span>
+        <input value="{{ query }}" onChange="{{ setQuery }}" onFocus="{{ focusSearch }}" placeholder="{{ tSearchPh }}" style="flex: 1; border: 0; background: transparent; outline: none; font-size: 14px; color: #0F1F3D; min-width: 0;" />
+        <sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ clearQuery }}" style="flex: none; width: 26px; height: 26px; border: 0; border-radius: 8px; background: rgba(15,31,61,0.08); color: #5A6B87; font-size: 13px; cursor: pointer;">×</button>
+        </sc-if>
+      </div>
+    </div>
+
+    <div class="fl-scroll" style="flex: 1; overflow-y: auto; padding: 14px 16px 20px; display: flex; flex-direction: column; gap: 14px; min-height: 0;">
+
+      <sc-if value="{{ isSearch }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">{{ resultsLabel }}</div>
+          <sc-for list="{{ results }}" as="d" hint-placeholder-count="6">
+            <button onClick="{{ d.open }}" style="width: 100%; border: 1px solid rgba(15,31,61,0.09); border-radius: 14px; background: #FFFFFF; padding: 8px; display: flex; align-items: center; gap: 11px; text-align: left; cursor: pointer;" style-hover="border-color:#2C6BE6">
+              <div style="flex: none; width: 52px; height: 52px; border-radius: 10px; overflow: hidden;">
+                <image-slot id="{{ d.slotId }}" shape="rect" placeholder="фото" style="width: 100%; height: 100%;"></image-slot>
+              </div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                <div style="font-size: 13.5px; font-weight: 700; line-height: 1.25;">{{ d.name }}</div>
+                <div style="font-size: 11px; color: #7C8BA6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ d.meta }}</div>
+              </div>
+              <span style="flex: none; font-size: 15px; color: #C0CADB;">›</span>
+            </button>
+          </sc-for>
+          <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 26px 14px; text-align: center; font-size: 13px; color: #93A0B5; line-height: 1.5;">Ничего не нашлось. Поиск идёт по названию и разделу меню.</div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+
+          <div style="background: #0F1F3D; border-radius: 16px; padding: 14px 15px; display: flex; flex-direction: column; gap: 11px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #6E8BC4;">{{ tShift }}</div>
+              <div style="font-size: 11.5px; color: #A9BEE4;">Kitchen · Canggu</div>
+            </div>
+            <div style="display: flex; align-items: baseline; gap: 9px;">
+              <div style="font-size: 24px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.02em;">08:00 — 17:00</div>
+              <div style="font-size: 12px; color: #A9BEE4;">Hot station</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 7px;">
+              <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="3">
+                <button onClick="{{ t.toggle }}" style="width: 100%; min-height: 42px; border: 0; border-radius: 11px; background: rgba(255,255,255,0.09); padding: 0 12px; display: flex; align-items: center; gap: 10px; text-align: left; cursor: pointer;" style-hover="background:rgba(255,255,255,0.16)">
+                  <span style="flex: none; width: 19px; height: 19px; border-radius: 6px; border: 1.5px solid {{ t.boxColor }}; background: {{ t.boxFill }}; color: #0F1F3D; font-size: 12px; display: flex; align-items: center; justify-content: center;">{{ t.mark }}</span>
+                  <span style="flex: 1; font-size: 13px; color: #FFFFFF; opacity: {{ t.opacity }};">{{ t.text }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <button onClick="{{ goLearn }}" style="width: 100%; border: 1px solid rgba(224,91,79,0.3); border-radius: 16px; background: #FFF4E8; padding: 13px 15px; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer;" style-hover="border-color:#E05B4F">
+            <div style="flex: none; width: 38px; height: 38px; border-radius: 12px; background: #E05B4F; color: #FFFFFF; font-size: 17px; display: flex; align-items: center; justify-content: center;">!</div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+              <div style="font-size: 13.5px; font-weight: 700; color: #7A3428;">{{ tNotDone }}</div>
+              <div style="font-size: 11.5px; color: #A2624E;">Санитарные нормы — тест до пятницы</div>
+            </div>
+            <span style="flex: none; font-size: 15px; color: #C48B7C;">›</span>
+          </button>
+
+          <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 16px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px;">
+              <div style="font-size: 13.5px; font-weight: 700;">{{ tProgress }}</div>
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #2C6BE6;">4 / 10</div>
+            </div>
+            <div style="height: 6px; border-radius: 99px; background: #E9F0FE; overflow: hidden;">
+              <div style="height: 100%; width: 40%; background: #2C6BE6;"></div>
+            </div>
+            <div style="font-size: 11.5px; color: #7C8BA6;">Дальше: Внешний вид сотрудника</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">{{ tRecent }}</div>
+              <button onClick="{{ goDishes }}" style="border: 0; background: transparent; color: #1B4FB8; font-size: 12px; font-weight: 600; cursor: pointer; padding: 4px;">{{ allDishesLabel }}</button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px;">
+              <sc-for list="{{ recent }}" as="d" hint-placeholder-count="3">
+                <button onClick="{{ d.open }}" style="border: 0; padding: 0; background: transparent; display: flex; flex-direction: column; gap: 6px; text-align: left; cursor: pointer;">
+                  <div style="width: 100%; height: 74px; border-radius: 12px; overflow: hidden;">
+                    <image-slot id="{{ d.slotId }}" shape="rect" placeholder="фото" style="width: 100%; height: 100%;"></image-slot>
+                  </div>
+                  <div style="font-size: 11px; font-weight: 600; line-height: 1.25;">{{ d.name }}</div>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+
+          <button onClick="{{ goAsk }}" style="width: 100%; min-height: 46px; border: 1px dashed rgba(44,107,230,0.4); border-radius: 14px; background: #FFFFFF; color: #1B4FB8; font-size: 13.5px; font-weight: 600; cursor: pointer;" style-hover="background:#E9F0FE">{{ tAskChef }}</button>
+
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isDishes }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; gap: 7px; overflow-x: auto; padding-bottom: 2px;">
+            <sc-for list="{{ menus }}" as="m" hint-placeholder-count="5">
+              <button onClick="{{ m.pick }}" style="flex: none; min-height: 34px; padding: 0 13px; border: 1px solid {{ m.border }}; border-radius: 99px; background: {{ m.bg }}; color: {{ m.color }}; font-size: 12.5px; font-weight: 600; white-space: nowrap; cursor: pointer;">{{ m.label }}</button>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ hasFavs }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">{{ tFavorites }}</div>
+              <sc-for list="{{ favs }}" as="d" hint-placeholder-count="2">
+                <button onClick="{{ d.open }}" style="width: 100%; border: 1px solid rgba(44,107,230,0.28); border-radius: 14px; background: #FFFFFF; padding: 8px; display: flex; align-items: center; gap: 11px; text-align: left; cursor: pointer;" style-hover="border-color:#2C6BE6">
+                  <div style="flex: none; width: 48px; height: 48px; border-radius: 10px; overflow: hidden;">
+                    <image-slot id="{{ d.slotId }}" shape="rect" placeholder="фото" style="width: 100%; height: 100%;"></image-slot>
+                  </div>
+                  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                    <div style="font-size: 13px; font-weight: 700; line-height: 1.25;">{{ d.name }}</div>
+                    <div style="font-size: 10.5px; color: #7C8BA6;">{{ d.meta }}</div>
+                  </div>
+                  <span style="flex: none; font-size: 14px; color: #2C6BE6;">★</span>
+                </button>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding-top: 2px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">{{ g.title }}</div>
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #ADB9CB;">{{ g.count }}</div>
+              </div>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 9px;">
+                <sc-for list="{{ g.dishes }}" as="d" hint-placeholder-count="4">
+                  <div style="border: 1px solid rgba(15,31,61,0.09); border-radius: 14px; background: #FFFFFF; overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="position: relative; height: 88px;">
+                      <image-slot id="{{ d.slotId }}" shape="rect" placeholder="фото" style="width: 100%; height: 100%;"></image-slot>
+                      <button onClick="{{ d.toggleFav }}" style="position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border: 0; border-radius: 9px; background: rgba(255,255,255,0.92); color: {{ d.favColor }}; font-size: 12px; cursor: pointer; z-index: 2;">★</button>
+                    </div>
+                    <button onClick="{{ d.open }}" style="flex: 1; border: 0; background: transparent; padding: 8px 9px 10px; display: flex; flex-direction: column; gap: 5px; text-align: left; cursor: pointer;">
+                      <div style="font-size: 12px; font-weight: 700; line-height: 1.3; text-wrap: pretty;">{{ d.name }}</div>
+                      <div style="display: flex; align-items: center; gap: 5px;">
+                        <span style="width: 6px; height: 6px; border-radius: 99px; background: {{ d.dotColor }};"></span>
+                        <span style="font-size: 10px; color: #93A0B5;">{{ d.stepsLabel }}</span>
+                      </div>
+                    </button>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isDish }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <div style="position: relative; height: 180px; border-radius: 16px; overflow: hidden;">
+            <image-slot id="{{ dishSlotId }}" shape="rect" placeholder="Фото подачи" style="width: 100%; height: 100%;"></image-slot>
+          </div>
+          <div style="display: flex; gap: 9px;">
+            <button onClick="{{ enterCook }}" style="flex: 2; min-height: 48px; border: 0; border-radius: 13px; background: {{ cookBtnBg }}; color: {{ cookBtnColor }}; font-size: 14px; font-weight: 700; cursor: pointer;">{{ cookBtnLabel }}</button>
+            <button onClick="{{ toggleCurrentFav }}" style="flex: none; width: 48px; min-height: 48px; border: 1px solid rgba(15,31,61,0.12); border-radius: 13px; background: #FFFFFF; color: {{ dishFavColor }}; font-size: 17px; cursor: pointer;">★</button>
+            <button onClick="{{ goAsk }}" style="flex: none; width: 48px; min-height: 48px; border: 1px solid rgba(15,31,61,0.12); border-radius: 13px; background: #FFFFFF; color: #1B4FB8; font-size: 16px; cursor: pointer;">?</button>
+          </div>
+
+          <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ false }}">
+            <div style="border-radius: 14px; overflow: hidden; background: #0F1F3D; aspect-ratio: 16 / 9;">
+              <iframe src="{{ dishVideo }}" title="video" allow="encrypted-media; picture-in-picture" allowfullscreen="true" style="width: 100%; height: 100%; border: 0; display: block;"></iframe>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hasSteps }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px;">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">{{ tSteps }}</div>
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #93A0B5;">{{ dishStepCount }}</div>
+              </div>
+              <sc-for list="{{ dishSteps }}" as="s" hint-placeholder-count="5">
+                <div style="display: flex; gap: 10px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 13px; padding: 8px;">
+                  <div style="flex: none; width: 62px; height: 62px; border-radius: 10px; overflow: hidden;">
+                    <image-slot id="{{ s.slotId }}" shape="rect" placeholder="{{ s.n }}" style="width: 100%; height: 100%;"></image-slot>
+                  </div>
+                  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; padding-top: 2px;">
+                    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #2C6BE6; letter-spacing: 0.1em;">{{ s.label }}</div>
+                    <div style="font-size: 13px; line-height: 1.4; color: #0F1F3D; text-wrap: pretty;">{{ s.text }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ noSteps }}" hint-placeholder-val="{{ true }}">
+            <div style="background: #FFF4E8; border: 1px solid rgba(224,91,79,0.25); border-radius: 14px; padding: 14px 15px; display: flex; flex-direction: column; gap: 9px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #B4552F;">Шаги ещё не перенесены</div>
+              <div style="font-size: 12.5px; line-height: 1.5; color: #5A4234;">Карточка есть в каталоге, текст приготовления пока на сайте академии.</div>
+            </div>
+          </sc-if>
+
+          <a href="{{ dishSource }}" target="_blank" style="width: 100%; min-height: 46px; border: 1px solid rgba(15,31,61,0.12); border-radius: 13px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-size: 13px; font-weight: 600;">
+            <span>Открыть на сайте академии</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7C8BA6;">↗</span>
+          </a>
+
+          <div style="background: #FFF9EF; border: 1px solid rgba(200,150,60,0.28); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #9A7433;">{{ tNotes }}</div>
+            <textarea value="{{ note }}" onChange="{{ setNote }}" placeholder="Своя пометка — видит только повар" style="width: 100%; min-height: 58px; border: 0; background: transparent; outline: none; resize: none; font-size: 13px; line-height: 1.45; color: #5A4234;"></textarea>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isLearn }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px;">
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+              <div style="font-size: 13px; font-weight: 700;">Повар · Cook</div>
+              <div style="height: 5px; border-radius: 99px; background: #E9F0FE; overflow: hidden;">
+                <div style="height: 100%; width: 40%; background: #2C6BE6;"></div>
+              </div>
+            </div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: #2C6BE6;">40%</div>
+          </div>
+          <sc-for list="{{ modules }}" as="m" hint-placeholder-count="10">
+            <button onClick="{{ m.open }}" style="width: 100%; border: 1px solid {{ m.border }}; border-radius: 13px; background: {{ m.bg }}; padding: 11px 13px; display: flex; align-items: center; gap: 11px; text-align: left; cursor: pointer;" style-hover="border-color:#2C6BE6">
+              <div style="flex: none; width: 30px; height: 30px; border-radius: 9px; background: {{ m.badgeBg }}; color: {{ m.badgeColor }}; font-family: 'IBM Plex Mono', monospace; font-size: 12px; display: flex; align-items: center; justify-content: center;">{{ m.icon }}</div>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                <div style="font-size: 13.5px; font-weight: 600; color: {{ m.titleColor }}; line-height: 1.3;">{{ m.title }}</div>
+                <div style="font-size: 11px; color: #93A0B5;">{{ m.status }}</div>
+              </div>
+              <span style="flex: none; font-size: 14px; color: #C0CADB;">›</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isTest }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 13px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="flex: 1; height: 5px; border-radius: 99px; background: #E9F0FE; overflow: hidden;">
+              <div style="height: 100%; width: {{ quizProgress }}; background: #2C6BE6;"></div>
+            </div>
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #7C8BA6;">{{ quizCounter }}</div>
+          </div>
+          <div style="font-size: 18px; font-weight: 700; line-height: 1.35; text-wrap: pretty;">{{ quizQuestion }}</div>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <sc-for list="{{ quizOptions }}" as="o" hint-placeholder-count="4">
+              <button onClick="{{ o.pick }}" style="width: 100%; min-height: 50px; border: 1.5px solid {{ o.border }}; border-radius: 13px; background: {{ o.bg }}; color: #0F1F3D; font-size: 13.5px; font-weight: 600; text-align: left; padding: 10px 13px; display: flex; align-items: center; gap: 10px; cursor: pointer; line-height: 1.35;">
+                <span style="flex: none; width: 22px; height: 22px; border-radius: 7px; background: {{ o.markBg }}; color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 11px; display: flex; align-items: center; justify-content: center;">{{ o.letter }}</span>
+                <span style="flex: 1;">{{ o.text }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ quizAnswered }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ quizNext }}" style="width: 100%; min-height: 50px; border: 0; border-radius: 13px; background: #0F1F3D; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">{{ quizNextLabel }}</button>
+          </sc-if>
+          <div style="font-size: 11.5px; color: #93A0B5; line-height: 1.5;">Проходной балл 80%. При ошибке тест открывается заново через час.</div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 16px; padding: 15px; display: flex; align-items: center; gap: 13px;">
+            <div style="flex: none; width: 52px; height: 52px; border-radius: 99px; background: #2C6BE6; color: #FFFFFF; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</div>
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+              <div style="font-size: 15px; font-weight: 700;">Ari Kusuma</div>
+              <div style="font-size: 12px; color: #7C8BA6;">Повар · Hot station · Canggu</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px;">
+            <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+              <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 13px; padding: 11px 10px; display: flex; flex-direction: column; gap: 3px;">
+                <div style="font-size: 19px; font-weight: 800; color: #1B4FB8; letter-spacing: -0.02em;">{{ s.value }}</div>
+                <div style="font-size: 10.5px; color: #7C8BA6; line-height: 1.3;">{{ s.label }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 14px; padding: 13px 14px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">{{ tBadges }}</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <sc-for list="{{ badges }}" as="b" hint-placeholder-count="4">
+                <div style="min-height: 32px; padding: 0 11px; border-radius: 99px; background: {{ b.bg }}; color: {{ b.color }}; font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ b.label }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 14px; padding: 13px 14px; display: flex; flex-direction: column; gap: 9px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">{{ tRating }}</div>
+            <sc-for list="{{ rating }}" as="r" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 10px; min-height: 34px;">
+                <div style="flex: none; width: 22px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #93A0B5;">{{ r.place }}</div>
+                <div style="flex: 1; font-size: 13px; font-weight: {{ r.weight }}; color: {{ r.color }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.name }}</div>
+                <div style="flex: none; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #5A6B87;">{{ r.points }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <button onClick="{{ changeLang }}" style="width: 100%; min-height: 46px; border: 1px solid rgba(15,31,61,0.12); border-radius: 13px; background: #FFFFFF; color: #0F1F3D; font-size: 13.5px; font-weight: 600; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; cursor: pointer;" style-hover="border-color:#2C6BE6">
+            <span>Язык · Bahasa · Language</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #7C8BA6;">{{ langCode }}</span>
+          </button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isAsk }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="font-size: 13px; color: #5A6B87; line-height: 1.5;">Вопрос уходит шефу в панель. Ответ придёт сюда и попадёт в карточку блюда, если он общий для всех.</div>
+          <div style="background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Блюдо</div>
+            <div style="font-size: 14px; font-weight: 700;">{{ dishName }}</div>
+          </div>
+          <textarea value="{{ askText }}" onChange="{{ setAskText }}" placeholder="Что непонятно?" style="width: 100%; min-height: 110px; border: 1px solid rgba(15,31,61,0.12); border-radius: 14px; background: #FFFFFF; padding: 12px 14px; outline: none; resize: none; font-size: 13.5px; line-height: 1.45; color: #0F1F3D;"></textarea>
+          <button onClick="{{ sendAsk }}" style="width: 100%; min-height: 50px; border: 0; border-radius: 13px; background: #2C6BE6; color: #FFFFFF; font-size: 14px; font-weight: 700; cursor: pointer;">{{ askBtnLabel }}</button>
+        </div>
+      </sc-if>
+
+    </div>
+
+    <div style="flex: none; background: #FFFFFF; border-top: 1px solid rgba(15,31,61,0.1); padding: 7px 10px 12px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 4px;">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
+        <button onClick="{{ n.go }}" style="min-height: 48px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; cursor: pointer; border-radius: 12px;" style-hover="background:#F0F4FC">
+          <span style="font-size: 17px; line-height: 1; color: {{ n.color }};">{{ n.icon }}</span>
+          <span style="font-size: 10.5px; font-weight: 600; color: {{ n.color }};">{{ n.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+
+  </div>
+
+  <div style="max-width: 620px; display: flex; flex-direction: column; gap: 9px; background: #FFFFFF; border-radius: 16px; padding: 18px 20px; border: 1px solid rgba(15,31,61,0.08);">
+    <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #7C8BA6;">Что перенесено</div>
+    <div style="font-size: 13.5px; line-height: 1.6; color: #5A6B87; text-wrap: pretty;">Названия, разделы меню и ссылки на источник — {{ totalCards }} с сайта академии: ONLYEGGS, Healthy Fit, ONLY KEBAB, Hey Italia, вместе с соусами и заготовками. Точка на плитке показывает, есть ли уже текст приготовления: синяя — шаги в кабинете, серая — пока только на сайте. Шаги пошагово перенесены у American breakfast. Фото Google по внешней ссылке не отдаёт, рамки заполняются перетаскиванием.</div>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:700,&quot;height&quot;:1180}}">
+const BASE = 'https://sites.google.com/view/foodlab-edu/halaman-utama-home-page/kartu-teknologi-dan-instruks-technological-cards-and-cooking-instructions/';
+const OE = 'menu-onlyeggs/', HF = 'menu-healthy-fit/', KB = 'menu-only-kebab/', HI = 'menu-hey-italia/';
+
+// [название, меню, раздел, путь на сайте]
+const CATALOG = [
+  ['American breakfast','ONLYEGGS','Завтраки',OE+'american-breakfast'],
+  ['American lite breakfast','ONLYEGGS','Завтраки',OE+'american-lite-breakfast-eggs-hashbrown'],
+  ['Keto Breakfast (Eggs, Avocado)','ONLYEGGS','Завтраки',OE+'keto-breakfast-eggs-avocado'],
+  ['Protein Healthy Breakfast (Eggs, Chicken)','ONLYEGGS','Завтраки',OE+'protein-healthy-breakfast-eggs-chicken-sarapan-sehat-berprotein'],
+  ['English Breakfast (Eggs, Salad)','ONLYEGGS','Завтраки',OE+'english-breakfast-eggs-salad_1'],
+  ["Farmer'S Breakfast (Eggs, Bacon)",'ONLYEGGS','Завтраки',OE+'farmers-breakfast-eggs-bacon'],
+  ['Healthy Breakfast (Eggs, Toast, Avocado)','ONLYEGGS','Завтраки',OE+'healthy-breakfast-eggs-toast-avocado'],
+  ['Feta Cheese Shakshuka Eggs','ONLYEGGS','Шакшука',OE+'feta-cheese-shakshuka-eggs-breakfast'],
+  ['Green Shakshuka Eggs','ONLYEGGS','Шакшука',OE+'green-shakshuka-eggs-breakfast'],
+  ['Green Shakshuka With Mozzarella Cheese','ONLYEGGS','Шакшука',OE+'green-shakshuka-with-mozzarella-cheese-breakfast'],
+  ['Meat Shakshuka Eggs','ONLYEGGS','Шакшука',OE+'meat-shakshuka-eggs-breakfast'],
+  ['Shakshuka Eggs','ONLYEGGS','Шакшука',OE+'shakshuka-eggs-breakfast'],
+  ['Shakshuka Sause','ONLYEGGS','Шакшука',OE+'shakshuka-sause'],
+  ['Omelette with parsley','ONLYEGGS','Омлеты',OE+'omelet-with-parsley'],
+  ['Omelette with mushrooms and Parmesan','ONLYEGGS','Омлеты',OE+'omelet-with-mushrooms-and-parmesan'],
+  ['Avocado Omelette Eggs','ONLYEGGS','Омлеты',OE+'avocado-omelette-eggs'],
+  ['Masala Omelette Eggs','ONLYEGGS','Омлеты',OE+'masala-omelette-eggs'],
+  ['Omelette Eggs Curry with Broccoli and Tomatoes','ONLYEGGS','Омлеты',OE+'omelette-eggs-curry-with-broccoli-and-tomatoes-omelet-telur-kari'],
+  ['Mozzarella Yogurt Omelette Eggs','ONLYEGGS','Омлеты',OE+'mozzarella-yogurt-omelette-omelet-mozzarella-yogurt'],
+  ['Fried egg with Parmesan','ONLYEGGS','Яичница',OE+'fried-egg-with-parmesan'],
+  ['Fried eggs with parsley','ONLYEGGS','Яичница',OE+'fried-eggs-with-parsley'],
+  ['German sausage','ONLYEGGS','Яичница',OE+'german-sausage'],
+  ['Eggs Benedict (Hollandaise)','ONLYEGGS','Бенедикт',OE+'eggs-benedict-hollandaise'],
+  ['Benedict With Ham (Hollandaise)','ONLYEGGS','Бенедикт',OE+'benedict-with-ham-hollandaise'],
+  ['Benedict With Salmon (Hollandaise)','ONLYEGGS','Бенедикт',OE+'benedict-with-salmon-hollandaise'],
+  ['Avo Eggs Benedict (Hollandaise)','ONLYEGGS','Бенедикт',OE+'avo-eggs-benedict-hollandaise'],
+  ['Avocado Scramble Egg Toast','ONLYEGGS','Тосты с авокадо',OE+'avocado-scramble-egg-toast'],
+  ['Avocado poached egg toast','ONLYEGGS','Тосты с авокадо',OE+'avocado-poached-egg-toast'],
+  ['Avocado toast with Salmon','ONLYEGGS','Тосты с авокадо',OE+'avocado-toast-with-salmon'],
+  ['Ham Scramble Eggs','ONLYEGGS','Скрэмбл',OE+'ham-scramble-eggs'],
+  ['Greek scramble','ONLYEGGS','Скрэмбл',OE+'greek-scramble-telur-orak-arik-ala-yunani'],
+  ['Mozzarella scramble','ONLYEGGS','Скрэмбл',OE+'mozzarella-scramble-telur-orak-arik-mozzarella'],
+  ['Basil Cherry Scramble Eggs','ONLYEGGS','Скрэмбл',OE+'basil-cherry-scramble-eggs-telur-orak-arik-dengan-kemangi-dan-tomat-ceri'],
+  ['Avocado Spinach Scramble Eggs','ONLYEGGS','Скрэмбл',OE+'avocado-spinach-scramble-telur-orak-arik-dengan-alpukat-dan-bayam'],
+  ['Mushroom Scramble Eggs','ONLYEGGS','Скрэмбл',OE+'mushroom-scramble-eggs'],
+  ['Bacon Buffalo Scramble Eggs','ONLYEGGS','Скрэмбл',OE+'bacon-buffalo-scramble-eggs'],
+  ['Scramble extra cream','ONLYEGGS','Скрэмбл',OE+'scramble-extra-cream'],
+  ['Scramble eggs salmon','ONLYEGGS','Скрэмбл',OE+'scramble-eggs-salmon'],
+  ['Grilled Broccoli','ONLYEGGS','Дополнительно',OE+'grilled-broccoli-brokoli-bakar'],
+
+  ['Chicken & Creamy Mushroom Pasta','Healthy Fit','Паста',HI+'chicken-creamy-mushroom-pasta'],
+  ['Pasta Salmon','Healthy Fit','Паста',HF+'pasta-salmon'],
+  ['Pasta with prawn','Healthy Fit','Паста',HF+'pasta-with-prawn'],
+  ['Caesar salad with chicken','Healthy Fit','Салаты',HF+'caesar-salad-with-chicken'],
+  ['Caesar with prawn','Healthy Fit','Салаты',HF+'caesar-with-prawn'],
+  ['Greek salad','Healthy Fit','Салаты',HF+'greek-salad'],
+  ['Prawn salad with Quinoa','Healthy Fit','Салаты',HF+'prawn-salad-with-quinoa'],
+  ['Vegetable salad','Healthy Fit','Салаты',HF+'vegetable-salad'],
+  ['Caesar salad with smoked salmon','Healthy Fit','Салаты',HF+'caesar-salad-with-smoked-salmon'],
+  ['Chicken salad with quiona','Healthy Fit','Салаты',HF+'chicken-salad-with-quiona'],
+  ['Chicken Breast Wth Broccoli & Salsa','Healthy Fit','Курица',HF+'chicken-breast-wth-broccoli-salsa'],
+  ['Chicken with baby potatoes and salad','Healthy Fit','Курица',HF+'chicken-with-baby-potatoes-and-salad'],
+  ['Chicken with green beans','Healthy Fit','Курица',HF+'chicken-with-green-beans'],
+  ['Spaghetti with chicken','Healthy Fit','Курица',HF+'spaghetti-with-chicken'],
+  ['Chicken Poke Bowl','Healthy Fit','Боулы',HF+'chicken-poke-bowl'],
+  ['Honey Garlic Chicken Wth Rice','Healthy Fit','Рис',HF+'honey-garlic-chicken-wth-rice'],
+  ['Chicken Curry With Rice','Healthy Fit','Рис',HF+'chicken-curry-with-rice'],
+  ['Stir Fry Chicken Wth Vegetables & Rice','Healthy Fit','Рис',HF+'how-to-cook-quinoa/stir-fry-chicken-wth-vegetables-rice'],
+  ['Stir Fry Prawn Wth Vegetables & Rice','Healthy Fit','Рис',HF+'stir-fry-prawn-wth-vegetables-rice'],
+  ['Bruschetta Wth Salmon','Healthy Fit','Тосты',HF+'bruschetta-wth-salmon'],
+  ['Steak Salmon with green salad','Healthy Fit','Рыба',HF+'steak-salmon-with-green-salad'],
+  ['How to make smash avocado','Healthy Fit','Заготовки и соусы',HF+'how-to-make-smash-avocado'],
+  ['How to cook quinoa','Healthy Fit','Заготовки и соусы',HF+'how-to-cook-quinoa'],
+  ['Caesar dressing','Healthy Fit','Заготовки и соусы',HF+'caesar-dressing'],
+  ['“Honey Garlic” sauce','Healthy Fit','Заготовки и соусы',HF+'honey-garlic-sauce'],
+  ['Carrot for poke Bowl (salmon and prawn)','Healthy Fit','Заготовки и соусы',HF+'carrot-for-poke-bowl-salmon-and-prawn'],
+  ['Dressing “Honey Mustard”','Healthy Fit','Заготовки и соусы',HF+'dressing-honey-mustard'],
+  ['Sauce “Hollandaise”','Healthy Fit','Заготовки и соусы',HF+'sauce-hollandaise'],
+  ['Sauce for prawn and salmon poke bowl','Healthy Fit','Заготовки и соусы',HF+'sauce-for-prawn-and-salmon-poke-bowl'],
+  ['Wok sauce','Healthy Fit','Заготовки и соусы',HF+'wok-sauce'],
+  ['Curry pasta','Healthy Fit','Заготовки и соусы',HF+'curry-pasta'],
+  ['Yogurt with granola','Healthy Fit','Заготовки и соусы',HF+'yogurt-with-granola'],
+
+  ['Caucasian shawarma','ONLY KEBAB','Шаурма',KB+'caucasian-shawarma'],
+  ['Cheese chicken shawarma','ONLY KEBAB','Шаурма',KB+'cheese-chicken-shawarma'],
+  ['Classic shawarma','ONLY KEBAB','Шаурма',KB+'classic-shawarma'],
+  ['Curry shawarma','ONLY KEBAB','Шаурма',KB+'curry-shawarma'],
+  ['Japanese Shawarma','ONLY KEBAB','Шаурма',KB+'japanese-shawarma'],
+  ['Moscow shawarma','ONLY KEBAB','Шаурма',KB+'moscow-shawarma'],
+  ['Mushroom shawarma','ONLY KEBAB','Шаурма',KB+'mushroom-shawarma'],
+  ['Nuggets shawerma','ONLY KEBAB','Шаурма',KB+'nuggets-shawerma'],
+  ['Royal size shawarma','ONLY KEBAB','Шаурма',KB+'royal-size-shawarma'],
+  ['St.Piter shawarma','ONLY KEBAB','Шаурма',KB+'st-piter-shawarma'],
+  ['Caesar chicken Roll','ONLY KEBAB','Курица',KB+'caesar-chicken-roll'],
+  ['Chicken strips 1 portion (250 gr) 8 pcs','ONLY KEBAB','Курица',KB+'chicken-strips'],
+  ['Crispy Chicken wings 1 portion (240 gr) 6 pcs','ONLY KEBAB','Курица',KB+'crispy-chicken-wings'],
+  ['Curry sauce','ONLY KEBAB','Заготовки и соусы',KB+'curry-sauce'],
+  ['Garlic sauce (new)','ONLY KEBAB','Заготовки и соусы',KB+'garlic-sauce-new'],
+  ['Prepare vegetables','ONLY KEBAB','Заготовки и соусы',KB+'prepare-vegetables'],
+  ['Sauce for prawns','ONLY KEBAB','Заготовки и соусы',KB+'sauce-for-prawns'],
+  ['Tomato sauce for kebab (new)','ONLY KEBAB','Заготовки и соусы',KB+'tomato-sauce-for-kebab-new'],
+  ['White garlic sauce (Mayo+yogurt)','ONLY KEBAB','Заготовки и соусы',KB+'white-garlic-sauce-mayo-yogurt'],
+
+  ['Pizza Ham & Mushroom','Hey Italia','Пицца',HI+'pizza-ham-mushroom'],
+  ['Pizza Margherita','Hey Italia','Пицца',HI+'pizza-margherita'],
+  ['Pizza Pepperoni','Hey Italia','Пицца',HI+'pizza-pepperoni'],
+  ['Pizza Truffle Triple Cheese','Hey Italia','Пицца',HI+'pizza-truffle-triple-cheese'],
+  ['Pizza Farmer Chicken','Hey Italia','Пицца',HI+'pizza-farmer-chicken'],
+  ['Pizza Sausage & Bean','Hey Italia','Пицца',HI+'pizza-sausage-bean'],
+  ['Pizza Chilli con Carne','Hey Italia','Пицца',HI+'pizza-chilli-con-carne'],
+  ['Pizza Pineapple & Shrimp','Hey Italia','Пицца',HI+'pizza-pineapple-shrimp'],
+  ['Pizza Ham & Onion','Hey Italia','Пицца',HI+'pizza-ham-onion'],
+  ['Mac & Cheese with sausage','Hey Italia','Паста',HI+'mac-cheese-with-sausage'],
+  ['Pasta Bolognese','Hey Italia','Паста',HI+'pasta-bolognese'],
+  ['Penne Chicken&Mashroom','Hey Italia','Паста',HI+'penne-chickenmashroom'],
+  ['Penne Meditarranean','Hey Italia','Паста',HI+'penne-meditarranean'],
+  ['Pasta Salmon Pesto','Hey Italia','Паста',HI+'pasta-salmon-pesto'],
+  ['Pasta Carbonara','Hey Italia','Паста',HI+'pasta-carbonara'],
+  ['Pasta Chicken Mushrooms','Hey Italia','Паста',HI+'pasta-chicken-mushrooms']
+];
+
+// Перенесённые шаги, ключ — путь карточки на сайте
+const STEPS = {
+  [OE+'american-breakfast']: ['add oil and salt','start fry 2 eggs with low fire','fry 2 slice bacon','semifinished pancake','need fry 2 pcs pancake','need hot oil for hash brown','pancake need fry double side with low fire','bacon need fry until crispy','2 eggs ready','bacon need to dry without oil (with napkins)','pancake ready need to dry without oil (with napkins)','hash brown also need to dry without oil (with napkins)','1 slice brioche for 1 portion (need to cut to 2 pcs)','ready portion looks same lie as photo']
+};
+const VIDEO = { [OE+'american-breakfast']: 'https://www.youtube.com/embed/VsUCQUjpWtM' };
+
+const DISHES = CATALOG.map((c, i) => ({
+  id: 'd' + i, name: c[0], menu: c[1], section: c[2], path: c[3],
+  steps: STEPS[c[3]] || [], video: VIDEO[c[3]] || ''
+}));
+
+const MODULES = [
+  ['О компании','done'], ['Структура компании','done'], ['Санитарные нормы','test'],
+  ['Внешний вид','open'], ['Меню и тех.карты','lock'], ['Правила работы','lock'],
+  ['Хранение','lock'], ['Упаковка','lock'], ['Касса','lock'], ['Итоговый экзамен','lock']
+];
+
+const QUIZ = [
+  { q: 'Какая температура холодильника для готовой продукции?', o: ['0 … +4 °C','+5 … +10 °C','−18 °C','Любая ниже +15 °C'], a: 0 },
+  { q: 'Как часто менять перчатки при работе с сырым мясом?', o: ['Раз в смену','После каждой операции','Раз в час','Когда порвутся'], a: 1 },
+  { q: 'Где хранится сырая рыба относительно готовых блюд?', o: ['Выше','На той же полке','Ниже','Не важно'], a: 2 }
+];
+
+const T = {
+  ru: { home:'Главная', dishes:'Блюда', learn:'Обучение', profile:'Профиль', searchPh:'Блюдо или раздел меню', shift:'Смена сегодня', notDone:'Не сдано', progress:'Прогресс обучения', recent:'Недавно смотрел', favorites:'Избранное', cookMode:'Режим у плиты', steps:'Приготовление', notes:'Моя заметка', askChef:'Задать вопрос шефу', badges:'Значки', rating:'Рейтинг кухни', all:'Все блюда' },
+  en: { home:'Home', dishes:'Dishes', learn:'Training', profile:'Profile', searchPh:'Dish or menu section', shift:'Today shift', notDone:'Not passed', progress:'Training progress', recent:'Recently viewed', favorites:'Favorites', cookMode:'Kitchen mode', steps:'Cooking', notes:'My note', askChef:'Ask the chef', badges:'Badges', rating:'Kitchen rating', all:'All dishes' },
+  id: { home:'Utama', dishes:'Menu', learn:'Pelatihan', profile:'Profil', searchPh:'Menu atau bagian', shift:'Shift hari ini', notDone:'Belum lulus', progress:'Kemajuan pelatihan', recent:'Baru dilihat', favorites:'Favorit', cookMode:'Mode dapur', steps:'Cara memasak', notes:'Catatan saya', askChef:'Tanya chef', badges:'Lencana', rating:'Peringkat dapur', all:'Semua menu' }
+};
+
+const MENUS = ['Все', 'ONLYEGGS', 'Healthy Fit', 'ONLY KEBAB', 'Hey Italia'];
+
+class Component extends DCLogic {
+  state = {
+    screen: 'home', lang: null, prev: 'home',
+    query: '', menu: 'Все', searching: false,
+    dishId: 'd0', favs: ['d0', 'd75'], recent: ['d0', 'd54', 'd105'],
+    notes: {}, cookStep: 0,
+    tasksDone: [false, false, true],
+    quizIdx: 0, quizPick: null,
+    askText: '', askSent: false
+  };
+
+  dish(id) { return DISHES.find(d => d.id === (id || this.state.dishId)) || DISHES[0]; }
+  tr() { return T[this.state.lang || 'ru']; }
+  set(patch) { this.setState(patch); }
+
+  card(x) {
+    const s = this.state;
+    return {
+      name: x.name,
+      meta: x.menu + ' · ' + x.section,
+      slotId: 'fl-' + x.id,
+      stepsLabel: x.steps.length ? x.steps.length + ' шагов' : 'только на сайте',
+      dotColor: x.steps.length ? '#2C6BE6' : '#D3DBE7',
+      favColor: s.favs.includes(x.id) ? '#2C6BE6' : '#C0CADB',
+      open: () => this.set({ screen: 'dish', dishId: x.id, searching: false, query: '', cookStep: 0, recent: [x.id].concat(s.recent.filter(r => r !== x.id)).slice(0, 3) }),
+      toggleFav: () => this.set({ favs: s.favs.includes(x.id) ? s.favs.filter(f => f !== x.id) : s.favs.concat(x.id) })
+    };
+  }
+
+  renderVals() {
+    const s = this.state, t = this.tr(), d = this.dish();
+    const q = s.query.trim().toLowerCase();
+    const withSteps = DISHES.filter(x => x.steps.length).length;
+
+    const matches = q ? DISHES.filter(x =>
+      x.name.toLowerCase().includes(q) || x.section.toLowerCase().includes(q) || x.menu.toLowerCase().includes(q)
+    ).slice(0, 30) : [];
+
+    const list = DISHES.filter(x => s.menu === 'Все' || x.menu === s.menu);
+    const order = [];
+    const bySection = {};
+    list.forEach(x => {
+      const key = s.menu === 'Все' ? x.menu + ' · ' + x.section : x.section;
+      if (!bySection[key]) { bySection[key] = []; order.push(key); }
+      bySection[key].push(x);
+    });
+
+    const titles = { home: 'Ari Kusuma', dishes: t.dishes, dish: d.name, learn: t.learn, profile: t.profile, test: 'Санитарные нормы', ask: t.askChef };
+    const subs = { home: 'Повар · Hot station', dishes: DISHES.length + ' карточек', dish: d.menu + ' · ' + d.section, learn: 'Модули по должности', profile: 'Баллы и значки', test: 'Тест · 3 вопроса', ask: 'Вопрос уходит шефу' };
+    const q0 = QUIZ[s.quizIdx];
+    const navItem = (key, icon, label) => ({
+      icon, label, color: s.screen === key ? '#2C6BE6' : '#93A0B5',
+      go: () => this.set({ screen: key, searching: false, query: '' })
+    });
+
+    return {
+      totalCards: 'все ' + DISHES.length + ' карточек',
+      catalogNote: DISHES.length + ' карточек с сайта академии · ' + withSteps + ' с перенесёнными шагами',
+      isLang: !s.lang,
+      langs: [['Bahasa Indonesia','ID','id'], ['English','EN','en'], ['Русский','RU','ru']].map(l => ({
+        label: l[0], code: l[1], pick: () => this.set({ lang: l[2] })
+      })),
+      langCode: (s.lang || 'ru').toUpperCase(),
+      changeLang: () => this.set({ lang: null }),
+
+      headerTitle: s.searching && q ? 'Поиск' : titles[s.screen],
+      headerSub: s.searching && q ? 'Название и раздел меню' : subs[s.screen],
+      showBack: ['dish','test','ask'].includes(s.screen) || (s.searching && !!q),
+      goBack: () => (s.searching && q) ? this.set({ searching: false, query: '' }) : this.set({ screen: s.screen === 'dish' ? 'dishes' : (s.prev === s.screen ? 'home' : s.prev) }),
+
+      query: s.query, hasQuery: !!s.query, tSearchPh: t.searchPh,
+      setQuery: e => this.set({ query: e.target.value, searching: true }),
+      focusSearch: () => this.set({ searching: true }),
+      clearQuery: () => this.set({ query: '', searching: false }),
+      isSearch: s.searching && !!q,
+      results: matches.map(x => this.card(x)),
+      noResults: s.searching && !!q && matches.length === 0,
+      resultsLabel: 'Найдено: ' + matches.length,
+
+      isHome: s.screen === 'home' && !(s.searching && q),
+      tShift: t.shift, tNotDone: t.notDone, tProgress: t.progress, tRecent: t.recent, tAskChef: t.askChef, allDishesLabel: t.all,
+      tasks: ['Проверить температуру холодильников','Маркировка заготовок','Прочитать: Санитарные нормы'].map((text, i) => ({
+        text, mark: s.tasksDone[i] ? '✓' : '',
+        boxColor: s.tasksDone[i] ? '#6FA0FF' : 'rgba(255,255,255,0.4)',
+        boxFill: s.tasksDone[i] ? '#6FA0FF' : 'transparent',
+        opacity: s.tasksDone[i] ? 0.55 : 1,
+        toggle: () => this.set({ tasksDone: s.tasksDone.map((v, j) => j === i ? !v : v) })
+      })),
+      recent: s.recent.map(id => this.card(this.dish(id))),
+      goLearn: () => this.set({ screen: 'learn' }),
+      goDishes: () => this.set({ screen: 'dishes' }),
+      goAsk: () => this.set({ screen: 'ask', prev: s.screen, askSent: false }),
+
+      isDishes: s.screen === 'dishes' && !(s.searching && q),
+      menus: MENUS.map(m => ({
+        label: m, pick: () => this.set({ menu: m }),
+        bg: s.menu === m ? '#2C6BE6' : '#FFFFFF',
+        color: s.menu === m ? '#FFFFFF' : '#5A6B87',
+        border: s.menu === m ? '#2C6BE6' : 'rgba(15,31,61,0.12)'
+      })),
+      tFavorites: t.favorites,
+      hasFavs: s.favs.length > 0,
+      favs: s.favs.map(id => this.card(this.dish(id))),
+      groups: order.map(key => ({
+        title: key, count: bySection[key].length + ' шт.',
+        dishes: bySection[key].map(x => this.card(x))
+      })),
+
+      isDish: s.screen === 'dish' && !(s.searching && q),
+      dishName: d.name, dishSlotId: 'fl-' + d.id,
+      dishSource: BASE + d.path,
+      hasVideo: !!d.video, dishVideo: d.video,
+      hasSteps: d.steps.length > 0, noSteps: d.steps.length === 0,
+      dishSteps: d.steps.map((text, i) => ({ n: i + 1, label: 'ШАГ ' + (i + 1), text, slotId: 'fl-' + d.id + '-s' + (i + 1) })),
+      dishStepCount: d.steps.length + ' шагов',
+      dishFavColor: s.favs.includes(d.id) ? '#2C6BE6' : '#C0CADB',
+      toggleCurrentFav: () => this.set({ favs: s.favs.includes(d.id) ? s.favs.filter(f => f !== d.id) : s.favs.concat(d.id) }),
+      tSteps: t.steps, tNotes: t.notes, tCookMode: t.cookMode,
+      cookBtnLabel: d.steps.length ? t.cookMode : 'Шаги не перенесены',
+      cookBtnBg: d.steps.length ? '#2C6BE6' : '#E4E9F2',
+      cookBtnColor: d.steps.length ? '#FFFFFF' : '#93A0B5',
+      note: s.notes[d.id] || '',
+      setNote: e => this.set({ notes: Object.assign({}, s.notes, { [d.id]: e.target.value }) }),
+
+      isCook: s.screen === 'cook',
+      enterCook: () => d.steps.length ? this.set({ screen: 'cook', cookStep: 0 }) : null,
+      exitCook: () => this.set({ screen: 'dish' }),
+      cookStepNo: s.cookStep + 1,
+      cookStepText: d.steps[s.cookStep] || '',
+      cookSlotId: 'fl-' + d.id + '-s' + (s.cookStep + 1),
+      cookSlotHint: 'Фото шага ' + (s.cookStep + 1),
+      cookProgress: d.steps.length ? Math.round((s.cookStep + 1) / d.steps.length * 100) + '%' : '0%',
+      cookNextLabel: s.cookStep + 1 >= d.steps.length ? 'Готово' : 'Дальше ' + (s.cookStep + 2) + '/' + d.steps.length,
+      nextStep: () => s.cookStep + 1 >= d.steps.length ? this.set({ screen: 'dish' }) : this.set({ cookStep: s.cookStep + 1 }),
+      prevStep: () => this.set({ cookStep: Math.max(0, s.cookStep - 1) }),
+
+      isLearn: s.screen === 'learn' && !(s.searching && q),
+      modules: MODULES.map((m, i) => {
+        const st = m[1];
+        return {
+          title: (i + 1) + '. ' + m[0],
+          status: st === 'done' ? 'Пройдено · тест 100%' : st === 'test' ? 'Тест не сдан' : st === 'open' ? 'Можно проходить' : 'Откроется позже',
+          icon: st === 'done' ? '✓' : st === 'lock' ? '·' : (i + 1),
+          badgeBg: st === 'done' ? '#DCEBDD' : st === 'test' ? '#FBE3DE' : st === 'open' ? '#E9F0FE' : '#EDF1F7',
+          badgeColor: st === 'done' ? '#2F6B3A' : st === 'test' ? '#B03A28' : st === 'open' ? '#1B4FB8' : '#A9B4C6',
+          bg: st === 'lock' ? '#F7F9FD' : '#FFFFFF',
+          border: st === 'test' ? 'rgba(224,91,79,0.3)' : 'rgba(15,31,61,0.09)',
+          titleColor: st === 'lock' ? '#93A0B5' : '#0F1F3D',
+          open: () => st === 'lock' ? null : this.set({ screen: 'test', prev: 'learn', quizIdx: 0, quizPick: null })
+        };
+      }),
+
+      isTest: s.screen === 'test' && !(s.searching && q),
+      quizQuestion: q0.q,
+      quizCounter: (s.quizIdx + 1) + '/' + QUIZ.length,
+      quizProgress: Math.round((s.quizIdx + 1) / QUIZ.length * 100) + '%',
+      quizAnswered: s.quizPick !== null,
+      quizOptions: q0.o.map((text, i) => {
+        const picked = s.quizPick === i, correct = i === q0.a, show = s.quizPick !== null;
+        return {
+          text, letter: 'ABCD'[i],
+          border: show && correct ? '#3E8B4E' : picked ? '#E05B4F' : 'rgba(15,31,61,0.12)',
+          bg: show && correct ? '#EDF7EE' : picked ? '#FDF0EE' : '#FFFFFF',
+          markBg: show && correct ? '#3E8B4E' : picked ? '#E05B4F' : '#C0CADB',
+          pick: () => s.quizPick === null ? this.set({ quizPick: i }) : null
+        };
+      }),
+      quizNextLabel: s.quizIdx + 1 >= QUIZ.length ? 'Завершить тест' : 'Следующий вопрос',
+      quizNext: () => s.quizIdx + 1 >= QUIZ.length ? this.set({ screen: 'learn', quizIdx: 0, quizPick: null }) : this.set({ quizIdx: s.quizIdx + 1, quizPick: null }),
+
+      isProfile: s.screen === 'profile' && !(s.searching && q),
+      tBadges: t.badges, tRating: t.rating,
+      stats: [{ value: '1 240', label: 'баллов' }, { value: '4', label: 'уровень' }, { value: '3 / 18', label: 'место на кухне' }],
+      badges: [['Первый тест','#E9F0FE','#1B4FB8'], ['Санитария','#DCEBDD','#2F6B3A'], ['10 блюд','#FBE9DE','#A2542F'], ['Без ошибок','#EDE7FB','#4A3A82']].map(b => ({ label: b[0], bg: b[1], color: b[2] })),
+      rating: [['1','Dewi Lestari','1 980'], ['2','Putu Adi','1 410'], ['3','Ari Kusuma','1 240'], ['4','Made Surya','1 105']].map(r => ({
+        place: r[0], name: r[1], points: r[2],
+        weight: r[1] === 'Ari Kusuma' ? 700 : 500,
+        color: r[1] === 'Ari Kusuma' ? '#1B4FB8' : '#0F1F3D'
+      })),
+
+      isAsk: s.screen === 'ask' && !(s.searching && q),
+      askText: s.askText,
+      setAskText: e => this.set({ askText: e.target.value, askSent: false }),
+      askBtnLabel: s.askSent ? 'Отправлено ✓' : 'Отправить шефу',
+      sendAsk: () => this.set({ askSent: true }),
+
+      nav: [navItem('home','◉',t.home), navItem('dishes','▤',t.dishes), navItem('learn','✎',t.learn), navItem('profile','☺',t.profile)]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

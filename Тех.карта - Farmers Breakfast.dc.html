@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<script src="./card-photos.js"></script>
+<style>
+  body { margin: 0; background: #E7EDF7; -webkit-font-smoothing: antialiased; }
+  a { color: #1B4FB8; text-decoration: none; }
+  a:hover { color: #E05B4F; }
+  * { box-sizing: border-box; }
+  input, button, textarea { font-family: inherit; }
+  .fl-tray::-webkit-scrollbar { height: 8px; }
+  .fl-tray::-webkit-scrollbar-thumb { background: #C7D4E8; border-radius: 99px; }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #E7EDF7; font-family: 'Plus Jakarta Sans', Helvetica, sans-serif; color: #0F1F3D; padding: 34px 24px 64px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+
+  <div style="width: 100%; max-width: 580px; display: flex; align-items: center; gap: 10px;">
+    <a href="./%D0%90%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D0%B8%D1%8F.dc.html" style="flex: none; min-height: 40px; padding: 11px 14px; border: 1px solid rgba(20,45,90,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; text-decoration: none;">← Каталог</a>
+    <sc-if value="{{ canEdit }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleEdit }}" style="min-height: 40px; padding: 0 16px; border: 0; border-radius: 11px; background: {{ editBtnBg }}; color: {{ editBtnColor }}; font-size: 13px; font-weight: 700; cursor: pointer;">{{ editBtnLabel }}</button>
+    </sc-if>
+    <div style="flex: 1; font-size: 12px; color: #7C8BA6; line-height: 1.4;">{{ editNote }}</div>
+    <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ resetAll }}" style="min-height: 40px; padding: 0 13px; border: 1px solid rgba(15,31,61,0.14); border-radius: 11px; background: #FFFFFF; color: #5A6B87; font-size: 12px; font-weight: 600; cursor: pointer;">Вернуть исходное</button>
+    </sc-if>
+    <sc-if value="{{ canEdit }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleDone }}" style="flex: none; min-height: 40px; padding: 0 16px; border: 0; border-radius: 11px; background: {{ doneBg }}; color: {{ doneColor }}; font-size: 13px; font-weight: 700; cursor: pointer;">{{ doneLabel }}</button>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ working }}" hint-placeholder-val="{{ true }}">
+  <div ref="{{ dropRef }}" style="width: 100%; max-width: 580px; border: 2px dashed {{ dropBorder }}; border-radius: 16px; background: {{ dropBg }}; padding: 13px 16px; display: flex; align-items: center; gap: 13px;">
+    <div style="flex: none; width: 38px; height: 38px; border-radius: 11px; background: #2C6BE6; color: #FFFFFF; font-size: 18px; display: flex; align-items: center; justify-content: center;">↓</div>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+      <div style="font-size: 13.5px; font-weight: 700; color: #1B4FB8;">{{ dropTitle }}</div>
+      <div style="font-size: 11.5px; color: #5A6B87; line-height: 1.4;">{{ dropHint }}</div>
+    </div>
+    <button onClick="{{ browse }}" style="flex: none; min-height: 38px; padding: 0 14px; border: 1px solid rgba(44,107,230,0.4); border-radius: 10px; background: #FFFFFF; color: #1B4FB8; font-size: 12px; font-weight: 600; cursor: pointer;">Выбрать файлы</button>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ hasPool }}" hint-placeholder-val="{{ false }}">
+    <div style="width: 100%; max-width: 580px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.1); border-radius: 16px; padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 12px; z-index: 5; box-shadow: 0 8px 22px -12px rgba(15,31,61,0.3);">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">{{ poolLabel }}</div>
+        <div style="display: flex; align-items: center; gap: 7px;">
+          <button onClick="{{ clearPool }}" style="border: 0; background: transparent; color: #93A0B5; font-size: 12px; font-weight: 600; cursor: pointer; padding: 4px;">Очистить</button>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px; background: #EDF3FE; border-radius: 12px; padding: 9px 11px;">
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: #7C8BA6;">Сейчас заполняем</div>
+          <div style="font-size: 13.5px; font-weight: 700; color: #1B4FB8; line-height: 1.3;">{{ cursorTitle }}</div>
+          <div style="font-size: 11.5px; color: #5A6B87; line-height: 1.35;">{{ cursorText }}</div>
+        </div>
+        <div style="flex: none; display: flex; flex-direction: column; gap: 5px;">
+          <button onClick="{{ skipSlot }}" style="min-height: 30px; padding: 0 11px; border: 1px solid rgba(44,107,230,0.35); border-radius: 9px; background: #FFFFFF; color: #1B4FB8; font-size: 11.5px; font-weight: 600; cursor: pointer;">Пропустить →</button>
+          <button onClick="{{ backSlot }}" style="min-height: 30px; padding: 0 11px; border: 1px solid rgba(15,31,61,0.14); border-radius: 9px; background: #FFFFFF; color: #5A6B87; font-size: 11.5px; font-weight: 600; cursor: pointer;">← Назад</button>
+        </div>
+      </div>
+
+      <div class="fl-tray" style="display: flex; gap: 9px; overflow-x: auto; padding-bottom: 6px;">
+        <sc-for list="{{ pool }}" as="p" hint-placeholder-count="0">
+          <button onClick="{{ p.place }}" style="position: relative; flex: none; width: 92px; border: 2px solid rgba(15,31,61,0.12); border-radius: 12px; background: #FFFFFF; padding: 0; overflow: hidden; cursor: pointer; display: flex; flex-direction: column;" style-hover="border-color: #2C6BE6;">
+            <img ref="{{ p.setImg }}" alt="" style="width: 100%; height: 66px; object-fit: cover; display: block; background: #EDF1F7;" />
+            <span onClick="{{ p.hide }}" style="position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border-radius: 7px; background: rgba(15,31,61,0.62); color: #FFFFFF; font-size: 12px; line-height: 20px; text-align: center; cursor: pointer;">×</span>
+            <span style="padding: 5px 6px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; color: #93A0B5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ p.tag }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="font-size: 12px; color: #5A6B87; line-height: 1.45;">{{ tip }}</div>
+    </div>
+  </sc-if>
+
+  <div style="width: 100%; max-width: 580px; background: #F5F8FE; border: 1px solid rgba(15,31,61,0.1); border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 16px;">
+
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #7C8BA6;">ONLYEGGS · Завтраки</div>
+      <div style="font-size: 23px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.12;">Farmer's Breakfast (Eggs, Bacon)</div>
+      <div style="font-size: 13px; color: #5A6B87;">{{ subLine }}</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 7px;">
+      <div ref="{{ heroRef }}" onClick="{{ heroClick }}" style="position: relative; height: 250px; border-radius: 16px; overflow: hidden; background: #E4EBF6; border: 3px solid {{ heroOutline }}; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+        <sc-if value="{{ heroFilled }}" hint-placeholder-val="{{ false }}">
+          <img ref="{{ heroImgRef }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+        </sc-if>
+        <sc-if value="{{ heroEmpty }}" hint-placeholder-val="{{ true }}">
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; line-height: 1.6; color: #8494AD; text-align: center; padding: 0 20px;">главное фото · готовое блюдо</div>
+        </sc-if>
+        <sc-if value="{{ heroActive }}" hint-placeholder-val="{{ false }}">
+          <div style="position: absolute; top: 10px; left: 10px; background: #2C6BE6; color: #FFFFFF; border-radius: 8px; padding: 4px 9px; font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;">сейчас</div>
+        </sc-if>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasPortion }}" hint-placeholder-val="{{ false }}">
+    <div style="background: #FFFFFF; border: 1px solid rgba(44,107,230,0.22); border-radius: 16px; overflow: hidden;">
+      <div style="padding: 13px 16px; background: #2C6BE6; display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+        <div style="font-size: 14px; font-weight: 700; color: #FFFFFF;">Состав порции</div>
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.8);">{{ portionTag }}</div>
+      </div>
+      <sc-if value="{{ portionDraft }}" hint-placeholder-val="{{ true }}">
+        <div style="padding: 10px 16px; background: #FFF4E8; border-bottom: 1px solid rgba(224,91,79,0.2); font-size: 12px; color: #7A3428; line-height: 1.45;">Собрано мной из текстов шагов на странице академии — официальной таблицы состава там нет. Впишите верные цифры и нажмите «Подтвердить».</div>
+      </sc-if>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ portion }}" as="i" hint-placeholder-count="5">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-bottom: 1px solid rgba(15,31,61,0.07); background: {{ i.bg }};">
+            <input value="{{ i.name }}" onChange="{{ i.setName }}" readOnly="{{ locked }}" style="flex: 1; min-width: 0; min-height: 30px; border: {{ inputBorder }}; border-radius: 8px; background: transparent; padding: 0 {{ inputPad }}; font-size: 13.5px; font-weight: 500; color: #0F1F3D; outline: none;" />
+            <input value="{{ i.qty }}" onChange="{{ i.setQty }}" readOnly="{{ locked }}" style="flex: none; width: 190px; min-width: 0; min-height: 30px; border: {{ inputBorder }}; border-radius: 8px; background: transparent; padding: 0 {{ inputPad }}; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #1B4FB8; text-align: right; outline: none;" />
+            <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ i.remove }}" style="flex: none; width: 32px; height: 32px; border: 1px solid rgba(224,91,79,0.3); border-radius: 9px; background: #FFF6F4; color: #C0432F; font-size: 14px; cursor: pointer;">×</button>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+        <div style="padding: 10px 16px; display: flex; gap: 9px;">
+          <button onClick="{{ addPortion }}" style="min-height: 36px; padding: 0 13px; border: 1px dashed rgba(44,107,230,0.4); border-radius: 10px; background: #FFFFFF; color: #1B4FB8; font-size: 12px; font-weight: 600; cursor: pointer;">Добавить продукт</button>
+          <sc-if value="{{ portionDraft }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ confirmPortion }}" style="min-height: 36px; padding: 0 13px; border: 0; border-radius: 10px; background: #3E8B4E; color: #FFFFFF; font-size: 12px; font-weight: 700; cursor: pointer;">Подтвердить состав</button>
+          </sc-if>
+        </div>
+      </sc-if>
+    </div>
+    </sc-if>
+
+    <div style="background: #FFFFFF; border: 1px solid rgba(44,107,230,0.22); border-radius: 16px; overflow: hidden;">
+      <div style="padding: 13px 16px; background: #E9F0FE; display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 13.5px; font-weight: 700; color: #1B4FB8;">Состав блюда · брутто / нетто</div>
+        <div style="font-size: 11.5px; color: #5A6B87;">{{ prepSub }}</div>
+      </div>
+      <sc-if value="{{ noPrep }}" hint-placeholder-val="{{ true }}">
+        <div style="padding: 14px 16px; font-size: 12.5px; color: #7A3428; background: #FFF4E8; line-height: 1.5;">Жду скрин состава со страницы академии — впишу продукты с граммовками сюда.</div>
+      </sc-if>
+      <sc-if value="{{ hasPrep }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; gap: 8px; padding: 9px 16px; background: #F7F9FD; border-bottom: 1px solid rgba(15,31,61,0.08); font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #7C8BA6;">
+          <div style="flex: 1; min-width: 0;">Продукт</div>
+          <div style="flex: none; width: 104px; text-align: right;">Брутто</div>
+          <div style="flex: none; width: 104px; text-align: right;">Нетто</div>
+          <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+            <div style="flex: none; width: 32px;"></div>
+          </sc-if>
+        </div>
+        <sc-for list="{{ prep }}" as="r" hint-placeholder-count="6">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-bottom: 1px solid rgba(15,31,61,0.06); background: {{ r.bg }};">
+            <input value="{{ r.name }}" onChange="{{ r.setName }}" readOnly="{{ locked }}" style="flex: 1; min-width: 0; min-height: 30px; border: {{ inputBorder }}; border-radius: 8px; background: transparent; padding: 0 {{ inputPad }}; font-size: 13px; color: #0F1F3D; outline: none;" />
+            <input value="{{ r.gross }}" onChange="{{ r.setGross }}" readOnly="{{ locked }}" style="flex: none; width: 104px; min-width: 0; min-height: 30px; border: {{ inputBorder }}; border-radius: 8px; background: transparent; padding: 0 {{ inputPad }}; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #5A6B87; text-align: right; outline: none;" />
+            <input value="{{ r.net }}" onChange="{{ r.setNet }}" readOnly="{{ locked }}" style="flex: none; width: 104px; min-width: 0; min-height: 30px; border: {{ inputBorder }}; border-radius: 8px; background: transparent; padding: 0 {{ inputPad }}; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #1B4FB8; text-align: right; outline: none;" />
+            <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ r.remove }}" style="flex: none; width: 32px; height: 32px; border: 1px solid rgba(224,91,79,0.3); border-radius: 9px; background: #FFF6F4; color: #C0432F; font-size: 14px; cursor: pointer;">×</button>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+      </sc-if>
+      <div style="padding: 10px 16px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <input value="{{ prepNote }}" onChange="{{ setPrepNote }}" readOnly="{{ locked }}" style="flex: 1; min-width: 160px; min-height: 32px; border: {{ inputBorder }}; border-radius: 8px; background: transparent; padding: 0 {{ inputPad }}; font-size: 12px; color: #7C8BA6; outline: none;" />
+        <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ addPrep }}" style="min-height: 36px; padding: 0 13px; border: 1px dashed rgba(44,107,230,0.4); border-radius: 10px; background: #FFFFFF; color: #1B4FB8; font-size: 12px; font-weight: 600; cursor: pointer;">Добавить строку</button>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 7px;">
+      <div style="border-radius: 14px; overflow: hidden; background: #0F1F3D; aspect-ratio: 16 / 9;">
+        <iframe ref="{{ setVideo }}" title="Cooking video" allow="encrypted-media; picture-in-picture" allowfullscreen="true" style="width: 100%; height: 100%; border: 0; display: block;"></iframe>
+      </div>
+      <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+        <input value="{{ videoUrl }}" onChange="{{ setVideoUrl }}" placeholder="https://youtu.be/…" style="width: 100%; min-height: 38px; border: 1px solid rgba(15,31,61,0.14); border-radius: 10px; padding: 0 12px; font-size: 12.5px; outline: none;" />
+      </sc-if>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 9px;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7C8BA6;">Приготовление</div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button onClick="{{ toggleRu }}" style="min-height: 28px; padding: 0 10px; border: 1px solid rgba(44,107,230,0.3); border-radius: 8px; background: {{ ruBtnBg }}; color: #1B4FB8; font-size: 11px; font-weight: 600; cursor: pointer;">{{ ruBtnLabel }}</button>
+          <div style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #93A0B5;">{{ stepsLabel }}</div>
+        </div>
+      </div>
+
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="14">
+        <div style="display: flex; gap: 11px; background: #FFFFFF; border: 1px solid rgba(15,31,61,0.09); border-radius: 13px; padding: 9px;">
+          <div style="flex: none; width: 108px; display: flex; flex-direction: column; gap: 6px;">
+            <div ref="{{ s.slotRef }}" onClick="{{ s.click }}" style="position: relative; height: 74px; border-radius: 10px; overflow: hidden; background: #E9EEF7; border: 3px solid {{ s.outline }}; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <sc-if value="{{ s.filled }}" hint-placeholder-val="{{ false }}">
+                <img ref="{{ s.imgRef }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+              </sc-if>
+              <sc-if value="{{ s.empty }}" hint-placeholder-val="{{ true }}">
+                <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: #8494AD; text-align: center; line-height: 1.5;">{{ s.slotHint }}</div>
+              </sc-if>
+              <sc-if value="{{ s.active }}" hint-placeholder-val="{{ false }}">
+                <div style="position: absolute; top: 4px; left: 4px; background: #2C6BE6; color: #FFFFFF; border-radius: 6px; padding: 2px 6px; font-family: 'IBM Plex Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; text-transform: uppercase;">сейчас</div>
+              </sc-if>
+            </div>
+          </div>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; padding-top: 2px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <div style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; color: #2C6BE6; letter-spacing: 0.1em;">ШАГ {{ s.n }}</div>
+              <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; gap: 5px;">
+                  <button onClick="{{ s.up }}" style="width: 30px; height: 30px; border: 1px solid rgba(15,31,61,0.14); border-radius: 8px; background: #FFFFFF; color: #5A6B87; font-size: 12px; cursor: pointer;">↑</button>
+                  <button onClick="{{ s.down }}" style="width: 30px; height: 30px; border: 1px solid rgba(15,31,61,0.14); border-radius: 8px; background: #FFFFFF; color: #5A6B87; font-size: 12px; cursor: pointer;">↓</button>
+                  <button onClick="{{ s.remove }}" style="width: 30px; height: 30px; border: 1px solid rgba(224,91,79,0.3); border-radius: 8px; background: #FFF6F4; color: #C0432F; font-size: 13px; cursor: pointer;">×</button>
+                </div>
+              </sc-if>
+            </div>
+            <textarea value="{{ s.text }}" onChange="{{ s.setText }}" readOnly="{{ locked }}" style="width: 100%; min-height: 46px; border: {{ inputBorder }}; border-radius: 9px; background: transparent; padding: {{ areaPad }}; font-size: 13px; line-height: 1.45; color: #0F1F3D; outline: none; resize: vertical;"></textarea>
+            <sc-if value="{{ s.showRu }}" hint-placeholder-val="{{ true }}">
+              <div style="font-size: 12px; color: #7C8BA6; line-height: 1.4; border-left: 2px solid rgba(44,107,230,0.3); padding-left: 8px;">{{ s.ru }}</div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+
+      <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ addStep }}" style="width: 100%; min-height: 44px; border: 1px dashed rgba(44,107,230,0.4); border-radius: 12px; background: #FFFFFF; color: #1B4FB8; font-size: 13px; font-weight: 600; cursor: pointer;">Добавить шаг</button>
+      </sc-if>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div style="width: 100%; max-width: 580px; margin: 4px auto 24px; display: flex; gap: 10px;">
+  <a href="./Тех.карта - English Breakfast.dc.html" style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,45,90,0.14); border-radius: 12px; background: #FFFFFF; color: #5A6B87; font-size: 13px; font-weight: 600; text-decoration: none;">← Предыдущая</a>
+  <a href="./Тех.карта - Healthy Breakfast Avocado.dc.html" style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: #1B4FB8; color: #FFFFFF; font-size: 13px; font-weight: 700; text-decoration: none;">Следующая тех.карта →</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:640,&quot;height&quot;:1200}}">
+const KEY = 'foodlab-card-farmers-breakfast';
+const CAN_EDIT = (function () {
+  try {
+    const s = JSON.parse(localStorage.getItem('foodlab-session') || 'null');
+    return !!(s && (s.role === 'admin' || s.role === 'sous'));
+  } catch (e) { return false; }
+})();
+
+const PREP_V = 4;
+
+// Фото с Google Sites по прямой ссылке не отдаются (hotlink закрыт),
+// поэтому кадры грузятся папкой и раскладываются кликом.
+
+
+// Рабочий перевод шагов — только подсказка для сверки, в карту не идёт
+const RU = ['нарезать 2 ломтика бекона и 1 маленькую сосиску','подготовить все овощи: лук, бэби-картофель (отварной), микс сладкого перца','обжарить 3 яйца','начать обжаривать все ингредиенты','начать с бекона и сосиски','обжарить бекон до хруста','добавить бэби-картофель','добавить немного соли','добавить немного чёрного перца','добавить лук','добавить весь микс сладкого перца','протушить все ингредиенты','сначала выложить все овощи','выложить 3 яичницы и 1 бриошь'];
+
+const BASE_STEPS = ['need to cut 2 slice bacon and 1 pcs small sausage','need to prepare all vegetables: onion, baby potato (boiled), bell peppers mix','need to fry 3 eggs','need to start fry all ingredients','start with bacon and sausage','need to fry bacon until crispy','need to add baby potato','need to add little bit salt','need to add little bit black pepper','need to add onion','need to add all mix bell peppers','need to cook all ingredients','serving first all vegetables','serving 3 fried eggs and 1 brioche'];
+
+function defaults() {
+  return {
+    steps: BASE_STEPS.map((text, i) => ({ slotId: 'farm-s'.replace('-s','-s') + (i + 1), text, ru: RU[i] || '', photo: null, src: null })),
+    hero: { photo: null, src: null },
+    serve: { photo: null, src: null },
+    portion: [['Fried eggs','3 pcs'],['Bacon','2 ломтика'],['Sausage small halal','1 pcs'],['Baby potato','80 g'],['Bell peppers mix','yellow + green + red'],['Toast bread','1 slice']].map(r => ({ name: r[0], qty: r[1] })),
+    prep: [['Chicken eggs','3 pcs','3 pcs'],['Bacon','2 slice','2 slice 65 g'],['Sausage small halal','1 pcs 33 g','1 pcs 33 g'],['Onion','20 g','15 g (23%)'],['Baby potato','80 g','80 g'],['Bell pepper yellow','35 g','30 g (20%)'],['Bell pepper green','35 g','30 g (20%)'],['Bell pepper red','35 g','30 g (20%)'],['Salt','2 g','2 g'],['Black pepper','1 g','1 g'],['Garlic','5 g','5 g (10%)'],['Sunflower oil','25 ml','25 ml'],['Toast bread','1 slice','1 slice']].map(r => ({ name: r[0], gross: r[1], net: r[2] })),
+    prepNote: 'Состав по тех.карте академии',
+    video: 'https://youtu.be/cf_XhzYItbA',
+    portionDraft: false
+  };
+}
+
+// Фото хранятся в IndexedDB как сжатые dataURL, поэтому живут после перезагрузки
+function idb() {
+  return new Promise((res, rej) => {
+    const r = indexedDB.open('foodlab-photos', 1);
+    r.onupgradeneeded = () => { if (!r.result.objectStoreNames.contains('pool')) r.result.createObjectStore('pool'); };
+    r.onsuccess = () => res(r.result);
+    r.onerror = () => rej(r.error);
+  });
+}
+
+async function idbPut(key, val) {
+  const db = await idb();
+  return new Promise((res, rej) => {
+    const t = db.transaction('pool', 'readwrite');
+    t.objectStore('pool').put(val, key);
+    t.oncomplete = res;
+    t.onerror = () => rej(t.error);
+  });
+}
+
+async function idbGet(key) {
+  const db = await idb();
+  return new Promise((res, rej) => {
+    const t = db.transaction('pool', 'readonly');
+    const q = t.objectStore('pool').get(key);
+    q.onsuccess = () => res(q.result || []);
+    q.onerror = () => rej(q.error);
+  });
+}
+
+function shrink(file, max) {
+  return new Promise(res => {
+    const fr = new FileReader();
+    fr.onload = () => {
+      const im = new Image();
+      im.onload = () => {
+        const k = Math.min(1, max / Math.max(im.width, im.height));
+        const c = document.createElement('canvas');
+        c.width = Math.round(im.width * k);
+        c.height = Math.round(im.height * k);
+        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+        res(c.toDataURL('image/jpeg', 0.72));
+      };
+      im.onerror = () => res(fr.result);
+      im.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+
+class Component extends DCLogic {
+  state = Object.assign({ over: false, pool: [], msg: '', editing: false, cursor: 'hero', ruOn: true, done: false, compMode: false, comps: [] }, defaults());
+
+  // Перенос на другой компьютер: фото и раскладка лежат в card-photos.js.
+  // Хранилище браузера при открытии из файла недоступно, поэтому читаем прямо оттуда.
+  async hydrate() {
+    for (let i = 0; i < 150 && !window.FL_CARD_PHOTOS; i++) {
+      await new Promise(r => setTimeout(r, 100));
+    }
+    let raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) {}
+    const packedState = window.FL_CARD_STATE && window.FL_CARD_STATE[KEY];
+    if (!raw && packedState) {
+      try { localStorage.setItem(KEY, packedState); } catch (e) {}
+      this.applySaved(packedState);
+    }
+    let pool = [];
+    try { pool = await idbGet(KEY); } catch (e) { pool = []; }
+    if (!pool || !pool.length) {
+      const packed = window.FL_CARD_PHOTOS && window.FL_CARD_PHOTOS[KEY];
+      if (packed && packed.length) {
+        pool = packed;
+        idbPut(KEY, packed).catch(() => {});
+      }
+    }
+    if (pool && pool.length) this.setState({ pool: pool, cursor: this.firstEmpty() });
+  }
+
+  applySaved(raw) {
+    try {
+      const saved = JSON.parse(raw);
+      if (!saved) return;
+      const d = defaults();
+      if (Array.isArray(saved.steps) && saved.steps.length) {
+        saved.steps = d.steps.map((x, i) => Object.assign({}, x, {
+          photo: (saved.steps[i] || {}).photo || null, src: null
+        }));
+      } else {
+        saved.steps = d.steps;
+      }
+      if (saved.v !== PREP_V) { saved.prep = d.prep; saved.prepNote = d.prepNote; saved.portion = d.portion; saved.portionDraft = d.portionDraft; saved.v = PREP_V; }
+      if (!saved.video && d.video) saved.video = d.video;
+      this.setState(saved);
+    } catch (e) {}
+  }
+
+  componentDidMount() {
+    this.hydrate();
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) {
+        const saved = JSON.parse(raw);
+        if (saved) {
+          const d = defaults();
+          if (Array.isArray(saved.steps) && saved.steps.length) {
+            saved.steps = d.steps.map((x, i) => Object.assign({}, x, {
+              photo: (saved.steps[i] || {}).photo || null, src: null
+            }));
+          } else {
+            saved.steps = d.steps;
+          }
+          if (saved.v !== PREP_V) { saved.prep = d.prep; saved.prepNote = d.prepNote; saved.portion = d.portion; saved.portionDraft = d.portionDraft; saved.v = PREP_V; }
+          if (!saved.video && d.video) saved.video = d.video;
+          this.setState(saved);
+        }
+      }
+    } catch (e) {}
+
+    const el = this._drop;
+    if (el) {
+      const stop = e => { e.preventDefault(); e.stopPropagation(); };
+      el.addEventListener('dragover', e => { stop(e); if (!this.state.over) this.setState({ over: true }); });
+      el.addEventListener('dragleave', e => { stop(e); this.setState({ over: false }); });
+      el.addEventListener('drop', async e => {
+        stop(e);
+        this.setState({ over: false });
+        this.load(await this.collect(e.dataTransfer));
+      });
+    }
+
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.multiple = true;
+    input.accept = 'image/*';
+    input.style.display = 'none';
+    input.addEventListener('change', () => { this.load(Array.from(input.files || [])); input.value = ''; });
+    document.body.appendChild(input);
+    this._input = input;
+  }
+
+  componentWillUnmount() {
+    if (this._input) this._input.remove();
+  }
+
+  persistPool() {
+    const slim = this.state.pool.map(p => ({ id: p.id, name: p.name, url: p.url, hidden: !!p.hidden }));
+    idbPut(KEY, slim).catch(() => {});
+  }
+
+  save(patch, done) {
+    this.setState(patch, () => {
+      if (done) done();
+      const s = this.state;
+      try {
+        localStorage.setItem(KEY, JSON.stringify({
+          steps: s.steps.map(x => ({ slotId: x.slotId, text: x.text, ru: x.ru || '', photo: x.photo || null })),
+          hero: { photo: (s.hero || {}).photo || null },
+          serve: { photo: (s.serve || {}).photo || null },
+          comps: s.comps || [],
+          portion: s.portion, prep: s.prep,
+          prepNote: s.prepNote, video: s.video, portionDraft: s.portionDraft, v: PREP_V
+        }));
+      } catch (e) {}
+    });
+  }
+
+  async collect(dt) {
+    const items = dt.items ? Array.from(dt.items) : [];
+    const entries = items.map(i => i.webkitGetAsEntry && i.webkitGetAsEntry()).filter(Boolean);
+    if (!entries.length) return Array.from(dt.files || []);
+    const out = [];
+    const walk = entry => new Promise(res => {
+      if (entry.isFile) { entry.file(f => { out.push(f); res(); }, res); return; }
+      const reader = entry.createReader();
+      const readBatch = () => reader.readEntries(async batch => {
+        if (!batch.length) return res();
+        for (const e of batch) await walk(e);
+        readBatch();
+      }, res);
+      readBatch();
+    });
+    for (const e of entries) await walk(e);
+    return out;
+  }
+
+  async load(files) {
+    const imgs = files.filter(f => /^image\//.test(f.type) || /\.(jpe?g|png|webp|gif|avif)$/i.test(f.name));
+    if (!imgs.length) { this.setState({ msg: 'Изображений в этой папке не нашлось' }); return; }
+    const coll = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+    imgs.sort((a, b) => coll.compare(a.name, b.name));
+    this.setState({ msg: 'Готовлю ' + imgs.length + ' фото…' });
+    const base = Date.now();
+    const items = [];
+    for (let i = 0; i < imgs.length; i++) {
+      items.push({ id: 'p' + base + '-' + i, name: imgs[i].name, url: await shrink(imgs[i], 1100) });
+    }
+    this.setState({
+      pool: this.state.pool.concat(items),
+      msg: 'Загружено ' + items.length + ' — жмите фото, оно встанет в подсвеченный слот'
+    }, () => {
+      this.persistPool();
+      if (this.state.cursor === null || this.state.cursor === undefined) this.setState({ cursor: this.firstEmpty() });
+    });
+  }
+
+  queue() {
+    return ['hero'].concat(this.state.steps.map((x, i) => i)).concat(['serve']);
+  }
+
+  isFilled(t) {
+    const o = t === 'hero' ? (this.state.hero || {}) : (this.state.steps[t] || {});
+    return !!(o.photo || o.src);
+  }
+
+  firstEmpty() {
+    const hit = this.queue().find(t => !this.isFilled(t));
+    return hit === undefined ? null : hit;
+  }
+
+  nextEmptyAfter(t) {
+    const q = this.queue();
+    const at = q.indexOf(t);
+    for (let i = at + 1; i < q.length; i++) if (!this.isFilled(q[i])) return q[i];
+    return this.firstEmpty();
+  }
+
+  step(dir) {
+    const q = this.queue();
+    const at = q.indexOf(this.state.cursor);
+    const j = (at < 0 ? 0 : at) + dir;
+    if (j < 0 || j >= q.length) return;
+    this.setState({ cursor: q[j] });
+  }
+
+  // Один клик по фото: оно встаёт в текущий слот, курсор едет на следующий пустой.
+  // Кадр сервировки в главном фото сразу дублируется в последний шаг.
+  place(id) {
+    if (this.state.compMode) {
+      this.save({
+        comps: this.state.comps.concat(id),
+        compMode: false,
+        msg: 'Кадр отмечен как скрин состава — данные из него вписываю в таблицу'
+      });
+      return;
+    }
+    const cur = this.state.cursor;
+    const t = (cur === null || cur === undefined) ? this.firstEmpty() : cur;
+    if (t === null) { this.setState({ msg: 'Все слоты заполнены — нажмите на слот, чтобы освободить' }); return; }
+    const last = this.state.steps.length - 1;
+    const done = () => this.setState({ cursor: this.nextEmptyAfter(t), msg: '' });
+    if (t === 'hero' && last >= 0 && !this.isFilled(last)) {
+      this.save({
+        hero: { photo: id, src: null },
+        steps: this.state.steps.map((x, j) => j === last ? Object.assign({}, x, { photo: id, src: null }) : x)
+      }, done);
+    } else {
+      this.setPhoto(t, { photo: id }, done);
+    }
+  }
+
+  slotClick(t) {
+    if (this.isFilled(t)) this.setPhoto(t, {}, () => this.setState({ cursor: t }));
+    else this.setState({ cursor: t });
+  }
+
+  usedMap() {
+    const s = this.state;
+    const m = {};
+    if (s.hero && s.hero.photo) m[s.hero.photo] = 'блюдо';
+    (s.comps || []).forEach(id => { m[id] = 'состав'; });
+    s.steps.forEach((x, i) => { if (x.photo) m[x.photo] = 'шаг ' + (i + 1); });
+    return m;
+  }
+
+  photoAt(t) {
+    const o = t === 'hero' ? (this.state.hero || {}) : (t === 'serve' ? (this.state.serve || {}) : (this.state.steps[t] || {}));
+    return { photo: o.photo || null, src: o.src || null };
+  }
+
+  setPhoto(t, val, done) {
+    const v = val || {};
+    if (t === 'hero') { this.save({ hero: { photo: v.photo || null, src: v.src || null } }, done); return; }
+    if (t === 'serve') { this.save({ serve: { photo: v.photo || null, src: v.src || null } }, done); return; }
+    this.save({ steps: this.state.steps.map((x, j) => j === t ? Object.assign({}, x, { photo: v.photo || null, src: v.src || null }) : x) }, done);
+  }
+
+  slotRef(t) {
+    return el => {
+      if (!el) return;
+      el._flTarget = t;
+      if (el._flBound) return;
+      el._flBound = true;
+      const stop = e => { e.preventDefault(); e.stopPropagation(); };
+      el.addEventListener('dragover', stop);
+      el.addEventListener('drop', e => {
+        stop(e);
+        const f = Array.from((e.dataTransfer && e.dataTransfer.files) || [])[0];
+        if (!f || !/^image\//.test(f.type)) return;
+        const item = { id: 'p' + Date.now(), file: f, name: f.name, url: URL.createObjectURL(f) };
+        this.setState({ pool: this.state.pool.concat(item) }, () => this.setPhoto(el._flTarget, { photo: item.id }, () => this.setState({ cursor: this.nextEmptyAfter(el._flTarget) })));
+      });
+    };
+  }
+
+  imgRef(url) {
+    return el => { if (el && el.src !== url) el.src = url; };
+  }
+
+  move(i, dir) {
+    const arr = this.state.steps.slice();
+    const j = i + dir;
+    if (j < 0 || j >= arr.length) return;
+    const t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    this.save({ steps: arr });
+  }
+
+  embed(url) {
+    const m = String(url || '').match(/(?:youtu\.be\/|v=|embed\/)([\w-]{6,})/);
+    return m ? 'https://www.youtube.com/embed/' + m[1] : '';
+  }
+
+  renderVals() {
+    const s = this.state;
+    const usedBy = this.usedMap();
+    const left = s.pool.filter(p => !usedBy[p.id] && !p.hidden);
+    const urlOf = o => (o && o.photo ? ((s.pool.find(p => p.id === o.photo) || {}).url || '') : ((o && o.src) || ''));
+    const heroP = s.hero || {};
+    const serveP = s.serve || {};
+    const cur = s.cursor;
+    const filledCount = this.queue().filter(t => this.isFilled(t)).length;
+    const curStep = s.steps[cur] || {};
+    const curText = cur === 'hero'
+      ? 'кадр собранного блюда на подаче'
+      : (s.ruOn && curStep.ru ? curStep.ru : (curStep.text || ''));
+    const ed = s.editing;
+    const emb = this.embed(s.video);
+
+    const patchList = (list, i, patch) => list.map((x, j) => j === i ? Object.assign({}, x, patch) : x);
+
+    return {
+      editing: ed,
+      locked: !ed,
+      inputBorder: ed ? '1px solid rgba(15,31,61,0.16)' : '1px solid transparent',
+      inputPad: ed ? '9px' : '0',
+      areaPad: ed ? '8px 10px' : '0',
+      rowActionCol: ed ? 'auto' : '0px',
+      toggleEdit: () => this.setState({ editing: !ed }),
+      editBtnLabel: ed ? 'Готово' : 'Редактировать',
+      editBtnBg: ed ? '#0F1F3D' : '#2C6BE6',
+      editBtnColor: '#FFFFFF',
+      editNote: !CAN_EDIT ? 'Тех.карта только для чтения. Правки вносит шеф.' : ed ? 'Текст и цифры правятся прямо в полях, ↑↓ переставляют шаг вместе с фото, × удаляет шаг' : 'Одно фото — один клик. Клик по слоту в карточке освобождает его.',
+      resetAll: () => { try { localStorage.removeItem(KEY); } catch (e) {} this.setState(Object.assign({ editing: true }, defaults())); },
+
+      dropRef: el => { this._drop = el; },
+      dropBorder: s.over ? '#2C6BE6' : 'rgba(44,107,230,0.45)',
+      dropBg: s.over ? '#DCE8FD' : '#EDF3FE',
+      dropTitle: s.over ? 'Отпускайте' : 'Перетащите папку с фото',
+      dropHint: s.msg || 'Один раз перетащить папку — дальше по клику на фото',
+      browse: () => this._input && this._input.click(),
+
+      compBtnLabel: s.compMode ? 'Жмите кадр состава…' : 'Это скрин состава',
+      compBtnBg: s.compMode ? '#FDF0E2' : '#FFFFFF',
+      compBtnBorder: s.compMode ? 'rgba(224,144,79,0.6)' : 'rgba(44,107,230,0.35)',
+      compBtnColor: s.compMode ? '#B4671F' : '#1B4FB8',
+      toggleCompMode: () => this.setState({ compMode: !s.compMode }),
+      hasComps: (s.comps || []).length > 0,
+      comps: (s.comps || []).map(id => {
+        const p = s.pool.find(x => x.id === id) || {};
+        return {
+          setImg: el => { if (el && p.url && el.src !== p.url) el.src = p.url; },
+          remove: () => this.setState({ comps: s.comps.filter(x => x !== id) })
+        };
+      }),
+
+      canEdit: CAN_EDIT,
+      working: CAN_EDIT && !s.done,
+      doneLabel: s.done ? 'Изменить' : 'Готово',
+      doneBg: s.done ? '#FFFFFF' : '#2F6B3A',
+      doneColor: s.done ? '#2F6B3A' : '#FFFFFF',
+      toggleDone: () => this.setState({ done: !s.done, editing: false, ruOn: s.done }),
+
+      hasPool: left.length > 0 && !s.done,
+      poolLabel: 'Осталось разложить · ' + left.length,
+      pool: left.map(p => ({
+        setImg: el => { if (el && el.src !== p.url) el.src = p.url; },
+        tag: p.name,
+        place: () => this.place(p.id),
+        hide: e => {
+          if (e && e.stopPropagation) e.stopPropagation();
+          this.setState({ pool: s.pool.map(x => x.id === p.id ? Object.assign({}, x, { hidden: true }) : x) }, () => this.persistPool());
+        }
+      })),
+      cursorTitle: cur === 'hero' ? 'Главное фото блюда' : (cur === null || cur === undefined ? 'Все слоты заполнены' : 'Шаг ' + (cur + 1)),
+      cursorText: cur === null || cur === undefined ? 'Нажмите на любой слот, чтобы заменить фото' : curText,
+      skipSlot: () => this.step(1),
+      backSlot: () => this.step(-1),
+      tip: s.compMode
+        ? 'Нажмите на кадр с таблицей состава — он уйдёт в раздел «Состав блюда», а не в шаги'
+        : 'Клик по фото — оно встаёт в подсвеченный слот, и подсветка едет дальше. × на фото убирает кадр из ленты.',
+      clearPool: () => {
+        this.save({ pool: [], msg: '', hero: { photo: null, src: null }, cursor: 'hero', comps: [], steps: s.steps.map(x => Object.assign({}, x, { photo: null, src: null })) }, () => this.persistPool());
+      },
+
+      heroRef: this.slotRef('hero'),
+      heroFilled: !!(heroP.photo || heroP.src),
+      heroEmpty: !(heroP.photo || heroP.src),
+      heroImgRef: this.imgRef(urlOf(heroP)),
+      heroActive: cur === 'hero',
+      heroOutline: cur === 'hero' ? '#2C6BE6' : 'rgba(15,31,61,0.1)',
+      heroClick: () => this.slotClick('hero'),
+
+      serveRef: this.slotRef('serve'),
+      serveFilled: !!(serveP.photo || serveP.src),
+      serveEmpty: !(serveP.photo || serveP.src),
+      serveImgRef: this.imgRef(urlOf(serveP)),
+      serveActive: cur === 'serve',
+      serveOutline: cur === 'serve' ? '#2C6BE6' : 'rgba(15,31,61,0.1)',
+      serveClick: () => this.slotClick('serve'),
+
+      subLine: 'Sarapan Petani (Telur, Daging Bacon) · ' + ' · ' + s.steps.length + ' шагов',
+
+      hasPortion: (s.portion || []).length > 0,
+      portionTag: s.portionDraft ? 'черновик' : '1 порция',
+      portionDraft: s.portionDraft,
+      confirmPortion: () => this.save({ portionDraft: false }),
+      portion: s.portion.map((i, n) => ({
+        name: i.name, qty: i.qty, bg: n % 2 ? '#FBFCFE' : '#FFFFFF',
+        setName: e => this.save({ portion: patchList(s.portion, n, { name: e.target.value }) }),
+        setQty: e => this.save({ portion: patchList(s.portion, n, { qty: e.target.value }) }),
+        remove: () => this.save({ portion: s.portion.filter((z, j) => j !== n) })
+      })),
+      addPortion: () => this.save({ portion: s.portion.concat({ name: '', qty: '' }) }),
+
+      prep: s.prep.map((r, n) => ({
+        name: r.name, gross: r.gross, net: r.net, bg: n % 2 ? '#FBFCFE' : '#FFFFFF',
+        setName: e => this.save({ prep: patchList(s.prep, n, { name: e.target.value }) }),
+        setGross: e => this.save({ prep: patchList(s.prep, n, { gross: e.target.value }) }),
+        setNet: e => this.save({ prep: patchList(s.prep, n, { net: e.target.value }) }),
+        remove: () => this.save({ prep: s.prep.filter((z, j) => j !== n) })
+      })),
+      addPrep: () => this.save({ prep: s.prep.concat({ name: '', gross: '', net: '' }) }),
+      hasPrep: s.prep.length > 0,
+      noPrep: s.prep.length === 0,
+      prepSub: s.prep.length ? s.prep.length + ' продуктов' : 'таблица ещё не заполнена',
+      prepNote: s.prepNote,
+      setPrepNote: e => this.save({ prepNote: e.target.value }),
+
+      videoUrl: s.video,
+      setVideoUrl: e => this.save({ video: e.target.value }),
+      setVideo: el => { if (el && emb && el.src !== emb) el.src = emb; },
+
+      stepsLabel: 'фото: ' + filledCount + ' из ' + (s.steps.length + 1),
+      ruOn: s.ruOn,
+      toggleRu: () => this.setState({ ruOn: !s.ruOn }),
+      ruBtnLabel: s.ruOn ? 'Скрыть перевод' : 'Перевод шагов',
+      ruBtnBg: s.ruOn ? '#E9F0FE' : '#FFFFFF',
+      steps: s.steps.map((st, i) => ({
+        n: i + 1, text: st.text, slotId: st.slotId,
+        setText: e => this.save({ steps: patchList(s.steps, i, { text: e.target.value }) }),
+        up: () => this.move(i, -1),
+        down: () => this.move(i, 1),
+        remove: () => this.save({ steps: s.steps.filter((z, j) => j !== i) }),
+        slotRef: this.slotRef(i),
+        filled: !!(st.photo || st.src),
+        empty: !(st.photo || st.src),
+        imgRef: this.imgRef(urlOf(st)),
+        ru: st.ru || '',
+        showRu: s.ruOn && !!st.ru,
+        active: cur === i,
+        outline: cur === i ? '#2C6BE6' : 'rgba(15,31,61,0.08)',
+        slotHint: cur === i ? 'жмите фото ↑' : 'фото шага',
+        click: () => this.slotClick(i)
+      })),
+      addStep: () => this.save({ steps: s.steps.concat({ slotId: 'fin-x' + Date.now(), text: '', photo: null, src: null }) })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
