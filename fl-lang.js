@@ -139,10 +139,50 @@
 
   var applying = false;
 
+  // ── Русская версия: английские строки → русские (словарь ru-dict.js) ───
+  function ruValue(key) {
+    var D = window.FL_RU || {};
+    if (D[key]) return D[key];
+    var m = /^([A-Z][A-Z0-9 ,.'&!]*?) · (.+)$/.exec(key);
+    var S = window.FL_RU_SECTIONS || {};
+    if (m && S[m[2]]) return m[1] + ' · ' + S[m[2]];
+    return '';
+  }
+  function fixRu(to) {
+    if (!window.FL_RU || !document.body) return;
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentNode;
+      if (!p || SKIP[p.nodeName]) continue;
+      if (to !== 'ru') {
+        if (n.__flRuSrc && n.nodeValue === n.__flRuVal) { n.nodeValue = n.__flRuSrc; }
+        n.__flRuSrc = null;
+        continue;
+      }
+      if (n.__flRuSrc && n.nodeValue === n.__flRuVal) continue;
+      var v = ruValue(norm(n.nodeValue));
+      if (v) {
+        var src = n.nodeValue;
+        put(n, src, v);
+        n.__flRuSrc = src; n.__flRuVal = n.nodeValue;
+      }
+    }
+    if (to !== 'ru') return;
+    var els = document.querySelectorAll('[title],[placeholder]');
+    for (var i = 0; i < els.length; i++) {
+      ['title', 'placeholder'].forEach(function (a) {
+        var val = els[i].getAttribute(a);
+        var r = val && ruValue(norm(val));
+        if (r) els[i].setAttribute(a, r);
+      });
+    }
+  }
+
   function apply() {
     var to = lang();
     applying = true;
     try {
+      fixRu(to);
       var nodes = textNodes(document.body);
       for (var i = 0; i < nodes.length; i++) {
         var n = nodes[i];
@@ -260,6 +300,14 @@
     translate: function (text, from, to) { return ask(text, from || 'ru', to); },
     refresh: apply
   };
+
+  // русский словарь для строк, написанных по-английски
+  if (!window.FL_RU) {
+    var r = document.createElement('script');
+    r.src = './ru-dict.js';
+    r.onload = function () { apply(); };
+    (document.head || document.documentElement).appendChild(r);
+  }
 
   // словарь подгружается рядом с этим файлом
   if (!window.FL_TR) {

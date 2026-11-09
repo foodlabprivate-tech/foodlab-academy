@@ -155,9 +155,10 @@ h2{font:800 20px "Nunito",sans-serif;margin:28px 0 4px}
   // ── Отрисовка ───────────────────────────────────────────────────────────
   var app = document.getElementById('app');
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  // Приветствие пишем по-русски: на другие языки его переводит общий слой перевода
   function greet() {
     var h = new Date().getHours();
-    return h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 19 ? 'Selamat sore' : 'Selamat malam';
+    return h < 5 ? 'Доброй ночи' : h < 11 ? 'Доброе утро' : h < 17 ? 'Добрый день' : h < 23 ? 'Добрый вечер' : 'Доброй ночи';
   }
   function whoTags(list) {
     return '<div class="who">' + list.map(function (g) { return '<span>' + esc(GROUP_NAME[g]) + '</span>'; }).join('') + '</div>';

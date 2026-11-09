@@ -415,10 +415,16 @@ function inBrand(c, id) { return c.b === id || (c.also || []).indexOf(id) >= 0; 
 // Рисованные продукты для плиток главной (assets/food)
 const TILE_FOOD = { admin: 'hat.svg', catalog: 'avocado.svg', sop: 'bowl.svg', program: 'egg.svg', materials: 'tomato.svg',
   trainer: 'whisk.svg', test: 'chili.svg', progress: 'lemon.svg', hr: 'tomato.svg', chat: 'chat.svg' };
-// Приветствие по-балийски — по времени суток
-function balisGreeting() {
+// Приветствие по времени суток — на языке, выбранном в Академии
+const GREET = {
+  ru: ['Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи'],
+  id: ['Selamat pagi', 'Selamat siang', 'Selamat sore', 'Selamat malam'],
+  en: ['Good morning', 'Good afternoon', 'Good evening', 'Good night']
+};
+function balisGreeting(lang) {
   const h = new Date().getHours();
-  return h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 19 ? 'Selamat sore' : 'Selamat malam';
+  const g = GREET[lang] || GREET.ru;
+  return h < 5 ? g[3] : h < 11 ? g[0] : h < 17 ? g[1] : h < 23 ? g[2] : g[3];
 }
 
 const CAT_COLOR = {
@@ -713,7 +719,7 @@ class Component extends DCLogic {
       hasAvatarNote: !!s.avatarNote,
       setAvatar: this.imgRef(window.FL_AVATARS ? window.FL_AVATARS.forUser(s.user) : ''),
       pickAvatar: () => this.changeAvatar(),
-      greeting: s.user ? balisGreeting() + ', ' + String(s.user.name).split(' ')[0] + '!' : '',
+      greeting: s.user ? balisGreeting(s.lang) + ', ' + String(s.user.name).split(' ')[0] + '!' : '',
       heroQ: t('heroQ'),
       brandsTitle: t('brandsTitle'), brandsSub: t('brandsSub'),
       brands: BRANDS.map((b, i) => {
