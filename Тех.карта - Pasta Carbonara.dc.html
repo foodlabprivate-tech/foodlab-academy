@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
 <script src="./image-slot.js"></script>
 <script src="./card-photos.js"></script>
+<script src="./ru-dict.js"></script>
 <style>
   body { margin: 0; background: #E7EDF7; -webkit-font-smoothing: antialiased; }
   a { color: #1B4FB8; text-decoration: none; }
@@ -633,6 +634,9 @@ class Component extends DCLogic {
       ? 'кадр собранного блюда на подаче'
       : (s.ruOn && curStep.ru ? curStep.ru : (curStep.text || ''));
     const ed = s.editing;
+    const ruTx = v => (!ed && window.FL_RU_TX) ? window.FL_RU_TX(v) : v;
+    // На русском при просмотре главным текстом шага идёт русский перевод
+    const ruMain = !ed && s.ruOn && (() => { try { return (localStorage.getItem('foodlab-lang') || 'ru') === 'ru'; } catch (e) { return true; } })();
     const emb = this.embed(s.video);
 
     const patchList = (list, i, patch) => list.map((x, j) => j === i ? Object.assign({}, x, patch) : x);
@@ -724,7 +728,7 @@ class Component extends DCLogic {
       portionDraft: s.portionDraft,
       confirmPortion: () => this.save({ portionDraft: false }),
       portion: s.portion.map((i, n) => ({
-        name: i.name, qty: i.qty, bg: n % 2 ? '#FBFCFE' : '#FFFFFF',
+        name: ruTx(i.name), qty: ruTx(i.qty), bg: n % 2 ? '#FBFCFE' : '#FFFFFF',
         setName: e => this.save({ portion: patchList(s.portion, n, { name: e.target.value }) }),
         setQty: e => this.save({ portion: patchList(s.portion, n, { qty: e.target.value }) }),
         remove: () => this.save({ portion: s.portion.filter((z, j) => j !== n) })
@@ -732,7 +736,7 @@ class Component extends DCLogic {
       addPortion: () => this.save({ portion: s.portion.concat({ name: '', qty: '' }) }),
 
       prep: s.prep.map((r, n) => ({
-        name: r.name, gross: r.gross, net: r.net, bg: n % 2 ? '#FBFCFE' : '#FFFFFF',
+        name: ruTx(r.name), gross: ruTx(r.gross), net: ruTx(r.net), bg: n % 2 ? '#FBFCFE' : '#FFFFFF',
         setName: e => this.save({ prep: patchList(s.prep, n, { name: e.target.value }) }),
         setGross: e => this.save({ prep: patchList(s.prep, n, { gross: e.target.value }) }),
         setNet: e => this.save({ prep: patchList(s.prep, n, { net: e.target.value }) }),
@@ -742,7 +746,7 @@ class Component extends DCLogic {
       hasPrep: s.prep.length > 0,
       noPrep: s.prep.length === 0,
       prepSub: s.prep.length ? s.prep.length + ' продуктов' : 'таблица ещё не заполнена',
-      prepNote: s.prepNote,
+      prepNote: (!ed && window.FL_NOTE) ? window.FL_NOTE(s.prepNote) : s.prepNote,
       setPrepNote: e => this.save({ prepNote: e.target.value }),
 
       videoUrl: s.video,
@@ -755,7 +759,7 @@ class Component extends DCLogic {
       ruBtnLabel: s.ruOn ? 'Скрыть перевод' : 'Перевод шагов',
       ruBtnBg: s.ruOn ? '#E9F0FE' : '#FFFFFF',
       steps: s.steps.map((st, i) => ({
-        n: i + 1, text: st.text, slotId: st.slotId,
+        n: i + 1, text: (ruMain && st.ru) ? st.ru : st.text, slotId: st.slotId,
         setText: e => this.save({ steps: patchList(s.steps, i, { text: e.target.value }) }),
         up: () => this.move(i, -1),
         down: () => this.move(i, 1),
@@ -765,7 +769,7 @@ class Component extends DCLogic {
         empty: !(st.photo || st.src),
         imgRef: this.imgRef(urlOf(st)),
         ru: st.ru || '',
-        showRu: s.ruOn && !!st.ru,
+        showRu: s.ruOn && !!st.ru && !ruMain,
         active: cur === i,
         outline: cur === i ? '#2C6BE6' : 'rgba(15,31,61,0.08)',
         slotHint: cur === i ? 'жмите фото ↑' : 'фото шага',

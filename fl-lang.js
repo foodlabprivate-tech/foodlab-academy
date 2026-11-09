@@ -141,12 +141,7 @@
 
   // ── Русская версия: английские строки → русские (словарь ru-dict.js) ───
   function ruValue(key) {
-    var D = window.FL_RU || {};
-    if (D[key]) return D[key];
-    var m = /^([A-Z][A-Z0-9 ,.'&!]*?) · (.+)$/.exec(key);
-    var S = window.FL_RU_SECTIONS || {};
-    if (m && S[m[2]]) return m[1] + ' · ' + S[m[2]];
-    return '';
+    return window.FL_RU_VALUE ? window.FL_RU_VALUE(key) : '';
   }
   function fixRu(to) {
     if (!window.FL_RU || !document.body) return;
