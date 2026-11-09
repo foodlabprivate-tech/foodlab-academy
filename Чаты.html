@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Чаты и инструменты</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Onest:wght@400;500;600;700&family=Caveat:wght@700&display=swap">
+<script src="./db-config.js"></script>
+<script src="./data.js"></script>
+<script src="./translations.js"></script>
+<script src="./fl-lang.js"></script>
+<style>
+:root{--deep:#173F6B;--lagoon:#2C6BA8;--sky:#9CCBF5;--foam:#EEF5FC;--ink:#13263F;--muted:#5B6E86;--line:#D6E4F2;--tg:#2AABEE}
+*{box-sizing:border-box}
+body{margin:0;background:var(--foam);color:var(--ink);font:400 15px/1.55 "Onest",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--lagoon)}
+.wrap{max-width:820px;margin:0 auto;padding:22px 16px 80px}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.logo{flex:none;width:48px;height:48px;border-radius:14px;overflow:hidden;background:#FBF3E4;box-shadow:0 8px 18px -10px rgba(20,53,89,.55)}
+.logo img{width:100%;height:100%;object-fit:contain;display:block}
+.brand{flex:1;min-width:150px}.brand small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--lagoon)}
+.brand b{font:800 21px "Nunito",sans-serif}
+.btn{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 13px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);font:600 13px "Onest",sans-serif;text-decoration:none;cursor:pointer}
+.btn:hover{border-color:var(--sky)}
+.lang{display:inline-flex;gap:3px;padding:3px;background:#fff;border:1px solid var(--line);border-radius:99px}
+.lang button{border:0;background:none;border-radius:99px;padding:6px 10px;font:600 12px "Onest",sans-serif;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--deep);color:#fff}
+.hero{position:relative;overflow:hidden;background:linear-gradient(155deg,#1E5590,#143559);color:#fff;border-radius:24px;padding:24px;box-shadow:0 24px 40px -28px rgba(20,53,89,.9)}
+.hero .hw{font:700 25px/1 "Caveat",cursive;color:var(--sky)}
+.hero h1{margin:6px 0 6px;font:800 28px/1.12 "Nunito",sans-serif}
+.hero p{margin:0;color:rgba(255,255,255,.85);max-width:56ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{background:rgba(255,255,255,.14);border-radius:99px;padding:5px 12px;font-size:13px;font-weight:600}
+.leaf{position:absolute;right:-60px;top:-50px;opacity:.13;pointer-events:none}
+h2{font:800 20px "Nunito",sans-serif;margin:28px 0 4px}
+.sub{color:var(--muted);font-size:13.5px;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.card{background:#fff;border:1.5px solid transparent;border-radius:20px;padding:16px 16px 14px;box-shadow:0 18px 30px -26px rgba(20,53,89,.6);display:flex;flex-direction:column;gap:8px;animation:rise .45s cubic-bezier(.2,.7,.2,1) both;transition:transform .16s ease,border-color .16s ease}
+.card:hover{transform:translateY(-3px);border-color:var(--sky)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card .head{display:flex;align-items:center;gap:11px}
+.ico{flex:none;width:44px;height:44px;border-radius:99px;display:grid;place-items:center;background:var(--foam);box-shadow:inset 0 0 0 4px #fff,0 0 0 1px var(--line);font-size:20px}
+.kind{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--lagoon)}
+.card h3{margin:0;font:800 17px/1.2 "Nunito",sans-serif}
+.card p{margin:0;font-size:13.5px;color:var(--muted)}
+.join{margin-top:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-top:4px}
+.go{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:0 15px;border-radius:12px;background:var(--tg);color:#fff !important;text-decoration:none;font-weight:700;font-size:13.5px;transition:filter .15s,transform .12s}
+.go:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.note{font-size:12px;color:var(--muted);line-height:1.4}
+.who{display:flex;flex-wrap:wrap;gap:4px}
+.who span{font-size:11px;font-weight:600;background:var(--foam);color:var(--deep);border-radius:99px;padding:2px 8px}
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.topic{background:#fff;border-radius:14px;padding:11px 13px;border:1.5px solid var(--line)}
+.topic.mine{border-color:var(--lagoon);background:#F5FAFF}
+.topic b{display:block;font-size:14px}
+.topic span{font-size:12.8px;color:var(--muted)}
+.topic .tag{display:inline-block;margin-left:6px;font-size:10.5px;font-weight:700;color:#fff;background:var(--lagoon);border-radius:99px;padding:1px 7px;vertical-align:2px}
+.empty{background:#fff;border-radius:20px;padding:22px;text-align:center}
+.locpick{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.locpick button{border:1px solid rgba(255,255,255,.35);background:none;color:#fff;border-radius:99px;padding:6px 13px;font:600 13px "Onest",sans-serif;cursor:pointer}
+.locpick button[aria-pressed="true"]{background:#fff;color:var(--deep);border-color:#fff}
+@media (prefers-reduced-motion:reduce){.card{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="logo" href="Академия.dc.html"><img src="assets/brands/foodlab.png" alt="Food Lab"></a>
+    <div class="brand"><small>Food Lab Academy</small><b>Чаты и инструменты</b></div>
+    <a class="btn" href="Академия.dc.html">← Академия</a>
+    <span class="lang" role="group" aria-label="Language"><button type="button" data-l="ru">RU</button><button type="button" data-l="id">ID</button><button type="button" data-l="en">EN</button></span>
+  </div>
+  <div id="app"></div>
+</div>
+<script>
+(function () {
+  // ── Кто есть кто ────────────────────────────────────────────────────────
+  // Группа доступа считается из должности (и роли «администратор»).
+  var GROUP_NAME = {
+    cook: 'Повар', staff: 'Зал и касса', sous: 'Су-шеф', chef: 'Шеф-повар',
+    buyer: 'Закупщик', hr: 'HR-менеджер', assistant: 'Помощник управляющего', admin: 'Управление'
+  };
+  function groupOf(u) {
+    if (!u) return '';
+    if (u.role === 'admin' || u.position === 'Управляющий') return 'admin';
+    var p = u.position || '';
+    if (p === 'Шеф-повар') return 'chef';
+    if (p === 'Су-шеф' || u.role === 'sous') return 'sous';
+    if (p === 'Закупщик') return 'buyer';
+    if (p === 'HR-менеджер') return 'hr';
+    if (p === 'Помощник управляющего' || p === 'Менеджер') return 'assistant';
+    if (p === 'Кассир' || p === 'Официант') return 'staff';
+    return 'cook';
+  }
+  // Кто работает сразу на всех точках — видит группы всех локаций
+  var ALL_LOCATIONS = ['admin', 'chef', 'hr', 'assistant', 'buyer'];
+  var ALL = ['cook', 'staff', 'sous', 'chef', 'buyer', 'hr', 'assistant', 'admin'];
+  var KITCHEN = ['cook', 'sous', 'chef', 'admin'];
+
+  // ── Группы и боты ───────────────────────────────────────────────────────
+  // join: ссылка-приглашение (по ней можно вступить); open: ссылка на чат (открывается, только если вы уже участник)
+  var LOC_GROUPS = {
+    'Убуд':    { join: 'https://t.me/+lIxR1Mcnd1RhMGI6' },
+    'Чангу':   { join: 'https://t.me/+oL69LPOWM8pjZTAy' },
+    'Улувату': { open: 'https://web.telegram.org/k/#-2950853993' }
+  };
+  var HELPERS = {
+    'Убуд':    'https://web.telegram.org/k/#-4380649353',
+    'Чангу':   'https://web.telegram.org/k/#-2986756504',
+    'Улувату': 'https://web.telegram.org/k/#-3317139746'
+  };
+  var CHANNELS = [
+    { kind: 'Группа', ico: '🧑‍🍳', title: 'Менеджеры Food Lab', who: ['sous', 'chef', 'buyer', 'hr', 'assistant', 'admin'],
+      text: 'Рабочая группа руководителей кухни и офиса: управляющая, шеф-повар, су-шефы, закупщик, помощник управляющего и HR.',
+      open: 'https://web.telegram.org/k/#-3651766863', ask: 'управляющую' },
+    { kind: 'Группа', ico: '🗂️', title: 'Управление Food Lab', who: ['chef', 'hr', 'assistant', 'admin'],
+      text: 'Группа управления компанией: собственник, управляющая, шеф-повар, HR и помощник управляющего.',
+      open: 'https://web.telegram.org/k/#-5023607736', ask: 'управляющую' },
+    { kind: 'Группа', ico: '📣', title: 'Отзывы, реклама и регистрация брендов', who: ['chef', 'assistant', 'admin'],
+      text: 'Ведёт консалтинговая компания. Темы: общий чат, отзывы по всем брендам, запросы бюджета, отдельные темы Food Lab, Pick & Eat, Healthy Fit, Only Eggs, регистрация новых брендов.',
+      join: 'https://t.me/+mFUei6IYrOM1YTUy' },
+    { kind: 'Бот', ico: '⛔', title: 'Стоп-лист блюд', who: ['sous', 'chef', 'assistant', 'admin'],
+      text: 'Присылает блюда, которые стоят на стопе. Сверяйте с Runchise: что отключено, и включайте блюдо обратно, когда оно ушло со стопа.',
+      bot: 'https://t.me/tracker2_assistent_bot', handle: '@tracker2_assistent_bot' },
+    { kind: 'Бот', ico: '📚', title: 'Бот-википедия Food Lab', who: ALL,
+      text: 'Отвечает на вопросы о компании на русском, английском и индонезийском. Что именно он ответит, зависит от вашей роли в боте.',
+      bot: 'https://t.me/Formirobest_bot', handle: '@Formirobest_bot', wiki: true }
+  ];
+
+  // Что спросить у бота-википедии — по должности
+  var WIKI = {
+    cook: ['Тех.карта и граммовки блюда', 'Рецепт напитка: состав и объём', 'Тех.карты шаурмы и заготовки (соусы, салат)', 'Фото блюда — как оно должно выглядеть', 'Правила хранения продуктов', 'Ссылка на сайт Академии'],
+    staff: ['Меню напитков: описание и цена', 'Фото блюда — как оно должно выглядеть', 'Как работать с Gojek и Grab', 'Ссылка на сайт Академии'],
+    sous: ['Тех.карты, граммовки, фото блюд', 'Меню напитков: себестоимость и цена', 'Отклики кандидатов на вакансию', 'Как сделать что-то в Runchise', 'Бот уборки и список получателей уведомлений'],
+    chef: ['Тех.карты, рецепты, себестоимость', 'Заказ поставщикам', 'Жалобы клиентов из Grab и Gojek', 'Опрос «Настроение сотрудников»', 'Отклики кандидатов', 'Инструкции Runchise'],
+    buyer: ['Состав и граммовки блюд — сколько чего закупать', 'Раскладка напитков по ингредиентам', 'Как оформить закупку в Runchise (у поставщика и на центральную кухню)'],
+    hr: ['Анкета соискателя — ссылка для объявления о вакансии', 'Отклики кандидатов', 'Сайт Академии и шаги после собеседования', 'Трудовой регламент сотрудников'],
+    assistant: ['Инструкции Runchise (RU / EN / ID)', 'Меню и цены напитков', 'Жалобы клиентов из Grab и Gojek', 'Заявки сотрудников боту'],
+    admin: ['Финансы точек (Чангу, Улувату)', 'Заказ поставщикам', 'Жалобы клиентов', 'Опросы сотрудников', 'Отклики кандидатов', 'Инструкции Runchise']
+  };
+
+  // Темы внутри группы точки; mine — для кого эта тема «своя»
+  var TOPICS = [
+    { t: 'General', d: 'Общий чат точки: вопросы и новости смены.', mine: ALL },
+    { t: 'Important', d: 'Важные объявления. Читать обязательно.', mine: ALL },
+    { t: 'Schedule', d: 'График смен.', mine: ALL },
+    { t: 'Shift In & Out Record', d: 'Отметка прихода и ухода со смены.', mine: ['cook', 'staff', 'sous'] },
+    { t: 'Photos of orders', d: 'Фото собранных заказов перед отдачей.', mine: ['cook', 'staff', 'sous'] },
+    { t: 'Waste / clean products', d: 'Списания и испорченные продукты — с фото.', mine: ['cook', 'sous', 'buyer'] },
+    { t: 'Product to order', d: 'Что закончилось и что нужно заказать.', mine: ['cook', 'sous', 'buyer'] },
+    { t: 'Invoices and products', d: 'Накладные и приход продуктов.', mine: ['buyer', 'sous', 'assistant'] },
+    { t: 'Cash Register', d: 'Касса: фото чеков и отчёты.', mine: ['staff', 'assistant', 'sous'] }
+  ];
+
+  // ── Отрисовка ───────────────────────────────────────────────────────────
+  var app = document.getElementById('app');
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function greet() {
+    var h = new Date().getHours();
+    return h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 19 ? 'Selamat sore' : 'Selamat malam';
+  }
+  function whoTags(list) {
+    return '<div class="who">' + list.map(function (g) { return '<span>' + esc(GROUP_NAME[g]) + '</span>'; }).join('') + '</div>';
+  }
+  function card(c, isAdmin, i) {
+    var link = c.join
+      ? '<a class="go" href="' + c.join + '" target="_blank" rel="noopener">Вступить в Telegram</a>'
+      : c.bot
+        ? '<a class="go" href="' + c.bot + '" target="_blank" rel="noopener">Открыть бота</a><span class="note">' + esc(c.handle) + '</span>'
+        : '<a class="go" href="' + c.open + '" target="_blank" rel="noopener">Открыть в Telegram</a><span class="note">Откроется, если вы уже в группе. Если нет — попросите ' + esc(c.ask || 'су-шефа') + ' добавить вас.</span>';
+    return '<div class="card" style="animation-delay:' + (i * 50) + 'ms"><div class="head"><span class="ico">' + c.ico + '</span><div><div class="kind">' + esc(c.kind) + '</div><h3>' + esc(c.title) + '</h3></div></div>' +
+      '<p>' + esc(c.text) + '</p>' + (isAdmin && c.who ? whoTags(c.who) : '') + '<div class="join">' + link + '</div></div>';
+  }
+
+  var state = { loc: '' };
+  function render(u) {
+    if (!u) {
+      app.innerHTML = '<div class="empty"><p>Сначала войдите в Академию.</p><a class="btn" href="Академия.dc.html">← В Академию</a></div>';
+      return;
+    }
+    var g = groupOf(u), isAdmin = g === 'admin';
+    var multi = ALL_LOCATIONS.indexOf(g) >= 0;
+    var myLoc = u.location || '';
+    var locs = multi ? Object.keys(LOC_GROUPS) : [state.loc || myLoc].filter(Boolean);
+    var html = '';
+
+    // шапка
+    html += '<div class="hero"><svg class="leaf" width="260" height="260" viewBox="0 0 100 100"><path d="M10 90C10 40 50 10 95 5 90 50 60 90 10 90z" fill="#BFE0FF"/><path d="M10 90L80 20M30 70L22 52M45 55L35 36M60 40L52 22" stroke="#143559" stroke-width="2"/></svg>' +
+      '<div class="hw">' + greet() + ', ' + esc(String(u.name || '').split(' ')[0]) + '!</div>' +
+      '<h1>Ваши рабочие чаты</h1><p>Вступите во все группы ниже — туда приходят смены, напоминания и важные объявления. Здесь только то, что нужно вашей должности.</p>' +
+      '<div class="chips"><span class="chip">' + esc(u.position || GROUP_NAME[g]) + '</span>' + (myLoc ? '<span class="chip">📍 ' + esc(myLoc) + '</span>' : '') + (multi ? '<span class="chip">Все точки</span>' : '') + '</div>';
+    if (!multi && !myLoc) {
+      html += '<p style="margin-top:14px">Локация в вашем профиле не указана. Выберите точку, где вы работаете:</p><div class="locpick">' +
+        Object.keys(LOC_GROUPS).map(function (l) { return '<button type="button" data-loc="' + l + '" aria-pressed="' + (state.loc === l) + '">' + l + '</button>'; }).join('') + '</div>';
+    }
+    html += '</div>';
+
+    // группы точек
+    var cards = [], i = 0;
+    locs.forEach(function (l) {
+      var lg = LOC_GROUPS[l];
+      cards.push(card({ kind: 'Группа точки', ico: '📍', title: 'Food Lab ' + l, text: 'Главная группа точки ' + l + ': смены, касса, заказы продуктов, график и объявления. Внутри — темы, список ниже.',
+        join: lg.join, open: lg.open, ask: 'су-шефа', who: ALL }, isAdmin, i++));
+      if (KITCHEN.indexOf(g) >= 0) {
+        cards.push(card({ kind: 'Группа кухни', ico: '🧽', title: 'Kitchen Helper ' + l, text: 'Сюда приходят напоминания для кухни. После каждой смены отправляйте сюда фото уборки.',
+          open: HELPERS[l], ask: 'су-шефа', who: KITCHEN }, isAdmin, i++));
+      }
+    });
+    if (locs.length) {
+      html += '<h2>Группы точки</h2><p class="sub">' + (multi ? 'Вы работаете со всеми точками, поэтому здесь группы Убуда, Чангу и Улувату.' : 'Группы вашей точки.') + '</p><div class="grid">' + cards.join('') + '</div>';
+    }
+
+    // остальные группы и боты по должности
+    var mine = CHANNELS.filter(function (c) { return c.who.indexOf(g) >= 0; });
+    var groups = mine.filter(function (c) { return c.kind === 'Группа'; });
+    var bots = mine.filter(function (c) { return c.kind === 'Бот'; });
+    if (groups.length) html += '<h2>Группы по должности</h2><p class="sub">Эти группы видны только вашей должности.</p><div class="grid">' + groups.map(function (c) { return card(c, isAdmin, i++); }).join('') + '</div>';
+    if (bots.length) html += '<h2>Боты</h2><p class="sub">Помощники в Telegram.</p><div class="grid">' + bots.map(function (c) { return card(c, isAdmin, i++); }).join('') + '</div>';
+
+    // что спрашивать у википедии
+    html += '<h2>Что спросить у бота-википедии</h2><p class="sub">Примеры вопросов для вашей должности. Пишите своими словами.</p><div class="topics">' +
+      (WIKI[g] || []).map(function (q) { return '<div class="topic"><b>💬 ' + esc(q) + '</b></div>'; }).join('') + '</div>';
+
+    // темы группы точки
+    if (locs.length) {
+      html += '<h2>Темы в группе точки</h2><p class="sub">Пишите в нужную тему, а не в общий чат. Ваши темы выделены.</p><div class="topics">' +
+        TOPICS.map(function (t) {
+          var m = t.mine.indexOf(g) >= 0 && t.mine !== ALL;
+          return '<div class="topic' + (m ? ' mine' : '') + '"><b>' + esc(t.t) + (m ? '<span class="tag">ваша</span>' : '') + '</b><span>' + esc(t.d) + '</span></div>';
+        }).join('') + '</div>';
+    }
+    app.innerHTML = html;
+    [].forEach.call(app.querySelectorAll('[data-loc]'), function (b) {
+      b.addEventListener('click', function () {
+        state.loc = b.getAttribute('data-loc');
+        try { localStorage.setItem('foodlab-chats-loc', state.loc); } catch (e) {}
+        render(u);
+      });
+    });
+    if (window.FL_LANG && FL_LANG.apply) { try { FL_LANG.apply(); } catch (e) {} }
+  }
+
+  // язык
+  var lang = 'ru';
+  try { lang = localStorage.getItem('foodlab-lang') || 'ru'; } catch (e) {}
+  [].forEach.call(document.querySelectorAll('[data-l]'), function (b) {
+    b.setAttribute('aria-pressed', b.getAttribute('data-l') === lang ? 'true' : 'false');
+    b.addEventListener('click', function () {
+      try { localStorage.setItem('foodlab-lang', b.getAttribute('data-l')); } catch (e) {}
+      location.reload();
+    });
+  });
+
+  try { state.loc = localStorage.getItem('foodlab-chats-loc') || ''; } catch (e) {}
+  var sess = null;
+  try { sess = JSON.parse(localStorage.getItem('foodlab-session') || 'null'); } catch (e) {}
+  render(sess);
+  // Свежие должность и локация из базы: админ мог их поменять после входа
+  if (sess && window.FL_DB) {
+    FL_DB.listUsers().then(function (list) {
+      var me = (list || []).filter(function (x) { return x.id === sess.id; })[0];
+      if (me && (me.position !== sess.position || (me.location || '') !== (sess.location || '') || me.role !== sess.role)) {
+        sess.position = me.position; sess.location = me.location || ''; sess.role = me.role;
+        try { localStorage.setItem('foodlab-session', JSON.stringify(sess)); } catch (e) {}
+        render(sess);
+      }
+    }).catch(function () {});
+  }
+})();
+</script>
+</body>
+</html>

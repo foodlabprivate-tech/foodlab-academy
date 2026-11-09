@@ -188,7 +188,7 @@ async function activate(code, password) {
   if (!password || password.length < 4) return { error: 'Пароль короче 4 символов' };
   const pass = await hash(password);
   await saveUser({ id: user.id, name: user.name, login: user.login, role: user.role, position: user.position, pass: pass, invite: '' });
-  const s = { id: user.id, login: user.login, name: user.name, role: user.role, position: user.position, avatar: user.avatar || '' };
+  const s = { id: user.id, login: user.login, name: user.name, role: user.role, position: user.position, location: user.location || '', avatar: user.avatar || '' };
   setSession(s);
   return { user: s };
 }
@@ -204,7 +204,7 @@ async function login(loginName, password) {
   if (!user) return { error: 'Пользователь не найден' };
   if (user.active === false) return { error: 'Доступ отключён' };
   if (user.pass !== await hash(password)) return { error: 'Неверный пароль' };
-  const s = { id: user.id, login: user.login, name: user.name, role: user.role, position: user.position, avatar: user.avatar || '' };
+  const s = { id: user.id, login: user.login, name: user.name, role: user.role, position: user.position, location: user.location || '', avatar: user.avatar || '' };
   setSession(s);
   return { user: s };
 }
@@ -288,7 +288,7 @@ async function saveQuestionPatch(patch) {
 
 const ROLES = { employee: 'Сотрудник', sous: 'Су-шеф', admin: 'Администратор' };
 const LOCATIONS = ['Убуд', 'Чангу', 'Улувату'];
-const POSITIONS = ['Шеф-повар', 'Повар-стажёр', 'Повар', 'Line Cook', 'Су-шеф', 'Кассир', 'Официант', 'Менеджер', 'HR-менеджер'];
+const POSITIONS = ['Шеф-повар', 'Повар-стажёр', 'Повар', 'Line Cook', 'Су-шеф', 'Кассир', 'Официант', 'Закупщик', 'HR-менеджер', 'Помощник управляющего', 'Управляющий', 'Менеджер'];
 // Кто видит папку HR-менеджера: админы, су-шефы, шеф-повар и HR
 function canSeeHr(u) {
   return !!u && (u.role === 'admin' || u.role === 'sous' || ['Шеф-повар', 'Су-шеф', 'HR-менеджер'].indexOf(u.position) >= 0);

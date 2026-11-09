@@ -414,7 +414,7 @@ const BRANDS = [
 function inBrand(c, id) { return c.b === id || (c.also || []).indexOf(id) >= 0; }
 // Рисованные продукты для плиток главной (assets/food)
 const TILE_FOOD = { admin: 'hat.svg', catalog: 'avocado.svg', sop: 'bowl.svg', program: 'egg.svg', materials: 'tomato.svg',
-  trainer: 'whisk.svg', test: 'chili.svg', progress: 'lemon.svg', hr: 'tomato.svg' };
+  trainer: 'whisk.svg', test: 'chili.svg', progress: 'lemon.svg', hr: 'tomato.svg', chat: 'chat.svg' };
 // Приветствие по-балийски — по времени суток
 function balisGreeting() {
   const h = new Date().getHours();
@@ -625,6 +625,7 @@ class Component extends DCLogic {
     // Админ не проходит аттестацию — у него панель контроля вместо личного результата
     const isAdmin = !!(s.user && s.user.role === 'admin');
     const isSous = !!(s.user && s.user.role === 'sous');
+    const chatTile = s.user ? [{ kicker: t('kChats'), color: '#2C6BA8', title: t('tChats'), desc: t('dChats'), go: () => { window.location.href = 'Чаты.html'; } }] : [];
     const hrTile = s.user ? [
       { kicker: t('kHr'), color: '#2E7D4F', title: t('tHr'), desc: t('dHr'), go: () => { window.location.href = 'Папки.html'; } }
     ] : [];
@@ -769,7 +770,7 @@ class Component extends DCLogic {
         { kicker: t('kControl'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } },
         { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog', { brand: '' }) },
         { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } }
-      ].concat(hrTile).concat(materials.length ? [
+      ].concat(chatTile).concat(hrTile).concat(materials.length ? [
         { kicker: t('kMaterials'), color: '#2E7D8F', title: t('tMaterials'), desc: t('dMaterials', { n: materials.length }), go: () => this.go('materials') }
       ] : []) : [
         { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog', { brand: '' }) },
@@ -783,8 +784,8 @@ class Component extends DCLogic {
         { kicker: t('kProgress'), color: '#6B3FA0', title: t('tProgress'), desc: t('dProgress'), go: () => this.go('progress') }
       ].concat(isSous ? [
         { kicker: t('kAdmin'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } }
-      ] : []).concat(hrTile))).map((tile, i) => Object.assign({}, tile, {
-        food: 'assets/food/' + TILE_FOOD[tile.title === t('tHr') ? 'hr' : tile.kicker === t('kControl') || tile.kicker === t('kAdmin') ? 'admin'
+      ] : []).concat(chatTile).concat(hrTile))).map((tile, i) => Object.assign({}, tile, {
+        food: 'assets/food/' + TILE_FOOD[tile.title === t('tChats') ? 'chat' : tile.title === t('tHr') ? 'hr' : tile.kicker === t('kControl') || tile.kicker === t('kAdmin') ? 'admin'
           : tile.title === t('tCatalog') ? 'catalog' : tile.title === t('tSop') ? 'sop' : tile.kicker === t('kProgram') ? 'program'
           : tile.kicker === t('kMaterials') ? 'materials' : tile.kicker === t('kTrainer') ? 'trainer'
           : tile.kicker === t('kExam') ? 'test' : 'progress'],
