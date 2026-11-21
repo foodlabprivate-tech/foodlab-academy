@@ -132,6 +132,14 @@ h2{font:800 20px "Nunito",sans-serif;margin:28px 0 4px}
       bot: 'https://t.me/Formirobest_bot', handle: '@Formirobest_bot', wiki: true }
   ];
 
+  // Google-таблицы заказа продуктов по точкам (с них настроена отправка поставщикам)
+  var ORDERS = [
+    ['Чангу', 'https://docs.google.com/spreadsheets/d/1tQZg4I9y-XtWiAfwmaILuvex0CMq1JiM6y4B5K4kQmc/edit?gid=0#gid=0'],
+    ['Улувату', 'https://docs.google.com/spreadsheets/d/1U0ZBh_dkLoP25ytsNZ9sOSpmpKCKxlp6DyUZ6XU0pGo/edit?gid=0#gid=0'],
+    ['Убуд', 'https://docs.google.com/spreadsheets/d/1RxLzXYaD0wUBlz2gvopWTenYhwzMqAP3AHm-TMYU6Nk/edit?gid=0#gid=0']
+  ];
+  var ORDER_WHO = ['buyer', 'sous', 'chef', 'admin'];
+
   // Страницы брендов в Instagram: [логотип, название, аккаунт]
   var IG = [
     ['foodlab', 'Food Lab', 'foodlab.uluwatu'], ['only-eggs', 'Only Eggs', 'only.eggs.bali'],
@@ -177,7 +185,9 @@ h2{font:800 20px "Nunito",sans-serif;margin:28px 0 4px}
     return '<div class="who">' + list.map(function (g) { return '<span>' + esc(GROUP_NAME[g]) + '</span>'; }).join('') + '</div>';
   }
   function card(c, isAdmin, i) {
-    var link = c.join
+    var link = c.sheet
+      ? '<a class="go" style="background:#1E8E3E" href="' + c.sheet + '" target="_blank" rel="noopener">Открыть таблицу</a>'
+      : c.join
       ? '<a class="go" href="' + c.join + '" target="_blank" rel="noopener">Вступить в Telegram</a>'
       : c.bot
         ? '<a class="go" href="' + c.bot + '" target="_blank" rel="noopener">Открыть бота</a><span class="note">' + esc(c.handle) + '</span>'
@@ -230,6 +240,14 @@ h2{font:800 20px "Nunito",sans-serif;margin:28px 0 4px}
     var bots = mine.filter(function (c) { return c.kind === 'Бот'; });
     if (groups.length) html += '<h2>Группы по должности</h2><p class="sub">Эти группы видны только вашей должности.</p><div class="grid">' + groups.map(function (c) { return card(c, isAdmin, i++); }).join('') + '</div>';
     if (bots.length) html += '<h2>Боты</h2><p class="sub">Помощники в Telegram.</p><div class="grid">' + bots.map(function (c) { return card(c, isAdmin, i++); }).join('') + '</div>';
+
+    // Таблицы заказа продуктов — закупщику и руководителям кухни
+    if (ORDER_WHO.indexOf(g) >= 0) {
+      html += '<h2>Заказ продуктов</h2><p class="sub">Рабочие таблицы заказа по точкам. Отмеченные позиции уходят поставщикам в WhatsApp автоматически.</p><div class="grid">' +
+        ORDERS.map(function (o) {
+          return card({ kind: 'Таблица', ico: '🛒', title: 'Заказ продуктов · ' + o[0], text: 'Отметьте нужные позиции и количество — заказ уйдёт поставщикам.', sheet: o[1] }, isAdmin, i++);
+        }).join('') + '</div>';
+    }
 
     // Instagram брендов — для всех
     html += '<h2>Instagram наших брендов</h2><p class="sub">Подпишитесь и следите за новинками меню и акциями.</p><div class="ig">' +
