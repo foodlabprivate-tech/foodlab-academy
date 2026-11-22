@@ -197,7 +197,7 @@
       <div style="font-size: 13px; color: #5B6E86; line-height: 1.45; padding-top: 2px;">{{ brandsSub }}</div>
       <div class="fl-brands fl-brands-home" style="display: flex; gap: 10px; overflow-x: auto; padding: 14px 2px 12px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;">
         <sc-for list="{{ brands }}" as="b" hint-placeholder-count="11">
-          <div style="flex: none; width: 88px; margin-right: {{ b.mr }}; border-right: {{ b.sep }}; padding-right: {{ b.pr }}; display: flex; flex-direction: column; align-items: center; gap: 4px; scroll-snap-align: start;">
+          <div style="flex: none; width: 88px; margin-right: {{ b.mr }}; border-right: {{ b.sep }}; padding-right: {{ b.pr }}; background: {{ b.pairBg }}; border-radius: {{ b.pairRad }}; margin-left: {{ b.pairMl }}; padding-top: {{ b.pairPad }}; padding-bottom: 6px; display: flex; flex-direction: column; align-items: center; gap: 4px; scroll-snap-align: start;">
           <button class="fl-brand" onClick="{{ b.go }}" title="{{ b.name }}" style="width: 88px; padding: 0 0 2px; border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: {{ b.cursor }}; opacity: {{ b.op }}; font-family: inherit;">
             <span class="fl-brand-pl" style="width: 76px; height: 76px; border-radius: 99px; background: {{ b.plate }}; box-shadow: 0 10px 18px -12px rgba(20,53,89,0.6), 0 0 0 1px #D6E4F2; display: flex; align-items: center; justify-content: center; overflow: hidden;">
               <img src="{{ b.logo }}" alt="" style="width: {{ b.img }}; height: {{ b.img }}; object-fit: {{ b.fit }}; border-radius: {{ b.rad }}; display: block;" />
@@ -410,19 +410,26 @@ const KEY_FIX = {
 
 // Бренды Food Lab: главный бренд первым, затем суббренды (логотипы — assets/brands)
 // ig — страница бренда в Instagram (у кого её пока нет — пусто)
+// twin — бренд-близнец: другое название, те же блюда (показываем тех.карты бренда-пары)
 const BRANDS = [
-  { id: 'foodlab', name: 'Food Lab', ig: 'foodlab.uluwatu' }, { id: 'only-eggs', name: 'Only Eggs', ig: 'only.eggs.bali' },
+  { id: 'foodlab', name: 'Food Lab', ig: 'foodlab.uluwatu' },
+  { id: 'only-eggs', name: 'Only Eggs', ig: 'only.eggs.bali' }, { id: 'egg-spot', name: 'The Egg Spot', ig: '', twin: 'only-eggs' },
+  { id: 'healthy-fit', name: 'Healthy Fit', ig: '' }, { id: 'nutria', name: 'Nutria', ig: '', twin: 'healthy-fit' },
   { id: 'only-kebab', name: 'Only Kebab', ig: 'only.kebab.uluwatu' }, { id: 'hey-pizza', name: 'Hey, Pizza!', ig: 'heypizza.bali' },
   { id: 'hey-italia', name: 'Hey, Italia!', ig: 'hey.italia.uluwatu' }, { id: 'hey-pasta', name: 'Hey, Pasta!', ig: 'heypasta.bali' },
-  { id: 'fitbox', name: 'FitBox', ig: 'fitbox.uluwatu' }, { id: 'healthy-fit', name: 'Healthy Fit', ig: '' },
-  { id: 'pick-eat', name: 'Pick & Eat', ig: 'pickandeat.bali' }, { id: 'egg-spot', name: 'The Egg Spot', ig: '' },
-  { id: 'nutria', name: 'Nutria', ig: '' }
+  { id: 'fitbox', name: 'FitBox', ig: 'fitbox.uluwatu' }, { id: 'pick-eat', name: 'Pick & Eat', ig: 'pickandeat.bali', page: 'Pick and Eat.html' }
 ];
+const TWIN_OF = {}; BRANDS.forEach(b => { if (b.twin) TWIN_OF[b.id] = b.twin; });
+const HAS_TWIN = {}; BRANDS.forEach(b => { if (b.twin) HAS_TWIN[b.twin] = b.id; });
+const BRAND_NAME = {}; BRANDS.forEach(b => { BRAND_NAME[b.id] = b.name; });
+// Разделы каталога с напитками (кнопка «Напитки» объединяет их)
+const DRINK_CATS = ['Кофе', 'Напитки'];
 // Тех.карта может входить в несколько брендов: основной (b) и дополнительные (also)
-function inBrand(c, id) { return c.b === id || (c.also || []).indexOf(id) >= 0; }
+function inBrand(c, id) { id = TWIN_OF[id] || id; return c.b === id || (c.also || []).indexOf(id) >= 0; }
 // Рисованные продукты для плиток главной (assets/food)
 const TILE_FOOD = { admin: 'hat.svg', catalog: 'avocado.svg', sop: 'bowl.svg', program: 'egg.svg', materials: 'tomato.svg',
-  trainer: 'whisk.svg', test: 'chili.svg', progress: 'lemon.svg', hr: 'tomato.svg', chat: 'chat.svg' };
+  trainer: 'whisk.svg', test: 'chili.svg', progress: 'lemon.svg', hr: 'tomato.svg', chat: 'chat.svg',
+  drinks: 'cup.svg', pne: 'salad.svg', game: 'game.svg' };
 // Приветствие по времени суток — на языке, выбранном в Академии
 const GREET = {
   ru: ['Доброе утро', 'Добрый день', 'Добрый вечер', 'Доброй ночи'],
@@ -733,15 +740,20 @@ class Component extends DCLogic {
       brands: BRANDS.map((b, i) => {
         const n = s.cards.filter(c => inBrand(c, b.id)).length;
         const main = i === 0;
+        const pairA = !!HAS_TWIN[b.id], pairB = !!b.twin;
         return {
           name: b.name, logo: 'assets/brands/' + b.id + '.png',
           hasIg: !!b.ig, ig: b.ig ? 'https://www.instagram.com/' + b.ig + '/' : '', igHandle: b.ig ? '@' + b.ig : '',
-          note: n ? n : t('soon'),
+          note: pairB ? t('sameAs', { b: BRAND_NAME[b.twin] }) : b.page ? '★' : (n ? n : t('soon')),
+          pairBg: pairA || pairB ? '#EEF5FC' : 'transparent',
+          pairRad: pairA ? '18px 0 0 18px' : pairB ? '0 18px 18px 0' : '0',
+          pairPad: pairA || pairB ? '8px 4px 6px' : '0',
+          pairMl: pairB ? '-10px' : '0',
           plate: main ? '#FBF3E4' : '#FFFFFF', img: main ? '60px' : '70px', fit: main ? 'contain' : 'cover', rad: main ? '0' : '99px',
           weight: main ? '800' : '600',
           mr: main ? '6px' : '0', pr: main ? '14px' : '0', sep: main ? '1px solid #D6E4F2' : '0',
-          op: n ? '1' : '0.55', cursor: n ? 'pointer' : 'default',
-          go: () => { if (n) this.go('catalog', { brand: b.id, cat: '__all', query: '' }); }
+          op: n || b.page ? '1' : '0.55', cursor: n || b.page ? 'pointer' : 'default',
+          go: () => { if (b.page) { window.location.href = b.page; return; } if (n) this.go('catalog', { brand: b.id, cat: '__all', query: '' }); }
         };
       }),
       userMeta: s.user ? [s.user.position, (db && db.ROLES[s.user.role]) || s.user.role, '@' + s.user.login].filter(Boolean).join(' · ') : '',
@@ -784,11 +796,17 @@ class Component extends DCLogic {
       tiles: (isAdmin ? [
         { kicker: t('kControl'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } },
         { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog', { brand: '' }) },
+        { kicker: t('kDrinks'), color: '#8A5A2B', title: t('tDrinks'), desc: t('dDrinks'), icon: 'drinks', go: () => this.go('catalog', { brand: '', cat: '__drinks', query: '' }) },
+        { kicker: t('kPne'), color: '#2E7D4F', title: t('tPne'), desc: t('dPne'), icon: 'pne', go: () => { window.location.href = 'Pick and Eat.html'; } },
+        { kicker: t('kGame'), color: '#C0392B', title: t('tGame'), desc: t('dGame'), icon: 'game', go: () => { window.location.href = 'Игра - Собери заказ.html'; } },
         { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } }
       ].concat(chatTile).concat(hrTile).concat(materials.length ? [
         { kicker: t('kMaterials'), color: '#2E7D8F', title: t('tMaterials'), desc: t('dMaterials', { n: materials.length }), go: () => this.go('materials') }
       ] : []) : [
         { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog', { brand: '' }) },
+        { kicker: t('kDrinks'), color: '#8A5A2B', title: t('tDrinks'), desc: t('dDrinks'), icon: 'drinks', go: () => this.go('catalog', { brand: '', cat: '__drinks', query: '' }) },
+        { kicker: t('kPne'), color: '#2E7D4F', title: t('tPne'), desc: t('dPne'), icon: 'pne', go: () => { window.location.href = 'Pick and Eat.html'; } },
+        { kicker: t('kGame'), color: '#C0392B', title: t('tGame'), desc: t('dGame'), icon: 'game', go: () => { window.location.href = 'Игра - Собери заказ.html'; } },
         { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } },
         { kicker: t('kProgram'), color: '#1F7A4D', title: t('tProgram'), desc: t('dProgram'), go: () => this.go('program') }
       ].concat(materials.length ? [
@@ -800,7 +818,7 @@ class Component extends DCLogic {
       ].concat(isSous ? [
         { kicker: t('kAdmin'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } }
       ] : []).concat(chatTile).concat(hrTile))).map((tile, i) => Object.assign({}, tile, {
-        food: 'assets/food/' + TILE_FOOD[tile.title === t('tChats') ? 'chat' : tile.title === t('tHr') ? 'hr' : tile.kicker === t('kControl') || tile.kicker === t('kAdmin') ? 'admin'
+        food: 'assets/food/' + TILE_FOOD[tile.icon ? tile.icon : tile.title === t('tChats') ? 'chat' : tile.title === t('tHr') ? 'hr' : tile.kicker === t('kControl') || tile.kicker === t('kAdmin') ? 'admin'
           : tile.title === t('tCatalog') ? 'catalog' : tile.title === t('tSop') ? 'sop' : tile.kicker === t('kProgram') ? 'program'
           : tile.kicker === t('kMaterials') ? 'materials' : tile.kicker === t('kTrainer') ? 'trainer'
           : tile.kicker === t('kExam') ? 'test' : 'progress'],
@@ -813,9 +831,10 @@ class Component extends DCLogic {
       const pool = s.brand ? s.cards.filter(c => inBrand(c, s.brand)) : s.cards;
       const counts = {};
       pool.forEach(c => { counts[c.c] = (counts[c.c] || 0) + 1; });
-      const catNames = ['__all'].concat(Object.keys(counts).sort());
+      const drinksN = pool.filter(c => DRINK_CATS.indexOf(c.c) >= 0).length;
+      const catNames = ['__all'].concat(drinksN ? ['__drinks'] : []).concat(Object.keys(counts).filter(k => DRINK_CATS.indexOf(k) < 0).sort());
       const filtered = pool.filter(c =>
-        (s.cat === '__all' || c.c === s.cat) && (!q || c.n.toLowerCase().indexOf(q) >= 0)
+        (s.cat === '__all' || c.c === s.cat || (s.cat === '__drinks' && DRINK_CATS.indexOf(c.c) >= 0)) && (!q || c.n.toLowerCase().indexOf(q) >= 0)
       );
       Object.assign(base, {
         searchPlaceholder: t('search'),
@@ -823,17 +842,17 @@ class Component extends DCLogic {
         setQuery: e => this.setState({ query: e.target.value }),
         foundText: t('foundOf', { a: filtered.length, b: pool.length }),
         brandChips: [{ id: '', name: t('allBrands'), n: s.cards.length }]
-          .concat(BRANDS.map(b => ({ id: b.id, name: b.name, n: s.cards.filter(c => inBrand(c, b.id)).length })).filter(b => b.n))
+          .concat(BRANDS.filter(b => !b.twin).map(b => ({ id: b.id, name: HAS_TWIN[b.id] ? b.name + ' · ' + BRAND_NAME[HAS_TWIN[b.id]] : b.name, n: s.cards.filter(c => inBrand(c, b.id)).length })).filter(b => b.n))
           .map(b => ({
             label: b.name, count: b.n, hasLogo: !!b.id, logo: b.id ? 'assets/brands/' + b.id + '.png' : '',
             pl: b.id ? '5px' : '14px',
-            bg: s.brand === b.id ? '#173F6B' : '#FFFFFF', color: s.brand === b.id ? '#FFFFFF' : '#13263F',
-            border: s.brand === b.id ? '#173F6B' : '#D6E4F2',
+            bg: (TWIN_OF[s.brand] || s.brand) === b.id ? '#173F6B' : '#FFFFFF', color: (TWIN_OF[s.brand] || s.brand) === b.id ? '#FFFFFF' : '#13263F',
+            border: (TWIN_OF[s.brand] || s.brand) === b.id ? '#173F6B' : '#D6E4F2',
             pick: () => this.setState({ brand: b.id, cat: '__all' })
           })),
         cats: catNames.map(name => ({
-          label: name === '__all' ? t('all') : name,
-          count: name === '__all' ? pool.length : counts[name],
+          label: name === '__all' ? t('all') : name === '__drinks' ? '☕ ' + t('drinksChip') : name,
+          count: name === '__all' ? pool.length : name === '__drinks' ? drinksN : counts[name],
           bg: s.cat === name ? '#0F1F3D' : '#FFFFFF',
           color: s.cat === name ? '#FFFFFF' : '#33445E',
           border: s.cat === name ? '#0F1F3D' : 'rgba(15,31,61,0.14)',

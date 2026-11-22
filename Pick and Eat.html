@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Конструктор Pick & Eat</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Onest:wght@400;500;600;700&family=Caveat:wght@700&display=swap">
+<script src="./cards.js"></script>
+<script src="./pick-eat-data.js"></script>
+<script src="./translations.js"></script>
+<script src="./fl-lang.js"></script>
+<style>
+:root{--deep:#173F6B;--lagoon:#2C6BA8;--sky:#9CCBF5;--foam:#EEF5FC;--ink:#13263F;--muted:#5B6E86;--line:#D6E4F2;--green:#2E7D4F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--foam);color:var(--ink);font:400 15px/1.55 "Onest",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:22px 16px 80px}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.logo{flex:none;width:48px;height:48px;border-radius:14px;overflow:hidden;background:#FBF3E4;box-shadow:0 8px 18px -10px rgba(20,53,89,.55)}
+.logo img{width:100%;height:100%;object-fit:cover;display:block}
+.brand{flex:1;min-width:150px}.brand small{display:block;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--lagoon)}
+.brand b{font:800 21px "Nunito",sans-serif}
+.btn{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 13px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);font:600 13px "Onest",sans-serif;text-decoration:none;cursor:pointer}
+.btn:hover{border-color:var(--sky)}
+.lang{display:inline-flex;gap:3px;padding:3px;background:#fff;border:1px solid var(--line);border-radius:99px}
+.lang button{border:0;background:none;border-radius:99px;padding:6px 10px;font:600 12px "Onest",sans-serif;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--deep);color:#fff}
+.hero{position:relative;overflow:hidden;background:linear-gradient(155deg,#1E5590,#143559);color:#fff;border-radius:24px;padding:24px;box-shadow:0 24px 40px -28px rgba(20,53,89,.9)}
+.hero .hw{font:700 25px/1 "Caveat",cursive;color:var(--sky)}
+.hero h1{margin:6px 0 8px;font:800 28px/1.12 "Nunito",sans-serif}
+.hero p{margin:0;color:rgba(255,255,255,.86);max-width:62ch}
+.steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.steps span{background:rgba(255,255,255,.14);border-radius:99px;padding:6px 12px;font-size:13px;font-weight:600}
+.leaf{position:absolute;right:-60px;top:-50px;opacity:.13;pointer-events:none}
+.bar{position:sticky;top:0;z-index:5;background:var(--foam);padding:14px 0 10px;margin-top:6px}
+.search{width:100%;min-height:44px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px;font:500 15px "Onest",sans-serif;background:#fff;outline:none}
+.search:focus{border-color:var(--sky)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:10px 0 2px}
+.chips button{flex:none;min-height:38px;padding:0 14px;border:1.5px solid var(--line);border-radius:99px;background:#fff;color:var(--ink);font:700 13px "Onest",sans-serif;cursor:pointer;white-space:nowrap}
+.chips button[aria-pressed="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+h2{font:800 20px "Nunito",sans-serif;margin:22px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.item{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 16px 28px -24px rgba(20,53,89,.6);border:1.5px solid transparent;transition:transform .16s ease,border-color .16s ease;animation:rise .4s cubic-bezier(.2,.7,.2,1) both;display:flex;flex-direction:column}
+.item:hover{transform:translateY(-3px);border-color:var(--sky)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ph{position:relative;aspect-ratio:1/1;background:#F4F7FB}
+.ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+.item:hover .ph img{transform:scale(1.05)}
+.por{position:absolute;left:10px;bottom:10px;background:#fff;color:var(--green);font:800 15px "Nunito",sans-serif;border-radius:99px;padding:5px 12px;box-shadow:0 6px 14px -8px rgba(0,0,0,.45)}
+.tx{padding:10px 12px 12px;display:flex;flex-direction:column;gap:2px;flex:1}
+.tx b{font:800 15px/1.25 "Nunito",sans-serif}
+.tx small{font-size:12px;color:var(--muted)}
+.tx a{margin-top:6px;font-size:12.5px;font-weight:700;color:var(--lagoon);text-decoration:none}
+.empty{background:#fff;border-radius:20px;padding:22px;text-align:center}
+@media (max-width:520px){.grid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:24px}}
+@media (prefers-reduced-motion:reduce){.item{animation:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a class="logo" href="Академия.dc.html"><img src="assets/brands/pick-eat.png" alt="Pick & Eat"></a>
+    <div class="brand"><small>Food Lab Academy</small><b>Конструктор Pick & Eat</b></div>
+    <a class="btn" href="Академия.dc.html">← Академия</a>
+    <span class="lang" role="group" aria-label="Language"><button type="button" data-l="ru">RU</button><button type="button" data-l="id">ID</button><button type="button" data-l="en">EN</button></span>
+  </div>
+  <div id="app"></div>
+</div>
+<script>
+(function () {
+  var CATS = window.FL_PNE_CATS || [], ITEMS = window.FL_PNE || [];
+  var CARDS = {};
+  (window.FL_CARDS || []).forEach(function (c) { CARDS[c.n.toLowerCase()] = c.f; });
+  var app = document.getElementById('app');
+  var state = { cat: '', q: '' };
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  var sess = null;
+  try { sess = JSON.parse(localStorage.getItem('foodlab-session') || 'null'); } catch (e) {}
+
+  function renderList() {
+    var q = state.q.trim().toLowerCase();
+    var list = ITEMS.filter(function (it) {
+      return (!state.cat || it.cat === state.cat) && (!q || (it.ru + ' ' + it.en).toLowerCase().indexOf(q) >= 0);
+    });
+    var html = '', n = 0;
+    CATS.forEach(function (c) {
+      var part = list.filter(function (it) { return it.cat === c.id; });
+      if (!part.length) return;
+      html += '<h2>' + esc(c.ru) + '</h2><div class="grid">' + part.map(function (it) {
+        var card = CARDS[it.en.toLowerCase()];
+        return '<div class="item" style="animation-delay:' + (Math.min(n++, 20) * 30) + 'ms"><div class="ph"><img loading="lazy" src="' + esc(it.img) + '" alt="">' +
+          (it.portion ? '<span class="por">' + esc(it.portion) + '</span>' : '') + '</div>' +
+          '<div class="tx"><b>' + esc(it.ru) + '</b><small data-fl-keep>' + esc(it.en) + '</small>' +
+          (card ? '<a href="' + encodeURI(card) + '">Тех.карта →</a>' : '') + '</div></div>';
+      }).join('') + '</div>';
+    });
+    document.getElementById('list').innerHTML = html || '<div class="empty">Ничего не найдено.</div>';
+  }
+
+  function render() {
+    if (!sess) {
+      app.innerHTML = '<div class="empty"><p>Сначала войдите в Академию.</p><a class="btn" href="Академия.dc.html">← В Академию</a></div>';
+      return;
+    }
+    app.innerHTML =
+      '<div class="hero"><svg class="leaf" width="260" height="260" viewBox="0 0 100 100"><path d="M10 90C10 40 50 10 95 5 90 50 60 90 10 90z" fill="#BFE0FF"/></svg>' +
+      '<div class="hw">Pick & Eat</div><h1>Гость собирает тарелку сам</h1>' +
+      '<p>В заказе Pick & Eat нет готового блюда: гость выбирает ингредиенты по одному. Здесь каждый ингредиент с фото и порцией — кладите ровно столько, сколько написано на зелёной метке.</p>' +
+      '<div class="steps"><span>1. Прочитай чек</span><span>2. Найди ингредиент</span><span>3. Взвесь порцию</span><span>4. Сверь с фото</span></div></div>' +
+      '<div class="bar"><input class="search" id="q" placeholder="Найти ингредиент…" autocomplete="off"><div class="chips" id="chips"></div></div>' +
+      '<div id="list"></div>';
+    var chips = [{ id: '', ru: 'Все' }].concat(CATS);
+    var el = document.getElementById('chips');
+    el.innerHTML = chips.map(function (c) { return '<button type="button" data-c="' + c.id + '" aria-pressed="' + (state.cat === c.id) + '">' + esc(c.ru) + '</button>'; }).join('');
+    [].forEach.call(el.querySelectorAll('button'), function (b) {
+      b.addEventListener('click', function () {
+        state.cat = b.getAttribute('data-c');
+        [].forEach.call(el.querySelectorAll('button'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        renderList();
+      });
+    });
+    document.getElementById('q').addEventListener('input', function (e) { state.q = e.target.value; renderList(); });
+    renderList();
+  }
+
+  var lang = 'ru';
+  try { lang = localStorage.getItem('foodlab-lang') || 'ru'; } catch (e) {}
+  [].forEach.call(document.querySelectorAll('[data-l]'), function (b) {
+    b.setAttribute('aria-pressed', b.getAttribute('data-l') === lang ? 'true' : 'false');
+    b.addEventListener('click', function () {
+      try { localStorage.setItem('foodlab-lang', b.getAttribute('data-l')); } catch (e) {}
+      location.reload();
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>

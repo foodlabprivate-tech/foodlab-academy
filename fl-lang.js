@@ -149,6 +149,7 @@
     while ((n = w.nextNode())) {
       var p = n.parentNode;
       if (!p || SKIP[p.nodeName]) continue;
+      if (p.closest && p.closest('[data-fl-keep]')) continue; // оригинальные названия (англ.) не переводим
       if (to !== 'ru') {
         if (n.__flRuSrc && n.nodeValue === n.__flRuVal) { n.nodeValue = n.__flRuSrc; }
         n.__flRuSrc = null;
