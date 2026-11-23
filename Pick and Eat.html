@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Конструктор Pick & Eat</title>
+<title>Pick & Eat</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Onest:wght@400;500;600;700&family=Caveat:wght@700&display=swap">
 <script src="./cards.js"></script>
 <script src="./pick-eat-data.js"></script>
@@ -52,6 +52,17 @@ h2{font:800 20px "Nunito",sans-serif;margin:22px 0 10px}
 .tx a{margin-top:6px;font-size:12.5px;font-weight:700;color:var(--lagoon);text-decoration:none}
 .empty{background:#fff;border-radius:20px;padding:22px;text-align:center}
 @media (max-width:520px){.grid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:24px}}
+.one{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 24px 40px -28px rgba(20,53,89,.7);animation:rise .4s cubic-bezier(.2,.7,.2,1) both}
+.one img{width:100%;height:100%;min-height:300px;object-fit:cover;display:block}
+.one .in{padding:22px 22px 22px 4px;display:flex;flex-direction:column;gap:10px}
+.one .k{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+.one h1{margin:0;font:800 30px/1.1 "Nunito",sans-serif}
+.one .en{color:var(--muted);font-size:14px}
+.one .big{align-self:flex-start;background:#E6F4EC;color:var(--green);font:900 34px/1 "Nunito",sans-serif;border-radius:18px;padding:12px 18px}
+.one .big small{display:block;font:600 11px "Onest",sans-serif;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.one ol{margin:4px 0 0;padding-left:20px;color:var(--ink);font-size:14px}
+.one ol li{margin:3px 0}
+@media (max-width:700px){.one{grid-template-columns:1fr}.one .in{padding:4px 18px 20px}.one img{min-height:0;aspect-ratio:1/1}}
 @media (prefers-reduced-motion:reduce){.item{animation:none}}
 </style>
 </head>
@@ -59,8 +70,8 @@ h2{font:800 20px "Nunito",sans-serif;margin:22px 0 10px}
 <div class="wrap">
   <div class="top">
     <a class="logo" href="Академия.dc.html"><img src="assets/brands/pick-eat.png" alt="Pick & Eat"></a>
-    <div class="brand"><small>Food Lab Academy</small><b>Конструктор Pick & Eat</b></div>
-    <a class="btn" href="Академия.dc.html">← Академия</a>
+    <div class="brand"><small>Food Lab Academy</small><b>Pick & Eat</b></div>
+    <a class="btn" id="backBtn" href="Академия.dc.html">← Назад</a>
     <span class="lang" role="group" aria-label="Language"><button type="button" data-l="ru">RU</button><button type="button" data-l="id">ID</button><button type="button" data-l="en">EN</button></span>
   </div>
   <div id="app"></div>
@@ -97,7 +108,23 @@ h2{font:800 20px "Nunito",sans-serif;margin:22px 0 10px}
     document.getElementById('list').innerHTML = html || '<div class="empty">Ничего не найдено.</div>';
   }
 
+  // Карточка одного ингредиента: Pick and Eat.html#<имя-фото>
+  function renderOne(slug) {
+    var it = ITEMS.filter(function (x) { return x.img.replace(/^.*\//, '').replace(/\.jpg$/, '') === slug; })[0];
+    if (!it) return false;
+    var cat = (CATS.filter(function (c) { return c.id === it.cat; })[0] || {}).ru || '';
+    document.title = it.ru + ' · Pick & Eat';
+    app.innerHTML = '<div class="one"><img src="' + esc(it.img) + '" alt=""><div class="in">' +
+      '<div class="k">Pick & Eat · ' + esc(cat) + '</div><h1>' + esc(it.ru) + '</h1><div class="en" data-fl-keep>' + esc(it.en) + '</div>' +
+      (it.portion ? '<div class="big"><small>Порция</small>' + esc(it.portion) + '</div>' : '') +
+      '<ol><li>Проверь в чеке, что гость выбрал этот ингредиент.</li><li>Взвесь ровно ' + esc(it.portion || 'одну порцию') + ' — не на глаз.</li><li>Выложи так, как на фото, отдельной секцией в боксе.</li></ol>' +
+      '<a class="btn" href="Pick and Eat.html" style="align-self:flex-start;margin-top:6px">Все ингредиенты Pick & Eat</a></div></div>';
+    return true;
+  }
+
   function render() {
+    var slug = decodeURIComponent((location.hash || '').slice(1));
+    if (sess && slug && renderOne(slug)) return;
     if (!sess) {
       app.innerHTML = '<div class="empty"><p>Сначала войдите в Академию.</p><a class="btn" href="Академия.dc.html">← В Академию</a></div>';
       return;
@@ -131,6 +158,10 @@ h2{font:800 20px "Nunito",sans-serif;margin:22px 0 10px}
       try { localStorage.setItem('foodlab-lang', b.getAttribute('data-l')); } catch (e) {}
       location.reload();
     });
+  });
+  window.addEventListener('hashchange', render);
+  document.getElementById('backBtn').addEventListener('click', function (e) {
+    if (history.length > 1 && document.referrer) { e.preventDefault(); history.back(); }
   });
   render();
 })();

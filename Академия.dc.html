@@ -13,6 +13,7 @@
 <script src="./i18n.js"></script>
 <script src="./fl-lang.js"></script>
 <script src="./cards.js"></script>
+<script src="./pick-eat-data.js"></script>
 <script src="./avatars.js"></script>
 <script src="./card-photos.js"></script>
 <script src="./photos.js"></script>
@@ -273,6 +274,9 @@
           <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
             <div style="font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: {{ c.color }};">{{ c.cat }}</div>
             <div style="font-size: 13.5px; font-weight: 700; color: #0F1F3D; line-height: 1.3;">{{ c.name }}</div>
+            <sc-if value="{{ c.hasPortion }}" hint-placeholder-val="{{ false }}">
+              <div style="align-self: flex-start; font-size: 12px; font-weight: 800; color: #2E7D4F; background: #E6F4EC; border-radius: 99px; padding: 2px 9px;">{{ c.portion }}</div>
+            </sc-if>
           </div>
         </a>
       </sc-for>
@@ -417,11 +421,23 @@ const BRANDS = [
   { id: 'healthy-fit', name: 'Healthy Fit', ig: '' }, { id: 'nutria', name: 'Nutria', ig: '', twin: 'healthy-fit' },
   { id: 'only-kebab', name: 'Only Kebab', ig: 'only.kebab.uluwatu' }, { id: 'hey-pizza', name: 'Hey, Pizza!', ig: 'heypizza.bali' },
   { id: 'hey-italia', name: 'Hey, Italia!', ig: 'hey.italia.uluwatu' }, { id: 'hey-pasta', name: 'Hey, Pasta!', ig: 'heypasta.bali' },
-  { id: 'fitbox', name: 'FitBox', ig: 'fitbox.uluwatu' }, { id: 'pick-eat', name: 'Pick & Eat', ig: 'pickandeat.bali', page: 'Pick and Eat.html' }
+  { id: 'fitbox', name: 'FitBox', ig: 'fitbox.uluwatu' }, { id: 'pick-eat', name: 'Pick & Eat', ig: 'pickandeat.bali' }
 ];
 const TWIN_OF = {}; BRANDS.forEach(b => { if (b.twin) TWIN_OF[b.id] = b.twin; });
 const HAS_TWIN = {}; BRANDS.forEach(b => { if (b.twin) HAS_TWIN[b.twin] = b.id; });
 const BRAND_NAME = {}; BRANDS.forEach(b => { BRAND_NAME[b.id] = b.name; });
+// Pick & Eat: гость собирает тарелку из ингредиентов — в каталоге они идут как «тех.карты» этого бренда
+// (только при выбранном бренде Pick & Eat, в общий список блюд не попадают)
+const PNE_ID = 'pick-eat';
+function pnePool() {
+  const cats = {}; (window.FL_PNE_CATS || []).forEach(c => { cats[c.id] = c.ru; });
+  const byEn = {}; (window.FL_CARDS || []).forEach(c => { byEn[c.n.toLowerCase()] = c.f; });
+  return (window.FL_PNE || []).map(it => ({
+    n: it.ru, c: cats[it.cat] || '', b: PNE_ID, pne: it,
+    f: byEn[it.en.toLowerCase()] || ('Pick and Eat.html#' + it.img.replace(/^.*\//, '').replace(/\.jpg$/, ''))
+  }));
+}
+function brandCount(cards, id) { return id === PNE_ID ? (window.FL_PNE || []).length : cards.filter(c => inBrand(c, id)).length; }
 // Разделы каталога с напитками (кнопка «Напитки» объединяет их)
 const DRINK_CATS = ['Кофе', 'Напитки'];
 // Тех.карта может входить в несколько брендов: основной (b) и дополнительные (also)
@@ -738,7 +754,7 @@ class Component extends DCLogic {
       heroQ: t('heroQ'),
       brandsTitle: t('brandsTitle'), brandsSub: t('brandsSub'),
       brands: BRANDS.map((b, i) => {
-        const n = s.cards.filter(c => inBrand(c, b.id)).length;
+        const n = brandCount(s.cards, b.id);
         const main = i === 0;
         const pairA = !!HAS_TWIN[b.id], pairB = !!b.twin;
         return {
@@ -797,7 +813,6 @@ class Component extends DCLogic {
         { kicker: t('kControl'), color: '#0F1F3D', title: t('tAdmin'), desc: t('dAdmin'), go: () => { window.location.href = 'Админка.dc.html'; } },
         { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog', { brand: '' }) },
         { kicker: t('kDrinks'), color: '#8A5A2B', title: t('tDrinks'), desc: t('dDrinks'), icon: 'drinks', go: () => this.go('catalog', { brand: '', cat: '__drinks', query: '' }) },
-        { kicker: t('kPne'), color: '#2E7D4F', title: t('tPne'), desc: t('dPne'), icon: 'pne', go: () => { window.location.href = 'Pick and Eat.html'; } },
         { kicker: t('kGame'), color: '#C0392B', title: t('tGame'), desc: t('dGame'), icon: 'game', go: () => { window.location.href = 'Игра - Собери заказ.html'; } },
         { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } }
       ].concat(chatTile).concat(hrTile).concat(materials.length ? [
@@ -805,7 +820,6 @@ class Component extends DCLogic {
       ] : []) : [
         { kicker: t('kTraining'), color: '#E0703F', title: t('tCatalog'), desc: t('dCatalog', { cards: cardsWord }), go: () => this.go('catalog', { brand: '' }) },
         { kicker: t('kDrinks'), color: '#8A5A2B', title: t('tDrinks'), desc: t('dDrinks'), icon: 'drinks', go: () => this.go('catalog', { brand: '', cat: '__drinks', query: '' }) },
-        { kicker: t('kPne'), color: '#2E7D4F', title: t('tPne'), desc: t('dPne'), icon: 'pne', go: () => { window.location.href = 'Pick and Eat.html'; } },
         { kicker: t('kGame'), color: '#C0392B', title: t('tGame'), desc: t('dGame'), icon: 'game', go: () => { window.location.href = 'Игра - Собери заказ.html'; } },
         { kicker: t('kTraining'), color: '#1B4FB8', title: t('tSop'), desc: t('dSop'), go: () => { window.location.href = 'Стандарты - SOP.dc.html'; } },
         { kicker: t('kProgram'), color: '#1F7A4D', title: t('tProgram'), desc: t('dProgram'), go: () => this.go('program') }
@@ -828,13 +842,13 @@ class Component extends DCLogic {
 
     if (s.screen === 'catalog') {
       const q = s.query.trim().toLowerCase();
-      const pool = s.brand ? s.cards.filter(c => inBrand(c, s.brand)) : s.cards;
+      const pool = s.brand === PNE_ID ? pnePool() : s.brand ? s.cards.filter(c => inBrand(c, s.brand)) : s.cards;
       const counts = {};
       pool.forEach(c => { counts[c.c] = (counts[c.c] || 0) + 1; });
       const drinksN = pool.filter(c => DRINK_CATS.indexOf(c.c) >= 0).length;
       const catNames = ['__all'].concat(drinksN ? ['__drinks'] : []).concat(Object.keys(counts).filter(k => DRINK_CATS.indexOf(k) < 0).sort());
       const filtered = pool.filter(c =>
-        (s.cat === '__all' || c.c === s.cat || (s.cat === '__drinks' && DRINK_CATS.indexOf(c.c) >= 0)) && (!q || c.n.toLowerCase().indexOf(q) >= 0)
+        (s.cat === '__all' || c.c === s.cat || (s.cat === '__drinks' && DRINK_CATS.indexOf(c.c) >= 0)) && (!q || c.n.toLowerCase().indexOf(q) >= 0 || (c.pne && c.pne.en.toLowerCase().indexOf(q) >= 0))
       );
       Object.assign(base, {
         searchPlaceholder: t('search'),
@@ -842,7 +856,7 @@ class Component extends DCLogic {
         setQuery: e => this.setState({ query: e.target.value }),
         foundText: t('foundOf', { a: filtered.length, b: pool.length }),
         brandChips: [{ id: '', name: t('allBrands'), n: s.cards.length }]
-          .concat(BRANDS.filter(b => !b.twin).map(b => ({ id: b.id, name: HAS_TWIN[b.id] ? b.name + ' · ' + BRAND_NAME[HAS_TWIN[b.id]] : b.name, n: s.cards.filter(c => inBrand(c, b.id)).length })).filter(b => b.n))
+          .concat(BRANDS.filter(b => !b.twin).map(b => ({ id: b.id, name: HAS_TWIN[b.id] ? b.name + ' · ' + BRAND_NAME[HAS_TWIN[b.id]] : b.name, n: brandCount(s.cards, b.id) })).filter(b => b.n))
           .map(b => ({
             label: b.name, count: b.n, hasLogo: !!b.id, logo: b.id ? 'assets/brands/' + b.id + '.png' : '',
             pl: b.id ? '5px' : '14px',
@@ -859,9 +873,10 @@ class Component extends DCLogic {
           pick: () => this.setState({ cat: name })
         })),
         visibleCards: filtered.slice(0, 300).map(c => {
-          const thumb = this.cardThumb(c.n);
+          const thumb = c.pne ? c.pne.img : this.cardThumb(c.n);
           return {
-            name: c.n, cat: c.c, href: encodeURI(c.f), color: CAT_COLOR[c.c] || '#5A6B87',
+            name: c.n, cat: c.c, href: encodeURI(c.f), color: CAT_COLOR[c.c] || (c.pne ? '#2E7D4F' : '#5A6B87'),
+            portion: c.pne ? c.pne.portion : '', hasPortion: !!(c.pne && c.pne.portion),
             hasImg: !!thumb, noImg: !thumb, setImg: this.imgRef(thumb),
             initial: String(c.n).trim().charAt(0).toUpperCase()
           };
